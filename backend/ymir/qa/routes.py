@@ -3,18 +3,21 @@ runs its tools and returns the answer plus one summary per tool for the trace.
 
 Add a question type by writing a Route and listing it in ROUTES (order = priority).
 Answer payload (frontend contract): {status: 'answered'|'abstained', value, unit, text, citations, highlight, focus}
-plus, for box counts, {confidence, review: {class, threshold, boxes: [{id, box, score}]}}.
+plus, for box counts, {confidence, confidence_basis: {model, reviews, agreed},
+review: {class, threshold, boxes: [{id, box, score}], audit?}}; `audit: true` asks for a spot check of a
+confident answer. A count a person already checked comes back with confidence 1 and `source_review`, no review.
 """
 from __future__ import annotations
 
+import random
 import re
 import time
 from dataclasses import dataclass, field
 
-from .. import models
+from .. import calibration, models, settings
 from .context import Context, NUM, cites, ctr, fmt, poly_box, printed_area, union_box
 
-REVIEW_BELOW = 0.8  # same cutoff as frontend/shared/session.js: under it the user is asked to check the boxes
+REVIEW_BELOW = 0.8  # same cutoff as frontend/lib/session.ts: under it the user is asked to check the boxes
 
 
 @dataclass
@@ -84,7 +87,9 @@ class Route:
 
 
 class SymbolCount(Route):
-    """Count of a drawn symbol (windows, doors, fixtures) from a registered detector."""
+    """Count of a drawn symbol (windows, doors, fixtures) from a registered detector. Its confidence is
+    calibrated on people's box reviews (ymir/calibration.py); a drawing a person already checked is
+    answered from their boxes."""
     tools = ("det",)
 
     def match(self, ctx):
@@ -95,23 +100,46 @@ class SymbolCount(Route):
         return f"Count {noun(self.cls, 2)} → detector" if self.detector else None
 
     def run(self, ctx):
+        checked = ctx.reviews and ctx.reviews.latest(str(ctx.drawing.get("id", "")), self.cls)
+        if checked:
+            return self.from_review(checked)
         with Timer() as t:
             result = self.detector.detect(ctx.image_path, ctx.drawing, [self.cls])
         counted = result.counted(self.cls)
-        n, conf, threshold = len(counted), result.confidence_for(self.cls), result.thresholds.get(self.cls, 0.5)
+        n, threshold = len(counted), result.thresholds.get(self.cls, 0.5)
+        own = result.confidence_for(self.cls)
+        cal = (calibration.calibrate(ctx.reviews, self.detector, self.cls, own) if ctx.reviews
+               else calibration.Calibration(own, 0, 0))
+        conf = cal.confidence
         one = noun(self.cls, 1).capitalize()
         boxes = [d for d in result.detections if d.cls == self.cls]
+        review = {"class": self.cls, "threshold": threshold,
+                  "boxes": [{"id": d.id, "box": list(d.box), "score": d.score} for d in boxes]}
+        audit = conf >= REVIEW_BELOW and random.random() < settings.AUDIT_RATE
+        if audit:
+            review["audit"] = True
         answer = answered(
-            value=n, unit="count", confidence=conf,
-            review={"class": self.cls, "threshold": threshold,
-                    "boxes": [{"id": d.id, "box": list(d.box), "score": d.score} for d in boxes]},
+            value=n, unit="count", confidence=conf, confidence_basis=cal.basis(), review=review,
             text=f"<b>{n}</b> {noun(self.cls, n)} found by the detector {cites(n)}." if n
             else f"No {noun(self.cls, 2)} found by the detector.",
             citations=[{"n": i + 1, "label": f"{one} · {round(d.score * 100)}%", "box": list(d.box)} for i, d in enumerate(counted)],
             focus=None,
         )
-        return Outcome(answer, {"det": Step(f"{n} boxes ≥ {threshold}", t.ms)},
-                       Step(f"Confidence {round(conf * 100)}% {'⚠' if conf < REVIEW_BELOW else '✓'}"), str(n))
+        checks = f" · {cal.agreed}/{cal.reviews} checks agreed" if cal.reviews else ""
+        verify = f"Confidence {round(conf * 100)}%{checks} {'⚠' if conf < REVIEW_BELOW else '✓'}{' · spot check' if audit else ''}"
+        return Outcome(answer, {"det": Step(f"{n} boxes ≥ {threshold}", t.ms)}, Step(verify), str(n))
+
+    def from_review(self, rec: dict) -> Outcome:
+        kept = [o for o in rec["objects"] if o["status"] == "accepted"]
+        n, one = len(kept), noun(self.cls, 1).capitalize()
+        answer = answered(
+            value=n, unit="count", confidence=1.0, source_review=rec["id"],
+            text=f"<b>{n}</b> {noun(self.cls, n)}, checked by a person {cites(n)}." if n
+            else f"No {noun(self.cls, 2)}, checked by a person.",
+            citations=[{"n": i + 1, "label": f"{one} · checked", "box": o["bbox_xyxy"]} for i, o in enumerate(kept)],
+            focus=None,
+        )
+        return Outcome(answer, {"det": Step(f"Reused review #{rec['id']}", 1)}, Step("Checked by a person ✓"), str(n))
 
 
 class RoomArea(Route):

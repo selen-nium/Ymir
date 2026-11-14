@@ -84,7 +84,8 @@ export interface Answer {
   citations?: Citation[];
   highlight?: { rooms?: string[]; walls?: string[]; symbols?: string[]; openings?: string[] };
   focus?: Box | null;
-  review?: { class: string; threshold: number; boxes: ReviewBox[] };
+  /** `audit`: a confident answer the backend picked for a spot check, reviewed like a low-confidence one. */
+  review?: { class: string; threshold: number; boxes: ReviewBox[]; audit?: boolean };
   needs?: { kind: string; level?: string };
   checked?: boolean;
   unchecked?: boolean;

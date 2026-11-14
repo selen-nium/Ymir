@@ -49,7 +49,13 @@ and render everything else from the workspace store (zustand).
 - **Ask:** `POST /api/ask` picks a route in `qa/routes.py` (symbol count, room area, room-type count, largest
   room, room count, wall length, or abstain) and streams trace events while its tools run.
 - **Review:** a box-count answer under 0.8 confidence makes the frontend ask the user to check the model's
-  boxes (count/drop, resize, draw). The corrected record goes to `POST /api/reviews`.
+  boxes (count/drop, resize, draw). The corrected record goes to `POST /api/reviews`. A small share of
+  confident answers (`YMIR_AUDIT_RATE`) is sent for a spot check too, so accuracy is also measured where the
+  model is sure.
+- **Confidence from reviews:** `calibration.py` turns reviews into the confidence of later answers. Each
+  review says whether the detector's counted boxes were exactly the ones the person kept, and a count's
+  confidence moves from the detector's own value toward how often people agreed with that detector on that
+  class. A drawing someone already checked is answered from their boxes.
 
 ## Projects: several sheets, one building
 
@@ -83,6 +89,8 @@ from ymir.models.base import Detection, DetectorResult
 
 class YoloDetector:
     name = "YOLO11s"                                   # shown on the trace's Detector node
+    version = "v1"                                     # bump when retrained: reviews calibrate one version
+    trained_on_reviews = False                         # True once trained on /api/reviews (see below)
     classes = {"door", "window", "toilet_bowl", "sink", "bathtub", "shower"}
     THRESHOLDS = {"door": 0.40, "window": 0.42}        # per-class count thresholds picked on validation
 
@@ -114,6 +122,11 @@ Boxes are in the drawing image's pixels (`drawing["image"]["size"]`; samples are
 Class names follow the stoahackjunction annotation schema. **Confidence** is the detector's confidence in the
 *count* (0–1); under 0.8 the user is asked to check the boxes, so a calibrated value matters.
 
+The answer's confidence is then adjusted by people's reviews of your detector: `(agreed + 10 × yours) /
+(reviews + 10)`, counting only reviews of the same `name` and `version` and class. When you train on the
+reviews, use only records with `"split": "train"` and set `trained_on_reviews = True`: confidence is then
+measured on the `holdout` drawings (one in five) you never saw.
+
 To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` and list it in `ROUTES`.
 
 ## API
@@ -131,11 +144,15 @@ To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` an
 | GET | `/api/health` | Status and loaded models |
 
 `context` carries the user's Build decisions (`m_per_px`, `scale_confirmed`, `removed_walls`, `added_walls`),
-so answers use their scale and walls. A count answer adds `confidence` and
-`review: {class, threshold, boxes: [{id, box, score}]}` to the usual `value / unit / text / citations / highlight`.
+so answers use their scale and walls. A count answer adds `confidence`, `confidence_basis: {model, reviews,
+agreed}` and `review: {class, threshold, boxes: [{id, box, score}], audit?}` to the usual
+`value / unit / text / citations / highlight`; `audit: true` asks for a spot check of a confident answer. A
+count a person already checked comes back with `confidence: 1` and `source_review` instead of `review`.
 
 Reviews are `drawing-qa-review-v1` records whose `objects` use the stoahackjunction annotation workbench fields
-(`id, class, bbox_xyxy, subtype, status, proposal_id`), so they can join its training data.
+(`id, class, bbox_xyxy, subtype, status, proposal_id`), so they can join its training data. `model` also holds
+the model's original `boxes` and `audit`; the server adds `model.detector` (which detector was checked) and
+`split` (`train` or `holdout`, fixed per drawing).
 
 ## Settings
 
@@ -147,6 +164,8 @@ Reviews are `drawing-qa-review-v1` records whose `objects` use the stoahackjunct
 | `YMIR_WEIGHTS_DIR` | `weights/` | Model weights |
 | `YMIR_TRACE_PACE` | `0.25` | Seconds between trace steps so the diagram is readable; `0` for none |
 | `YMIR_MAX_UPLOAD_MB` | `15` | Upload limit |
+| `YMIR_AUDIT_RATE` | `0.05` | Share of confident count answers sent for a spot check |
+| `YMIR_CALIBRATION_PRIOR` | `10` | How many reviews the detector's own confidence is worth |
 | `YMIR_CORS_ORIGINS` / `YMIR_CORS_ORIGIN_REGEX` | none | Origins allowed to call the API directly (only needed with `NEXT_PUBLIC_YMIR_API_BASE`) |
 | `YMIR_API_BASE` (frontend) | `http://localhost:8000` | Where Next.js forwards `/api/*`; required on Vercel (the Modal URL) |
 | `NEXT_PUBLIC_YMIR_API_BASE` (frontend) | none | Have the browser call the API directly instead of through the forward |

@@ -5,6 +5,10 @@ import math
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..reviews import ReviewStore
 
 AREA = re.compile(r"^(\d+[.,]\d+)\s*m", re.I)   # printed area text, e.g. "15.90 m²"
 NUM = re.compile(r"^\d\.\d{2}$")                 # Swiss room number, e.g. "2.09"
@@ -63,6 +67,7 @@ class Context:
     height_m: float = 2.7
     removed_walls: set[str] = field(default_factory=set)
     added_walls: list[dict] = field(default_factory=list)
+    reviews: ReviewStore | None = None     # people's box checks: reused for this drawing, calibrate the rest
 
     def __post_init__(self):
         d = self.drawing

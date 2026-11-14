@@ -1,9 +1,12 @@
 """User box reviews (corrected labels), stored in SQLite so the detector team can retrain on them.
 
 Objects follow the stoahackjunction annotation workbench schema (id, class, bbox_xyxy, subtype, status, proposal_id).
+Each saved record also carries a `split`: one drawing in five is "holdout". Train only on "train" reviews, so
+the holdout ones can still measure a retrained model honestly (see ymir/calibration.py).
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
 import threading
@@ -66,17 +69,31 @@ class ReviewStore:
             db.close()
 
     def add(self, review: Review) -> int:
-        record = review.model_dump(by_alias=True, exclude_none=True)
+        drawing_id = str(review.drawing.get("id", ""))
+        record = {**review.model_dump(by_alias=True, exclude_none=True), "split": split_for(drawing_id)}
         with self.lock, self._db() as db:
             cur = db.execute("INSERT INTO reviews (drawing_id, class, user_count, model_count, record, created_at) VALUES (?,?,?,?,?,?)",
-                             (str(review.drawing.get("id", "")), review.class_, review.user_count, review.model.get("value"),
+                             (drawing_id, review.class_, review.user_count, review.model.get("value"),
                               json.dumps(record, ensure_ascii=False), datetime.now(timezone.utc).isoformat()))
             return cur.lastrowid
 
-    def list(self, drawing_id: str | None = None) -> list[dict]:
-        query, args = "SELECT id, record, created_at FROM reviews", ()
-        if drawing_id:
-            query, args = query + " WHERE drawing_id = ?", (drawing_id,)
+    def _rows(self, where: str = "", args: tuple = (), order: str = "id") -> list[dict]:
         with self._db() as db:
-            rows = db.execute(query + " ORDER BY id", args).fetchall()
+            rows = db.execute(f"SELECT id, record, created_at FROM reviews {where} ORDER BY {order}", args).fetchall()
         return [{"id": i, "created_at": t, **json.loads(r)} for i, r, t in rows]
+
+    def list(self, drawing_id: str | None = None) -> list[dict]:
+        return self._rows("WHERE drawing_id = ?", (drawing_id,)) if drawing_id else self._rows()
+
+    def by_class(self, cls: str) -> list[dict]:
+        return self._rows("WHERE class = ?", (cls,))
+
+    def latest(self, drawing_id: str, cls: str) -> dict | None:
+        """The most recent person's check of `cls` on this drawing."""
+        rows = self._rows("WHERE drawing_id = ? AND class = ?", (drawing_id, cls), order="id DESC LIMIT 1")
+        return rows[0] if rows else None
+
+
+def split_for(drawing_id: str) -> str:
+    """'holdout' for one drawing in five, chosen by a hash of its id so a drawing never changes side."""
+    return "holdout" if int(hashlib.sha256(drawing_id.encode()).hexdigest(), 16) % 5 == 0 else "train"

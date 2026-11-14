@@ -37,6 +37,20 @@ describe('box review', () => {
     expect(needsReview(windowsAnswer())).toBe(true);
   });
 
+  test('a confident answer the backend picked for a spot check is reviewed too', () => {
+    const review = { class: 'door', threshold: 0.4, boxes: [], audit: true };
+    expect(needsReview({ status: 'answered', text: '', confidence: 0.91, review })).toBe(true);
+    expect(needsReview({ status: 'answered', text: '', confidence: 0.91, review: { ...review, audit: false } })).toBe(false);
+  });
+
+  test('the record says whether it was a spot check', () => {
+    const session = cubiSession();
+    session.startReview({ ...windowsAnswer(), confidence: 0.91, review: { ...windowsAnswer().review!, audit: true } });
+    expect(session.finishReview()!.record.model.audit).toBe(true);
+    session.startReview(windowsAnswer());
+    expect('audit' in session.finishReview()!.record.model).toBe(false);
+  });
+
   test('drop false boxes, count a near miss, resize, add and remove, then finish', () => {
     const session = cubiSession();
     session.startReview(windowsAnswer(), 'How many windows are there?');
@@ -62,7 +76,9 @@ describe('box review', () => {
     expect(record.schema).toBe('drawing-qa-review-v1');
     expect(record.question).toBe('How many windows are there?');
     expect(record.user_count).toBe(4);
-    expect(record.model).toEqual({ value: 5, confidence: 0.58, threshold: 0.42, scores: { w1: 0.93, w2: 0.88, w3: 0.55, w4: 0.47, w5: 0.44, w6: 0.34 } });
+    expect(record.model).toEqual({ value: 5, confidence: 0.58, threshold: 0.42, scores: { w1: 0.93, w2: 0.88, w3: 0.55, w4: 0.47, w5: 0.44, w6: 0.34 },
+      // the model's own boxes, before the user resized any, so the backend can tell a nudge from a different object
+      boxes: Object.fromEntries(BOXES.map(([id, box]) => [id, box])) });
     expect(record.drawing).toEqual({ id: 'cubi', title: 'Apartment plan', dataset: 'CubiCasa5k', image_size: [687, 455] });
     expect(Object.fromEntries(record.objects.map((o) => [o.id, o.status]))).toEqual(
       { w1: 'accepted', w2: 'accepted', w3: 'accepted', w4: 'rejected', w5: 'rejected', w6: 'accepted' });

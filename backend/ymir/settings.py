@@ -28,3 +28,11 @@ MAX_UPLOAD_MB = float(os.environ.get("YMIR_MAX_UPLOAD_MB", "15"))
 # and/or a regex for preview deployments, e.g. https://ymir-[a-z0-9-]+\.vercel\.app
 CORS_ORIGINS = [o.strip().rstrip("/") for o in os.environ.get("YMIR_CORS_ORIGINS", "").split(",") if o.strip()]
 CORS_ORIGIN_REGEX = os.environ.get("YMIR_CORS_ORIGIN_REGEX") or None
+
+# Share of confident box-count answers sent to the user for a spot check anyway, so confidence is also
+# measured where the detector is sure of itself (only low-confidence answers would be reviewed otherwise).
+AUDIT_RATE = float(os.environ.get("YMIR_AUDIT_RATE", "0.05"))
+
+# How many reviews the detector's own confidence is worth: with fewer reviews than this, an answer's
+# confidence stays closer to the detector's than to people's agreement rate (see ymir/calibration.py).
+CALIBRATION_PRIOR = float(os.environ.get("YMIR_CALIBRATION_PRIOR", "10"))
