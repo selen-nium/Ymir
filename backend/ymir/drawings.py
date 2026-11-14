@@ -58,6 +58,21 @@ class DrawingStore:
                         "source": {k: d["source"].get(k) for k in ("dataset", "kind")}})
         return out
 
+    def _projects(self) -> list[dict]:
+        manifest = self.samples / "projects.json"
+        return json.loads(manifest.read_text()) if manifest.is_file() else []
+
+    def projects(self) -> list[dict]:
+        """Sample projects: buildings made of several sheets (see scripts/build_ifc_project.py)."""
+        return [{"id": p["id"], "title": p["title"], "thumbnail": p.get("thumbnail"), "sheets": len(p["sheets"]),
+                 "source": {k: p.get("source", {}).get(k) for k in ("dataset", "credit")}} for p in self._projects()]
+
+    def project(self, project_id: str) -> dict:
+        p = next((p for p in self._projects() if p["id"] == project_id), None)
+        if p is None:
+            raise KeyError(project_id)
+        return p
+
     def save(self, payload: dict, trace: list, image: bytes, ext: str) -> str:
         """Store a newly built drawing; returns its id."""
         self.uploads.mkdir(parents=True, exist_ok=True)

@@ -17,13 +17,14 @@ export function createPlan(el) {
   const gWalls = mk('g', { class: 'walls' }, svg);
   const gReview = mk('g', { class: 'review-layer' }, svg);
   const gMarks = mk('g', { class: 'marks' }, svg);
+  const gPoints = mk('g', { class: 'points' }, svg);
   const preview = mk('line', { class: 'draw-preview', visibility: 'hidden' }, svg);
   const boxPreview = mk('rect', { class: 'box-preview', visibility: 'hidden' }, svg);
 
-  // mode: 'select' (drag pans), 'draw' (click-click wall), 'box' (drag a new review box)
-  let d = null, view = null, selected = null, mode = 'select', drawStart = null;
+  // mode: 'select' (drag pans), 'draw' (click-click wall), 'box' (drag a new review box), 'point' (click reports a point)
+  let d = null, view = null, selected = null, mode = 'select', drawStart = null, points = [];
   let vb = { x: 0, y: 0, w: 100, h: 100 };
-  const handlers = { pick: () => {}, hover: () => {}, draw: () => {}, drawBox: () => {}, resize: () => {} };
+  const handlers = { pick: () => {}, hover: () => {}, draw: () => {}, drawBox: () => {}, resize: () => {}, point: () => {} };
 
   const rect = () => el.getBoundingClientRect();
   const k = () => vb.w / Math.max(1, rect().width); // svg units per screen px
@@ -31,7 +32,7 @@ export function createPlan(el) {
   function setVB() {
     svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
     const kk = k();
-    gMarks.querySelectorAll('[data-off]').forEach((g) => {
+    svg.querySelectorAll('[data-off]').forEach((g) => {
       const [mx, my, nx, ny, dist] = JSON.parse(g.dataset.off);
       g.setAttribute('transform', `translate(${mx + nx * dist * kk} ${my + ny * dist * kk}) scale(${kk})`);
     });
@@ -141,6 +142,7 @@ export function createPlan(el) {
     }
     // a click on a box edge is still a click on that box
     if (kind === 'resize') { handlers.pick({ type: 'box', id: hit.id }); return; }
+    if (mode === 'point') { const p = toSvg(e); handlers.point([Math.round(p.x * 10) / 10, Math.round(p.y * 10) / 10]); return; }
     if (mode === 'draw') {
       const p = toSvg(e);
       if (!drawStart) { drawStart = [p.x, p.y]; return; }
@@ -220,13 +222,18 @@ export function createPlan(el) {
     for (const it of view?.review?.items || []) setRect(mk('rect', { class: `rbox ${it.state}`, 'data-type': 'box', 'data-id': it.id }, gReview), it.box);
     if (!view?.review) { svg.classList.remove('edge-hover'); svg.style.cursor = ''; }
   }
-  const redraw = () => { drawRooms(); drawWalls(); drawReview(); drawMarks(); setVB(); };
+  // Place step: numbered points the user clicked
+  function drawPoints() {
+    gPoints.replaceChildren();
+    for (const p of points) badge(gPoints, p.px, [0, 0], 0, p.label, `pt ${p.cls || ''}`);
+  }
+  const redraw = () => { drawRooms(); drawWalls(); drawReview(); drawMarks(); drawPoints(); setVB(); };
 
   new ResizeObserver(() => fit()).observe(el);
 
   return {
     load(drawing, v) {
-      d = drawing; view = v; selected = null;
+      d = drawing; view = v; selected = null; points = [];
       img.setAttribute('href', d.image.url);
       img.setAttribute('width', d.image.size[0]); img.setAttribute('height', d.image.size[1]);
       redraw(); fit();
@@ -241,7 +248,9 @@ export function createPlan(el) {
     },
     fitBox(box, pad = 0.35) { fit(box, pad); },
     fit: () => fit(),
-    setMode(m) { mode = m; drawStart = null; preview.setAttribute('visibility', 'hidden'); boxPreview.setAttribute('visibility', 'hidden'); svg.classList.toggle('drawing', m === 'draw' || m === 'box'); },
+    setMode(m) { mode = m; drawStart = null; preview.setAttribute('visibility', 'hidden'); boxPreview.setAttribute('visibility', 'hidden'); svg.classList.toggle('drawing', m === 'draw' || m === 'box' || m === 'point'); },
+    setPoints(p) { points = p; drawPoints(); setVB(); },
+    onPoint(f) { handlers.point = f; },
     onPick(f) { handlers.pick = f; },
     onHover(f) { handlers.hover = f; },
     onDraw(f) { handlers.draw = f; },

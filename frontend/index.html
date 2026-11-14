@@ -3,599 +3,380 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ymir</title>
+<title>Ymir · Ask your construction drawings</title>
+<meta name="description" content="Ymir answers engineers' questions about construction drawings, with evidence in 2D and in a 3D building assembled from every sheet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/views.css">
-<script src="config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+<script>
+  // Old links (/?p=… or /?d=…) open the app directly
+  if (/[?&](p|d)=/.test(location.search)) location.replace(`app.html${location.search}`);
+</script>
 <style>
-  :root {
-    --sans: Inter, system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --bg: #f4f1ea; --panel: #fbfaf6; --line: #e3ded3; --ink: #1d1c1a; --ink-2: #74706a; --ink-3: #aaa59c;
-    --accent: #e0592a; --answer: #2563eb; --flag: #e5484d; --ok: #2f9e5b; --ghost: #a8a39a;
-    --wall: #f1ede4; --wall-edge: #4a443b; --viewer-bg: #efebe2; --plan-bg: #fbfaf6; --wall-line: rgba(29,28,26,.5);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
-  body { font: 14px/1.4 var(--sans); color: var(--ink); background: var(--bg); display: grid; grid-template-columns: 360px 1fr; overflow: hidden; }
-  button { font: inherit; color: inherit; cursor: pointer; }
-  svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  body { background: var(--bg); }
+  a { color: inherit; }
+  svg.i { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: var(--mono); }
 
-  /* Left column */
-  aside { display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); min-height: 0; }
-  .brand { display: flex; align-items: center; gap: 8px; padding: 16px 18px 12px; font-weight: 600; }
-  .brand i { width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--accent); }
-  .src { display: flex; gap: 10px; align-items: center; margin: 0 12px; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-  .src img { width: 46px; height: 46px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
-  .src div { flex: 1; min-width: 0; font-weight: 500; }
-  .src small { display: block; color: var(--ink-2); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .src button { border: 0; background: var(--bg); border-radius: 8px; height: 30px; padding: 0 10px; font-size: 13px; }
-  .tabs { display: flex; margin: 12px 12px 0; background: #ece8df; border-radius: 10px; padding: 3px; }
-  .tabs button { flex: 1; height: 32px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px; }
-  .tabs button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
-  .tabs svg { width: 15px; height: 15px; }
-  .tabs .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-
-  .flow { flex: 1; overflow: auto; padding: 18px 12px 12px; }
-  .node { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 10px; padding: 0 6px 16px; }
-  .node::before { content: ''; position: absolute; left: 19px; top: 26px; bottom: -2px; width: 2px; background: var(--line); }
-  .node:last-child::before { display: none; }
-  .node.skip::before { background: repeating-linear-gradient(var(--line) 0 4px, transparent 4px 8px); }
-  .st { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); color: var(--ink-3); border: 2px solid var(--line); z-index: 1; }
-  .st svg { width: 14px; height: 14px; stroke-width: 2.6; }
-  .done .st { background: var(--ok); border-color: var(--ok); color: #fff; }
-  .you .st { background: #fff; border-color: var(--accent); color: var(--accent); }
-  .you .st::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s infinite; }
-  @keyframes pulse { 50% { opacity: .3; } }
-  .skip .st { border-style: dashed; }
-  .hd { display: flex; align-items: baseline; gap: 8px; cursor: pointer; padding-top: 4px; }
-  .hd b { font-weight: 500; }
-  .tool { font: 500 11px var(--mono); color: var(--ink-2); background: var(--bg); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; white-space: nowrap; }
-  .res { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
-  .skip .hd b, .skip .res { color: var(--ink-3); }
-  .act { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
-  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .grow { flex: 1; }
-  .num { display: flex; align-items: center; border: 1px solid var(--line); background: #fff; border-radius: 9px; height: 36px; padding: 0 10px 0 4px; }
-  .num input { width: 64px; border: 0; font: 500 15px var(--mono); text-align: right; outline: none; background: none; }
-  .num span { color: var(--ink-2); margin-left: 4px; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--line); background: #fff; white-space: nowrap; }
-  .btn:hover { border-color: #cbc5b8; }
-  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 10; background: rgba(244,241,234,.86); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+  .nav nav { display: flex; gap: 22px; font-size: 14px; color: var(--ink-2); }
+  .nav nav a { text-decoration: none; }
+  .nav nav a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 12px; font: 500 15px var(--sans); text-decoration: none; border: 1px solid var(--line); background: #fff; color: var(--ink); transition: transform .15s, box-shadow .15s, background .15s; white-space: nowrap; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(40,30,10,.08); }
+  .btn.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
   .btn.acc { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.sm { height: 30px; padding: 0 10px; font-size: 13px; }
-  .btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .btn svg { width: 15px; height: 15px; }
-  .chip { font-size: 12px; color: var(--ink-2); }
-  .chip.good { color: var(--ok); }
-  .cands { display: flex; gap: 6px; }
-  .cand { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 4px; border: 1px solid var(--line); background: #fff; border-radius: 9px; font-size: 12px; color: var(--ink-2); }
-  .cand b { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--accent); color: var(--accent); font-size: 12px; }
-  .cand.on { border-color: var(--accent); background: #fdf1eb; color: var(--ink); }
-  .cand.on b { background: var(--accent); color: #fff; }
-  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--ink-2); }
-  .legend span { display: flex; align-items: center; gap: 5px; }
-  .legend i { width: 14px; height: 4px; border-radius: 2px; }
+  .btn.sm { height: 36px; padding: 0 14px; font-size: 14px; border-radius: 10px; }
 
-  /* Ask */
-  .askp { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-  .askp[hidden], .flow[hidden] { display: none; }
-  .thread { flex: 1; overflow: auto; padding: 16px 12px 8px; display: flex; flex-direction: column; gap: 10px; }
-  .empty { margin: auto 6px; text-align: center; color: var(--ink-3); font-size: 13px; }
-  .msg { max-width: 92%; border-radius: 14px; padding: 9px 12px; font-size: 14px; }
-  .msg.q { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
-  .msg.a { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 4px; cursor: pointer; }
-  .msg.a.on { border-color: var(--answer); box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
-  .msg.a.pending { display: flex; align-items: center; gap: 8px; color: var(--ink-2); cursor: default; }
-  .msg.a.abstain { background: #faf7f0; }
-  .spin { width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--answer); border-radius: 50%; animation: spin .8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  cite { font-style: normal; display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 4px; margin: 0 1px; border-radius: 9px; background: var(--answer); color: #fff; font-size: 11px; font-weight: 600; vertical-align: 1px; cursor: pointer; }
-  .cites { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-2); }
-  .cites div { display: flex; gap: 6px; align-items: center; }
-  .cites cite { min-width: 15px; height: 15px; font-size: 10px; }
-  .sugg { display: flex; gap: 6px; padding: 0 12px 8px; overflow-x: auto; scrollbar-width: none; }
-  .sugg button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 16px; padding: 5px 10px; font-size: 12.5px; color: var(--ink-2); }
-  .sugg button:hover { border-color: var(--answer); color: var(--answer); }
-  .composer { display: flex; gap: 6px; margin: 0 12px 12px; padding: 5px 5px 5px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-  .composer:focus-within { border-color: var(--answer); }
-  .composer input { flex: 1; border: 0; outline: none; font: inherit; background: none; }
-  .composer button { width: 34px; height: 34px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
-  .composer button[disabled] { opacity: .35; }
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 56px 0 72px; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px; mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, #000 20%, transparent 75%); opacity: .55; pointer-events: none; }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 500 12px var(--mono); color: var(--ink-2); background: #fff; border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px; }
+  .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(47,158,91,.18); }
+  h1 { font-size: clamp(38px, 5.2vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 18px 0 18px; font-weight: 700; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 520px; margin: 0 0 28px; }
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 30px; }
+  .kinds span { font-size: 12.5px; color: var(--ink-2); border: 1px solid var(--line); background: rgba(255,255,255,.7); border-radius: 999px; padding: 4px 10px; }
 
-  /* Main */
-  main { position: relative; display: grid; grid-template-rows: 56px 1fr auto; min-width: 0; min-height: 0; }
-  .bar { display: flex; align-items: center; gap: 12px; padding: 0 16px; }
-  .seg { display: flex; background: #e9e5dc; border-radius: 10px; padding: 3px; }
-  .seg button { height: 30px; padding: 0 14px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); font-weight: 500; display: flex; align-items: center; gap: 6px; }
-  .seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
-  .seg svg { width: 15px; height: 15px; }
-  .spacer { flex: 1; }
-  .icon { width: 36px; height: 36px; border: 1px solid var(--line); background: var(--panel); border-radius: 9px; display: grid; place-items: center; color: var(--ink-2); }
-  .icon.on { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .views { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 10px; min-height: 0; }
-  .views.one-plan { grid-template-columns: 1fr 0; } .views.one-model { grid-template-columns: 0 1fr; }
-  .views.one-plan .v.model, .views.one-model .v.plan { visibility: hidden; }
-  .v { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); min-width: 0; }
-  .v > div { position: absolute; inset: 0; }
-  .hgt { display: flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 13px; }
-  .hgt input { width: 46px; border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 6px; font: 500 13px var(--mono); text-align: right; }
+  .stage { position: relative; aspect-ratio: 1.05; }
+  .stage svg.iso { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .layer { animation: rise 1.4s cubic-bezier(.2,.8,.2,1) both, float 6s ease-in-out infinite; animation-delay: var(--d), calc(var(--d) + 1.4s); }
+  @keyframes rise { from { transform: translateY(var(--stack)); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(0); } }
+  @keyframes float { 50% { transform: translateY(-5px); } }
+  .ghost-l { stroke-dasharray: 5 5; }
+  .pulse { animation: pulse 2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes pulse { 0% { transform: scale(.6); opacity: .7; } 100% { transform: scale(2.4); opacity: 0; } }
+  .bubble { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px 13px; font-size: 13px; box-shadow: 0 14px 40px rgba(40,30,10,.12); animation: pop .6s cubic-bezier(.2,.8,.2,1) both; }
+  .bubble.q { right: 2%; top: 2%; background: var(--ink); color: #fff; border-color: var(--ink); border-bottom-right-radius: 4px; animation-delay: 1.6s; }
+  .bubble.a { right: -2%; top: 13%; max-width: 250px; border-bottom-left-radius: 4px; animation-delay: 2.3s; }
+  .bubble.a b { font-weight: 600; }
+  .bubble small { display: block; color: var(--ink-2); margin-top: 4px; font-size: 11.5px; }
+  .bubble.g { left: 0; bottom: 9%; border: 1.5px dashed var(--answer); color: var(--answer); background: rgba(255,255,255,.92); animation-delay: 3s; font-size: 12.5px; }
+  .tag { position: absolute; font: 500 11px var(--mono); color: var(--ink-2); background: rgba(255,255,255,.9); border: 1px solid var(--line); padding: 2px 7px; border-radius: 6px; animation: pop .5s both; }
+  cite { font-style: normal; display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--answer); color: #fff; font-size: 11px; font-weight: 600; vertical-align: 1px; }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.97); } }
 
-  /* Trace */
-  .trace { margin: 0 16px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow: hidden; }
-  .trace header { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 8px 0 14px; cursor: pointer; }
-  .trace header b { font-weight: 500; }
-  .trace header .status { color: var(--ink-2); font-size: 13px; display: flex; align-items: center; gap: 6px; }
-  .trace header .status .spin { width: 12px; height: 12px; }
-  .trace header button { margin-left: auto; width: 30px; height: 30px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); display: grid; place-items: center; transition: transform .2s; }
-  .trace.closed header button { transform: rotate(180deg); }
-  .trace .chartwrap { overflow-x: auto; border-top: 1px solid var(--line); }
-  .trace.closed .chartwrap { display: none; }
-  .trace-chart { position: relative; height: 224px; min-width: 820px; }
-  .trace-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .tedge { fill: none; stroke: var(--line); stroke-width: 2; transition: stroke .3s; }
-  .tedge.active { stroke: var(--answer); stroke-dasharray: 6 6; animation: flow .5s linear infinite; }
-  .tedge.done { stroke: #9db4ee; }
-  .tedge.skip { stroke-dasharray: 2 5; opacity: .6; }
-  @keyframes flow { to { stroke-dashoffset: -12; } }
-  .tnode { position: absolute; height: 44px; padding: 5px 10px; background: #fff; border: 1px solid var(--line); border-radius: 10px; font-size: 12px; transition: left .3s, top .3s, border-color .25s, box-shadow .25s, opacity .25s; animation: tn-in .3s ease-out; }
-  @keyframes tn-in { from { opacity: 0; transform: translateY(4px); } }
-  .tnode.fail { border-color: var(--flag); }
-  .tedge.fail { stroke: var(--flag); }
-  .node.fail .st { border-color: var(--flag); color: var(--flag); }
-  .tn-h { display: flex; align-items: center; gap: 6px; }
-  .tn-h i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
-  .tn-h b { font-weight: 600; }
-  .tn-h span { margin-left: auto; font: 500 10px var(--mono); color: var(--ink-2); background: var(--bg); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
-  .tn-o { margin-top: 2px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tnode.idle { opacity: .55; }
-  .tnode.run { border-color: var(--answer); box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
-  .tnode.run i { background: var(--answer); animation: pulse .8s infinite; }
-  .tnode.done i { background: var(--ok); }
-  .tnode.skip { border-style: dashed; opacity: .5; }
-  .tnode.you { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,89,42,.14); }
-  .tnode.you i { background: var(--accent); animation: pulse 1.2s infinite; }
+  /* Sections */
+  section { padding: 84px 0; }
+  .kicker { font: 500 12px var(--mono); color: var(--accent); letter-spacing: .02em; text-transform: uppercase; }
+  h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -.025em; margin: 10px 0 14px; font-weight: 700; max-width: 760px; }
+  .sub { color: var(--ink-2); font-size: 17px; line-height: 1.55; max-width: 640px; margin: 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+  .pcard { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+  .pcard .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: #fdf1eb; color: var(--accent); margin-bottom: 16px; }
+  .pcard h3 { margin: 0 0 8px; font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+  .pcard p { margin: 0; color: var(--ink-2); line-height: 1.55; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); overflow: hidden; }
+  .stats div { padding: 22px 24px; }
+  .stats div + div { border-left: 1px solid var(--line); }
+  .stats b { display: block; font-size: 34px; letter-spacing: -.03em; font-weight: 700; }
+  .stats span { color: var(--ink-2); font-size: 14px; }
+  .stats small { grid-column: 1 / -1; display: block; padding: 10px 24px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 12px; }
 
-  /* Low-confidence answer: the user checks the model's boxes */
-  .msg.a.review { max-width: 100%; border-color: var(--accent); cursor: default; }
-  .msg.a.review .act { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
-  .warn { color: var(--accent); font-weight: 500; }
-  .mark { margin-top: 6px; font-size: 12px; color: var(--ink-2); display: flex; gap: 6px; align-items: center; }
-  .mark.ok { color: var(--ok); }
-  .mark svg { width: 14px; height: 14px; stroke-width: 2.4; }
-  .mark a { color: var(--answer); text-decoration: none; margin-left: auto; }
-  .mark a:hover { text-decoration: underline; }
+  .dark { background: #1b1a18; color: #f4f1ea; }
+  .dark .sub, .dark .fcard p { color: #a9a49b; }
+  .dark .kicker { color: #f08a5d; }
+  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 44px; background: #34322e; border: 1px solid #34322e; border-radius: 20px; overflow: hidden; }
+  .fcard { background: #1f1e1b; padding: 28px 26px; position: relative; transition: background .2s; }
+  .fcard:hover { background: #24221f; }
+  .fcard .ic { color: #f08a5d; margin-bottom: 18px; }
+  .fcard h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+  .fcard p { margin: 0; line-height: 1.55; font-size: 14.5px; }
+  .fcard .chipline { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .fcard .chipline span { font: 500 11px var(--mono); color: #c9c4ba; border: 1px solid #3a3833; border-radius: 6px; padding: 2px 7px; }
 
-  .modal { position: fixed; inset: 0; background: rgba(30,28,24,.25); display: grid; place-items: center; z-index: 30; }
-  .modal[hidden] { display: none; }
-  .modal .box { width: 560px; max-width: calc(100vw - 32px); background: var(--panel); border-radius: 16px; padding: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.2); }
-  .search { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 42px; border-radius: 10px; background: #fff; border: 1px solid var(--line); color: var(--ink-2); }
-  .search input { flex: 1; border: 0; background: none; outline: none; font: inherit; color: var(--ink); }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
-  .card { border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 6px; text-align: left; }
-  .card:hover, .card.on { border-color: var(--accent); }
-  .card img { width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 8px; display: block; }
-  .card div { padding: 6px 4px 2px; font-size: 13px; font-weight: 500; }
-  .card small { display: block; color: var(--ink-2); font-weight: 400; }
-  .upload { display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; border: 1px dashed #cbc5b8; border-radius: 10px; color: var(--ink-2); cursor: pointer; }
-  .upload:hover { border-color: var(--accent); color: var(--accent); }
-  @media (max-width: 1100px) {
-    .views:not(.one-plan):not(.one-model) { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
-    .views.one-plan { grid-template-columns: 1fr; grid-template-rows: 1fr 0; } .views.one-model { grid-template-columns: 1fr; grid-template-rows: 0 1fr; }
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 40px 0 28px; counter-reset: s; }
+  .step { position: relative; padding: 18px 18px 20px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+  .step::before { counter-increment: s; content: counter(s, decimal-leading-zero); font: 500 12px var(--mono); color: var(--accent); }
+  .step h3 { margin: 8px 0 6px; font-size: 16px; font-weight: 600; }
+  .step p { margin: 0; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
+  .diagram { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 18px; overflow-x: auto; }
+  .diagram svg { display: block; min-width: 820px; width: 100%; height: auto; }
+  .diagram text { font-family: var(--sans); }
+  .dg-box { fill: #fff; stroke: var(--line); stroke-width: 1.2; }
+  .dg-zone { fill: none; stroke: #d9d3c6; stroke-dasharray: 4 4; }
+  .dg-zl { fill: var(--ink-3); font: 500 11px var(--mono); }
+  .dg-t { fill: var(--ink); font-size: 13px; font-weight: 600; }
+  .dg-s { fill: var(--ink-2); font-size: 11px; }
+  .dg-line { fill: none; stroke: #b9b2a4; stroke-width: 1.5; }
+  .dg-flow { fill: none; stroke: var(--answer); stroke-width: 2; stroke-dasharray: 6 6; animation: dash 1s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -12; } }
+  .dg-acc { fill: #fdf1eb; stroke: #f3c7b2; }
+  .dg-blue { fill: #eef3fe; stroke: #c7d6fb; }
+  .dg-green { fill: #eef7f1; stroke: #cfe5d6; }
+
+  .stack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+  .scol { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+  .scol h3 { margin: 0 0 12px; font: 500 12px var(--mono); color: var(--ink-2); text-transform: uppercase; letter-spacing: .03em; }
+  .scol ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .scol li { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+  .scol li small { margin-left: auto; color: var(--ink-3); font-weight: 400; font-size: 12px; text-align: right; }
+  .scol li i { width: 8px; height: 8px; border-radius: 2px; background: var(--accent); flex: none; }
+  .scol:nth-child(2) li i { background: var(--answer); } .scol:nth-child(3) li i { background: var(--ok); }
+  .scol:nth-child(4) li i { background: var(--place); } .scol:nth-child(5) li i { background: var(--ink); }
+
+  .cta { margin: 0 24px 64px; border-radius: 28px; background: var(--accent); color: #fff; padding: 56px 24px; text-align: center; position: relative; overflow: hidden; }
+  .cta::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse at center, #000 10%, transparent 70%); pointer-events: none; }
+  .cta h2 { margin: 0 auto 12px; color: #fff; }
+  .cta p { margin: 0 auto 26px; max-width: 520px; color: rgba(255,255,255,.85); font-size: 17px; }
+  .cta .btn { position: relative; z-index: 1; }
+  .cta .btn.dark { border-color: #1b1a18; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--ink-2); font-size: 13px; }
+  footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+  footer .wrap > span:last-child { margin-left: auto; }
+
+  @media (max-width: 960px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .stage { max-width: 560px; width: 100%; margin: 0 auto; }
+    .cards, .features { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .stack { grid-template-columns: 1fr 1fr; }
+    .nav nav { display: none; }
   }
-  @media (max-width: 760px) {
-    body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
-    aside { max-height: 50vh; border-right: 0; border-bottom: 1px solid var(--line); }
-    main { min-height: 90vh; }
-    .hgt { display: none; }
-    .grid { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 620px) {
+    .wrap { padding: 0 16px; }
+    .cards, .features, .steps, .stack, .stats { grid-template-columns: 1fr; }
+    .stats div + div { border-left: 0; border-top: 1px solid var(--line); }
+    section { padding: 60px 0; }
+    .bubble.a { max-width: 200px; }
+    .cta { margin: 0 12px 40px; }
   }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
-<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/OrbitControls.js": "./vendor/OrbitControls.js" } }</script>
 </head>
 <body>
-<aside>
-  <div class="brand"><i></i>Ymir</div>
-  <div class="src"><img id="thumb" alt=""><div><span id="title">…</span><small id="sub"></small></div><button id="change">Change</button></div>
-  <div class="tabs">
-    <button data-tab="build" class="on"><span data-i="cube"></span>Build</button>
-    <button data-tab="ask"><span data-i="chat"></span>Ask<span class="dot" id="askDot" hidden></span></button>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="./"><i></i>Ymir</a>
+    <nav><a href="#problem">Problem</a><a href="#features">Features</a><a href="#architecture">Architecture</a><a href="#stack">Tech stack</a></nav>
+    <div class="tb-actions"><a class="btn sm" href="app.html?p=ac20">Live demo</a><a class="btn sm dark" href="home.html">Open the app</a></div>
   </div>
-  <div class="flow" id="flow"></div>
-  <div class="askp" id="askp" hidden>
-    <div class="thread" id="thread"></div>
-    <div class="sugg" id="sugg"></div>
-    <form class="composer" id="composer"><input id="qin" placeholder="Ask about this drawing" autocomplete="off"><button id="send" disabled><span data-i="up"></span></button></form>
-  </div>
-</aside>
-<main>
-  <div class="bar">
-    <div class="seg" id="seg">
-      <button data-v="one-plan"><span data-i="plan"></span>Drawing</button>
-      <button data-v="both" class="on">Both</button>
-      <button data-v="one-model"><span data-i="cube"></span>3D</button>
-    </div>
-    <div class="spacer"></div>
-    <label class="hgt">Height <input id="height" value="2.7"> m</label>
-    <button class="icon" id="drawTool" title="Draw a missing wall"><span data-i="pen"></span></button>
-    <button class="icon" id="fit" title="Fit"><span data-i="fit"></span></button>
-  </div>
-  <div class="views" id="views">
-    <div class="v plan"><div id="plan"></div></div>
-    <div class="v model"><div id="model"></div></div>
-  </div>
-  <section class="trace" id="trace">
-    <header id="traceHead"><b>Trace</b><span class="status" id="traceStatus">Ask a question to see how it’s answered</span><button title="Collapse"><span data-i="chev"></span></button></header>
-    <div class="chartwrap"><div id="chart"></div></div>
-  </section>
-</main>
+</header>
 
-<div class="modal" id="modal" hidden>
-  <div class="box">
-    <label class="search"><span data-i="search"></span><input id="q" placeholder="Search drawings"></label>
-    <div class="grid" id="grid"></div>
-    <label class="upload"><input type="file" accept="image/png,image/jpeg,image/webp" hidden id="file"><span data-i="up"></span>Upload a plan image</label>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i>Junction 2026 · Stoa challenge</span>
+      <h1>Ask your drawings.<br>Get answers you can <em>point to</em>.</h1>
+      <p class="lede">Ymir reads floor plans, foundation and piping sheets, assembles them into one building, and answers engineers’ questions with the evidence marked in 2D and in 3D. When a sheet is missing, it says so.</p>
+      <div class="ctas">
+        <a class="btn acc" href="app.html?p=ac20"><svg class="i" viewBox="0 0 24 24"><path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg>Explore the sample building</a>
+        <a class="btn" href="home.html"><svg class="i" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Upload a drawing</a>
+      </div>
+      <div class="kinds"><span>Floor plans</span><span>Foundation plans</span><span>Piping plans</span><span>Elevations</span><span>Schedules</span><span>IFC models</span><span>Scans in 30 languages</span></div>
+    </div>
+
+    <div class="stage" aria-label="Sheets of one building stacked into a 3D model, with an answer pointing at a room">
+      <svg class="iso" viewBox="0 0 520 500">
+        <defs>
+          <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#2563eb" stroke-opacity=".25" stroke-width="2"/></pattern>
+        </defs>
+        <!-- each sheet is a plan (0–200 × 0–120) seen in isometric; the outer group sets its height -->
+        <g transform="translate(270 40)">
+          <!-- roof: ghost -->
+          <g><g class="layer" style="--d:.45s; --stack:250px">
+            <g transform="matrix(.95 .5 -.95 .5 0 0)">
+              <rect x="0" y="0" width="200" height="120" fill="#a8a39a" fill-opacity=".06" stroke="#a8a39a" stroke-width="1.6" class="ghost-l"/>
+              <path d="M0 60H200" stroke="#a8a39a" stroke-width="1.4" class="ghost-l"/>
+            </g>
+          </g></g>
+          <!-- level 1 plan -->
+          <g transform="translate(0 80)"><g class="layer" style="--d:.3s; --stack:170px">
+            <g transform="matrix(.95 .5 -.95 .5 0 0)">
+              <rect width="200" height="120" fill="#fbfaf6" stroke="#d6cfc1"/>
+              <path d="M10 10H190V110H10Z M80 10V110 M10 60H80 M130 60V110 M80 60H190" fill="none" stroke="#1d1c1a" stroke-width="3.2" stroke-linejoin="round"/>
+              <path d="M30 10h18M120 10h22M160 110h18" stroke="#fbfaf6" stroke-width="4"/>
+            </g>
+          </g></g>
+          <!-- ground floor: the answer's room is highlighted -->
+          <g transform="translate(0 160)"><g class="layer" style="--d:.15s; --stack:90px">
+            <g transform="matrix(.95 .5 -.95 .5 0 0)">
+              <rect width="200" height="120" fill="#fff" stroke="#d6cfc1"/>
+              <rect x="80" y="10" width="50" height="100" fill="url(#hatch)"/>
+              <rect x="80" y="10" width="50" height="100" fill="#2563eb" fill-opacity=".1" stroke="#2563eb" stroke-width="2"/>
+              <path d="M10 10H190V110H10Z M80 10V110 M130 10V110 M10 55H80 M130 55H190" fill="none" stroke="#1d1c1a" stroke-width="3.6" stroke-linejoin="round"/>
+              <path d="M95 110h20M40 10h18M150 10h18" stroke="#fff" stroke-width="5"/>
+            </g>
+          </g></g>
+          <!-- foundation: ghost strips -->
+          <g transform="translate(0 250)"><g class="layer" style="--d:0s; --stack:0px">
+            <g transform="matrix(.95 .5 -.95 .5 0 0)">
+              <path d="M4 4H196V116H4Z M16 16H184V104H16Z" fill="#a8a39a" fill-opacity=".08" fill-rule="evenodd" stroke="#a8a39a" stroke-width="1.6" class="ghost-l"/>
+            </g>
+          </g></g>
+          <!-- pin on the highlighted room (plan 105,60 on the ground floor) -->
+          <g transform="translate(42.75 242.5)" style="animation: pop .5s 2.2s both">
+            <circle r="9" fill="#2563eb" class="pulse"/>
+            <circle r="11" fill="#2563eb" stroke="#fff" stroke-width="2.5"/>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Inter, sans-serif">1</text>
+          </g>
+        </g>
+      </svg>
+      <span class="tag" style="left:4%; top:10%; animation-delay:.8s">A-104 Roof plan · missing</span>
+      <span class="tag" style="left:2%; top:29%; animation-delay:.9s">A-101 Level 1</span>
+      <span class="tag" style="left:0; top:48%; animation-delay:1s">A-100 Ground floor</span>
+      <div class="bubble q">Which is the largest room?</div>
+      <div class="bubble a">The highlighted hall, about <b>83.16 m²</b> <cite>1</cite><small>From A-100 Ground floor plan · measured on the model</small></div>
+      <div class="bubble g">○ No foundation plan yet · add it to answer footing questions</div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <span class="kicker">The problem</span>
+    <h2>The answers are in the drawings. Finding them takes hours.</h2>
+    <p class="sub">A building is described by dozens of sheets, each from a different discipline. Engineers flip between them to answer simple questions, and a tool that guesses without showing its work can’t be trusted on site.</p>
+    <div class="cards">
+      <div class="pcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="5" width="12" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/></svg></div>
+        <h3>Spread across sheets</h3><p>How long are the footings under the outside walls? That takes the foundation plan, the floor plan and a schedule, drawn by three disciplines.</p></div>
+      <div class="pcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5M12 16h.01"/></svg></div>
+        <h3>Answers without evidence</h3><p>A number without a source is a liability. Engineers need to see which room, which wall and which sheet it came from, and how sure the model is.</p></div>
+      <div class="pcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 15l3 3-3 3"/></svg></div>
+        <h3>Every set is different</h3><p>Scanned archives, CAD exports and IFC models; Finnish, German and Danish labels; metric and imperial. One fixed pipeline doesn’t fit them all.</p></div>
+    </div>
+    <div class="stats">
+      <div><b>14,000</b><span>construction drawings</span></div>
+      <div><b>~30</b><span>languages on the sheets</span></div>
+      <div><b>120,000</b><span>quantity-takeoff questions</span></div>
+      <small>In the Stoa challenge dataset that Ymir is built and tested on.</small>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="features">
+  <div class="wrap">
+    <span class="kicker">What Ymir does</span>
+    <h2>Every answer comes with its evidence. Every gap is shown.</h2>
+    <p class="sub">Ymir treats a question like an engineer would: find the right sheet, measure or count, check the result, then show where it came from.</p>
+    <div class="features">
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>Cited in 2D and 3D</h3><p>Numbered citations mark the rooms, walls and symbols behind an answer on the drawing and on the model. Click one to fly there.</p>
+        <div class="chipline"><span>citations</span><span>room polygons</span><span>3D markers</span></div></div>
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg></div>
+        <h3>One building from many sheets</h3><p>Plans lie flat at their level, elevations stand on their facade, schedules link to what they describe. Two clicks line up a new sheet.</p>
+        <div class="chipline"><span>levels</span><span>2-point placing</span><span>explode view</span></div></div>
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-dasharray="3 3"/><path d="M12 9v6M9 12h6"/></svg></div>
+        <h3>Honest about gaps</h3><p>Missing sheets show as ghosts in the model. Ymir abstains instead of guessing, and points at the sheet it would need.</p>
+        <div class="chipline"><span>ghosts</span><span>abstain</span><span>“needs plumbing plan”</span></div></div>
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 11l2 2 4-4"/></svg></div>
+        <h3>A person in the loop</h3><p>You confirm the scale and the doubtful walls. When a count is unsure, you check its boxes, and your corrections become training labels.</p>
+        <div class="chipline"><span>scale check</span><span>box review</span><span>labels → retraining</span></div></div>
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 11l3-4M7 13l3 4M14 7l3 4M14 17l3-4"/></svg></div>
+        <h3>See how it answered</h3><p>A live trace shows the planner, the tools it called and the verifier’s check, streamed as they run, so a wrong answer is easy to diagnose.</p>
+        <div class="chipline"><span>planner</span><span>tools</span><span>verifier</span></div></div>
+      <div class="fcard"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/></svg></div>
+        <h3>Any drawing, any language</h3><p>Upload a scan, a CAD export or an IFC-rendered sheet. Ymir sorts it by kind, reads its labels and asks you when it isn’t sure.</p>
+        <div class="chipline"><span>16 sheet kinds</span><span>OCR</span><span>metric · imperial</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <span class="kicker">How it works</span>
+    <h2>From a scanned sheet to a cited answer</h2>
+    <p class="sub">A static frontend talks straight to a Python API. The build pipeline turns images into geometry once; the agents answer each question on top of it and stream their trace back.</p>
+    <div class="steps">
+      <div class="step"><h3>Upload</h3><p>A sheet of any kind, or a whole set. Samples come rendered from IFC models.</p></div>
+      <div class="step"><h3>Build</h3><p>Walls, rooms, text and scale are read from the image. You confirm what the model isn’t sure about.</p></div>
+      <div class="step"><h3>Assemble</h3><p>Sheets take their place in one building. What’s missing becomes a ghost.</p></div>
+      <div class="step"><h3>Ask</h3><p>The planner routes the question to tools; the verifier checks; the answer cites its sources.</p></div>
+    </div>
+    <div class="diagram">
+      <svg viewBox="0 0 1000 430" role="img" aria-label="Architecture: browser app on Vercel calls a FastAPI service on Modal, which runs the build pipeline and the question-answering agents over the drawing store">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b9b2a4"/></marker>
+          <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker></defs>
+        <!-- zones -->
+        <rect class="dg-zone" x="10" y="20" width="200" height="390" rx="14"/><text class="dg-zl" x="24" y="40">BROWSER · VERCEL</text>
+        <rect class="dg-zone" x="240" y="20" width="750" height="390" rx="14"/><text class="dg-zl" x="254" y="40">API · FASTAPI ON MODAL</text>
+        <!-- browser -->
+        <rect class="dg-box dg-acc" x="28" y="60" width="164" height="70" rx="10"/><text class="dg-t" x="42" y="88">Ymir app</text><text class="dg-s" x="42" y="106">Home · building · drawing</text>
+        <rect class="dg-box" x="28" y="146" width="164" height="54" rx="10"/><text class="dg-t" x="42" y="170">3D model</text><text class="dg-s" x="42" y="187">three.js · sheets · ghosts</text>
+        <rect class="dg-box" x="28" y="212" width="164" height="54" rx="10"/><text class="dg-t" x="42" y="236">2D sheet</text><text class="dg-s" x="42" y="253">SVG · citations · placing</text>
+        <rect class="dg-box" x="28" y="278" width="164" height="54" rx="10"/><text class="dg-t" x="42" y="302">Live trace</text><text class="dg-s" x="42" y="319">NDJSON stream</text>
+        <rect class="dg-box" x="28" y="344" width="164" height="50" rx="10"/><text class="dg-t" x="42" y="366">Browser store</text><text class="dg-s" x="42" y="382">threads · your buildings</text>
+        <!-- build pipeline -->
+        <text class="dg-zl" x="262" y="72">BUILD PIPELINE · ON UPLOAD</text>
+        <rect class="dg-box" x="262" y="82" width="120" height="52" rx="10"/><text class="dg-t" x="276" y="104">Find plan</text><text class="dg-s" x="276" y="121">OpenCV</text>
+        <rect class="dg-box" x="398" y="82" width="120" height="52" rx="10"/><text class="dg-t" x="412" y="104">Walls</text><text class="dg-s" x="412" y="121">WallNet · PyTorch</text>
+        <rect class="dg-box" x="534" y="82" width="120" height="52" rx="10"/><text class="dg-t" x="548" y="104">Text, scale</text><text class="dg-s" x="548" y="121">RapidOCR</text>
+        <rect class="dg-box" x="670" y="82" width="120" height="52" rx="10"/><text class="dg-t" x="684" y="104">Rooms</text><text class="dg-s" x="684" y="121">Shapely</text>
+        <path class="dg-line" d="M382 108h16M518 108h16M654 108h16" marker-end="url(#ar)"/>
+        <!-- agents -->
+        <text class="dg-zl" x="262" y="176">QUESTION ANSWERING · PER QUESTION</text>
+        <rect class="dg-box dg-blue" x="262" y="186" width="110" height="60" rx="10"/><text class="dg-t" x="276" y="211">Planner</text><text class="dg-s" x="276" y="229">routes the question</text>
+        <rect class="dg-box" x="410" y="186" width="130" height="38" rx="9"/><text class="dg-t" x="422" y="210" font-size="12">Detector <tspan class="dg-s">YOLO11</tspan></text>
+        <rect class="dg-box" x="410" y="230" width="130" height="38" rx="9"/><text class="dg-t" x="422" y="254" font-size="12">Reader <tspan class="dg-s">OCR index</tspan></text>
+        <rect class="dg-box" x="410" y="274" width="130" height="38" rx="9"/><text class="dg-t" x="422" y="298" font-size="12">Geometry <tspan class="dg-s">Shapely</tspan></text>
+        <rect class="dg-box" x="410" y="318" width="130" height="38" rx="9"/><text class="dg-t" x="422" y="342" font-size="12">Model <tspan class="dg-s">IFC query</tspan></text>
+        <rect class="dg-box" x="410" y="362" width="130" height="38" rx="9"/><text class="dg-t" x="422" y="386" font-size="12">Vision <tspan class="dg-s">Claude</tspan></text>
+        <rect class="dg-box dg-blue" x="580" y="186" width="110" height="60" rx="10"/><text class="dg-t" x="594" y="211">Verifier</text><text class="dg-s" x="594" y="229">cross-checks</text>
+        <rect class="dg-box dg-green" x="730" y="186" width="120" height="60" rx="10"/><text class="dg-t" x="744" y="211">Cited answer</text><text class="dg-s" x="744" y="229">or abstain · needs</text>
+        <path class="dg-line" d="M372 216h18v-11h20M390 216v33h20M390 216v77h20M390 216v121h20M390 216v165h20" />
+        <path class="dg-line" d="M540 205h40M540 249h20v-33h20" marker-end="url(#ar)"/>
+        <path class="dg-line" d="M690 216h40" marker-end="url(#ar)"/>
+        <!-- stores -->
+        <rect class="dg-box" x="870" y="82" width="104" height="62" rx="10"/><text class="dg-t" x="882" y="106">Drawings</text><text class="dg-s" x="882" y="123">samples · uploads</text><text class="dg-s" x="882" y="137">projects</text>
+        <rect class="dg-box" x="870" y="300" width="104" height="62" rx="10"/><text class="dg-t" x="882" y="324">Reviews</text><text class="dg-s" x="882" y="341">SQLite</text><text class="dg-s" x="882" y="355">→ training labels</text>
+        <path class="dg-line" d="M790 108h80" marker-end="url(#ar)"/>
+        <path class="dg-line" d="M922 144v42h-72" marker-end="url(#ar)"/>
+        <!-- browser ↔ api -->
+        <path class="dg-flow" d="M192 95 C230 95 230 108 262 108" marker-end="url(#arb)"/>
+        <path class="dg-flow" d="M192 110 C226 110 226 216 262 216" marker-end="url(#arb)"/>
+        <path class="dg-flow" d="M790 186 V152 H232 V298 Q232 305 225 305 H194" marker-end="url(#arb)"/>
+        <path class="dg-line" d="M192 369 C520 420 760 380 870 335" marker-end="url(#ar)"/>
+        <text class="dg-s" x="200" y="132" font-size="10.5">upload</text><text class="dg-s" x="204" y="176" font-size="10.5">ask</text>
+        <text class="dg-s" x="600" y="147" font-size="10.5" fill="#2563eb">trace + answer, streamed back</text>
+        <text class="dg-s" x="560" y="414" font-size="10.5">your box corrections</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top: 20px">
+  <div class="wrap">
+    <span class="kicker">Tech stack</span>
+    <h2>Small, plain and quick to change</h2>
+    <p class="sub">No frontend build step, one Python service, models you can swap behind a single interface.</p>
+    <div class="stack">
+      <div class="scol"><h3>Frontend</h3><ul><li><i></i>three.js<small>3D model</small></li><li><i></i>SVG<small>2D sheets</small></li><li><i></i>ES modules<small>no build</small></li><li><i></i>Vercel<small>hosting</small></li></ul></div>
+      <div class="scol"><h3>API</h3><ul><li><i></i>Python 3.12</li><li><i></i>FastAPI<small>streaming</small></li><li><i></i>Pydantic</li><li><i></i>Modal<small>scale to zero</small></li></ul></div>
+      <div class="scol"><h3>Vision</h3><ul><li><i></i>PyTorch<small>WallNet</small></li><li><i></i>YOLO11<small>symbols</small></li><li><i></i>RapidOCR<small>ONNX</small></li><li><i></i>OpenCV</li></ul></div>
+      <div class="scol"><h3>Geometry · BIM</h3><ul><li><i></i>Shapely<small>rooms, areas</small></li><li><i></i>IfcOpenShell<small>IFC → sheets</small></li><li><i></i>NumPy</li><li><i></i>Claude<small>vision fallback</small></li></ul></div>
+      <div class="scol"><h3>Data · ops</h3><ul><li><i></i>SQLite<small>reviews</small></li><li><i></i>Git LFS<small>weights</small></li><li><i></i>GitHub Actions<small>deploy</small></li><li><i></i>pytest · node:test</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>See it on a real building</h2>
+  <p>Five sheets from an IFC model, one of them waiting to be placed, and a plumbing plan that isn’t there.</p>
+  <div class="ctas" style="justify-content:center">
+    <a class="btn dark" href="app.html?p=ac20">Open the sample building</a>
+    <a class="btn" href="home.html">Upload your own drawing</a>
   </div>
 </div>
-<div class="tip" id="tip" hidden></div>
 
-<script type="module">
-import { createSession, bindViews, loadLibrary, wallPx, needsReview, countNoun } from './shared/session.js';
-import { createPlan } from './shared/plan2d.js';
-import { createViewer } from './shared/viewer3d.js';
-import { createTrace } from './shared/trace.js';
-import { ask as askAgents, suggestions, previewGraph, submitReview, uploadDrawing } from './shared/api.js';
-import { $, h, toast, icon } from './shared/ui.js';
+<footer>
+  <div class="wrap">
+    <a class="brand" href="./"><i></i>Ymir</a>
+    <span>Built for the Stoa challenge at Junction 2026.</span>
+    <span>Sample drawings: Stoa dataset, each under its own licence (AC20 model: IAI / KIT).</span>
+  </div>
+</footer>
 
-document.querySelectorAll('[data-i]').forEach((n) => { n.outerHTML = icon[n.dataset.i]; });
-const session = createSession({ pickRef: true });
-const S = session.state;
-const plan = createPlan($('#plan'));
-const viewer = createViewer($('#model'));
-const trace = createTrace($('#chart'));
-
-// Clicks on walls mean different things per stage
-bindViews(session, {
-  plan, viewer, tooltip: $('#tip'),
-  onPick(sel) {
-    if (sel?.type === 'box') { session.toggleBox(sel.id); return; }
-    if (sel?.type === 'wall' && S.focus === 'scale') {
-      if (session.candidates().some((c) => c.id === sel.id)) session.setRef(sel.id);
-      return;
-    }
-    if (sel?.type === 'wall' && S.focus === 'walls') { session.toggleWall(sel.id); return; }
-    session.select(sel);
-  },
-});
-
-let open = 'confirm', tab = 'build';
-const len = (w) => wallPx(w) * S.scale;
-
-/* ---------- Build pipeline ---------- */
-const fmtMs = (ms) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${ms} ms`);
-// Steps the backend reported in its build trace (node + status events), drawn as they arrived.
-function backendSteps() {
-  const steps = new Map();
-  for (const e of S.build) {
-    if (e.type === 'node') steps.set(e.id, { id: `b-${e.id}`, name: e.name, tool: e.tool, state: 'wait', res: '' });
-    else if (e.type === 'status' && steps.has(e.id)) {
-      const st = steps.get(e.id);
-      st.state = { done: 'done', skipped: 'skip', failed: 'fail' }[e.state] || 'wait';
-      st.res = (e.summary || '') + (e.ms ? ` · ${fmtMs(e.ms)}` : '');
-    }
-  }
-  return [...steps.values()];
-}
-// ...followed by the steps that need the user, which the frontend owns.
-function nodes() {
-  const d = S.d, pend = session.pending();
-  const kept = d.walls.length - session.removed().size;
-  const ref = session.candidates().find((c) => c.id === S.refId);
-  const ready = S.scaleConfirmed && !pend.length;
-  return [
-    ...backendSteps(),
-    { id: 'confirm', name: 'Confirm scale', tool: 'You', state: S.scaleConfirmed ? 'done' : 'you',
-      res: S.scaleConfirmed ? `Wall ${ref?.letter || ''} = ${session.refLength().toFixed(2)} m` : 'Pick a wall you know' },
-    { id: 'check', name: 'Check walls', tool: 'You', state: pend.length ? 'you' : 'done',
-      res: pend.length ? `${pend.length} look doubtful` : `${kept} walls kept` },
-    { id: 'model', name: '3D model', tool: 'three.js · IFC', state: ready ? 'done' : 'wait', res: ready ? 'Ready' : 'Updates live' },
-  ];
-}
-
-function scaleAction() {
-  const cands = session.candidates();
-  const ref = cands.find((c) => c.id === S.refId) || cands[0];
-  const chk = session.areaCheck();
-  const el = h(`<div class="act">
-    <div class="cands">${cands.map((c) => `<button class="cand ${c.id === S.refId ? 'on' : ''}" data-id="${c.id}"><b>${c.letter}</b>${len(S.d.walls.find((w) => w.id === c.id)).toFixed(1)} m</button>`).join('')}</div>
-    <div class="row"><span class="chip">Wall ${ref.letter}</span><label class="num"><input id="len" value="${session.refLength().toFixed(2)}"><span>m</span></label>
-      <button class="btn acc" id="ok">${S.scaleConfirmed ? 'Update' : 'Confirm'}</button></div>
-    ${chk ? `<span class="chip ${chk.median < .1 ? 'good' : ''}">Room areas ±${Math.round(chk.median * 100)}% vs sheet</span>` : ''}
-  </div>`);
-  el.querySelectorAll('.cand').forEach((b) => { b.onclick = () => session.setRef(b.dataset.id); });
-  const input = el.querySelector('#len');
-  input.onchange = () => session.setRefLength(parseFloat(input.value));
-  input.onkeydown = (e) => { if (e.key === 'Enter') input.blur(); };
-  el.querySelector('#ok').onclick = () => { session.setRefLength(parseFloat(input.value)); session.confirmScale(); setOpen('check'); };
-  return el;
-}
-
-function checkAction() {
-  const flagged = session.flagged();
-  const done = flagged.filter((w) => S.decisions.has(w.id)).length;
-  const rm = session.removed().size;
-  const el = h(`<div class="act">
-    <div class="legend"><span><i style="background:var(--flag)"></i>Check</span><span><i style="background:var(--ok)"></i>Wall</span><span><i style="background:var(--ghost)"></i>Not a wall</span></div>
-    <span class="chip">Click a wall to remove it, again to keep it.</span>
-    <div class="row"><span class="chip">${done}/${flagged.length} checked${rm ? ` · ${rm} removed` : ''}</span><span class="grow"></span>
-      <button class="btn sm ${drawing ? 'on' : ''}" id="drawBtn">${icon.pen}Draw</button><button class="btn sm primary" id="doneBtn">Done</button></div>
-  </div>`);
-  el.querySelector('#drawBtn').onclick = () => setDrawing(!drawing);
-  el.querySelector('#doneBtn').onclick = () => { session.keepRest(); setDrawing(false); setOpen('model'); };
-  return el;
-}
-
-function modelAction() {
-  const el = h(`<div class="act"><div class="row">${['IFC', 'OBJ', 'JSON'].map((x) => `<button class="btn sm" data-x="${x}">${x}</button>`).join('')}
-    <span class="grow"></span><button class="btn sm primary" id="goAsk">Ask ${icon.chev.replace('<svg', '<svg style="transform:rotate(-90deg)"')}</button></div></div>`);
-  el.querySelectorAll('[data-x]').forEach((b) => { b.onclick = () => toast(`${b.dataset.x} export connects to the parser next`); });
-  el.querySelector('#goAsk').onclick = () => setTab('ask');
-  return el;
-}
-
-function renderFlow() {
-  if (!S.d) return;
-  $('#flow').replaceChildren(...nodes().map((n) => {
-    const el = h(`<div class="node ${n.state}"><span class="st">${n.state === 'done' ? icon.check : ''}</span>
-      <div><div class="hd"><b>${n.name}</b><span class="tool">${n.tool}</span></div><div class="res">${n.res}</div></div></div>`);
-    el.querySelector('.hd').onclick = () => setOpen(open === n.id ? null : n.id);
-    const act = { confirm: scaleAction, check: checkAction, model: modelAction }[n.id];
-    const show = act && (open === n.id || (n.state === 'you' && n.id === 'confirm') || (n.id === 'check' && n.state === 'you' && S.scaleConfirmed && open !== 'confirm'));
-    if (show) el.lastElementChild.append(act());
-    return el;
-  }));
-}
-function focusFor() { return tab === 'ask' ? null : open === 'confirm' ? 'scale' : open === 'check' ? 'walls' : null; }
-function setOpen(id) {
-  open = id;
-  if (id === 'check' && !S.scaleConfirmed) open = 'confirm';
-  const f = focusFor();
-  if (S.focus !== f) session.setFocus(f); else renderFlow();
-}
-
-/* ---------- Ask ---------- */
-// Answers arrive as a trace stream (node / status / answer events), as the training brief specifies.
-let busy = false, current = null, cancel = null;
-const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const safeText = (t) => esc(t).replace(/&lt;(\/?)(b|cite)&gt;/g, '<$1$2>'); // spec: only <b> and <cite> allowed
-async function renderSugg() {
-  const id = S.d.id, qs = await suggestions(session);
-  if (S.d?.id !== id) return;
-  $('#sugg').replaceChildren(...qs.map((q) => { const b = h(`<button>${esc(q)}</button>`); b.onclick = () => ask(q); return b; }));
-}
-function emptyThread() {
-  $('#thread').replaceChildren(h(`<div class="empty">Answers point to where they came from in the drawing and the model.</div>`));
-}
-async function idleTrace() {
-  trace.replay(await previewGraph());
-  $('#traceStatus').textContent = 'Ask a question to see how it’s answered';
-}
-function applyAnswer(entry, card) {
-  current = entry;
-  document.querySelectorAll('.msg.a').forEach((m) => m.classList.toggle('on', m === card));
-  const a = entry.answer;
-  session.setAnswer(a);
-  if (a.focus) {
-    const [x0, y0, x1, y1] = a.focus;
-    plan.fitBox([x0, y0, x1 - x0, y1 - y0], 0.9);
-    viewer.focusBox(a.focus);
-  } else { plan.fit(); viewer.fit(); }
-}
-function focusCite(a, n) {
-  const c = (a.citations || []).find((x) => x.n === n);
-  const b = c && session.citationBox(c);
-  if (!b) return;
-  plan.fitBox([b[0], b[1], b[2] - b[0], b[3] - b[1]], c.room_id && !c.box ? 0.6 : 3);
-  viewer.focusBox(b);
-}
-function finish(a, events, card, q) {
-  const entry = { answer: a, events, q };
-  cancel = null;
-  if (needsReview(a)) startReview(entry, card); else showAnswer(entry, card);
-}
-const pct = (v) => `${Math.round(v * 100)}%`;
-function showAnswer(entry, card) {
-  const a = entry.answer;
-  const cites = a.citations || [];
-  const abstained = a.status !== 'answered';
-  $('#traceStatus').textContent = abstained ? 'No evidence found · abstained'
-    : `${a.checked ? 'Checked by you · ' : ''}Answered with ${cites.length} source${cites.length === 1 ? '' : 's'}`;
-  card.className = `msg a${abstained ? ' abstain' : ''}`;
-  const mark = a.checked ? `<div class="mark ok">${icon.check}Checked by you<a href="#" class="exp">Export labels</a></div>`
-    : a.unchecked ? `<div class="mark">Not checked · ${pct(a.confidence)} sure</div>` : '';
-  card.innerHTML = `<div>${safeText(a.text)}</div>${mark}${cites.length ? `<div class="cites">${cites.slice(0, 5).map((c) => `<div><cite>${c.n}</cite>${esc(c.label)}</div>`).join('')}${cites.length > 5 ? `<div>+${cites.length - 5} more</div>` : ''}</div>` : ''}`;
-  card.querySelector('.exp')?.addEventListener('click', (e) => { e.preventDefault(); exportLabels(entry.record); });
-  card.onclick = (e) => {
-    const c = e.target.closest('cite');
-    if (current !== entry) { applyAnswer(entry, card); trace.replay(entry.events); $('#traceStatus').textContent = 'Showing an earlier answer'; }
-    if (c) focusCite(a, Number(c.textContent));
-  };
-  if (abstained) { current = null; session.setAnswer(null); } else applyAnswer(entry, card);
-  busy = false; $('#qin').placeholder = 'Ask about this drawing'; $('#send').disabled = !$('#qin').value.trim();
-  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-}
-
-/* ---------- Low confidence: the user checks the model's boxes ---------- */
-let reviewing = null; // {entry, card} while the user is checking boxes
-function traceEvents(entry, evs) { evs.forEach((ev) => { entry.events.push(ev); trace.apply(ev); }); }
-function startReview(entry, card) {
-  const a = entry.answer;
-  reviewing = { entry, card };
-  session.startReview(a, entry.q);
-  if ($('#views').classList.contains('one-model')) setView('both');
-  plan.fit(); viewer.fit();
-  // The frontend owns this step, like the Build tab's "You" steps: insert it between Verifier and Answer.
-  traceEvents(entry, [
-    { type: 'node', id: 'you', name: 'Check boxes', tool: 'You', parents: ['ver'] },
-    { type: 'node', id: 'ans', name: 'Answer', tool: 'Cited', parents: ['you'] },
-    { type: 'status', id: 'you', state: 'waiting', summary: `${pct(a.confidence)} sure · your turn` },
-    { type: 'status', id: 'ans', state: 'pending', summary: 'Waiting for you' },
-  ]);
-  $('#traceStatus').textContent = 'Low confidence · check the boxes';
-  $('#qin').placeholder = 'Check the boxes first';
-  renderReview();
-  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-}
-function renderReview() {
-  if (!reviewing) return;
-  const { entry, card } = reviewing, a = entry.answer, st = session.reviewStats();
-  card.className = 'msg a review';
-  card.onclick = null;
-  card.innerHTML = `<div>Probably <b>${a.value}</b> ${countNoun(a.review.class, a.value)} · <span class="warn">${pct(a.confidence)} sure</span></div>
-    <div class="act">
-      <div class="legend"><span><i style="background:var(--answer)"></i>Counted</span><span><i style="background:var(--flag)"></i>Check</span><span><i style="background:var(--ghost)"></i>Not counted</span></div>
-      <span class="chip">Click a box to count or drop it. Drag an edge to resize.</span>
-      <div class="row"><span class="chip">${st.count} counted${st.toCheck ? ` · ${st.toCheck} to check` : ''}</span><span class="grow"></span>
-        <button class="btn sm ${drawing ? 'on' : ''}" id="rvDraw">${icon.pen}Draw</button><button class="btn sm" id="rvSkip">Skip</button><button class="btn sm acc" id="rvDone">Done</button></div>
-    </div>`;
-  card.querySelector('#rvDraw').onclick = () => setDrawing(!drawing);
-  card.querySelector('#rvSkip').onclick = skipReview;
-  card.querySelector('#rvDone').onclick = doneReview;
-}
-function doneReview() {
-  const { entry, card } = reviewing;
-  reviewing = null; setDrawing(false);
-  const { answer, record, changes } = session.finishReview();
-  Object.assign(entry, { answer, record });
-  const parts = [['removed', changes.removed], ['added', changes.added], ['resized', changes.resized]].filter(([, n]) => n).map(([k, n]) => `${n} ${k}`);
-  traceEvents(entry, [
-    { type: 'status', id: 'you', state: 'done', summary: parts.join(' · ') || 'No changes' },
-    { type: 'status', id: 'ans', state: 'done', summary: `${answer.value} · checked` },
-  ]);
-  submitReview(record).catch(() => toast('Labels could not be saved'));
-  showAnswer(entry, card);
-}
-function skipReview() {
-  const { entry, card } = reviewing;
-  reviewing = null; setDrawing(false);
-  entry.answer = session.skipReview();
-  traceEvents(entry, [
-    { type: 'status', id: 'you', state: 'skipped', summary: 'Skipped' },
-    { type: 'status', id: 'ans', state: 'done', summary: `${entry.answer.value} · unchecked` },
-  ]);
-  showAnswer(entry, card);
-}
-function exportLabels(record) {
-  if (!record) return;
-  const url = URL.createObjectURL(new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' }));
-  const link = Object.assign(document.createElement('a'), { href: url, download: `labels-${record.drawing.id}-${record.class}.json` });
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-function ask(q) {
-  q = q.trim();
-  if (!q || busy || !S.d) return;
-  busy = true; $('#send').disabled = true; $('#qin').value = '';
-  if (tab !== 'ask') setTab('ask');
-  session.setAnswer(null);
-  $('#thread').querySelector('.empty')?.remove();
-  $('#thread').append(h(`<div class="msg q">${esc(q)}</div>`));
-  const card = h(`<div class="msg a pending"><span class="spin"></span><span class="stage">Reading question</span></div>`);
-  $('#thread').append(card);
-  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  $('#trace').classList.remove('closed');
-  trace.reset();
-  const events = [], running = new Map();
-  const stage = (txt) => { card.querySelector('.stage').textContent = txt; $('#traceStatus').innerHTML = `<span class="spin"></span>${esc(txt)}`; };
-  cancel = askAgents(session, q, (ev) => {
-    events.push(ev);
-    trace.apply(ev);
-    if (ev.type === 'status') {
-      if (ev.state === 'running') running.set(ev.id, trace.name(ev.id)); else running.delete(ev.id);
-      const names = [...running.values()];
-      if (names.length) stage(names.length > 1 ? `${names.join(', ')} working` : `${names[0]} is working`);
-    }
-    if (ev.type === 'answer') finish(ev.answer, events, card, q);
-  });
-}
-$('#composer').onsubmit = (e) => { e.preventDefault(); ask($('#qin').value); };
-$('#qin').oninput = () => { $('#send').disabled = busy || !$('#qin').value.trim(); };
-$('#traceHead').onclick = () => $('#trace').classList.toggle('closed');
-
-function setTab(t) {
-  tab = t;
-  document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === t));
-  $('#flow').hidden = t !== 'build';
-  $('#askp').hidden = t !== 'ask';
-  session.showReview(t === 'ask');
-  if (t === 'ask') { $('#askDot').hidden = true; setDrawing(false); $('#qin').focus(); if (current) session.setAnswer(current.answer); }
-  else session.setAnswer(null);
-  const f = focusFor();
-  if (S.focus !== f) session.setFocus(f); else renderFlow();
-}
-document.querySelectorAll('.tabs button').forEach((b) => { b.onclick = () => setTab(b.dataset.tab); });
-
-/* ---------- Session wiring ---------- */
-session.on((type) => {
-  if (type === 'load') {
-    cancel?.(); cancel = null;
-    $('#title').textContent = S.d.title; $('#sub').textContent = `${S.d.source.dataset} · ${S.d.source.kind}`; $('#thumb').src = S.d.image.url;
-    $('#height').value = S.height; open = 'confirm'; current = null; busy = false; reviewing = null; $('#send').disabled = true;
-    $('#qin').placeholder = 'Ask about this drawing';
-    emptyThread(); renderSugg(); idleTrace();
-    setTab('build');
-  }
-  if (type === 'walls' && S.focus === null && !session.pending().length && S.scaleConfirmed) $('#askDot').hidden = tab === 'ask';
-  if (type === 'review') renderReview();
-  if (type !== 'select' && type !== 'answer' && type !== 'review') renderFlow();
-});
-
-/* ---------- Toolbar ---------- */
-function setView(v) {
-  document.querySelectorAll('#seg button').forEach((x) => x.classList.toggle('on', x.dataset.v === v));
-  $('#views').className = `views ${v === 'both' ? '' : v}`;
-}
-document.querySelectorAll('#seg button').forEach((b) => { b.onclick = () => setView(b.dataset.v); });
-let drawing = false;
-// The pen draws walls while building, and boxes while the user checks a low-confidence answer.
-function setDrawing(on) {
-  const boxes = tab === 'ask' && !!S.review;
-  drawing = on; plan.setMode(on ? (boxes ? 'box' : 'draw') : 'select'); $('#drawTool').classList.toggle('on', on);
-  document.querySelector('#drawBtn')?.classList.toggle('on', on);
-  document.querySelector('#rvDraw')?.classList.toggle('on', on);
-  if (on && !boxes && S.focus !== 'walls' && tab === 'build') setOpen('check');
-}
-$('#drawTool').onclick = () => setDrawing(!drawing);
-$('#fit').onclick = () => { plan.fit(); viewer.fit(); };
-$('#height').onchange = (e) => session.setHeight(parseFloat(e.target.value));
-
-/* ---------- Library ---------- */
-let lib = await loadLibrary();
-function renderLib(q = '') {
-  $('#grid').replaceChildren(...lib.filter((d) => `${d.title} ${d.source.dataset} ${d.source.kind}`.toLowerCase().includes(q.toLowerCase())).map((d) => {
-    const b = h(`<button class="card ${S.d?.id === d.id ? 'on' : ''}"><img src="${d.thumbnail}" alt=""><div>${d.title}<small>${d.source.dataset}</small></div></button>`);
-    b.onclick = () => { $('#modal').hidden = true; session.open(d.id); };
-    return b;
-  }));
-}
-$('#change').onclick = () => { $('#modal').hidden = false; renderLib($('#q').value); $('#q').focus(); };
-$('#modal').onclick = (e) => { if (e.target.id === 'modal') $('#modal').hidden = true; };
-$('#q').oninput = (e) => renderLib(e.target.value);
-$('#file').onchange = async () => {
-  const file = $('#file').files[0];
-  $('#file').value = '';
-  if (!file) return;
-  $('#modal').hidden = true;
-  toast('Reading the drawing…');
-  try {
-    const entry = await uploadDrawing(file);
-    lib = await loadLibrary();
-    await session.open(entry.id);
-    toast(`${entry.title} is ready`);
-  } catch (e) { toast(e.message || 'This drawing could not be read'); }
-};
-
-session.open(new URLSearchParams(location.search).get('d') || 'swiss');
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
 </script>
 </body>
 </html>

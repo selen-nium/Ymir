@@ -157,6 +157,26 @@ def test_upload_rejects_a_non_image():
 
 
 def test_frontend_is_served():
-    page = client.get("/")
-    assert page.status_code == 200 and "<title>Ymir</title>" in page.text
-    assert client.get("/shared/api.js").status_code == 200
+    landing = client.get("/")
+    assert landing.status_code == 200 and "<title>Ymir · Ask your construction drawings</title>" in landing.text
+    assert "Your buildings and drawings" in client.get("/home.html").text
+    app_page = client.get("/app.html")
+    assert app_page.status_code == 200 and 'id="tree"' in app_page.text
+    js = client.get("/shared/api.js")
+    assert js.status_code == 200 and js.headers["cache-control"] == "no-cache"
+
+
+def test_projects_list_and_payload():
+    lib = client.get("/api/projects").json()
+    assert lib[0]["id"] == "ac20" and lib[0]["sheets"] == 5
+    p = client.get("/api/projects/ac20").json()
+    levels = {lv["id"] for lv in p["levels"]}
+    for sheet in p["sheets"]:
+        d = client.get(f"/api/drawings/{sheet['drawing_id']}").json()
+        assert d["image"]["url"].startswith("api/drawings/")
+        for view in sheet["views"]:
+            assert view["placement"]["type"] in {"plan", "elevation", "attached"}
+            assert view["placement"].get("level") in levels | {None}
+    placed = [s for s in p["sheets"] if s["views"][0]["placement"].get("transform")]
+    assert {s["drawing_id"] for s in placed} == {"ac20-eg", "ac20-kg", "ac20-dg"}
+    assert client.get("/api/projects/nope").status_code == 404

@@ -17,16 +17,19 @@ async function json(res) {
 export const loadLibrary = () => fetch(api('api/library')).then(json).then((lib) => lib.map((e) => ({ ...e, thumbnail: absolute(e.thumbnail) })));
 export const loadDrawing = (id) => fetch(api(`api/drawings/${encodeURIComponent(id)}`)).then(json)
   .then((d) => ({ ...d, image: { ...d.image, url: absolute(d.image.url) } }));
+export const loadProjects = () => fetch(api('api/projects')).then(json).then((ps) => ps.map((p) => ({ ...p, thumbnail: p.thumbnail && absolute(p.thumbnail) }))).catch(() => []);
+export const loadProject = (id) => fetch(api(`api/projects/${encodeURIComponent(id)}`)).then(json);
 export const loadBuildTrace = (id) => fetch(api(`api/drawings/${encodeURIComponent(id)}/trace`)).then(json).catch(() => []);
 export const previewGraph = () => fetch(api('api/agents')).then(json).catch(() => []);
 export const suggestions = (session) => fetch(api(`api/drawings/${encodeURIComponent(session.state.d.id)}/suggestions`)).then(json).catch(() => []);
 
-// Streams one answer. Sends the user's Build decisions so answers use their scale and walls. Returns a cancel function.
-export function ask(session, question, onEvent) {
+// Streams one answer. Sends the user's Build decisions so answers use their scale and walls; `extra` adds the
+// project and sheet (project_id, sheet_id) for backends that answer across sheets. Returns a cancel function.
+export function ask(session, question, onEvent, extra = {}) {
   const ctl = new AbortController();
   const s = session.state;
   const body = {
-    drawing_id: s.d.id, question,
+    drawing_id: s.d.id, question, ...extra,
     context: { m_per_px: s.scale, scale_confirmed: s.scaleConfirmed, height_m: s.height, removed_walls: [...session.removed()],
       added_walls: s.d.walls.filter((w) => w.user).map(({ id, a, b }) => ({ id, a, b })) },
   };

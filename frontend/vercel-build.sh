@@ -9,6 +9,6 @@ case "$YMIR_API_BASE" in
 esac
 rm -rf dist
 mkdir dist
-cp -R index.html shared vendor dist/
+cp -R index.html home.html app.html shared vendor dist/
 printf "window.YMIR_API_BASE = '%s';\n" "${YMIR_API_BASE%/}" > dist/config.js
 echo "Built dist/ for API $YMIR_API_BASE"

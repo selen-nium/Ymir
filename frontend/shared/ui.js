@@ -29,4 +29,6 @@ export const icon = {
   wall: '<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16M9 6v6M15 12v6M12 6v0"/></svg>',
   download: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
   layers: '<svg viewBox="0 0 24 24"><path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg>',
+  plus: '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+  focus: '<svg viewBox="0 0 24 24"><path d="M12 4l9 5-9 5-9-5z"/><path d="M3 15l9 5 9-5" opacity=".35"/></svg>',
 };

@@ -83,11 +83,23 @@ export function createSession(opts = {}) {
       d.texts ??= []; d.symbols ??= []; d.openings ??= []; d.rooms ??= [];
       const below = opts.flagBelow ?? FLAG_BELOW;
       for (const w of d.walls) w.flag = w.confidence != null && w.confidence < below ? 'low_confidence' : null;
-      Object.assign(s, { d, build, scale: d.scale.m_per_px, height: d.default_height_m ?? 2.7, scaleConfirmed: false,
+      // a scale that comes from the model (an IFC-rendered sheet) needs no confirming
+      Object.assign(s, { d, build, scale: d.scale.m_per_px, height: d.default_height_m ?? 2.7, scaleConfirmed: d.scale.source === 'model',
         decisions: new Map(), selected: null, added: 0, focus: 'scale', refId: longestHorizontal(d.walls)?.id,
         answer: null, answerPayload: null, review: null });
       emit('load');
     },
+    // Switching sheets in a project keeps each sheet's Build decisions.
+    snapshot() {
+      return s.d && { d: s.d, build: s.build, scale: s.scale, height: s.height, scaleConfirmed: s.scaleConfirmed,
+        decisions: new Map(s.decisions), added: s.added, refId: s.refId };
+    },
+    restore(snap) {
+      Object.assign(s, snap, { decisions: new Map(snap.decisions), selected: null, focus: 'scale', answer: null, answerPayload: null, review: null });
+      emit('load');
+    },
+    // Placing a sheet fixes its scale.
+    setScale(m, confirmed = false) { if (!(m > 0)) return; s.scale = m; if (confirmed) s.scaleConfirmed = true; emit('scale'); },
     // Reference wall for scale. With opts.pickRef the user chooses among a few long, clear candidates.
     candidates() {
       if (!opts.pickRef || !s.d) return [];
@@ -104,10 +116,10 @@ export function createSession(opts = {}) {
       return pick.map((w, i) => ({ id: w.id, letter: LETTERS[i] }));
     },
     refWall() { return s.d.walls.find((w) => w.id === s.refId); },
-    refLength() { return wallPx(api.refWall()) * s.scale; },
+    refLength() { const w = api.refWall(); return w ? wallPx(w) * s.scale : 0; },
     setRef(id) { if (s.refId !== id) { s.refId = id; emit('scale'); } },
     setRefLength(m) {
-      if (!(m > 0)) return;
+      if (!(m > 0) || !api.refWall()) return;
       s.scale = m / wallPx(api.refWall());
       emit('scale');
     },

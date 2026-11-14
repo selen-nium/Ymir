@@ -1,0 +1,16 @@
+[
+ {
+  "type": "node",
+  "id": "ifc",
+  "name": "Read IFC model",
+  "tool": "IfcOpenShell",
+  "parents": []
+ },
+ {
+  "type": "status",
+  "id": "ifc",
+  "state": "done",
+  "summary": "29 walls \u00b7 18 rooms",
+  "ms": 8397
+ }
+]

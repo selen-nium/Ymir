@@ -98,6 +98,19 @@ def agents():
     return qa.graph()
 
 
+@app.get("/api/projects")
+def projects():
+    return store.projects()
+
+
+@app.get("/api/projects/{project_id}")
+def project(project_id: str):
+    try:
+        return store.project(project_id)
+    except KeyError:
+        raise HTTPException(404, "Unknown project")
+
+
 @app.post("/api/ask")
 def ask(req: AskRequest):
     d = drawing_or_404(req.drawing_id)
@@ -140,6 +153,15 @@ def list_reviews(drawing_id: str | None = Query(default=None)):
     return reviews.list(drawing_id)
 
 
+class FrontendFiles(StaticFiles):
+    """Revalidate on every load (ETag → 304), so edited ES modules aren't served stale from the browser cache."""
+
+    async def get_response(self, path, scope):
+        response = await super().get_response(path, scope)
+        response.headers["Cache-Control"] = "no-cache"
+        return response
+
+
 # Locally the API also serves the frontend; on Modal the image ships the backend only (the frontend is on Vercel).
 if settings.FRONTEND_DIR.is_dir():
-    app.mount("/", StaticFiles(directory=settings.FRONTEND_DIR, html=True), name="frontend")
+    app.mount("/", FrontendFiles(directory=settings.FRONTEND_DIR, html=True), name="frontend")

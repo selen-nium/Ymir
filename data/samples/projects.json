@@ -1,0 +1,167 @@
+[
+ {
+  "id": "ac20",
+  "title": "AC20 institute building",
+  "source": {
+   "dataset": "Stoa · ifc_bench",
+   "file": "ifc_bench/ac20_arc.ifc",
+   "licence": "KIT, unrestricted use",
+   "credit": "IAI / Karlsruhe Institute of Technology (KIT), KIT IFC Examples"
+  },
+  "thumbnail": "api/drawings/ac20-eg/image",
+  "levels": [
+   {
+    "id": "F",
+    "name": "Foundation",
+    "z_m": -3.6,
+    "height_m": 0.6
+   },
+   {
+    "id": "KG",
+    "name": "Basement",
+    "z_m": -3.0,
+    "height_m": 3.0
+   },
+   {
+    "id": "EG",
+    "name": "Ground floor",
+    "z_m": 0.0,
+    "height_m": 3.0
+   },
+   {
+    "id": "OG1",
+    "name": "Level 1",
+    "z_m": 3.0,
+    "height_m": 3.0
+   },
+   {
+    "id": "OG2",
+    "name": "Level 2",
+    "z_m": 6.0,
+    "height_m": 3.0
+   },
+   {
+    "id": "DG",
+    "name": "Roof",
+    "z_m": 9.0,
+    "height_m": 2.5
+   }
+  ],
+  "sheets": [
+   {
+    "drawing_id": "ac20-eg",
+    "views": [
+     {
+      "box": null,
+      "kind": "floor_plan",
+      "discipline": "architecture",
+      "placement": {
+       "type": "plan",
+       "level": "EG",
+       "transform": [
+        0.041667,
+        0,
+        0.0,
+        0.0
+       ],
+       "by": "model"
+      }
+     }
+    ]
+   },
+   {
+    "drawing_id": "ac20-kg",
+    "views": [
+     {
+      "box": null,
+      "kind": "floor_plan",
+      "discipline": "architecture",
+      "placement": {
+       "type": "plan",
+       "level": "KG",
+       "transform": [
+        0.041667,
+        0,
+        0.0,
+        0.0
+       ],
+       "by": "model"
+      }
+     }
+    ]
+   },
+   {
+    "drawing_id": "ac20-dg",
+    "views": [
+     {
+      "box": null,
+      "kind": "roof_plan",
+      "discipline": "architecture",
+      "placement": {
+       "type": "plan",
+       "level": "DG",
+       "transform": [
+        0.041667,
+        0,
+        0.0,
+        0.0
+       ],
+       "by": "model"
+      }
+     }
+    ]
+   },
+   {
+    "drawing_id": "ac20-south",
+    "views": [
+     {
+      "box": null,
+      "kind": "elevation",
+      "discipline": "architecture",
+      "placement": {
+       "type": "elevation",
+       "level": "EG",
+       "by": "model",
+       "base": [
+        [
+         2.0,
+         21.0
+        ],
+        [
+         46.0,
+         21.0
+        ]
+       ],
+       "sheet_ground": [
+        [
+         48.0,
+         313.2
+        ],
+        [
+         1104.0,
+         313.2
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "drawing_id": "ac20-og1",
+    "views": [
+     {
+      "box": null,
+      "kind": "floor_plan",
+      "discipline": "architecture",
+      "placement": {
+       "type": "plan",
+       "level": "OG1",
+       "transform": null,
+       "by": null
+      }
+     }
+    ]
+   }
+  ]
+ }
+]

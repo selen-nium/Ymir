@@ -1,0 +1,16 @@
+[
+ {
+  "type": "node",
+  "id": "ifc",
+  "name": "Read IFC model",
+  "tool": "IfcOpenShell",
+  "parents": []
+ },
+ {
+  "type": "status",
+  "id": "ifc",
+  "state": "done",
+  "summary": "Seen from the south",
+  "ms": 8397
+ }
+]

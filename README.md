@@ -17,17 +17,25 @@ uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requi
 PYTHONPATH=backend .venv/bin/uvicorn ymir.app:app --reload --port 8000
 ```
 
-Open http://localhost:8000. Pick a drawing (Change), confirm the scale and walls in **Build**, then ask in **Ask**.
-On the CubiCasa sample, *How many windows are there?* comes back at 58% confidence and opens the box review.
+Open http://localhost:8000 for the landing page, **Open the app** for home (buildings, uploads and their
+conversations), or go straight to the sample building at http://localhost:8000/app.html?p=ac20: pick a sheet in
+the rail, place the unplaced **A-101 Level 1 plan** in **Build** (two matching corners), and ask
+*Where does the main drain leave the building?* to see an answer point at the missing plumbing plan.
+Single drawings open in their own layout (`app.html?d=cubi`): on the CubiCasa sample, *How many windows are
+there?* comes back at 58% confidence and opens the box review.
 
 ## How it fits together
 
 ```
 frontend/  (static; Vercel)                   backend/ymir/  (Modal: deploy/modal_app.py)
-  index.html  Build + Ask UI       ──HTTP──▶    app.py        API + serves the frontend
+  index.html  landing page                     app.py        API + serves the frontend
+  home.html  buildings, uploads, conversations
+  app.html  a building or a drawing  ──HTTP──▶
   shared/api.js  backend client                 qa/           planner → route → tools → verifier, streamed
   shared/session.js  state, box review          models/       detectors (plug yours in here)
   shared/plan2d.js / viewer3d.js  2D + 3D       build/        image → walls, rooms, text, scale (uploads)
+  shared/project.js  sheets, placement, ghosts
+  shared/store.js  threads, your buildings (browser)
   shared/trace.js  agent diagram                drawings.py   sample + uploaded drawings
                                                 reviews.py    corrected boxes → SQLite
 ```
@@ -38,6 +46,25 @@ frontend/  (static; Vercel)                   backend/ymir/  (Modal: deploy/moda
   room, room count, wall length, or abstain) and streams trace events while its tools run.
 - **Review:** a box-count answer under 0.8 confidence makes the frontend ask the user to check the model's
   boxes (count/drop, resize, draw). The corrected record goes to `POST /api/reviews`.
+
+## Projects: several sheets, one building
+
+A project is a building made of sheets: floor, foundation, framing, roof and plumbing plans lie flat at their level,
+elevations stand on their side, schedules and details are linked but not placed. Parts no sheet covers are
+**ghosts** (dashed, see-through), guessed from the base plan's outline; clicking one asks for that sheet. A single
+drawing opens as a one-sheet project, so unseen drawings work as before. Design:
+`docs/superpowers/specs/2026-11-14-multi-sheet-project-design.md`.
+
+- Sample projects live in `data/samples/projects.json`. `scripts/build_ifc_project.py` renders one from an IFC
+  model in the dataset (needs `ifcopenshell numpy pillow shapely`, outside the app's requirements).
+- Each sheet's view has a `kind` (`floor_plan`, `foundation_plan`, `plumbing_plan`, `elevation`, `schedule`, ...,
+  see `frontend/shared/project.js`) and a `placement` (`plan` with a px → metres `transform`, `elevation` with a
+  base line, or `attached`). The viewer's own changes (added sheets, kinds, placements, levels), the buildings
+  they start (**New building** on home, or **Start a building from this** on a drawing) and every conversation are
+  kept in the browser (`frontend/shared/store.js`).
+- For the models: a drawing payload may add `kind`; an answer's citations may carry `sheet` (a drawing id); an
+  abstained answer may carry `needs: {kind, level}` so the frontend lights up the missing sheet's ghost (until it
+  does, the frontend guesses from the question). `/api/ask` also receives `project_id` and `sheet_id`.
 
 ## Add your model
 
@@ -90,6 +117,7 @@ To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` an
 | Method | Path | |
 | --- | --- | --- |
 | GET | `/api/library` | Sample and uploaded drawings |
+| GET | `/api/projects` · `/api/projects/{id}` | Sample projects (buildings made of several sheets) |
 | GET | `/api/drawings/{id}` · `/trace` · `/image` · `/suggestions` | Payload, build trace, image, example questions |
 | POST | `/api/drawings` | Upload a plan image (PNG/JPEG/WebP) and build it |
 | GET | `/api/agents` | The agent graph shown before a question |
