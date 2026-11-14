@@ -1,5 +1,10 @@
 // Backend client. The agents run on the server (backend/ymir/qa) and stream trace events as NDJSON:
 // {type:'node'|'status'|'answer'}; see backend/ymir/qa/stream.py.
+// Same origin locally; on Vercel, config.js sets YMIR_API_BASE to the Modal backend.
+const BASE = String(globalThis.YMIR_API_BASE || '').replace(/\/+$/, '');
+const api = (path) => (BASE ? `${BASE}/${path}` : path);
+const absolute = (url) => (!BASE || /^(https?:)?\/\//.test(url) ? url : api(url));
+
 async function json(res) {
   if (!res.ok) {
     let msg = res.statusText;
@@ -9,11 +14,12 @@ async function json(res) {
   return res.json();
 }
 
-export const loadLibrary = () => fetch('api/library').then(json);
-export const loadDrawing = (id) => fetch(`api/drawings/${encodeURIComponent(id)}`).then(json);
-export const loadBuildTrace = (id) => fetch(`api/drawings/${encodeURIComponent(id)}/trace`).then(json).catch(() => []);
-export const previewGraph = () => fetch('api/agents').then(json).catch(() => []);
-export const suggestions = (session) => fetch(`api/drawings/${encodeURIComponent(session.state.d.id)}/suggestions`).then(json).catch(() => []);
+export const loadLibrary = () => fetch(api('api/library')).then(json).then((lib) => lib.map((e) => ({ ...e, thumbnail: absolute(e.thumbnail) })));
+export const loadDrawing = (id) => fetch(api(`api/drawings/${encodeURIComponent(id)}`)).then(json)
+  .then((d) => ({ ...d, image: { ...d.image, url: absolute(d.image.url) } }));
+export const loadBuildTrace = (id) => fetch(api(`api/drawings/${encodeURIComponent(id)}/trace`)).then(json).catch(() => []);
+export const previewGraph = () => fetch(api('api/agents')).then(json).catch(() => []);
+export const suggestions = (session) => fetch(api(`api/drawings/${encodeURIComponent(session.state.d.id)}/suggestions`)).then(json).catch(() => []);
 
 // Streams one answer. Sends the user's Build decisions so answers use their scale and walls. Returns a cancel function.
 export function ask(session, question, onEvent) {
@@ -26,7 +32,7 @@ export function ask(session, question, onEvent) {
   };
   (async () => {
     try {
-      const res = await fetch('api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
+      const res = await fetch(api('api/ask'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
       if (!res.ok || !res.body) await json(res);
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
       let buf = '';
@@ -49,10 +55,10 @@ export function ask(session, question, onEvent) {
 }
 
 export const submitReview = (record) =>
-  fetch('api/reviews', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }).then(json);
+  fetch(api('api/reviews'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }).then(json);
 
 export function uploadDrawing(file) {
   const form = new FormData();
   form.append('file', file);
-  return fetch('api/drawings', { method: 'POST', body: form }).then(json);
+  return fetch(api('api/drawings'), { method: 'POST', body: form }).then(json);
 }

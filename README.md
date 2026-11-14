@@ -23,7 +23,7 @@ On the CubiCasa sample, *How many windows are there?* comes back at 58% confiden
 ## How it fits together
 
 ```
-frontend/  (static, no build step)            backend/ymir/
+frontend/  (static; Vercel)                   backend/ymir/  (Modal: deploy/modal_app.py)
   index.html  Build + Ask UI       ──HTTP──▶    app.py        API + serves the frontend
   shared/api.js  backend client                 qa/           planner → route → tools → verifier, streamed
   shared/session.js  state, box review          models/       detectors (plug yours in here)
@@ -114,6 +114,46 @@ Reviews are `drawing-qa-review-v1` records whose `objects` use the stoahackjunct
 | `YMIR_WEIGHTS_DIR` | `weights/` | Model weights |
 | `YMIR_TRACE_PACE` | `0.25` | Seconds between trace steps so the diagram is readable; `0` for none |
 | `YMIR_MAX_UPLOAD_MB` | `15` | Upload limit |
+| `YMIR_CORS_ORIGINS` / `YMIR_CORS_ORIGIN_REGEX` | none | Frontend origins allowed to call the API (see Deploy) |
+| `YMIR_API_BASE` (Vercel) | none | API URL baked into the frontend's `config.js` at build time |
+
+## Deploy (frontend on Vercel, API on Modal)
+
+The frontend calls the API directly (CORS), so uploads and streamed answers don't pass through a proxy.
+Order: API first (to get its URL), then the frontend, then allow the frontend's domain on the API.
+
+**1. API on Modal**
+
+```sh
+pip install modal && modal setup            # once: log in
+git lfs pull                                # real weights (the deploy refuses LFS pointers)
+YMIR_CORS_ORIGINS=https://ymir.vercel.app \
+YMIR_CORS_ORIGIN_REGEX='https://ymir-[a-z0-9-]+\.vercel\.app' \
+modal deploy deploy/modal_app.py
+```
+
+It prints `https://<workspace>--ymir-web.modal.run`; check `/api/health`. Or run **Actions → Deploy backend**
+after adding the `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` secrets and the `YMIR_CORS_*` variables.
+`deploy/modal_app.py` sets the container size (2 CPU, 4 GB), scale-to-zero after 5 minutes idle, and the
+`ymir-data` volume for uploads and `ymir.db`. GPU models: add `gpu="T4"` there and install CUDA torch.
+
+**2. Frontend on Vercel**
+
+Import the repo in Vercel → **Root Directory `frontend`** → add the environment variable
+`YMIR_API_BASE` = the Modal URL → Deploy. `frontend/vercel.json` runs `vercel-build.sh`, which copies the
+static app to `dist/` and writes the URL into `config.js` (the build fails if it's missing). Pushes to `main`
+then redeploy the frontend; pull requests get preview URLs. CLI instead:
+`cd frontend && vercel link && vercel env add YMIR_API_BASE production && vercel deploy --prod`.
+
+**3. Allow the frontend on the API**
+
+If the Vercel domain differs from what you passed in step 1, redeploy the API with the real
+`YMIR_CORS_ORIGINS` (comma-separated) and preview regex.
+
+**Day to day:** `modal app logs ymir` for logs; `modal volume get ymir-data ymir.db` to pull the reviews for
+retraining. The first request after idle waits for a cold start (torch loads); set `min_containers=1` in
+`deploy/modal_app.py` for a demo, then back to 0 to save credits. The API has no login: anyone with the
+URL can ask and upload.
 
 ## Tests
 

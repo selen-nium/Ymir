@@ -24,3 +24,8 @@ TRACE_PACE = float(os.environ.get("YMIR_TRACE_PACE", "0.25"))
 
 # Upload limit for new drawings.
 MAX_UPLOAD_MB = float(os.environ.get("YMIR_MAX_UPLOAD_MB", "15"))
+
+# Frontends on another origin (e.g. Vercel) allowed to call the API: exact origins, comma-separated,
+# and/or a regex for preview deployments, e.g. https://ymir-[a-z0-9-]+\.vercel\.app
+CORS_ORIGINS = [o.strip().rstrip("/") for o in os.environ.get("YMIR_CORS_ORIGINS", "").split(",") if o.strip()]
+CORS_ORIGIN_REGEX = os.environ.get("YMIR_CORS_ORIGIN_REGEX") or None

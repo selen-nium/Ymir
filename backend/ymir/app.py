@@ -1,6 +1,8 @@
-"""Ymir web app: the API and the frontend on one server.
+"""Ymir web app: the API, plus the frontend when run locally.
 
     PYTHONPATH=backend uvicorn ymir.app:app --reload --port 8000
+
+Deployed, the API runs on Modal (deploy/modal_app.py) and the frontend on Vercel (frontend/vercel.json).
 """
 from __future__ import annotations
 
@@ -9,6 +11,7 @@ import logging
 from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -23,6 +26,10 @@ log = logging.getLogger("ymir")
 app = FastAPI(title="Ymir", version="0.1.0")
 store = DrawingStore()
 reviews = ReviewStore()
+
+if settings.CORS_ORIGINS or settings.CORS_ORIGIN_REGEX:
+    app.add_middleware(CORSMiddleware, allow_origins=settings.CORS_ORIGINS, allow_origin_regex=settings.CORS_ORIGIN_REGEX,
+                       allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 
 def drawing_or_404(drawing_id: str) -> dict:
@@ -133,4 +140,6 @@ def list_reviews(drawing_id: str | None = Query(default=None)):
     return reviews.list(drawing_id)
 
 
-app.mount("/", StaticFiles(directory=settings.FRONTEND_DIR, html=True), name="frontend")
+# Locally the API also serves the frontend; on Modal the image ships the backend only (the frontend is on Vercel).
+if settings.FRONTEND_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=settings.FRONTEND_DIR, html=True), name="frontend")
