@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
 
-from . import models, qa, settings
+from . import calibration, models, qa, settings
 from .drawings import DrawingStore
 from .reviews import Review, ReviewStore
 
@@ -117,7 +117,7 @@ def ask(req: AskRequest):
     c = req.context
     ctx = qa.Context(d, req.question.strip(), image_path=store.image_path(req.drawing_id), m_per_px=c.m_per_px,
                      scale_confirmed=c.scale_confirmed, height_m=c.height_m, removed_walls=set(c.removed_walls),
-                     added_walls=[w.model_dump() for w in c.added_walls])
+                     added_walls=[w.model_dump() for w in c.added_walls], reviews=reviews)
     lines = (json.dumps(ev, ensure_ascii=False) + "\n" for ev in qa.ask(ctx))
     return StreamingResponse(lines, media_type="application/x-ndjson")
 
@@ -156,7 +156,12 @@ def delete_drawing(drawing_id: str):
 
 @app.post("/api/reviews")
 def add_review(review: Review):
-    drawing_or_404(str(review.drawing.get("id", "")))
+    d = drawing_or_404(str(review.drawing.get("id", "")))
+    # The server says which detector was checked (the client can't), so reviews calibrate the right model.
+    det = models.detector_for(d, review.class_)
+    review.model.pop("detector", None)
+    if det:
+        review.model["detector"] = calibration.detector_info(det)
     return {"id": reviews.add(review)}
 
 

@@ -39,9 +39,11 @@ export function countNoun(cls: string, n: number) {
 }
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-/** A box-count answer the user should check: the backend sent its boxes and a confidence under REVIEW_BELOW. */
+/** A box-count answer the user should check: the backend sent its boxes and a confidence under REVIEW_BELOW,
+ *  or picked this confident answer for a spot check (so confidence is measured where the model is sure too). */
 export function needsReview(a: Answer | null | undefined): boolean {
-  return a?.status === 'answered' && Array.isArray(a.review?.boxes) && typeof a.confidence === 'number' && a.confidence < REVIEW_BELOW;
+  return a?.status === 'answered' && Array.isArray(a.review?.boxes) && typeof a.confidence === 'number'
+    && (a.confidence < REVIEW_BELOW || a.review?.audit === true);
 }
 
 export interface ReviewItem { id: string; box: Box; orig: Box | null; score: number | null; counted: boolean; touched: boolean; user: boolean }
@@ -70,7 +72,8 @@ export interface ReviewRecord {
   schema: 'drawing-qa-review-v1';
   drawing: { id: string; title: string; dataset?: string; image_size: Pt };
   question: string; class: string; user_count: number;
-  model: { value: Answer['value']; confidence?: number; threshold: number; scores: Record<string, number | null> };
+  model: { value: Answer['value']; confidence?: number; threshold: number; scores: Record<string, number | null>;
+    boxes: Record<string, number[]>; audit?: true };
   objects: { id: string; class: string; bbox_xyxy: number[]; subtype: string; status: 'accepted' | 'rejected'; proposal_id?: string }[];
   reviewed_at: string;
 }
@@ -300,7 +303,9 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
         drawing: { id: d.id, title: d.title, dataset: d.source?.dataset, image_size: d.image.size },
         question: r.question, class: r.cls, user_count: n,
         model: { value: r.answer.value, confidence: r.answer.confidence, threshold: r.threshold,
-          scores: Object.fromEntries(model.map((i) => [i.id, i.score])) },
+          scores: Object.fromEntries(model.map((i) => [i.id, i.score])),
+          boxes: Object.fromEntries(model.map((i) => [i.id, round(i.orig ?? i.box)])),
+          ...(r.answer.review?.audit ? { audit: true as const } : {}) },
         objects: r.items.map((i) => ({ id: i.id, class: r.cls, bbox_xyxy: round(i.box), subtype: '',
           status: i.counted ? 'accepted' as const : 'rejected' as const, ...(i.user ? {} : { proposal_id: i.id }) })),
         reviewed_at: new Date().toISOString(),
