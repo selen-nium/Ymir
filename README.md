@@ -8,37 +8,41 @@ Built for the Stoa challenge at Junction 2026.
 
 ## Run it locally
 
-Needs Python 3.12 and [Git LFS](https://git-lfs.com) (for the wall-model weights).
+Needs Python 3.12, Node 20+ and [Git LFS](https://git-lfs.com) (for the wall-model weights). Two processes:
+the API on :8000 and the Next.js frontend on :3000, which forwards `/api/*` to it.
 
 ```sh
 git lfs install && git lfs pull
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements-dev.txt
 #   or: python3.12 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
 PYTHONPATH=backend .venv/bin/uvicorn ymir.app:app --reload --port 8000
+
+cd frontend && npm install && npm run dev          # second terminal
 ```
 
-Open http://localhost:8000 for the landing page, **Open the app** for home (buildings, uploads and their
-conversations), or go straight to the sample building at http://localhost:8000/app.html?p=ac20: pick a sheet in
-the rail, place the unplaced **A-101 Level 1 plan** in **Build** (two matching corners), and ask
+Open http://localhost:3000 for the landing page, **Open the app** for home (uploads, buildings and their
+conversations), or go straight to the sample building at http://localhost:3000/building?id=ac20: place the
+unplaced **A-101 Level 1 plan** (its **Place** button in the sheet list, then two matching corners), and ask
 *Where does the main drain leave the building?* to see an answer point at the missing plumbing plan.
-Single drawings open in their own layout (`app.html?d=cubi`): on the CubiCasa sample, *How many windows are
-there?* comes back at 58% confidence and opens the box review.
+Single drawings open at `/drawing?id=cubi`: on the CubiCasa sample, *How many windows are there?* comes back at
+58% confidence and opens the box review.
 
 ## How it fits together
 
 ```
-frontend/  (static; Vercel)                   backend/ymir/  (Modal: deploy/modal_app.py)
-  index.html  landing page                     app.py        API + serves the frontend
-  home.html  buildings, uploads, conversations
-  app.html  a building or a drawing  ──HTTP──▶
-  shared/api.js  backend client                 qa/           planner → route → tools → verifier, streamed
-  shared/session.js  state, box review          models/       detectors (plug yours in here)
-  shared/plan2d.js / viewer3d.js  2D + 3D       build/        image → walls, rooms, text, scale (uploads)
-  shared/project.js  sheets, placement, ghosts
-  shared/store.js  threads, your buildings (browser)
-  shared/trace.js  agent diagram                drawings.py   sample + uploaded drawings
-                                                reviews.py    corrected boxes → SQLite
+frontend/  (Next.js · Vercel)                        backend/ymir/  (FastAPI · Modal: deploy/modal_app.py)
+  app/  /  /home  /building  /drawing  ──/api/*──▶     app.py        the API
+  components/workspace/  rail, views, Build, Ask        qa/           planner → route → tools → verifier, streamed
+  components/landing/  3D hero, architecture            models/       detectors (plug yours in here)
+  lib/workspace.ts  the page's state and actions        build/        image → walls, rooms, text, scale (uploads)
+  lib/session.ts  active sheet, box review              drawings.py   sample + uploaded drawings, projects
+  lib/project.ts  sheets, placement, ghosts             reviews.py    corrected boxes → SQLite
+  lib/plan2d.ts · viewer3d.ts · trace.ts  2D, 3D, trace
+  lib/persist.ts  threads, your buildings (browser)
 ```
+
+The 2D sheet, the three.js model and the trace are imperative renderers in `lib/`; React components mount them
+and render everything else from the workspace store (zustand).
 
 - **Build:** `build/pipeline.py` turns a plan image into a drawing payload: WallNet walls (or OpenCV lines
   without weights), RapidOCR labels, scale, rooms. Samples are prebuilt in `data/samples/`; uploads run it live.
@@ -58,10 +62,10 @@ drawing opens as a one-sheet project, so unseen drawings work as before. Design:
 - Sample projects live in `data/samples/projects.json`. `scripts/build_ifc_project.py` renders one from an IFC
   model in the dataset (needs `ifcopenshell numpy pillow shapely`, outside the app's requirements).
 - Each sheet's view has a `kind` (`floor_plan`, `foundation_plan`, `plumbing_plan`, `elevation`, `schedule`, ...,
-  see `frontend/shared/project.js`) and a `placement` (`plan` with a px → metres `transform`, `elevation` with a
+  see `frontend/lib/project.ts`) and a `placement` (`plan` with a px → metres `transform`, `elevation` with a
   base line, or `attached`). The viewer's own changes (added sheets, kinds, placements, levels), the buildings
   they start (**New building** on home, or **Start a building from this** on a drawing) and every conversation are
-  kept in the browser (`frontend/shared/store.js`).
+  kept in the browser (`frontend/lib/persist.ts`). Each sheet in the list has **Place** and **Remove**.
 - For the models: a drawing payload may add `kind`; an answer's citations may carry `sheet` (a drawing id); an
   abstained answer may carry `needs: {kind, level}` so the frontend lights up the missing sheet's ghost (until it
   does, the frontend guesses from the question). `/api/ask` also receives `project_id` and `sheet_id`.
@@ -120,6 +124,7 @@ To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` an
 | GET | `/api/projects` · `/api/projects/{id}` | Sample projects (buildings made of several sheets) |
 | GET | `/api/drawings/{id}` · `/trace` · `/image` · `/suggestions` | Payload, build trace, image, example questions |
 | POST | `/api/drawings` | Upload a plan image (PNG/JPEG/WebP) and build it |
+| DELETE | `/api/drawings/{id}` | Delete an uploaded drawing (samples: 403); its reviews stay as labels |
 | GET | `/api/agents` | The agent graph shown before a question |
 | POST | `/api/ask` | `{drawing_id, question, context}` → NDJSON stream of `node` / `status` / `answer` events |
 | POST / GET | `/api/reviews` | Store / list corrected boxes (`?drawing_id=`) |
@@ -142,41 +147,38 @@ Reviews are `drawing-qa-review-v1` records whose `objects` use the stoahackjunct
 | `YMIR_WEIGHTS_DIR` | `weights/` | Model weights |
 | `YMIR_TRACE_PACE` | `0.25` | Seconds between trace steps so the diagram is readable; `0` for none |
 | `YMIR_MAX_UPLOAD_MB` | `15` | Upload limit |
-| `YMIR_CORS_ORIGINS` / `YMIR_CORS_ORIGIN_REGEX` | none | Frontend origins allowed to call the API (see Deploy) |
-| `YMIR_API_BASE` (Vercel) | none | API URL baked into the frontend's `config.js` at build time |
+| `YMIR_CORS_ORIGINS` / `YMIR_CORS_ORIGIN_REGEX` | none | Origins allowed to call the API directly (only needed with `NEXT_PUBLIC_YMIR_API_BASE`) |
+| `YMIR_API_BASE` (frontend) | `http://localhost:8000` | Where Next.js forwards `/api/*`; required on Vercel (the Modal URL) |
+| `NEXT_PUBLIC_YMIR_API_BASE` (frontend) | none | Have the browser call the API directly instead of through the forward |
 
 ## Deploy (frontend on Vercel, API on Modal)
 
-The frontend calls the API directly (CORS), so uploads and streamed answers don't pass through a proxy.
-Order: API first (to get its URL), then the frontend, then allow the frontend's domain on the API.
+The browser only talks to the Vercel site; Next.js forwards `/api/*` to the API on Modal, so no CORS setup is
+needed. API first (to get its URL), then the frontend.
 
 **1. API on Modal**
 
 ```sh
 pip install modal && modal setup            # once: log in
 git lfs pull                                # real weights (the deploy refuses LFS pointers)
-YMIR_CORS_ORIGINS=https://ymir.vercel.app \
-YMIR_CORS_ORIGIN_REGEX='https://ymir-[a-z0-9-]+\.vercel\.app' \
 modal deploy deploy/modal_app.py
 ```
 
 It prints `https://<workspace>--ymir-web.modal.run`; check `/api/health`. Or run **Actions → Deploy backend**
-after adding the `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` secrets and the `YMIR_CORS_*` variables.
-`deploy/modal_app.py` sets the container size (2 CPU, 4 GB), scale-to-zero after 5 minutes idle, and the
-`ymir-data` volume for uploads and `ymir.db`. GPU models: add `gpu="T4"` there and install CUDA torch.
+after adding the `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` secrets. `deploy/modal_app.py` sets the container size
+(2 CPU, 4 GB), scale-to-zero after 5 minutes idle, and the `ymir-data` volume for uploads and `ymir.db`. GPU
+models: add `gpu="T4"` there and install CUDA torch.
 
 **2. Frontend on Vercel**
 
-Import the repo in Vercel → **Root Directory `frontend`** → add the environment variable
-`YMIR_API_BASE` = the Modal URL → Deploy. `frontend/vercel.json` runs `vercel-build.sh`, which copies the
-static app to `dist/` and writes the URL into `config.js` (the build fails if it's missing). Pushes to `main`
-then redeploy the frontend; pull requests get preview URLs. CLI instead:
+Import the repo in Vercel → **Root Directory `frontend`** (Next.js is detected) → add the environment variable
+`YMIR_API_BASE` = the Modal URL → Deploy. The build fails without it. Every page is static, so Vercel serves it
+from its CDN; pushes to `main` redeploy, pull requests get preview URLs. CLI instead:
 `cd frontend && vercel link && vercel env add YMIR_API_BASE production && vercel deploy --prod`.
 
-**3. Allow the frontend on the API**
-
-If the Vercel domain differs from what you passed in step 1, redeploy the API with the real
-`YMIR_CORS_ORIGINS` (comma-separated) and preview regex.
+If large uploads or streamed answers ever misbehave through the forward, set `NEXT_PUBLIC_YMIR_API_BASE` to the
+Modal URL instead (the browser then calls the API directly) and redeploy the API with
+`YMIR_CORS_ORIGINS=https://<your-domain>` and `YMIR_CORS_ORIGIN_REGEX='https://<project>-[a-z0-9-]+\.vercel\.app'`.
 
 **Day to day:** `modal app logs ymir` for logs; `modal volume get ymir-data ymir.db` to pull the reviews for
 retraining. The first request after idle waits for a cold start (torch loads); set `min_containers=1` in
@@ -187,8 +189,11 @@ URL can ask and upload.
 
 ```sh
 .venv/bin/python -m pytest -q              # API, routes, reviews, uploads, model registry
-node --test frontend/tests/*.test.mjs      # box review logic
+cd frontend && npm run check               # ESLint, TypeScript, Vitest (placement, ghosts, review, browser store)
+cd frontend && npm run build               # production build
 ```
+
+CI (`.github/workflows/ci.yml`) runs both on every push and pull request.
 
 ## Data
 

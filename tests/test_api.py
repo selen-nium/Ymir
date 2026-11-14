@@ -156,14 +156,14 @@ def test_upload_rejects_a_non_image():
     assert res.status_code == 422
 
 
-def test_frontend_is_served():
-    landing = client.get("/")
-    assert landing.status_code == 200 and "<title>Ymir · Ask your construction drawings</title>" in landing.text
-    assert "Your buildings and drawings" in client.get("/home.html").text
-    app_page = client.get("/app.html")
-    assert app_page.status_code == 200 and 'id="tree"' in app_page.text
-    js = client.get("/shared/api.js")
-    assert js.status_code == 200 and js.headers["cache-control"] == "no-cache"
+def test_uploads_can_be_deleted_but_samples_cannot():
+    png = (SAMPLES / "cubi.png").read_bytes()
+    entry = client.post("/api/drawings", files={"file": ("my plan.png", png, "image/png")}).json()
+    assert client.delete(f"/api/drawings/{entry['id']}").status_code == 204
+    assert client.get(f"/api/drawings/{entry['id']}").status_code == 404
+    assert entry["id"] not in [e["id"] for e in client.get("/api/library").json()]
+    assert client.delete("/api/drawings/cubi").status_code == 403
+    assert client.delete("/api/drawings/nope").status_code == 404
 
 
 def test_projects_list_and_payload():

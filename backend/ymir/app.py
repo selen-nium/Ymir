@@ -1,8 +1,9 @@
-"""Ymir web app: the API, plus the frontend when run locally.
+"""Ymir API: drawings, projects, streamed answers and review labels.
 
     PYTHONPATH=backend uvicorn ymir.app:app --reload --port 8000
 
-Deployed, the API runs on Modal (deploy/modal_app.py) and the frontend on Vercel (frontend/vercel.json).
+The Next.js frontend (frontend/) forwards /api/* here. Deployed, the API runs on Modal (deploy/modal_app.py)
+and the frontend on Vercel.
 """
 from __future__ import annotations
 
@@ -12,8 +13,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, StreamingResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
 
 from . import models, qa, settings
@@ -29,7 +29,7 @@ reviews = ReviewStore()
 
 if settings.CORS_ORIGINS or settings.CORS_ORIGIN_REGEX:
     app.add_middleware(CORSMiddleware, allow_origins=settings.CORS_ORIGINS, allow_origin_regex=settings.CORS_ORIGIN_REGEX,
-                       allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
+                       allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
 
 def drawing_or_404(drawing_id: str) -> dict:
@@ -142,6 +142,18 @@ def upload(file: UploadFile = File(...)):
     return next(e for e in store.library() if e["id"] == drawing_id)
 
 
+@app.delete("/api/drawings/{drawing_id}", status_code=204)
+def delete_drawing(drawing_id: str):
+    """Remove an uploaded drawing. Its reviews stay in the database as training labels."""
+    try:
+        store.delete(drawing_id)
+    except KeyError:
+        raise HTTPException(404, "Unknown drawing")
+    except PermissionError:
+        raise HTTPException(403, "Sample drawings can't be deleted")
+    return Response(status_code=204)
+
+
 @app.post("/api/reviews")
 def add_review(review: Review):
     drawing_or_404(str(review.drawing.get("id", "")))
@@ -152,16 +164,3 @@ def add_review(review: Review):
 def list_reviews(drawing_id: str | None = Query(default=None)):
     return reviews.list(drawing_id)
 
-
-class FrontendFiles(StaticFiles):
-    """Revalidate on every load (ETag → 304), so edited ES modules aren't served stale from the browser cache."""
-
-    async def get_response(self, path, scope):
-        response = await super().get_response(path, scope)
-        response.headers["Cache-Control"] = "no-cache"
-        return response
-
-
-# Locally the API also serves the frontend; on Modal the image ships the backend only (the frontend is on Vercel).
-if settings.FRONTEND_DIR.is_dir():
-    app.mount("/", FrontendFiles(directory=settings.FRONTEND_DIR, html=True), name="frontend")

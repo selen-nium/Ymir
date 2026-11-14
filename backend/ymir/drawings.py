@@ -73,6 +73,14 @@ class DrawingStore:
             raise KeyError(project_id)
         return p
 
+    def delete(self, drawing_id: str) -> None:
+        """Remove an uploaded drawing (payload, trace and image). Samples can't be deleted: PermissionError."""
+        if self._folder(drawing_id) != self.uploads:
+            raise PermissionError(drawing_id)
+        image = self.image_path(drawing_id)
+        for path in (self.uploads / f"{drawing_id}.json", self.uploads / f"{drawing_id}.trace.json", image):
+            path.unlink(missing_ok=True)
+
     def save(self, payload: dict, trace: list, image: bytes, ext: str) -> str:
         """Store a newly built drawing; returns its id."""
         self.uploads.mkdir(parents=True, exist_ok=True)

@@ -156,7 +156,7 @@ several sheets, `needs` from the router); server-side project saving; IFC upload
 
 ## Testing
 
-- `frontend/tests/project.test.mjs`: similarity solve from two point pairs (round trip, rotation, scale),
+- `frontend/tests/project.test.ts`: similarity solve from two point pairs (round trip, rotation, scale),
   footprint from walls, ghost slots for a project, `needs` inference, base auto placement, localStorage overlay
   merge.
 - `tests/test_api.py`: project list and payload; every sheet in a project resolves to a drawing.

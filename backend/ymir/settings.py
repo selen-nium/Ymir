@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-FRONTEND_DIR = ROOT / "frontend"
 SAMPLES_DIR = ROOT / "data" / "samples"
 
 # Writable state: uploaded drawings and the review database. Point at a persistent volume when deployed.

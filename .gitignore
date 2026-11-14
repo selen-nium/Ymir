@@ -5,4 +5,8 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 node_modules/
-frontend/dist/
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+frontend/*.tsbuildinfo
+.vercel/

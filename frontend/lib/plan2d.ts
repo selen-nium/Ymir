@@ -1,0 +1,287 @@
+// SVG drawing view: the source image with detected walls, rooms, evidence and review boxes on top.
+// Wheel zooms, drag pans. Imperative; a React component mounts it and calls dispose() on unmount.
+import { wallState, type Selection, type ViewState } from './session';
+import type { Box, Drawing, Pt, Wall } from './types';
+
+const NS = 'http://www.w3.org/2000/svg';
+function mk<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}, parent?: Element): SVGElementTagNameMap[K] {
+  const n = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
+  parent?.appendChild(n);
+  return n;
+}
+
+export type PlanMode = 'select' | 'draw' | 'box' | 'point';
+export interface PlanPoint { px: Pt; label: string; cls?: string }
+interface EdgeHit { id: string; edges: string[]; near: number; box: Box }
+
+export function createPlan(el: HTMLElement) {
+  const svg = mk('svg', { class: 'plan2d' }, el);
+  const img = mk('image', { preserveAspectRatio: 'none' }, svg);
+  const gRooms = mk('g', { class: 'rooms' }, svg);
+  const gEvidence = mk('g', { class: 'evidence-layer' }, svg);
+  const gWalls = mk('g', { class: 'walls' }, svg);
+  const gReview = mk('g', { class: 'review-layer' }, svg);
+  const gMarks = mk('g', { class: 'marks' }, svg);
+  const gPoints = mk('g', { class: 'points' }, svg);
+  const preview = mk('line', { class: 'draw-preview', visibility: 'hidden' }, svg);
+  const boxPreview = mk('rect', { class: 'box-preview', visibility: 'hidden' }, svg);
+
+  let d: Drawing | null = null, view: ViewState | null = null, selected: Selection = null, mode: PlanMode = 'select';
+  let drawStart: Pt | null = null, points: PlanPoint[] = [];
+  let vb = { x: 0, y: 0, w: 100, h: 100 };
+  const noop = () => {};
+  const handlers: {
+    pick: (sel: Selection) => void; hover: (sel: Selection, e: PointerEvent) => void; draw: (a: Pt, b: Pt) => void;
+    drawBox: (box: Box) => void; resize: (id: string, box: Box) => void; point: (p: Pt) => void;
+  } = { pick: noop, hover: noop, draw: noop, drawBox: noop, resize: noop, point: noop };
+
+  const rect = () => el.getBoundingClientRect();
+  const k = () => vb.w / Math.max(1, rect().width); // svg units per screen px
+  // Screen-constant sizes for labels and badges
+  function setVB() {
+    svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    const kk = k();
+    svg.querySelectorAll<SVGGElement>('[data-off]').forEach((g) => {
+      const [mx, my, nx, ny, dist] = JSON.parse(g.dataset.off!) as number[];
+      g.setAttribute('transform', `translate(${mx + nx * dist * kk} ${my + ny * dist * kk}) scale(${kk})`);
+    });
+    gEvidence.querySelectorAll('rect').forEach((r) => r.setAttribute('stroke-width', String(2 * kk)));
+  }
+  function fit(box?: Box, pad = 0.6) {
+    const r = rect();
+    if (!d || !r.width || !r.height) return; // hidden or mid-layout: keep the last view
+    const [bx, by, bw, bh] = box ?? [0, 0, d.image.size[0], d.image.size[1]];
+    const p = box ? pad : 0.05;
+    const sx = bw * (1 + 2 * p), sy = bh * (1 + 2 * p);
+    const kk = Math.max(sx / r.width, sy / r.height);
+    vb = { w: r.width * kk, h: r.height * kk, x: bx + bw / 2 - (r.width * kk) / 2, y: by + bh / 2 - (r.height * kk) / 2 };
+    setVB();
+  }
+  const toSvg = (e: { clientX: number; clientY: number }) => {
+    const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    return p.matrixTransform(svg.getScreenCTM()!.inverse());
+  };
+
+  const onWheel = (e: WheelEvent) => {
+    e.preventDefault();
+    const p = toSvg(e), f = Math.exp(e.deltaY * 0.0015);
+    vb = { x: p.x - (p.x - vb.x) * f, y: p.y - (p.y - vb.y) * f, w: vb.w * f, h: vb.h * f };
+    setVB();
+  };
+  svg.addEventListener('wheel', onWheel, { passive: false });
+
+  // Review boxes: an edge or corner within a few screen px of the pointer can be dragged to resize.
+  const setRect = (r: SVGRectElement, [x0, y0, x1, y1]: Box) => {
+    r.setAttribute('x', String(x0)); r.setAttribute('y', String(y0)); r.setAttribute('width', String(x1 - x0)); r.setAttribute('height', String(y1 - y0));
+  };
+  const CURSOR: Record<string, string> = { l: 'ew-resize', r: 'ew-resize', t: 'ns-resize', b: 'ns-resize', lt: 'nwse-resize', rb: 'nwse-resize', rt: 'nesw-resize', lb: 'nesw-resize' };
+  function edgeHit(p: DOMPoint): EdgeHit | null {
+    const tol = 6 * k();
+    let best: EdgeHit | null = null;
+    for (const it of view?.review?.items ?? []) {
+      const [x0, y0, x1, y1] = it.box;
+      if (p.x < x0 - tol || p.x > x1 + tol || p.y < y0 - tol || p.y > y1 + tol) continue;
+      const dist: Record<string, number> = { l: Math.abs(p.x - x0), r: Math.abs(p.x - x1), t: Math.abs(p.y - y0), b: Math.abs(p.y - y1) };
+      const size: Record<string, number> = { l: x1 - x0, r: x1 - x0, t: y1 - y0, b: y1 - y0 };
+      // on a box thinner than two tolerances, an edge only counts when the pointer is clearly on that side
+      const grabs = (e: string) => dist[e] <= tol && (size[e] >= 2 * tol || dist[e] < size[e] / 4);
+      const edges = [dist.l <= dist.r ? 'l' : 'r', dist.t <= dist.b ? 't' : 'b'].filter(grabs);
+      if (!edges.length) continue;
+      const near = Math.min(...edges.map((e) => dist[e]));
+      if (!best || near < best.near) best = { id: it.id, edges, near, box: [...it.box] as Box };
+    }
+    return best;
+  }
+  function resized(hit: EdgeHit, p: DOMPoint): Box {
+    let [x0, y0, x1, y1] = hit.box;
+    if (hit.edges.includes('l')) x0 = Math.min(p.x, x1 - 2);
+    if (hit.edges.includes('r')) x1 = Math.max(p.x, x0 + 2);
+    if (hit.edges.includes('t')) y0 = Math.min(p.y, y1 - 2);
+    if (hit.edges.includes('b')) y1 = Math.max(p.y, y0 + 2);
+    return [x0, y0, x1, y1];
+  }
+  const snap = (a: Pt, p: DOMPoint, free: boolean): Pt =>
+    free ? [p.x, p.y] : Math.abs(p.x - a[0]) > Math.abs(p.y - a[1]) ? [p.x, a[1]] : [a[0], p.y];
+  const targetOf = (t: EventTarget | null): Selection => {
+    const n = (t as Element | null)?.closest?.('[data-id]') as HTMLElement | SVGElement | null;
+    return n ? { type: n.dataset.type as NonNullable<Selection>['type'], id: n.dataset.id! } : null;
+  };
+
+  let drag: { x: number; y: number; moved: number; target: EventTarget | null; kind: 'resize' | 'rect' | 'pan'; hit: EdgeHit | null; start: Pt; box: Box | null } | null = null;
+  svg.addEventListener('pointerdown', (e) => {
+    const p = toSvg(e), hit = view?.review ? edgeHit(p) : null;
+    const kind = hit ? 'resize' : mode === 'box' && view?.review ? 'rect' : 'pan';
+    drag = { x: e.clientX, y: e.clientY, moved: 0, target: e.target, kind, hit, start: [p.x, p.y], box: null };
+    svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener('pointermove', (e) => {
+    if (drag && e.buttons) {
+      const kk = k(), dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      drag.moved += Math.abs(dx) + Math.abs(dy);
+      drag.x = e.clientX; drag.y = e.clientY;
+      if (drag.moved <= 4) return;
+      const p = toSvg(e);
+      if (drag.kind === 'resize' && drag.hit) {
+        drag.box = resized(drag.hit, p);
+        const r = [...gReview.children].find((n) => (n as SVGRectElement).dataset.id === drag!.hit!.id) as SVGRectElement | undefined;
+        if (r) setRect(r, drag.box);
+      } else if (drag.kind === 'rect') {
+        const [sx, sy] = drag.start;
+        drag.box = [Math.min(sx, p.x), Math.min(sy, p.y), Math.max(sx, p.x), Math.max(sy, p.y)];
+        setRect(boxPreview, drag.box);
+        boxPreview.setAttribute('visibility', 'visible');
+      } else { vb.x -= dx * kk; vb.y -= dy * kk; setVB(); svg.classList.add('panning'); }
+      return;
+    }
+    if (view?.review) {
+      const hit = edgeHit(toSvg(e));
+      svg.classList.toggle('edge-hover', !!hit);
+      svg.style.cursor = hit ? CURSOR[hit.edges.join('')] : '';
+    }
+    if (mode === 'draw' && drawStart) {
+      const b = snap(drawStart, toSvg(e), e.altKey);
+      Object.entries({ x1: drawStart[0], y1: drawStart[1], x2: b[0], y2: b[1] }).forEach(([a, v]) => preview.setAttribute(a, String(v)));
+      preview.setAttribute('visibility', 'visible');
+    }
+    handlers.hover(targetOf(e.target), e);
+  });
+  svg.addEventListener('pointerleave', (e) => handlers.hover(null, e));
+  svg.addEventListener('pointerup', (e) => {
+    svg.classList.remove('panning');
+    const click = !!drag && drag.moved <= 4;
+    const { target: downTarget = null, kind, hit = null, box = null } = drag ?? {};
+    drag = null;
+    if (kind === 'rect') boxPreview.setAttribute('visibility', 'hidden');
+    if (!click) {
+      if (kind === 'resize' && box && hit) handlers.resize(hit.id, box.map(Math.round) as Box);
+      if (kind === 'rect' && box && box[2] - box[0] >= 3 && box[3] - box[1] >= 3) handlers.drawBox(box.map(Math.round) as Box);
+      return;
+    }
+    // a click on a box edge is still a click on that box
+    if (kind === 'resize' && hit) { handlers.pick({ type: 'box', id: hit.id }); return; }
+    if (mode === 'point') { const p = toSvg(e); handlers.point([Math.round(p.x * 10) / 10, Math.round(p.y * 10) / 10]); return; }
+    if (mode === 'draw') {
+      const p = toSvg(e);
+      if (!drawStart) { drawStart = [p.x, p.y]; return; }
+      const b = snap(drawStart, p, e.altKey);
+      handlers.draw(drawStart.map(Math.round) as Pt, b.map(Math.round) as Pt);
+      drawStart = null; preview.setAttribute('visibility', 'hidden');
+      return;
+    }
+    // pointer capture retargets pointerup to the svg, so use the element pressed on
+    handlers.pick(targetOf(downTarget));
+  });
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') { drawStart = null; preview.setAttribute('visibility', 'hidden'); boxPreview.setAttribute('visibility', 'hidden'); }
+  };
+  window.addEventListener('keydown', onKey);
+
+  function drawWalls() {
+    gWalls.replaceChildren();
+    if (!d || !view) return;
+    // removed first so live walls sit on top
+    const ordered = [...d.walls].sort((a, b) => (view!.removed.has(b.id) ? 1 : 0) - (view!.removed.has(a.id) ? 1 : 0));
+    for (const w of ordered) {
+      const st = wallState(w, view, selected);
+      if (!st) continue;
+      const cls = ['wall', st, st === 'pending' ? 'flagged' : '', w.user ? 'user' : ''].filter(Boolean);
+      const g = mk('g', { class: cls.join(' '), 'data-type': 'wall', 'data-id': w.id }, gWalls);
+      const xy = { x1: w.a[0], y1: w.a[1], x2: w.b[0], y2: w.b[1] };
+      mk('line', { ...xy, class: 'hit', 'vector-effect': 'non-scaling-stroke' }, g);
+      mk('line', { ...xy, class: 'stroke', 'vector-effect': 'non-scaling-stroke' }, g);
+    }
+  }
+  function drawRooms() {
+    gRooms.replaceChildren();
+    if (!d) return;
+    const ans = new Set(view?.answer?.rooms ?? []);
+    for (const r of d.rooms) {
+      const on = selected?.type === 'room' && selected.id === r.id;
+      mk('polygon', { points: r.polygon.map((p) => p.join(',')).join(' '), class: `room${on ? ' selected' : ''}${ans.has(r.id) ? ' answer' : ''}`,
+        'data-type': 'room', 'data-id': r.id }, gRooms);
+    }
+  }
+  function badge(parent: Element, [mx, my]: Pt, [nx, ny]: Pt, dist: number, text: string, cls: string, data: Record<string, string> = {}) {
+    const g = mk('g', { class: `badge ${cls}`, 'data-off': JSON.stringify([mx, my, nx, ny, dist]), ...data }, parent);
+    mk('circle', { r: 11 }, g);
+    mk('text', { 'text-anchor': 'middle', 'dominant-baseline': 'central' }, g).textContent = text;
+    return g;
+  }
+  function drawMarks() {
+    gMarks.replaceChildren();
+    gEvidence.replaceChildren();
+    if (!d || !view) return;
+    const [iw, ih] = d.image.size;
+    const normal = (w: Wall): [Pt, Pt] => {
+      const mx = (w.a[0] + w.b[0]) / 2, my = (w.a[1] + w.b[1]) / 2;
+      const horiz = Math.abs(w.a[1] - w.b[1]) < 1;
+      return [[mx, my], horiz ? [0, my < ih / 2 ? -1 : 1] : [mx < iw / 2 ? -1 : 1, 0]];
+    };
+    if (view.candidates.length) {
+      for (const c of view.candidates) {
+        const w = d.walls.find((x) => x.id === c.id);
+        if (!w) continue;
+        const [m, n] = normal(w);
+        badge(gMarks, m, n, 18, c.letter, c.id === view.ref ? 'cand on' : 'cand', { 'data-type': 'wall', 'data-id': w.id });
+      }
+    } else if (view.refActive) {
+      const w = d.walls.find((x) => x.id === view!.ref);
+      if (w && !view.removed.has(w.id)) {
+        const [[mx, my], [nx, ny]] = normal(w);
+        const g = mk('g', { 'data-off': JSON.stringify([mx, my, nx, ny, 16]) }, gMarks);
+        mk('text', { class: `ref-label${view.refConfirmed ? ' confirmed' : ''}`, 'text-anchor': 'middle', 'dominant-baseline': 'middle' }, g).textContent = view.refLabel;
+      }
+    }
+    for (const b of view.answer?.boxes ?? []) {
+      const [x0, y0, x1, y1] = b.box;
+      mk('rect', { x: x0 - 3, y: y0 - 3, width: x1 - x0 + 6, height: y1 - y0 + 6, rx: 3, class: 'evidence' }, gEvidence);
+      badge(gMarks, [x1 + 3, y0 - 3], [0.7, -0.7], 6, String(b.n), 'cite');
+    }
+  }
+  function drawReview() {
+    gReview.replaceChildren();
+    for (const it of view?.review?.items ?? []) setRect(mk('rect', { class: `rbox ${it.state}`, 'data-type': 'box', 'data-id': it.id }, gReview), it.box);
+    if (!view?.review) { svg.classList.remove('edge-hover'); svg.style.cursor = ''; }
+  }
+  // The Place step: numbered points the user clicked
+  function drawPoints() {
+    gPoints.replaceChildren();
+    for (const p of points) badge(gPoints, p.px, [0, 0], 0, p.label, `pt ${p.cls ?? ''}`);
+  }
+  const redraw = () => { drawRooms(); drawWalls(); drawReview(); drawMarks(); drawPoints(); setVB(); };
+
+  const resizeObserver = new ResizeObserver(() => fit());
+  resizeObserver.observe(el);
+
+  return {
+    load(drawing: Drawing, v: ViewState) {
+      d = drawing; view = v; selected = null; points = [];
+      img.setAttribute('href', d.image.url);
+      img.setAttribute('width', String(d.image.size[0])); img.setAttribute('height', String(d.image.size[1]));
+      redraw(); fit();
+    },
+    update(v: ViewState) { view = v; redraw(); },
+    highlight(sel: Selection) { selected = sel; drawRooms(); drawWalls(); },
+    fitBox(box: Box, pad = 0.35) { fit(box, pad); },
+    fit: () => fit(),
+    setMode(m: PlanMode) {
+      mode = m; drawStart = null;
+      preview.setAttribute('visibility', 'hidden'); boxPreview.setAttribute('visibility', 'hidden');
+      svg.classList.toggle('drawing', m !== 'select');
+    },
+    setPoints(p: PlanPoint[]) { points = p; drawPoints(); setVB(); },
+    onPick(f: typeof handlers.pick) { handlers.pick = f; },
+    onHover(f: typeof handlers.hover) { handlers.hover = f; },
+    onDraw(f: typeof handlers.draw) { handlers.draw = f; },
+    onDrawBox(f: typeof handlers.drawBox) { handlers.drawBox = f; },
+    onResize(f: typeof handlers.resize) { handlers.resize = f; },
+    onPoint(f: typeof handlers.point) { handlers.point = f; },
+    dispose() {
+      resizeObserver.disconnect();
+      window.removeEventListener('keydown', onKey);
+      svg.remove();
+    },
+  };
+}
+export type Plan = ReturnType<typeof createPlan>;
