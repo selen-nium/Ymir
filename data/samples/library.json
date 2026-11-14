@@ -1,0 +1,29 @@
+[
+ {
+  "id": "swiss",
+  "title": "Grundriss 2. OG",
+  "thumbnail": "data/swiss.png",
+  "source": {
+   "dataset": "Swiss Dwellings",
+   "kind": "CAD export"
+  }
+ },
+ {
+  "id": "finna",
+  "title": "Ändringsritning, 1921",
+  "thumbnail": "data/finna.jpg",
+  "source": {
+   "dataset": "Finna archive",
+   "kind": "Scanned drawing"
+  }
+ },
+ {
+  "id": "cubi",
+  "title": "Apartment plan",
+  "thumbnail": "data/cubi.png",
+  "source": {
+   "dataset": "CubiCasa5k",
+   "kind": "Raster plan"
+  }
+ }
+]

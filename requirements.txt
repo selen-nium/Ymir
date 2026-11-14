@@ -1,0 +1,13 @@
+# Web app
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pydantic>=2.7
+# Build pipeline (walls, rooms, text)
+numpy>=1.26
+opencv-python-headless>=4.10
+pillow>=10.4
+shapely>=2.0
+torch>=2.3
+torchvision>=0.18
+rapidocr-onnxruntime>=1.3

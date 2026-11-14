@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ymir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/views.css">
+<style>
+  :root {
+    --sans: Inter, system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --bg: #f4f1ea; --panel: #fbfaf6; --line: #e3ded3; --ink: #1d1c1a; --ink-2: #74706a; --ink-3: #aaa59c;
+    --accent: #e0592a; --answer: #2563eb; --flag: #e5484d; --ok: #2f9e5b; --ghost: #a8a39a;
+    --wall: #f1ede4; --wall-edge: #4a443b; --viewer-bg: #efebe2; --plan-bg: #fbfaf6; --wall-line: rgba(29,28,26,.5);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font: 14px/1.4 var(--sans); color: var(--ink); background: var(--bg); display: grid; grid-template-columns: 360px 1fr; overflow: hidden; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Left column */
+  aside { display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); min-height: 0; }
+  .brand { display: flex; align-items: center; gap: 8px; padding: 16px 18px 12px; font-weight: 600; }
+  .brand i { width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--accent); }
+  .src { display: flex; gap: 10px; align-items: center; margin: 0 12px; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .src img { width: 46px; height: 46px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+  .src div { flex: 1; min-width: 0; font-weight: 500; }
+  .src small { display: block; color: var(--ink-2); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .src button { border: 0; background: var(--bg); border-radius: 8px; height: 30px; padding: 0 10px; font-size: 13px; }
+  .tabs { display: flex; margin: 12px 12px 0; background: #ece8df; border-radius: 10px; padding: 3px; }
+  .tabs button { flex: 1; height: 32px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .tabs button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+  .tabs svg { width: 15px; height: 15px; }
+  .tabs .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+  .flow { flex: 1; overflow: auto; padding: 18px 12px 12px; }
+  .node { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 10px; padding: 0 6px 16px; }
+  .node::before { content: ''; position: absolute; left: 19px; top: 26px; bottom: -2px; width: 2px; background: var(--line); }
+  .node:last-child::before { display: none; }
+  .node.skip::before { background: repeating-linear-gradient(var(--line) 0 4px, transparent 4px 8px); }
+  .st { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); color: var(--ink-3); border: 2px solid var(--line); z-index: 1; }
+  .st svg { width: 14px; height: 14px; stroke-width: 2.6; }
+  .done .st { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .you .st { background: #fff; border-color: var(--accent); color: var(--accent); }
+  .you .st::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .skip .st { border-style: dashed; }
+  .hd { display: flex; align-items: baseline; gap: 8px; cursor: pointer; padding-top: 4px; }
+  .hd b { font-weight: 500; }
+  .tool { font: 500 11px var(--mono); color: var(--ink-2); background: var(--bg); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; white-space: nowrap; }
+  .res { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+  .skip .hd b, .skip .res { color: var(--ink-3); }
+  .act { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .grow { flex: 1; }
+  .num { display: flex; align-items: center; border: 1px solid var(--line); background: #fff; border-radius: 9px; height: 36px; padding: 0 10px 0 4px; }
+  .num input { width: 64px; border: 0; font: 500 15px var(--mono); text-align: right; outline: none; background: none; }
+  .num span { color: var(--ink-2); margin-left: 4px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--line); background: #fff; white-space: nowrap; }
+  .btn:hover { border-color: #cbc5b8; }
+  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.acc { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.sm { height: 30px; padding: 0 10px; font-size: 13px; }
+  .btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn svg { width: 15px; height: 15px; }
+  .chip { font-size: 12px; color: var(--ink-2); }
+  .chip.good { color: var(--ok); }
+  .cands { display: flex; gap: 6px; }
+  .cand { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 4px; border: 1px solid var(--line); background: #fff; border-radius: 9px; font-size: 12px; color: var(--ink-2); }
+  .cand b { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--accent); color: var(--accent); font-size: 12px; }
+  .cand.on { border-color: var(--accent); background: #fdf1eb; color: var(--ink); }
+  .cand.on b { background: var(--accent); color: #fff; }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--ink-2); }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .legend i { width: 14px; height: 4px; border-radius: 2px; }
+
+  /* Ask */
+  .askp { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .askp[hidden], .flow[hidden] { display: none; }
+  .thread { flex: 1; overflow: auto; padding: 16px 12px 8px; display: flex; flex-direction: column; gap: 10px; }
+  .empty { margin: auto 6px; text-align: center; color: var(--ink-3); font-size: 13px; }
+  .msg { max-width: 92%; border-radius: 14px; padding: 9px 12px; font-size: 14px; }
+  .msg.q { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.a { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 4px; cursor: pointer; }
+  .msg.a.on { border-color: var(--answer); box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
+  .msg.a.pending { display: flex; align-items: center; gap: 8px; color: var(--ink-2); cursor: default; }
+  .msg.a.abstain { background: #faf7f0; }
+  .spin { width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--answer); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  cite { font-style: normal; display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 4px; margin: 0 1px; border-radius: 9px; background: var(--answer); color: #fff; font-size: 11px; font-weight: 600; vertical-align: 1px; cursor: pointer; }
+  .cites { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-2); }
+  .cites div { display: flex; gap: 6px; align-items: center; }
+  .cites cite { min-width: 15px; height: 15px; font-size: 10px; }
+  .sugg { display: flex; gap: 6px; padding: 0 12px 8px; overflow-x: auto; scrollbar-width: none; }
+  .sugg button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 16px; padding: 5px 10px; font-size: 12.5px; color: var(--ink-2); }
+  .sugg button:hover { border-color: var(--answer); color: var(--answer); }
+  .composer { display: flex; gap: 6px; margin: 0 12px 12px; padding: 5px 5px 5px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+  .composer:focus-within { border-color: var(--answer); }
+  .composer input { flex: 1; border: 0; outline: none; font: inherit; background: none; }
+  .composer button { width: 34px; height: 34px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+  .composer button[disabled] { opacity: .35; }
+
+  /* Main */
+  main { position: relative; display: grid; grid-template-rows: 56px 1fr auto; min-width: 0; min-height: 0; }
+  .bar { display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+  .seg { display: flex; background: #e9e5dc; border-radius: 10px; padding: 3px; }
+  .seg button { height: 30px; padding: 0 14px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+  .seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+  .seg svg { width: 15px; height: 15px; }
+  .spacer { flex: 1; }
+  .icon { width: 36px; height: 36px; border: 1px solid var(--line); background: var(--panel); border-radius: 9px; display: grid; place-items: center; color: var(--ink-2); }
+  .icon.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .views { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 10px; min-height: 0; }
+  .views.one-plan { grid-template-columns: 1fr 0; } .views.one-model { grid-template-columns: 0 1fr; }
+  .views.one-plan .v.model, .views.one-model .v.plan { visibility: hidden; }
+  .v { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); min-width: 0; }
+  .v > div { position: absolute; inset: 0; }
+  .hgt { display: flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 13px; }
+  .hgt input { width: 46px; border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 6px; font: 500 13px var(--mono); text-align: right; }
+
+  /* Trace */
+  .trace { margin: 0 16px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow: hidden; }
+  .trace header { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 8px 0 14px; cursor: pointer; }
+  .trace header b { font-weight: 500; }
+  .trace header .status { color: var(--ink-2); font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .trace header .status .spin { width: 12px; height: 12px; }
+  .trace header button { margin-left: auto; width: 30px; height: 30px; border: 0; background: none; border-radius: 8px; color: var(--ink-2); display: grid; place-items: center; transition: transform .2s; }
+  .trace.closed header button { transform: rotate(180deg); }
+  .trace .chartwrap { overflow-x: auto; border-top: 1px solid var(--line); }
+  .trace.closed .chartwrap { display: none; }
+  .trace-chart { position: relative; height: 224px; min-width: 820px; }
+  .trace-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .tedge { fill: none; stroke: var(--line); stroke-width: 2; transition: stroke .3s; }
+  .tedge.active { stroke: var(--answer); stroke-dasharray: 6 6; animation: flow .5s linear infinite; }
+  .tedge.done { stroke: #9db4ee; }
+  .tedge.skip { stroke-dasharray: 2 5; opacity: .6; }
+  @keyframes flow { to { stroke-dashoffset: -12; } }
+  .tnode { position: absolute; height: 44px; padding: 5px 10px; background: #fff; border: 1px solid var(--line); border-radius: 10px; font-size: 12px; transition: left .3s, top .3s, border-color .25s, box-shadow .25s, opacity .25s; animation: tn-in .3s ease-out; }
+  @keyframes tn-in { from { opacity: 0; transform: translateY(4px); } }
+  .tnode.fail { border-color: var(--flag); }
+  .tedge.fail { stroke: var(--flag); }
+  .node.fail .st { border-color: var(--flag); color: var(--flag); }
+  .tn-h { display: flex; align-items: center; gap: 6px; }
+  .tn-h i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
+  .tn-h b { font-weight: 600; }
+  .tn-h span { margin-left: auto; font: 500 10px var(--mono); color: var(--ink-2); background: var(--bg); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+  .tn-o { margin-top: 2px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tnode.idle { opacity: .55; }
+  .tnode.run { border-color: var(--answer); box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+  .tnode.run i { background: var(--answer); animation: pulse .8s infinite; }
+  .tnode.done i { background: var(--ok); }
+  .tnode.skip { border-style: dashed; opacity: .5; }
+  .tnode.you { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,89,42,.14); }
+  .tnode.you i { background: var(--accent); animation: pulse 1.2s infinite; }
+
+  /* Low-confidence answer: the user checks the model's boxes */
+  .msg.a.review { max-width: 100%; border-color: var(--accent); cursor: default; }
+  .msg.a.review .act { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .warn { color: var(--accent); font-weight: 500; }
+  .mark { margin-top: 6px; font-size: 12px; color: var(--ink-2); display: flex; gap: 6px; align-items: center; }
+  .mark.ok { color: var(--ok); }
+  .mark svg { width: 14px; height: 14px; stroke-width: 2.4; }
+  .mark a { color: var(--answer); text-decoration: none; margin-left: auto; }
+  .mark a:hover { text-decoration: underline; }
+
+  .modal { position: fixed; inset: 0; background: rgba(30,28,24,.25); display: grid; place-items: center; z-index: 30; }
+  .modal[hidden] { display: none; }
+  .modal .box { width: 560px; max-width: calc(100vw - 32px); background: var(--panel); border-radius: 16px; padding: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.2); }
+  .search { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 42px; border-radius: 10px; background: #fff; border: 1px solid var(--line); color: var(--ink-2); }
+  .search input { flex: 1; border: 0; background: none; outline: none; font: inherit; color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+  .card { border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 6px; text-align: left; }
+  .card:hover, .card.on { border-color: var(--accent); }
+  .card img { width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 8px; display: block; }
+  .card div { padding: 6px 4px 2px; font-size: 13px; font-weight: 500; }
+  .card small { display: block; color: var(--ink-2); font-weight: 400; }
+  .upload { display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; border: 1px dashed #cbc5b8; border-radius: 10px; color: var(--ink-2); cursor: pointer; }
+  .upload:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 1100px) {
+    .views:not(.one-plan):not(.one-model) { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .views.one-plan { grid-template-columns: 1fr; grid-template-rows: 1fr 0; } .views.one-model { grid-template-columns: 1fr; grid-template-rows: 0 1fr; }
+  }
+  @media (max-width: 760px) {
+    body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
+    aside { max-height: 50vh; border-right: 0; border-bottom: 1px solid var(--line); }
+    main { min-height: 90vh; }
+    .hgt { display: none; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/OrbitControls.js": "./vendor/OrbitControls.js" } }</script>
+</head>
+<body>
+<aside>
+  <div class="brand"><i></i>Ymir</div>
+  <div class="src"><img id="thumb" alt=""><div><span id="title">…</span><small id="sub"></small></div><button id="change">Change</button></div>
+  <div class="tabs">
+    <button data-tab="build" class="on"><span data-i="cube"></span>Build</button>
+    <button data-tab="ask"><span data-i="chat"></span>Ask<span class="dot" id="askDot" hidden></span></button>
+  </div>
+  <div class="flow" id="flow"></div>
+  <div class="askp" id="askp" hidden>
+    <div class="thread" id="thread"></div>
+    <div class="sugg" id="sugg"></div>
+    <form class="composer" id="composer"><input id="qin" placeholder="Ask about this drawing" autocomplete="off"><button id="send" disabled><span data-i="up"></span></button></form>
+  </div>
+</aside>
+<main>
+  <div class="bar">
+    <div class="seg" id="seg">
+      <button data-v="one-plan"><span data-i="plan"></span>Drawing</button>
+      <button data-v="both" class="on">Both</button>
+      <button data-v="one-model"><span data-i="cube"></span>3D</button>
+    </div>
+    <div class="spacer"></div>
+    <label class="hgt">Height <input id="height" value="2.7"> m</label>
+    <button class="icon" id="drawTool" title="Draw a missing wall"><span data-i="pen"></span></button>
+    <button class="icon" id="fit" title="Fit"><span data-i="fit"></span></button>
+  </div>
+  <div class="views" id="views">
+    <div class="v plan"><div id="plan"></div></div>
+    <div class="v model"><div id="model"></div></div>
+  </div>
+  <section class="trace" id="trace">
+    <header id="traceHead"><b>Trace</b><span class="status" id="traceStatus">Ask a question to see how it’s answered</span><button title="Collapse"><span data-i="chev"></span></button></header>
+    <div class="chartwrap"><div id="chart"></div></div>
+  </section>
+</main>
+
+<div class="modal" id="modal" hidden>
+  <div class="box">
+    <label class="search"><span data-i="search"></span><input id="q" placeholder="Search drawings"></label>
+    <div class="grid" id="grid"></div>
+    <label class="upload"><input type="file" accept="image/png,image/jpeg,image/webp" hidden id="file"><span data-i="up"></span>Upload a plan image</label>
+  </div>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script type="module">
+import { createSession, bindViews, loadLibrary, wallPx, needsReview, countNoun } from './shared/session.js';
+import { createPlan } from './shared/plan2d.js';
+import { createViewer } from './shared/viewer3d.js';
+import { createTrace } from './shared/trace.js';
+import { ask as askAgents, suggestions, previewGraph, submitReview, uploadDrawing } from './shared/api.js';
+import { $, h, toast, icon } from './shared/ui.js';
+
+document.querySelectorAll('[data-i]').forEach((n) => { n.outerHTML = icon[n.dataset.i]; });
+const session = createSession({ pickRef: true });
+const S = session.state;
+const plan = createPlan($('#plan'));
+const viewer = createViewer($('#model'));
+const trace = createTrace($('#chart'));
+
+// Clicks on walls mean different things per stage
+bindViews(session, {
+  plan, viewer, tooltip: $('#tip'),
+  onPick(sel) {
+    if (sel?.type === 'box') { session.toggleBox(sel.id); return; }
+    if (sel?.type === 'wall' && S.focus === 'scale') {
+      if (session.candidates().some((c) => c.id === sel.id)) session.setRef(sel.id);
+      return;
+    }
+    if (sel?.type === 'wall' && S.focus === 'walls') { session.toggleWall(sel.id); return; }
+    session.select(sel);
+  },
+});
+
+let open = 'confirm', tab = 'build';
+const len = (w) => wallPx(w) * S.scale;
+
+/* ---------- Build pipeline ---------- */
+const fmtMs = (ms) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${ms} ms`);
+// Steps the backend reported in its build trace (node + status events), drawn as they arrived.
+function backendSteps() {
+  const steps = new Map();
+  for (const e of S.build) {
+    if (e.type === 'node') steps.set(e.id, { id: `b-${e.id}`, name: e.name, tool: e.tool, state: 'wait', res: '' });
+    else if (e.type === 'status' && steps.has(e.id)) {
+      const st = steps.get(e.id);
+      st.state = { done: 'done', skipped: 'skip', failed: 'fail' }[e.state] || 'wait';
+      st.res = (e.summary || '') + (e.ms ? ` · ${fmtMs(e.ms)}` : '');
+    }
+  }
+  return [...steps.values()];
+}
+// ...followed by the steps that need the user, which the frontend owns.
+function nodes() {
+  const d = S.d, pend = session.pending();
+  const kept = d.walls.length - session.removed().size;
+  const ref = session.candidates().find((c) => c.id === S.refId);
+  const ready = S.scaleConfirmed && !pend.length;
+  return [
+    ...backendSteps(),
+    { id: 'confirm', name: 'Confirm scale', tool: 'You', state: S.scaleConfirmed ? 'done' : 'you',
+      res: S.scaleConfirmed ? `Wall ${ref?.letter || ''} = ${session.refLength().toFixed(2)} m` : 'Pick a wall you know' },
+    { id: 'check', name: 'Check walls', tool: 'You', state: pend.length ? 'you' : 'done',
+      res: pend.length ? `${pend.length} look doubtful` : `${kept} walls kept` },
+    { id: 'model', name: '3D model', tool: 'three.js · IFC', state: ready ? 'done' : 'wait', res: ready ? 'Ready' : 'Updates live' },
+  ];
+}
+
+function scaleAction() {
+  const cands = session.candidates();
+  const ref = cands.find((c) => c.id === S.refId) || cands[0];
+  const chk = session.areaCheck();
+  const el = h(`<div class="act">
+    <div class="cands">${cands.map((c) => `<button class="cand ${c.id === S.refId ? 'on' : ''}" data-id="${c.id}"><b>${c.letter}</b>${len(S.d.walls.find((w) => w.id === c.id)).toFixed(1)} m</button>`).join('')}</div>
+    <div class="row"><span class="chip">Wall ${ref.letter}</span><label class="num"><input id="len" value="${session.refLength().toFixed(2)}"><span>m</span></label>
+      <button class="btn acc" id="ok">${S.scaleConfirmed ? 'Update' : 'Confirm'}</button></div>
+    ${chk ? `<span class="chip ${chk.median < .1 ? 'good' : ''}">Room areas ±${Math.round(chk.median * 100)}% vs sheet</span>` : ''}
+  </div>`);
+  el.querySelectorAll('.cand').forEach((b) => { b.onclick = () => session.setRef(b.dataset.id); });
+  const input = el.querySelector('#len');
+  input.onchange = () => session.setRefLength(parseFloat(input.value));
+  input.onkeydown = (e) => { if (e.key === 'Enter') input.blur(); };
+  el.querySelector('#ok').onclick = () => { session.setRefLength(parseFloat(input.value)); session.confirmScale(); setOpen('check'); };
+  return el;
+}
+
+function checkAction() {
+  const flagged = session.flagged();
+  const done = flagged.filter((w) => S.decisions.has(w.id)).length;
+  const rm = session.removed().size;
+  const el = h(`<div class="act">
+    <div class="legend"><span><i style="background:var(--flag)"></i>Check</span><span><i style="background:var(--ok)"></i>Wall</span><span><i style="background:var(--ghost)"></i>Not a wall</span></div>
+    <span class="chip">Click a wall to remove it, again to keep it.</span>
+    <div class="row"><span class="chip">${done}/${flagged.length} checked${rm ? ` · ${rm} removed` : ''}</span><span class="grow"></span>
+      <button class="btn sm ${drawing ? 'on' : ''}" id="drawBtn">${icon.pen}Draw</button><button class="btn sm primary" id="doneBtn">Done</button></div>
+  </div>`);
+  el.querySelector('#drawBtn').onclick = () => setDrawing(!drawing);
+  el.querySelector('#doneBtn').onclick = () => { session.keepRest(); setDrawing(false); setOpen('model'); };
+  return el;
+}
+
+function modelAction() {
+  const el = h(`<div class="act"><div class="row">${['IFC', 'OBJ', 'JSON'].map((x) => `<button class="btn sm" data-x="${x}">${x}</button>`).join('')}
+    <span class="grow"></span><button class="btn sm primary" id="goAsk">Ask ${icon.chev.replace('<svg', '<svg style="transform:rotate(-90deg)"')}</button></div></div>`);
+  el.querySelectorAll('[data-x]').forEach((b) => { b.onclick = () => toast(`${b.dataset.x} export connects to the parser next`); });
+  el.querySelector('#goAsk').onclick = () => setTab('ask');
+  return el;
+}
+
+function renderFlow() {
+  if (!S.d) return;
+  $('#flow').replaceChildren(...nodes().map((n) => {
+    const el = h(`<div class="node ${n.state}"><span class="st">${n.state === 'done' ? icon.check : ''}</span>
+      <div><div class="hd"><b>${n.name}</b><span class="tool">${n.tool}</span></div><div class="res">${n.res}</div></div></div>`);
+    el.querySelector('.hd').onclick = () => setOpen(open === n.id ? null : n.id);
+    const act = { confirm: scaleAction, check: checkAction, model: modelAction }[n.id];
+    const show = act && (open === n.id || (n.state === 'you' && n.id === 'confirm') || (n.id === 'check' && n.state === 'you' && S.scaleConfirmed && open !== 'confirm'));
+    if (show) el.lastElementChild.append(act());
+    return el;
+  }));
+}
+function focusFor() { return tab === 'ask' ? null : open === 'confirm' ? 'scale' : open === 'check' ? 'walls' : null; }
+function setOpen(id) {
+  open = id;
+  if (id === 'check' && !S.scaleConfirmed) open = 'confirm';
+  const f = focusFor();
+  if (S.focus !== f) session.setFocus(f); else renderFlow();
+}
+
+/* ---------- Ask ---------- */
+// Answers arrive as a trace stream (node / status / answer events), as the training brief specifies.
+let busy = false, current = null, cancel = null;
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const safeText = (t) => esc(t).replace(/&lt;(\/?)(b|cite)&gt;/g, '<$1$2>'); // spec: only <b> and <cite> allowed
+async function renderSugg() {
+  const id = S.d.id, qs = await suggestions(session);
+  if (S.d?.id !== id) return;
+  $('#sugg').replaceChildren(...qs.map((q) => { const b = h(`<button>${esc(q)}</button>`); b.onclick = () => ask(q); return b; }));
+}
+function emptyThread() {
+  $('#thread').replaceChildren(h(`<div class="empty">Answers point to where they came from in the drawing and the model.</div>`));
+}
+async function idleTrace() {
+  trace.replay(await previewGraph());
+  $('#traceStatus').textContent = 'Ask a question to see how it’s answered';
+}
+function applyAnswer(entry, card) {
+  current = entry;
+  document.querySelectorAll('.msg.a').forEach((m) => m.classList.toggle('on', m === card));
+  const a = entry.answer;
+  session.setAnswer(a);
+  if (a.focus) {
+    const [x0, y0, x1, y1] = a.focus;
+    plan.fitBox([x0, y0, x1 - x0, y1 - y0], 0.9);
+    viewer.focusBox(a.focus);
+  } else { plan.fit(); viewer.fit(); }
+}
+function focusCite(a, n) {
+  const c = (a.citations || []).find((x) => x.n === n);
+  const b = c && session.citationBox(c);
+  if (!b) return;
+  plan.fitBox([b[0], b[1], b[2] - b[0], b[3] - b[1]], c.room_id && !c.box ? 0.6 : 3);
+  viewer.focusBox(b);
+}
+function finish(a, events, card, q) {
+  const entry = { answer: a, events, q };
+  cancel = null;
+  if (needsReview(a)) startReview(entry, card); else showAnswer(entry, card);
+}
+const pct = (v) => `${Math.round(v * 100)}%`;
+function showAnswer(entry, card) {
+  const a = entry.answer;
+  const cites = a.citations || [];
+  const abstained = a.status !== 'answered';
+  $('#traceStatus').textContent = abstained ? 'No evidence found · abstained'
+    : `${a.checked ? 'Checked by you · ' : ''}Answered with ${cites.length} source${cites.length === 1 ? '' : 's'}`;
+  card.className = `msg a${abstained ? ' abstain' : ''}`;
+  const mark = a.checked ? `<div class="mark ok">${icon.check}Checked by you<a href="#" class="exp">Export labels</a></div>`
+    : a.unchecked ? `<div class="mark">Not checked · ${pct(a.confidence)} sure</div>` : '';
+  card.innerHTML = `<div>${safeText(a.text)}</div>${mark}${cites.length ? `<div class="cites">${cites.slice(0, 5).map((c) => `<div><cite>${c.n}</cite>${esc(c.label)}</div>`).join('')}${cites.length > 5 ? `<div>+${cites.length - 5} more</div>` : ''}</div>` : ''}`;
+  card.querySelector('.exp')?.addEventListener('click', (e) => { e.preventDefault(); exportLabels(entry.record); });
+  card.onclick = (e) => {
+    const c = e.target.closest('cite');
+    if (current !== entry) { applyAnswer(entry, card); trace.replay(entry.events); $('#traceStatus').textContent = 'Showing an earlier answer'; }
+    if (c) focusCite(a, Number(c.textContent));
+  };
+  if (abstained) { current = null; session.setAnswer(null); } else applyAnswer(entry, card);
+  busy = false; $('#qin').placeholder = 'Ask about this drawing'; $('#send').disabled = !$('#qin').value.trim();
+  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+/* ---------- Low confidence: the user checks the model's boxes ---------- */
+let reviewing = null; // {entry, card} while the user is checking boxes
+function traceEvents(entry, evs) { evs.forEach((ev) => { entry.events.push(ev); trace.apply(ev); }); }
+function startReview(entry, card) {
+  const a = entry.answer;
+  reviewing = { entry, card };
+  session.startReview(a, entry.q);
+  if ($('#views').classList.contains('one-model')) setView('both');
+  plan.fit(); viewer.fit();
+  // The frontend owns this step, like the Build tab's "You" steps: insert it between Verifier and Answer.
+  traceEvents(entry, [
+    { type: 'node', id: 'you', name: 'Check boxes', tool: 'You', parents: ['ver'] },
+    { type: 'node', id: 'ans', name: 'Answer', tool: 'Cited', parents: ['you'] },
+    { type: 'status', id: 'you', state: 'waiting', summary: `${pct(a.confidence)} sure · your turn` },
+    { type: 'status', id: 'ans', state: 'pending', summary: 'Waiting for you' },
+  ]);
+  $('#traceStatus').textContent = 'Low confidence · check the boxes';
+  $('#qin').placeholder = 'Check the boxes first';
+  renderReview();
+  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+function renderReview() {
+  if (!reviewing) return;
+  const { entry, card } = reviewing, a = entry.answer, st = session.reviewStats();
+  card.className = 'msg a review';
+  card.onclick = null;
+  card.innerHTML = `<div>Probably <b>${a.value}</b> ${countNoun(a.review.class, a.value)} · <span class="warn">${pct(a.confidence)} sure</span></div>
+    <div class="act">
+      <div class="legend"><span><i style="background:var(--answer)"></i>Counted</span><span><i style="background:var(--flag)"></i>Check</span><span><i style="background:var(--ghost)"></i>Not counted</span></div>
+      <span class="chip">Click a box to count or drop it. Drag an edge to resize.</span>
+      <div class="row"><span class="chip">${st.count} counted${st.toCheck ? ` · ${st.toCheck} to check` : ''}</span><span class="grow"></span>
+        <button class="btn sm ${drawing ? 'on' : ''}" id="rvDraw">${icon.pen}Draw</button><button class="btn sm" id="rvSkip">Skip</button><button class="btn sm acc" id="rvDone">Done</button></div>
+    </div>`;
+  card.querySelector('#rvDraw').onclick = () => setDrawing(!drawing);
+  card.querySelector('#rvSkip').onclick = skipReview;
+  card.querySelector('#rvDone').onclick = doneReview;
+}
+function doneReview() {
+  const { entry, card } = reviewing;
+  reviewing = null; setDrawing(false);
+  const { answer, record, changes } = session.finishReview();
+  Object.assign(entry, { answer, record });
+  const parts = [['removed', changes.removed], ['added', changes.added], ['resized', changes.resized]].filter(([, n]) => n).map(([k, n]) => `${n} ${k}`);
+  traceEvents(entry, [
+    { type: 'status', id: 'you', state: 'done', summary: parts.join(' · ') || 'No changes' },
+    { type: 'status', id: 'ans', state: 'done', summary: `${answer.value} · checked` },
+  ]);
+  submitReview(record).catch(() => toast('Labels could not be saved'));
+  showAnswer(entry, card);
+}
+function skipReview() {
+  const { entry, card } = reviewing;
+  reviewing = null; setDrawing(false);
+  entry.answer = session.skipReview();
+  traceEvents(entry, [
+    { type: 'status', id: 'you', state: 'skipped', summary: 'Skipped' },
+    { type: 'status', id: 'ans', state: 'done', summary: `${entry.answer.value} · unchecked` },
+  ]);
+  showAnswer(entry, card);
+}
+function exportLabels(record) {
+  if (!record) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' }));
+  const link = Object.assign(document.createElement('a'), { href: url, download: `labels-${record.drawing.id}-${record.class}.json` });
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function ask(q) {
+  q = q.trim();
+  if (!q || busy || !S.d) return;
+  busy = true; $('#send').disabled = true; $('#qin').value = '';
+  if (tab !== 'ask') setTab('ask');
+  session.setAnswer(null);
+  $('#thread').querySelector('.empty')?.remove();
+  $('#thread').append(h(`<div class="msg q">${esc(q)}</div>`));
+  const card = h(`<div class="msg a pending"><span class="spin"></span><span class="stage">Reading question</span></div>`);
+  $('#thread').append(card);
+  card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  $('#trace').classList.remove('closed');
+  trace.reset();
+  const events = [], running = new Map();
+  const stage = (txt) => { card.querySelector('.stage').textContent = txt; $('#traceStatus').innerHTML = `<span class="spin"></span>${esc(txt)}`; };
+  cancel = askAgents(session, q, (ev) => {
+    events.push(ev);
+    trace.apply(ev);
+    if (ev.type === 'status') {
+      if (ev.state === 'running') running.set(ev.id, trace.name(ev.id)); else running.delete(ev.id);
+      const names = [...running.values()];
+      if (names.length) stage(names.length > 1 ? `${names.join(', ')} working` : `${names[0]} is working`);
+    }
+    if (ev.type === 'answer') finish(ev.answer, events, card, q);
+  });
+}
+$('#composer').onsubmit = (e) => { e.preventDefault(); ask($('#qin').value); };
+$('#qin').oninput = () => { $('#send').disabled = busy || !$('#qin').value.trim(); };
+$('#traceHead').onclick = () => $('#trace').classList.toggle('closed');
+
+function setTab(t) {
+  tab = t;
+  document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === t));
+  $('#flow').hidden = t !== 'build';
+  $('#askp').hidden = t !== 'ask';
+  session.showReview(t === 'ask');
+  if (t === 'ask') { $('#askDot').hidden = true; setDrawing(false); $('#qin').focus(); if (current) session.setAnswer(current.answer); }
+  else session.setAnswer(null);
+  const f = focusFor();
+  if (S.focus !== f) session.setFocus(f); else renderFlow();
+}
+document.querySelectorAll('.tabs button').forEach((b) => { b.onclick = () => setTab(b.dataset.tab); });
+
+/* ---------- Session wiring ---------- */
+session.on((type) => {
+  if (type === 'load') {
+    cancel?.(); cancel = null;
+    $('#title').textContent = S.d.title; $('#sub').textContent = `${S.d.source.dataset} · ${S.d.source.kind}`; $('#thumb').src = S.d.image.url;
+    $('#height').value = S.height; open = 'confirm'; current = null; busy = false; reviewing = null; $('#send').disabled = true;
+    $('#qin').placeholder = 'Ask about this drawing';
+    emptyThread(); renderSugg(); idleTrace();
+    setTab('build');
+  }
+  if (type === 'walls' && S.focus === null && !session.pending().length && S.scaleConfirmed) $('#askDot').hidden = tab === 'ask';
+  if (type === 'review') renderReview();
+  if (type !== 'select' && type !== 'answer' && type !== 'review') renderFlow();
+});
+
+/* ---------- Toolbar ---------- */
+function setView(v) {
+  document.querySelectorAll('#seg button').forEach((x) => x.classList.toggle('on', x.dataset.v === v));
+  $('#views').className = `views ${v === 'both' ? '' : v}`;
+}
+document.querySelectorAll('#seg button').forEach((b) => { b.onclick = () => setView(b.dataset.v); });
+let drawing = false;
+// The pen draws walls while building, and boxes while the user checks a low-confidence answer.
+function setDrawing(on) {
+  const boxes = tab === 'ask' && !!S.review;
+  drawing = on; plan.setMode(on ? (boxes ? 'box' : 'draw') : 'select'); $('#drawTool').classList.toggle('on', on);
+  document.querySelector('#drawBtn')?.classList.toggle('on', on);
+  document.querySelector('#rvDraw')?.classList.toggle('on', on);
+  if (on && !boxes && S.focus !== 'walls' && tab === 'build') setOpen('check');
+}
+$('#drawTool').onclick = () => setDrawing(!drawing);
+$('#fit').onclick = () => { plan.fit(); viewer.fit(); };
+$('#height').onchange = (e) => session.setHeight(parseFloat(e.target.value));
+
+/* ---------- Library ---------- */
+let lib = await loadLibrary();
+function renderLib(q = '') {
+  $('#grid').replaceChildren(...lib.filter((d) => `${d.title} ${d.source.dataset} ${d.source.kind}`.toLowerCase().includes(q.toLowerCase())).map((d) => {
+    const b = h(`<button class="card ${S.d?.id === d.id ? 'on' : ''}"><img src="${d.thumbnail}" alt=""><div>${d.title}<small>${d.source.dataset}</small></div></button>`);
+    b.onclick = () => { $('#modal').hidden = true; session.open(d.id); };
+    return b;
+  }));
+}
+$('#change').onclick = () => { $('#modal').hidden = false; renderLib($('#q').value); $('#q').focus(); };
+$('#modal').onclick = (e) => { if (e.target.id === 'modal') $('#modal').hidden = true; };
+$('#q').oninput = (e) => renderLib(e.target.value);
+$('#file').onchange = async () => {
+  const file = $('#file').files[0];
+  $('#file').value = '';
+  if (!file) return;
+  $('#modal').hidden = true;
+  toast('Reading the drawing…');
+  try {
+    const entry = await uploadDrawing(file);
+    lib = await loadLibrary();
+    await session.open(entry.id);
+    toast(`${entry.title} is ready`);
+  } catch (e) { toast(e.message || 'This drawing could not be read'); }
+};
+
+session.open(new URLSearchParams(location.search).get('d') || 'swiss');
+</script>
+</body>
+</html>

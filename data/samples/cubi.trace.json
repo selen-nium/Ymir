@@ -1,0 +1,111 @@
+[
+ {
+  "type": "node",
+  "id": "read",
+  "name": "Read drawing",
+  "tool": "Pillow",
+  "parents": []
+ },
+ {
+  "type": "status",
+  "id": "read",
+  "state": "done",
+  "summary": "Raster plan · 687×455 px",
+  "ms": 40
+ },
+ {
+  "type": "node",
+  "id": "plan",
+  "name": "Find plan",
+  "tool": "OpenCV",
+  "parents": [
+   "read"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "plan",
+  "state": "done",
+  "summary": "Plan region cropped",
+  "ms": 30
+ },
+ {
+  "type": "node",
+  "id": "walls",
+  "name": "Detect walls",
+  "tool": "WallNet",
+  "parents": [
+   "plan"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "walls",
+  "state": "done",
+  "summary": "14 walls found",
+  "ms": 198
+ },
+ {
+  "type": "node",
+  "id": "text",
+  "name": "Read text",
+  "tool": "RapidOCR",
+  "parents": [
+   "plan"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "text",
+  "state": "skipped",
+  "summary": "No text pass"
+ },
+ {
+  "type": "node",
+  "id": "scale",
+  "name": "Read scale",
+  "tool": "Estimate",
+  "parents": [
+   "text"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "scale",
+  "state": "done",
+  "summary": "No scale printed: estimate",
+  "ms": 20
+ },
+ {
+  "type": "node",
+  "id": "vision",
+  "name": "Claude vision",
+  "tool": "fallback",
+  "parents": [
+   "scale"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "vision",
+  "state": "skipped",
+  "summary": "Standby"
+ },
+ {
+  "type": "node",
+  "id": "rooms",
+  "name": "Find rooms",
+  "tool": "Shapely",
+  "parents": [
+   "walls",
+   "text"
+  ]
+ },
+ {
+  "type": "status",
+  "id": "rooms",
+  "state": "done",
+  "summary": "8 rooms",
+  "ms": 50
+ }
+]
