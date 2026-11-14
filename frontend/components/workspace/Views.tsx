@@ -77,8 +77,13 @@ function GhostCard() {
   useWs((s) => s.project);
   const g = ghostSel ? ws.read.ghosts().find((x) => x.id === ghostSel) : null;
   if (!g) return null;
-  const why = { foundation: 'The dashed footings in 3D are guessed from the walls above.', level: 'The dashed box in 3D marks where it would go.',
-    roof: 'The dashed plate in 3D marks where it would go.' }[g.kind as string] ?? 'Questions that need it will point here.';
+  const why = {
+    foundation: 'Questions about footings need it. The dashed footings in 3D are guessed from the walls above.',
+    level: 'Questions about this floor need it. The dashed box in 3D marks where it would go.',
+    roof: 'Questions about the roof need it. The dashed plate in 3D marks where it would go.',
+    plumbing: 'Questions about pipes, drains and fixtures need it. The dashed outline in 3D marks the level.',
+    structure: 'Questions about slabs, beams and columns need it. The dashed plate in 3D marks the level.',
+  }[g.kind];
   return (
     <div className="ghostcard">
       <div>
@@ -92,13 +97,14 @@ function GhostCard() {
 function Note2D() {
   const placing = useWs((s) => s.placing);
   if (placing?.step !== 'sheet') return null;
-  return <div className="vnote place"><b>This sheet</b> · click point {placing.sheet.length + 1}</div>;
+  return <div className="vnote place"><b>This sheet</b> · click point {placing.sheet.length + 1}: a building corner or grid crossing</div>;
 }
 
 function Note3D() {
   const ws = useWorkspace();
-  const placing = useWs((s) => s.placing), activeId = useWs((s) => s.activeId), project = useWs((s) => s.project);
+  const placing = useWs((s) => s.placing), activeId = useWs((s) => s.activeId), project = useWs((s) => s.project), status = useWs((s) => s.status);
   useSessionTick();
+  if (status === 'loading') return <div className="vnote"><span className="spin" />Loading the {project?.single === false ? 'building' : 'model'}…</div>;
   if (!project || !activeId) return null;
   const v = ws.read.viewOf(activeId), baseId = ws.read.baseId(), baseLabel = ws.read.sheetLabel(baseId);
   let text: React.ReactNode = null, place = false;

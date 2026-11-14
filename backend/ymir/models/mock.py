@@ -31,7 +31,7 @@ _BOXES = {
 
 
 class MockDetector:
-    name = "YOLO11s (mock)"
+    name = "YOLO11s · stand-in"
     classes = {"window", "door"}
 
     def supports(self, drawing: dict, cls: str) -> bool:

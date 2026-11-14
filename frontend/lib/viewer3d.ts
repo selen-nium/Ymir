@@ -48,7 +48,7 @@ export function createViewer(el: HTMLElement) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.domElement.style.display = 'block';
   el.appendChild(renderer.domElement);
   const markerLayer = document.createElement('div');
@@ -83,8 +83,9 @@ export function createViewer(el: HTMLElement) {
   let d: Drawing | null = null, view: ViewState | null = null, floor: THREE.Mesh | null = null, texture: THREE.Texture | null = null;
   let lift = 1, selected: Selection = null, hover: Selection = null;
   let ctx: SceneContext = { place: null, walls: true, others: [], ghosts: [] };
-  // keepView: switching sheets in a project keeps the camera where the user left it
-  let keepView = false, hasView = false;
+  // keepView: switching sheets in a project keeps the camera where the user left it.
+  // touched: the user (or an answer) moved the camera, so a resize keeps it instead of re-framing.
+  let keepView = false, hasView = false, touched = false;
   let dirty = true;
   const invalidate = () => { dirty = true; };
   let W = 1, H = 1, s = 1;
@@ -303,6 +304,7 @@ export function createViewer(el: HTMLElement) {
       const face = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: gh.active ? 0.16 : 0.06, depthWrite: false, side: THREE.DoubleSide });
       const edgeOp = gh.active ? 1 : 0.85;
       const g = new THREE.Group();
+      g.userData = { ghostId: gh.id };
       const add = (geo: THREE.BufferGeometry) => g.add(new THREE.Mesh(geo, face), dashed(new THREE.EdgesGeometry(geo, 25), color, edgeOp));
       if (gh.kind === 'foundation') {
         const n = gh.polygon.length;
@@ -365,12 +367,13 @@ export function createViewer(el: HTMLElement) {
       cam.lookAt(look); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
       let m = 0;
       for (const c of corners) { const p = c.clone().project(cam); m = Math.max(m, Math.abs(p.x), Math.abs(p.y)); }
-      dist *= m / 0.86;
+      dist *= m / 0.9;
     }
     return { pos: dir.clone().multiplyScalar(dist).add(look), look };
   }
   let camKind: 'top' | '3d' = '3d';
   function animateCamera(pos: THREE.Vector3, look: THREE.Vector3) {
+    touched = true;
     camTarget.from.copy(camera.position); camTarget.fromLook.copy(controls.target);
     camTarget.pos.copy(pos); camTarget.look.copy(look); camTarget.t = 0;
     dirty = true;
@@ -378,8 +381,17 @@ export function createViewer(el: HTMLElement) {
   function moveCamera(kind: 'top' | '3d', animate = true) {
     camKind = kind;
     const p = fitPose(kind === 'top' ? new THREE.Vector3(0, 1, 0.0001).normalize() : new THREE.Vector3(0.42, 0.78, 0.86).normalize());
-    if (!animate) { camera.position.copy(p.pos); controls.target.copy(p.look); return; }
-    animateCamera(p.pos, p.look);
+    if (!animate) { camera.position.copy(p.pos); controls.target.copy(p.look); dirty = true; }
+    else animateCamera(p.pos, p.look);
+    touched = false;
+  }
+  /** Frame a world-space box, keeping the current view direction. */
+  function frameBox(b: THREE.Box3) {
+    const look = b.getCenter(new THREE.Vector3());
+    const size = b.getSize(new THREE.Vector3());
+    const R = Math.max(size.x, size.z, size.y * 1.5, 4);
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    animateCamera(look.clone().add(dir.multiplyScalar(R * 2.2 + 6)), look);
   }
 
   let liftAnim: { from: number; to: number; start: number; ms: number } | null = null;
@@ -425,6 +437,8 @@ export function createViewer(el: HTMLElement) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     dirty = true;
+    // a panel that changed size re-frames the model, unless the user has moved the camera since
+    if (d && !touched && camTarget.t >= 1) moveCamera(camKind, false);
   }
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(el);
@@ -432,6 +446,7 @@ export function createViewer(el: HTMLElement) {
 
   const ease = (t: number) => 1 - (1 - t) ** 3;
   controls.addEventListener('change', invalidate);
+  controls.addEventListener('start', () => { touched = true; });
   renderer.setAnimationLoop(() => {
     if (liftAnim) {
       const t = Math.min(1, (performance.now() - liftAnim.start) / liftAnim.ms);
@@ -495,6 +510,11 @@ export function createViewer(el: HTMLElement) {
       const R = Math.max((x1 - x0) * s, (y1 - y0) * s, 4);
       const dir = camera.position.clone().sub(controls.target).normalize();
       animateCamera(look.clone().add(dir.multiplyScalar(R * 3.2 + 9)), look);
+    },
+    /** Fly to a ghost (a missing sheet's dashed shape), if it is drawn. */
+    focusGhost(id: string) {
+      const g = ghostsG.children.find((x) => x.userData.ghostId === id);
+      if (g) frameBox(new THREE.Box3().setFromObject(g));
     },
     setMode(kind: 'top' | '3d') {
       dirty = true;

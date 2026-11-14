@@ -29,6 +29,8 @@ export function createPlan(el: HTMLElement) {
 
   let d: Drawing | null = null, view: ViewState | null = null, selected: Selection = null, mode: PlanMode = 'select';
   let drawStart: Pt | null = null, points: PlanPoint[] = [];
+  // what the view was last framed on, so a resize keeps it (null: the whole sheet)
+  let fitTarget: { box: Box; pad: number } | null = null;
   let vb = { x: 0, y: 0, w: 100, h: 100 };
   const noop = () => {};
   const handlers: {
@@ -49,6 +51,7 @@ export function createPlan(el: HTMLElement) {
     gEvidence.querySelectorAll('rect').forEach((r) => r.setAttribute('stroke-width', String(2 * kk)));
   }
   function fit(box?: Box, pad = 0.6) {
+    fitTarget = box ? { box, pad } : null;
     const r = rect();
     if (!d || !r.width || !r.height) return; // hidden or mid-layout: keep the last view
     const [bx, by, bw, bh] = box ?? [0, 0, d.image.size[0], d.image.size[1]];
@@ -251,12 +254,12 @@ export function createPlan(el: HTMLElement) {
   }
   const redraw = () => { drawRooms(); drawWalls(); drawReview(); drawMarks(); drawPoints(); setVB(); };
 
-  const resizeObserver = new ResizeObserver(() => fit());
+  const resizeObserver = new ResizeObserver(() => fit(fitTarget?.box, fitTarget?.pad));
   resizeObserver.observe(el);
 
   return {
     load(drawing: Drawing, v: ViewState) {
-      d = drawing; view = v; selected = null; points = [];
+      d = drawing; view = v; selected = null; points = []; fitTarget = null;
       img.setAttribute('href', d.image.url);
       img.setAttribute('width', String(d.image.size[0])); img.setAttribute('height', String(d.image.size[1]));
       redraw(); fit();

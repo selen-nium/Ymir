@@ -3,8 +3,9 @@
   --sans: var(--font-inter), system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
   --bg: #f4f1ea; --panel: #fbfaf6; --line: #e3ded3; --line-2: #cbc5b8;
-  --ink: #1d1c1a; --ink-2: #74706a; --ink-3: #aaa59c;
-  --accent: #e0592a; --answer: #2563eb; --flag: #e5484d; --ok: #2f9e5b; --ghost: #a8a39a; --place: #c98a1b;
+  /* ink-2 / ink-3 and the accent keep 4.5:1 or better on white and the panels */
+  --ink: #1d1c1a; --ink-2: #5f5b55; --ink-3: #7a756c;
+  --accent: #c94b1f; --answer: #2563eb; --flag: #d93f44; --ok: #2b8a52; --ghost: #a8a39a; --place: #9a6510;
   --wall: #f1ede4; --wall-edge: #4a443b; --viewer-bg: #efebe2; --plan-bg: #fbfaf6; --wall-line: rgba(29, 28, 26, .5);
 }
 * { box-sizing: border-box; }
@@ -14,6 +15,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }
 svg.icon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* A visible focus ring for keyboard users, everywhere */
+:focus-visible { outline: 2px solid var(--answer); outline-offset: 2px; }
+.tb-btn.acc:focus-visible, .tb-btn.primary:focus-visible { outline-color: var(--ink); outline-offset: 3px; }
 
 .topbar { grid-area: top; display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--panel); border-bottom: 1px solid var(--line); min-width: 0; }
 .brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: var(--ink); text-decoration: none; flex: none; }
@@ -36,7 +40,9 @@ svg.icon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentCol
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); opacity: 0; z-index: 60;
   padding: 9px 14px; border-radius: 8px; font: 500 13px var(--sans); background: rgba(20, 22, 26, .94); color: #fff;
   transition: all .25s; pointer-events: none; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.toast button { margin-left: 12px; border: 0; background: none; color: #9cc0ff; font-weight: 600; padding: 0; }
+.toast button:hover { text-decoration: underline; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 @media (max-width: 900px) { .tb-btn .lbl, .crumbs .kind-tag { display: none; } }

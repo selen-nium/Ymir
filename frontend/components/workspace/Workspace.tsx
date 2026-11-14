@@ -38,9 +38,9 @@ export function Workspace({ kind }: { kind: Kind }) {
           <ViewsBar kind={kind} />
           <Views />
           <TraceDock />
-          <Status hasId={!!id} />
         </main>
         <Panel kind={kind} />
+        <NotFound kind={kind} hasId={!!id} />
       </div>
     </WorkspaceContext.Provider>
   );
@@ -48,14 +48,14 @@ export function Workspace({ kind }: { kind: Kind }) {
 
 function WorkspaceTopBar({ kind }: { kind: Kind }) {
   const ws = useWorkspace();
-  const title = useWs((s) => s.project?.title ?? '');
+  const title = useWs((s) => s.project?.title ?? ''), ready = useWs((s) => s.status === 'ready');
   return (
     <TopBar crumbs={<><Link href="/home">Home</Link><span className="sep">/</span><span className="kind-tag">{kind === 'building' ? 'Building' : 'Drawing'}</span><b>{title}</b></>}>
       {kind === 'building' ? <>
-        <button className="tb-btn" onClick={ws.actions.addLevel} title="Add a storey on top"><Icon name="plus" /><span className="lbl">Add level</span></button>
-        <FilePick className="tb-btn primary" title="Add a sheet to this building" onFile={(f) => ws.actions.addSheet(f, null)}><Icon name="up" /><span className="lbl">Add sheet</span></FilePick>
+        <button className="tb-btn" onClick={ws.actions.addLevel} disabled={!ready} title="Add a storey on top"><Icon name="plus" /><span className="lbl">Add level</span></button>
+        <FilePick className="tb-btn primary" disabled={!ready} title="Add a sheet to this building" onFile={(f) => ws.actions.addSheet(f, null)}><Icon name="up" /><span className="lbl">Add sheet</span></FilePick>
       </> : (
-        <button className="tb-btn primary" onClick={ws.actions.toBuilding} title="Start a building with this drawing as its ground floor"><Icon name="layers" /><span className="lbl">Start a building from this</span></button>
+        <button className="tb-btn primary" onClick={ws.actions.toBuilding} disabled={!ready} title="Start a building with this drawing as its ground floor"><Icon name="layers" /><span className="lbl">Start a building from this</span></button>
       )}
     </TopBar>
   );
@@ -122,9 +122,19 @@ function DrawingCard() {
 
 function SheetHead() {
   const ws = useWorkspace();
-  const activeId = useWs((s) => s.activeId);
+  const activeId = useWs((s) => s.activeId), ghostSel = useWs((s) => s.ghostSel);
   useWs((s) => s.project);
   const v = ws.read.viewOf(activeId);
+  const g = ghostSel ? ws.read.ghosts().find((x) => x.id === ghostSel) : null;
+  if (g) {
+    return (
+      <div className="sheethead ghost">
+        <small>Missing</small>
+        <b>{g.noun.charAt(0).toUpperCase() + g.noun.slice(1)}</b>
+        <span>{ws.read.levelName(g.level)} · dashed in 3D</span>
+      </div>
+    );
+  }
   if (!v) return <div className="sheethead"><small>Opening…</small></div>;
   return (
     <div className="sheethead">
@@ -135,14 +145,19 @@ function SheetHead() {
   );
 }
 
-function Status({ hasId }: { hasId: boolean }) {
+/** A building or drawing that doesn't exist (or no id at all): say so plainly and offer a way on. */
+function NotFound({ kind, hasId }: { kind: Kind; hasId: boolean }) {
   const status = useWs((s) => s.status), error = useWs((s) => s.error);
   if (hasId && status !== 'error') return null;
   return (
-    <div className="ws-status">
+    <div className="ws-status" role="alert">
       <div>
-        <p>{hasId ? error : 'Nothing to open here.'}</p>
-        <Link className="tb-btn" href="/home">Back to home</Link>
+        <h1>{hasId ? error : `No ${kind} chosen`}</h1>
+        <p>It may have been removed, or started in another browser. The sample building is always here.</p>
+        <div className="row" style={{ justifyContent: 'center' }}>
+          <Link className="tb-btn primary" href="/building?id=ac20">Open the sample building</Link>
+          <Link className="tb-btn" href="/home">Back to home</Link>
+        </div>
       </div>
     </div>
   );

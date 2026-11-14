@@ -180,3 +180,11 @@ def test_projects_list_and_payload():
     placed = [s for s in p["sheets"] if s["views"][0]["placement"].get("transform")]
     assert {s["drawing_id"] for s in placed} == {"ac20-eg", "ac20-kg", "ac20-dg"}
     assert client.get("/api/projects/nope").status_code == 404
+
+
+def test_largest_room_is_named_and_abstaining_sends_no_dead_end_advice():
+    a = answer(ask("Which is the largest room?", drawing="ac20-eg"))
+    assert a["status"] == "answered" and a["value"] == 83.16
+    assert a["text"].startswith("<b>Flur EG Eingang</b> is the largest room") and "model's geometry" in a["text"]
+    no = answer(ask("Where does the main drain leave the building?", drawing="ac20-eg"))
+    assert no["status"] == "abstained" and "suggestion" not in no["text"] and "this sheet" in no["text"]

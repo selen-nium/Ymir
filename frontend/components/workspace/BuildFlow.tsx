@@ -139,7 +139,9 @@ function PlaceAction() {
     );
   }
   const dots = (pts: unknown[]) => [0, 1].map((i) => <span key={i} className={`pt${pts[i] ? ' on' : ''}`}>{i + 1}</span>);
-  const hint = placing.step === 'sheet' ? `Click point ${placing.sheet.length + 1} on this sheet.` : placing.step === 'base' ? `Click point ${placing.base.length + 1} on the base sheet.` : 'Seen from above, at half opacity over the building. Does it line up?';
+  const tip = v.kind === 'elevation' ? 'The ends of the ground line, then the matching building corners.' : 'Building corners or grid crossings work best.';
+  const hint = placing.step === 'sheet' ? `Click point ${placing.sheet.length + 1} on this sheet (left). ${tip}`
+    : placing.step === 'base' ? `Now click the same point ${placing.base.length + 1} on the base sheet (right).` : 'Seen from above, at half opacity over the building. Does it line up?';
   return (
     <div className="act">
       <div className="row"><span className="pts">This sheet {dots(placing.sheet)}</span><span className="pts" style={{ marginLeft: 12 }}>Base {dots(placing.base)}</span></div>
@@ -147,7 +149,7 @@ function PlaceAction() {
       <div className="row">
         <span className="grow" />
         <button className="btn sm" onClick={ws.actions.cancelPlacing}>Cancel</button>
-        <button className="btn sm" onClick={ws.actions.redoPlacing}>Redo</button>
+        <button className="btn sm" onClick={ws.actions.redoPlacing}>Start over</button>
         {placing.step === 'check' && <button className="btn sm acc" onClick={ws.actions.confirmPlacing}>Looks right</button>}
       </div>
     </div>

@@ -21,18 +21,19 @@ interface CardData {
   img?: string | null;
   title: string;
   meta: string;
-  badge: string;
+  badge: 'Upload' | 'Yours' | 'Sample' | 'Hidden';
   mine: boolean;
   threadId: string;
   action: { icon: IconName; label: string; confirm?: string; run: () => void | Promise<void> };
 }
+interface Section { cards: CardData[]; hidden: number }
 
-/** Home: your uploads, buildings and their conversations. Everything personal lives in this browser. */
+/** Home: uploads and buildings (yours first, then the samples), with their conversations. Personal data lives in this browser. */
 export function HomeView() {
   const router = useRouter();
   const [lib, setLib] = useState<LibraryEntry[] | null>(null);
   const [samples, setSamples] = useState<ProjectEntry[]>([]);
-  const [showHidden, setShowHidden] = useState(false);
+  const [showHidden, setShowHidden] = useState<{ uploads: boolean; buildings: boolean }>({ uploads: false, buildings: false });
   const [q, setQ] = useState('');
   const [uploading, setUploading] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -59,81 +60,92 @@ export function HomeView() {
     }
   };
 
-  const { uploads, buildings, sampleDrawings, hiddenCount } = useMemo(() => {
+  const { uploads, buildings } = useMemo(() => {
     const match = (...t: (string | undefined)[]) => !q || t.join(' ').toLowerCase().includes(q.toLowerCase());
     const active = (threadId: string, id: string) => Math.max(threadSummary(threadId)?.at ?? 0, opened.get(id) ?? 0);
     const isHidden = (key: string) => hidden.includes(key);
-    const hide = (key: string, title: string): CardData['action'] => ({ icon: 'eyeOff', label: `Hide “${title}”`, run: () => { setHidden(key, true); toast(`${title} hidden`); } });
-    const unhide = (key: string, title: string): CardData['action'] => ({ icon: 'eyeOff', label: `Show “${title}” again`, run: () => setHidden(key, false) });
+    const hideAction = (key: string, title: string): CardData['action'] => isHidden(key)
+      ? { icon: 'eye', label: `Show “${title}” again`, run: () => setHidden(key, false) }
+      : { icon: 'eyeOff', label: `Hide “${title}”`, run: () => { setHidden(key, true); toast(`${title} hidden`, { label: 'Undo', run: () => setHidden(key, false) }); } };
+    // yours first (most recently used), then the samples (most recently used); hidden samples only on request
+    const order = (a: CardData & { at: number }, b: CardData & { at: number }) => Number(b.mine) - Number(a.mine) || b.at - a.at;
+    const section = (all: (CardData & { at: number })[], show: boolean): Section => ({
+      cards: all.filter((c) => show || c.badge !== 'Hidden').sort(order),
+      hidden: all.filter((c) => c.badge === 'Hidden').length,
+    });
 
-    const ups: CardData[] = (lib ?? []).filter((d) => d.source.dataset === 'Upload' && match(d.title, d.source.kind))
-      .sort((a, b) => active(`d:${b.id}`, b.id) - active(`d:${a.id}`, a.id))
-      .map((d) => ({
-        key: d.id, href: `/drawing?id=${encodeURIComponent(d.id)}`, img: d.thumbnail, title: d.title, meta: d.source.kind, badge: 'Upload', mine: true, threadId: `d:${d.id}`,
-        action: { icon: 'trash', label: `Delete “${d.title}”`, confirm: `Delete “${d.title}”? The drawing is removed from the server for everyone, and buildings using it lose that sheet. Its conversation in this browser is cleared.`,
-          run: async () => { await deleteDrawing(d.id); forgetDrawing(d.id); setLib((l) => (l ?? []).filter((x) => x.id !== d.id)); toast(`${d.title} deleted`); } },
-      }));
-    const bs: CardData[] = [
+    const drawings = (lib ?? []).filter((d) => match(d.title, d.source.dataset, d.source.kind)).map((d) => {
+      const mine = d.source.dataset === 'Upload', key = `d:${d.id}`;
+      return {
+        key: d.id, href: `/drawing?id=${encodeURIComponent(d.id)}`, img: d.thumbnail, title: d.title, mine, threadId: key, at: active(key, d.id),
+        meta: mine ? d.source.kind : `${d.source.dataset} · ${d.source.kind}`,
+        badge: mine ? 'Upload' as const : isHidden(key) ? 'Hidden' as const : 'Sample' as const,
+        action: mine
+          ? { icon: 'trash' as IconName, label: `Delete “${d.title}”`, confirm: `Delete “${d.title}”? The drawing is removed from the server for everyone, and buildings using it lose that sheet. Its conversation in this browser is cleared.`,
+            run: async () => { await deleteDrawing(d.id); forgetDrawing(d.id); setLib((l) => (l ?? []).filter((x) => x.id !== d.id)); toast(`${d.title} deleted`); } }
+          : hideAction(key, d.title),
+      };
+    });
+    const builds = [
       ...locals.filter((p) => match(p.title)).map((p) => ({
-        key: p.id, href: `/building?id=${encodeURIComponent(p.id)}`, img: p.thumbnail, title: p.title, badge: 'Yours', mine: true, threadId: p.id,
+        key: p.id, href: `/building?id=${encodeURIComponent(p.id)}`, img: p.thumbnail, title: p.title, badge: 'Yours' as const, mine: true, threadId: p.id,
         meta: p.created ? `Started ${timeAgo(p.created)}` : 'Yours', at: active(p.id, p.id) || (p.created ?? 0),
         action: { icon: 'trash' as IconName, label: `Remove “${p.title}”`, confirm: `Remove the building “${p.title}” and its conversation from this browser? Its drawings stay in your uploads.`,
           run: () => { removeLocalProject(p.id); toast(`${p.title} removed`); } },
       })),
-      ...samples.filter((p) => match(p.title, p.source?.dataset) && (showHidden || !isHidden(`p:${p.id}`))).map((p) => ({
-        key: p.id, href: `/building?id=${encodeURIComponent(p.id)}`, img: p.thumbnail, title: p.title, badge: isHidden(`p:${p.id}`) ? 'Hidden' : 'Sample', mine: false, threadId: p.id,
-        meta: `${p.sheets} sheets · ${p.source?.dataset ?? 'Sample'}`, at: active(p.id, p.id),
-        action: isHidden(`p:${p.id}`) ? unhide(`p:${p.id}`, p.title) : hide(`p:${p.id}`, p.title),
+      ...samples.filter((p) => match(p.title, p.source?.dataset)).map((p) => ({
+        key: p.id, href: `/building?id=${encodeURIComponent(p.id)}`, img: p.thumbnail, title: p.title, mine: false, threadId: p.id,
+        badge: isHidden(`p:${p.id}`) ? 'Hidden' as const : 'Sample' as const, meta: `${p.sheets} sheets · ${p.source?.dataset ?? 'Sample'}`, at: active(p.id, p.id),
+        action: hideAction(`p:${p.id}`, p.title),
       })),
-    ].sort((a, b) => b.at - a.at);
-    const smp: CardData[] = (lib ?? []).filter((d) => d.source.dataset !== 'Upload' && match(d.title, d.source.dataset, d.source.kind) && (showHidden || !isHidden(`d:${d.id}`)))
-      .sort((a, b) => active(`d:${b.id}`, b.id) - active(`d:${a.id}`, a.id))
-      .map((d) => ({
-        key: d.id, href: `/drawing?id=${encodeURIComponent(d.id)}`, img: d.thumbnail, title: d.title, meta: `${d.source.dataset} · ${d.source.kind}`,
-        badge: isHidden(`d:${d.id}`) ? 'Hidden' : 'Sample', mine: false, threadId: `d:${d.id}`,
-        action: isHidden(`d:${d.id}`) ? unhide(`d:${d.id}`, d.title) : hide(`d:${d.id}`, d.title),
-      }));
-    const hiddenCount = hidden.filter((k) => (k.startsWith('p:') && samples.some((p) => `p:${p.id}` === k)) || (k.startsWith('d:') && (lib ?? []).some((d) => `d:${d.id}` === k))).length;
-    return { uploads: ups, buildings: bs, sampleDrawings: smp, hiddenCount };
+    ];
+    return { uploads: section(drawings, showHidden.uploads), buildings: section(builds, showHidden.buildings) };
     // `stored` re-runs this when a conversation changes (threadSummary reads the browser store)
   }, [lib, samples, locals, hidden, opened, q, showHidden, stored]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const heading = (title: string, sec: Section, which: 'uploads' | 'buildings') => (
+    <div className={s.sh}>
+      <h2>{title}</h2>
+      {sec.hidden > 0 && (
+        <button className={s.link} onClick={() => setShowHidden((v) => ({ ...v, [which]: !v[which] }))}>
+          {showHidden[which] ? 'Hide hidden samples' : `Show ${sec.hidden} hidden`}
+        </button>
+      )}
+    </div>
+  );
+  const noMatch = <p className={s.empty}>No matches for “{q}”.</p>;
 
   return (
     <>
       <TopBar crumbs={<b>Home</b>}>
         <button className="tb-btn" onClick={() => dialog.current?.showModal()}><Icon name="layers" /><span className="lbl">New building</span></button>
-        <FilePick className="tb-btn primary" title="Open a single drawing" onFile={upload}><Icon name="up" />{uploading ? 'Reading…' : 'Upload a drawing'}</FilePick>
+        <FilePick className="tb-btn primary" title="Open a single drawing" onFile={upload} disabled={uploading}><Icon name="up" />{uploading ? 'Reading…' : 'Upload a drawing'}</FilePick>
       </TopBar>
       <div className={s.wrap}>
         <h1 className="sr-only">Home</h1>
         <div className={s.tools}>
-          <label className={s.search}><Icon name="search" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search" autoComplete="off" aria-label="Search" /></label>
-          {hiddenCount > 0 && <button className={s.link} onClick={() => setShowHidden((v) => !v)}>{showHidden ? 'Hide hidden samples' : `Show ${hiddenCount} hidden`}</button>}
+          <label className={s.search}><Icon name="search" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search" autoComplete="off" aria-label="Search uploads and buildings" /></label>
         </div>
 
         <section>
-          <h2>Uploads</h2>
+          {heading('Uploads', uploads, 'uploads')}
           <div className={s.grid}>
-            {lib === null ? <p className={s.empty}>Loading…</p>
-              : uploads.length ? uploads.map((c) => <Card key={c.key} c={c} />)
-                : <FilePick className={s.new} onFile={upload}><Icon name="up" /><b>Upload a drawing</b><span>A floor plan, a foundation or piping plan, an elevation…</span></FilePick>}
+            {lib === null ? <p className={s.empty}>Loading…</p> : <>
+              {uploads.cards.map((c) => <Card key={c.key} c={c} />)}
+              {q ? !uploads.cards.length && noMatch
+                : <FilePick className={s.new} onFile={upload} disabled={uploading}><Icon name="up" /><b>Upload a drawing</b><span>A floor plan, a foundation or piping plan, an elevation…</span></FilePick>}
+            </>}
           </div>
         </section>
 
         <section>
-          <h2>Buildings</h2>
+          {heading('Buildings', buildings, 'buildings')}
           <div className={s.grid}>
-            {buildings.map((c) => <Card key={c.key} c={c} />)}
-            <button className={s.new} onClick={() => dialog.current?.showModal()}><Icon name="plus" /><b>New building</b><span>Start from your ground floor plan</span></button>
+            {buildings.cards.map((c) => <Card key={c.key} c={c} />)}
+            {q ? !buildings.cards.length && noMatch
+              : <button className={s.new} onClick={() => dialog.current?.showModal()}><Icon name="plus" /><b>New building</b><span>Start from your ground floor plan</span></button>}
           </div>
         </section>
-
-        {sampleDrawings.length > 0 && (
-          <section>
-            <h2>Samples</h2>
-            <div className={s.grid}>{sampleDrawings.map((c) => <Card key={c.key} c={c} />)}</div>
-          </section>
-        )}
       </div>
       <NewBuildingDialog ref={dialog} onCreated={(id) => router.push(`/building?id=${encodeURIComponent(id)}`)} />
     </>
@@ -143,7 +155,7 @@ export function HomeView() {
 function Card({ c }: { c: CardData }) {
   const t = threadSummary(c.threadId);
   return (
-    <div className={s.card}>
+    <div className={`${s.card}${c.badge === 'Hidden' ? ` ${s.hiddenCard}` : ''}`}>
       <Link href={c.href} className={s.cardLink}>
         {/* eslint-disable-next-line @next/next/no-img-element -- thumbnails come from the API, any size */}
         <div className={s.thumb}>{c.img && <img src={c.img} alt="" loading="lazy" />}</div>
@@ -184,14 +196,15 @@ function NewBuildingDialog({ ref, onCreated }: { ref: React.RefObject<HTMLDialog
     }
   };
   return (
-    <dialog ref={ref} className={s.dialog} onClose={() => { setErr(''); setBusy(false); }}>
+    <dialog ref={ref} className={s.dialog} onClose={() => { setErr(''); setBusy(false); }} aria-labelledby="new-building-title">
       <form method="dialog" onSubmit={(e) => { e.preventDefault(); create(); }}>
-        <h3>New building</h3>
+        <h3 id="new-building-title">New building</h3>
         <p>Start with one sheet, usually the ground floor plan. Add foundation, plumbing and other sheets after.</p>
         <label>Name<input value={name} onChange={(e) => { setName(e.target.value); setErr(''); }} placeholder="Lakeside apartments" autoComplete="off" /></label>
-        <label>First sheet
+        <div className={s.field}>
+          <span>First sheet</span>
           <FilePick className={`${s.drop}${file ? ` ${s.has}` : ''}`} onFile={(f) => { setFile(f); setErr(''); }}>{file ? file.name : 'Choose a drawing (PNG, JPEG or WebP)'}</FilePick>
-        </label>
+        </div>
         <span className={s.err} role="alert">{err}</span>
         <div className={s.row}>
           <button type="button" className="tb-btn" onClick={() => ref.current?.close()}>Cancel</button>

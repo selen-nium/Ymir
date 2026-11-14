@@ -226,11 +226,14 @@ class LargestRoom(Route):
             return Abstain().run(ctx)
         best = rooms[0]
         v = ctx.room_area(best)
+        name = best.get("label")
+        measured = ("Measured on the model's geometry." if ctx.drawing["scale"].get("source") == "model"
+                    else "No printed areas on this sheet, so it depends on the scale you confirmed.")
+        lead = f"<b>{name}</b> is the {'smallest' if small else 'largest'} room" if name else f"The highlighted room is the {'smallest' if small else 'largest'}"
         answer = answered(
             value=round(v, 2), unit="m2",
-            text=f"The highlighted room, about <b>{fmt(v)} m²</b> measured on the model <cite>1</cite>. "
-                 "No printed areas on this drawing, so it depends on the scale you confirmed.",
-            citations=[{"n": 1, "label": "Room polygon", "room_id": best["id"]}],
+            text=f"{lead}, about <b>{fmt(v)} m²</b> <cite>1</cite>. {measured}",
+            citations=[{"n": 1, "label": f"{name or 'Room'} polygon", "room_id": best["id"]}],
             highlight={"rooms": [best["id"]]}, focus=poly_box(best["polygon"]),
         )
         return Outcome(answer, {"ocr": Step("No area labels", t_ocr.ms), "geo": Step(f"{len(rooms)} rooms ranked", t_geo.ms),
@@ -281,7 +284,7 @@ class Abstain(Route):
 
     def run(self, ctx):
         return Outcome({"status": "abstained", "citations": [],
-                        "text": "I couldn’t find evidence for that in this drawing, so I won’t guess. Try one of the suggestions."},
+                        "text": "I couldn’t find evidence for that on this sheet, so I won’t guess."},
                        {}, Step("No evidence → abstain"), "Abstained")
 
 

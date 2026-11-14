@@ -6,7 +6,7 @@
 import type { TraceEvent, TraceState } from './types';
 
 const NS = 'http://www.w3.org/2000/svg';
-const NODE_W = 150, NODE_H = 44, MIN_H = 224;
+const NODE_H = 44, MIN_H = 224;
 const STATE_CLASS: Partial<Record<TraceState, string>> = { running: 'run', done: 'done', skipped: 'skip', failed: 'fail', waiting: 'you' };
 const EDGE_CLASS: Partial<Record<TraceState, string>> = { running: 'active', waiting: 'active', done: 'done', skipped: 'skip', failed: 'fail' };
 type NodeEvent = Extract<TraceEvent, { type: 'node' }>;
@@ -43,6 +43,8 @@ export function createTrace(el: HTMLElement) {
     const height = Math.max(MIN_H, 2 * padY + Math.max(...[...cols.values()].map((ids) => ids.length)) * (NODE_H + 6));
     el.style.height = `${height}px`;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    // nodes narrow down to fit the panel instead of running off its edge
+    const NODE_W = Math.round(Math.min(150, Math.max(112, (width - 2 * padX) / (maxD + 1) - 10)));
     const colStep = (width - 2 * padX - NODE_W) / maxD;
     const pos = new Map<string, { x: number; y: number }>();
     for (const [dd, ids] of cols) {

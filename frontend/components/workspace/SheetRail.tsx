@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { ghostSlots, isPlaceable, isPlaced, kindOf, levelsByZ, views, type Ghost, type SheetView } from '@/lib/project';
 import { FilePick } from './FilePick';
@@ -67,28 +68,44 @@ export function SheetRail() {
 
 function SheetRow({ v, on }: { v: SheetView; on: boolean }) {
   const ws = useWorkspace();
+  const [menu, setMenu] = useState(false);
   const status = v.placement.type === 'attached' ? 'attached' : isPlaced(v) ? 'placed' : 'pending';
   const label = ws.read.sheetLabel(v.drawing_id);
   const canPlace = isPlaceable(v.kind) && ws.read.baseId() !== v.drawing_id;
   const place = async () => {
+    setMenu(false);
     await ws.actions.selectSheet(v.drawing_id);
     ws.actions.setTab('build');
     ws.actions.startPlacing();
   };
   const remove = () => {
+    setMenu(false);
     if (confirm(`Remove “${label}” from this building? The drawing itself stays in your uploads.`)) ws.actions.removeSheet(v.drawing_id);
   };
+  // the menu closes on a click elsewhere or Escape
+  useEffect(() => {
+    if (!menu) return;
+    const close = (e: Event) => { if (e instanceof KeyboardEvent ? e.key === 'Escape' : true) setMenu(false); };
+    window.addEventListener('pointerdown', close);
+    window.addEventListener('keydown', close);
+    return () => { window.removeEventListener('pointerdown', close); window.removeEventListener('keydown', close); };
+  }, [menu]);
   return (
-    <div className={`trow${on ? ' on' : ''}`}>
+    <div className={`trow${on ? ' on' : ''}${menu ? ' menu-open' : ''}`}>
       <button className="pick" title={label} onClick={() => ws.actions.selectSheet(v.drawing_id)}>
         <span className={`dot ${status}`} /><span className="lab">{label}</span>
       </button>
       {status === 'pending' && canPlace
         ? <button className="placebtn" onClick={place}>Place</button>
         : <small>{kindOf(v.kind).label}</small>}
-      <span className="acts">
-        {canPlace && status === 'placed' && <button title="Place again" aria-label={`Place ${label} again`} onClick={place}><Icon name="target" /></button>}
-        <button className="rm" title="Remove from building" aria-label={`Remove ${label} from the building`} onClick={remove}><Icon name="trash" /></button>
+      <span className="more" onPointerDown={(e) => e.stopPropagation()}>
+        <button aria-label={`More for ${label}`} aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((m) => !m)}>⋯</button>
+        {menu && (
+          <span className="menu" role="menu">
+            {canPlace && <button role="menuitem" onClick={place}><Icon name="target" />{status === 'placed' ? 'Place again' : 'Place in building'}</button>}
+            <button role="menuitem" className="rm" onClick={remove}><Icon name="trash" />Remove from building</button>
+          </span>
+        )}
       </span>
     </div>
   );

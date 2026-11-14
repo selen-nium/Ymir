@@ -13,6 +13,7 @@ const PATHS = {
   focus: <><path d="M12 4l9 5-9 5-9-5z" /><path d="M3 15l9 5 9-5" opacity=".35" /></>,
   plus: <path d="M12 5v14M5 12h14" />,
   trash: <path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" />,
+  eye: <><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></>,
   eyeOff: <><path d="M3 3l18 18" /><path d="M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a16 16 0 0 1-3.1 3.6M6.4 7.6C4.2 9.2 3 12 3 12s4 6 9 6a8.8 8.8 0 0 0 3.6-.8" /></>,
   target: <><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="2.5" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></>,
   download: <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />,

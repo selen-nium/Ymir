@@ -17,6 +17,8 @@
 .sheethead small { color: var(--ink-3); font-size: 11px; }
 .sheethead b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sheethead span { color: var(--ink-2); font-size: 12px; }
+.sheethead.ghost { border-style: dashed; border-color: var(--answer); }
+.vnote .spin { display: inline-block; vertical-align: -2px; margin-right: 6px; width: 12px; height: 12px; }
 
 /* Sheet rail */
 .cover { margin: 10px 14px 2px; }
@@ -40,13 +42,16 @@
 .trow > button.pick { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; border: 0; background: none; padding: 6px 0; text-align: left; }
 .trow .lab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .trow small { margin-left: auto; color: var(--ink-3); font-size: 11.5px; white-space: nowrap; }
-.trow .acts { display: none; gap: 2px; }
-.trow:hover .acts, .trow:focus-within .acts, .trow.on .acts { display: flex; }
-.trow:hover small, .trow:focus-within small, .trow.on small { display: none; }
-.trow .acts button { width: 24px; height: 24px; display: grid; place-items: center; border: 0; border-radius: 6px; background: none; color: var(--ink-2); }
-.trow .acts button:hover { background: var(--line); color: var(--ink); }
-.trow .acts button.rm:hover { color: var(--flag); }
-.trow .acts .icon { width: 14px; height: 14px; }
+/* The row's menu keeps its space at all times, so nothing moves under the pointer */
+.trow .more { position: relative; flex: none; visibility: hidden; }
+.trow:hover .more, .trow:focus-within .more, .trow.on .more, .trow.menu-open .more { visibility: visible; }
+.trow .more > button { width: 24px; height: 24px; border: 0; border-radius: 6px; background: none; color: var(--ink-2); font-size: 16px; line-height: 1; }
+.trow .more > button:hover, .trow.menu-open .more > button { background: var(--line); color: var(--ink); }
+.trow .menu { position: absolute; right: 0; top: 28px; z-index: 20; display: flex; flex-direction: column; min-width: 190px; padding: 4px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px rgba(40, 30, 10, .14); }
+.trow .menu button { display: flex; align-items: center; gap: 8px; border: 0; background: none; text-align: left; padding: 7px 9px; border-radius: 7px; font-size: 13px; color: var(--ink); white-space: nowrap; }
+.trow .menu button:hover, .trow .menu button:focus-visible { background: var(--bg); }
+.trow .menu button.rm { color: var(--flag); }
+.trow .menu .icon { width: 14px; height: 14px; }
 .trow .placebtn { border: 1px solid var(--place); color: var(--place); background: #fff; border-radius: 6px; font-size: 11.5px; padding: 1px 7px; }
 .trow .placebtn:hover { background: var(--place); color: #fff; }
 .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; box-sizing: border-box; }
@@ -123,10 +128,10 @@
 .msg.a.review .act { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
 .spin { width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--answer); border-radius: 50%; animation: spin .8s linear infinite; flex: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
-cite { font-style: normal; display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 4px; margin: 0 1px; border-radius: 9px; background: var(--answer); color: #fff; font-size: 11px; font-weight: 600; vertical-align: 1px; cursor: pointer; }
+button.cite { display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 4px; margin: 0 1px; border: 0; border-radius: 9px; background: var(--answer); color: #fff; font-size: 11px; font-weight: 600; line-height: 1; vertical-align: 1px; cursor: pointer; }
 .cites { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-2); }
 .cites div { display: flex; gap: 6px; align-items: center; }
-.cites cite { min-width: 15px; height: 15px; font-size: 10px; }
+.cites button.cite { min-width: 15px; height: 15px; font-size: 10px; }
 .warn { color: var(--accent); font-weight: 500; }
 .mark { margin-top: 6px; font-size: 12px; color: var(--ink-2); display: flex; gap: 6px; align-items: center; }
 .mark.ok { color: var(--ok); }
@@ -136,7 +141,16 @@ cite { font-style: normal; display: inline-grid; place-items: center; min-width:
 .needs { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; border: 1.5px dashed var(--answer); color: var(--answer); background: none; border-radius: 9px; padding: 4px 10px; font-size: 12.5px; }
 .needs:hover { background: #eef3fe; }
 .needs .icon { width: 14px; height: 14px; }
-.sugg { display: flex; gap: 6px; padding: 0 12px 8px; overflow-x: auto; scrollbar-width: none; }
+.sugg { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
+.starter { margin: auto 0; display: flex; flex-direction: column; gap: 8px; padding: 4px 2px; }
+.starter p { margin: 0 0 6px; color: var(--ink-2); font-size: 13px; text-align: center; }
+.starter-h { font-size: 11.5px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .04em; }
+.starter-q { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 11px 14px; font-size: 14px; }
+.starter-q .icon { margin-left: auto; width: 15px; height: 15px; color: var(--ink-3); }
+.starter-q:hover { border-color: var(--answer); color: var(--answer); }
+.starter-q:hover .icon { color: var(--answer); }
+.scope { margin: -2px 0 5px; font-size: 11.5px; color: var(--ink-2); font-weight: 500; }
+.row.nowrap { flex-wrap: nowrap; }
 .sugg button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 16px; padding: 5px 10px; font-size: 12.5px; color: var(--ink-2); }
 .sugg button:hover { border-color: var(--answer); color: var(--answer); }
 .composer { display: flex; gap: 6px; margin: 0 12px 12px; padding: 5px 5px 5px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
@@ -171,7 +185,9 @@ cite { font-style: normal; display: inline-grid; place-items: center; min-width:
 .vnote { position: absolute; left: 12px; top: 12px; z-index: 3; max-width: calc(100% - 24px); background: rgba(255, 255, 255, .94); border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px; font-size: 12.5px; color: var(--ink-2); pointer-events: none; }
 .vnote b { color: var(--ink); font-weight: 500; }
 .vnote.place { border-color: var(--place); }
-.ws-status { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); text-align: center; }
+.ws-status { grid-row: 2 / -1; grid-column: 1 / -1; z-index: 30; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); text-align: center; padding: 24px; }
+.ws-status h1 { margin: 0 0 8px; font-size: 22px; font-weight: 600; color: var(--ink); }
+.ws-status p { margin: 0 0 18px; }
 
 /* Trace */
 .trace { margin: 0 16px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow: hidden; }
@@ -183,7 +199,7 @@ cite { font-style: normal; display: inline-grid; place-items: center; min-width:
 .trace.closed header button { transform: rotate(180deg); }
 .trace .chartwrap { overflow-x: auto; border-top: 1px solid var(--line); }
 .trace.closed .chartwrap { display: none; }
-.trace-chart { position: relative; height: 224px; min-width: 820px; }
+.trace-chart { position: relative; height: 224px; min-width: 600px; }
 .trace-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .tedge { fill: none; stroke: var(--line); stroke-width: 2; transition: stroke .3s; }
 .tedge.active { stroke: var(--answer); stroke-dasharray: 6 6; animation: flow .5s linear infinite; }
@@ -197,7 +213,7 @@ cite { font-style: normal; display: inline-grid; place-items: center; min-width:
 .tn-h { display: flex; align-items: center; gap: 6px; }
 .tn-h i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
 .tn-h b { font-weight: 600; }
-.tn-h span { margin-left: auto; font: 500 10px var(--mono); color: var(--ink-2); background: var(--bg); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+.tn-h span { margin-left: auto; font: 500 11px var(--mono); color: var(--ink-2); background: var(--bg); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
 .tn-o { margin-top: 2px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tnode.idle { opacity: .55; }
 .tnode.run { border-color: var(--answer); box-shadow: 0 0 0 3px rgba(37, 99, 235, .12); }

@@ -67,6 +67,13 @@ export interface WorkspaceState {
 }
 
 const IDLE_TRACE = 'Ask a question to see how it’s answered';
+/** The plan region of a sheet (its walls, else its plan box) as [x, y, w, h] in sheet px. */
+function planBox(d: Drawing): [number, number, number, number] | null {
+  const pts = d.walls.flatMap((w) => [w.a, w.b]);
+  if (!pts.length) { const b = d.plans?.[0]?.box; return b ? [b[0], b[1], b[2] - b[0], b[3] - b[1]] : null; }
+  const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+  return [Math.min(...xs), Math.min(...ys), Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
+}
 const DRAIN_QUESTION = 'Where does the main drain leave the building?';
 const uid = () => Math.random().toString(36).slice(2, 10);
 
@@ -207,7 +214,8 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     v3.viewer?.setKeepView(true);
     const d = drawings.get(baseView(project)?.drawing_id ?? project.sheets[0].drawing_id);
     touchRecent({ id: project.single ? project.sheets[0].drawing_id : project.id, type: project.single ? 'drawing' : 'project', title: project.title, thumbnail: d?.image.url });
-    setTab(thread.length ? 'ask' : 'build');
+    // straight to Ask, unless the opening sheet still needs the user in Build (scale, walls, kind)
+    setTab(thread.length || !steps().some((s) => s.state === 'you') ? 'ask' : 'build');
   }
   async function init(kind: 'building' | 'drawing', id: string) {
     try {
@@ -218,7 +226,8 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
         await openProject(local);
       } else await openProject(await api.loadProject(id));
     } catch (e) {
-      set({ status: 'error', error: (e as Error).message || 'This could not be opened.' });
+      const msg = (e as Error).message || '';
+      set({ status: 'error', error: /unknown/i.test(msg) ? `We couldn’t find this ${kind}.` : msg || `This ${kind} could not be opened.` });
     }
   }
 
@@ -240,6 +249,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     const ghostSel = get().ghostSel === id ? null : id;
     set({ ghostSel, viewMode: ghostSel && get().viewMode === 'one-model' ? 'both' : get().viewMode });
     refreshScene();
+    if (ghostSel) v3.viewer?.focusGhost(ghostSel);
   }
 
   /* ---------- Session events: what changes when the active sheet's Build state does ---------- */
@@ -287,7 +297,12 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if (!b || b.drawing_id === id) { toast('Add a floor plan first: it becomes the base'); return; }
     setDrawing(false);
     set({ open: 'place', viewMode: 'both', placing: { sheet: [], base: [], step: 'sheet', prev: { patch: overlay.patch?.[`${id}#0`], scale: S.scale, confirmed: S.scaleConfirmed } } });
-    v3.basePlan?.load({ ...drawings.get(b.drawing_id)!, walls: [], rooms: [] }, session.viewState());
+    const base = drawings.get(b.drawing_id)!;
+    v3.basePlan?.load({ ...base, walls: [], rooms: [] }, session.viewState());
+    // zoom both sheets to their plans: the points are easier to hit than on the whole sheet
+    const baseBox = planBox(base), ownBox = S.d ? planBox(S.d) : null;
+    if (baseBox) v3.basePlan?.fitBox(baseBox, 0.06);
+    if (ownBox) v3.plan?.fitBox(ownBox, 0.06);
     v3.basePlan?.setMode('point');
     v3.plan?.setMode('point');
     drawPoints();
@@ -332,6 +347,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     set({ placing: null });
     if (v.placement.type === 'plan' && v.placement.transform) session.setScale(scaleOf(v.placement.transform), true);
     drawPoints();
+    v3.plan?.fit();
     refreshScene();
     v3.viewer?.restoreView(cur?.view);
     setOpen('model');
@@ -349,6 +365,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     v3.basePlan?.setMode('select');
     v3.plan?.setMode('select');
     drawPoints();
+    v3.plan?.fit();
     refreshScene();
     v3.viewer?.restoreView(cur.view);
   }
@@ -428,8 +445,10 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     const extra = ghosts().some((g) => g.kind === 'plumbing') ? [DRAIN_QUESTION] : [];
     set({ suggestions: [...qs.slice(0, 5), ...extra] });
   }
+  /** The missing sheet an unanswered question needs: on the base (ground) level unless the question names one. */
   function ghostForEntry(e: Entry) {
-    return e.answer && e.answer.status !== 'answered' && P() ? ghostFor(P()!, e.answer, e.q, viewOf(e.sheet)?.placement.level) : null;
+    if (!e.answer || e.answer.status === 'answered' || !P()) return null;
+    return ghostFor(P()!, e.answer, e.q, baseView(P()!)?.placement.level ?? viewOf(e.sheet)?.placement.level);
   }
 
   function ask(question: string) {
