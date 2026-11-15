@@ -56,7 +56,7 @@ and render everything else from the workspace store (zustand).
 - **Build:** `build/pipeline.py` turns a plan image into a drawing payload: walls, doors and windows,
   estimated scale and rooms. Walls come from the Stoa Lens PNG-to-IFC converter in `research/stoa-lens`
   (`floorplan/converter.py`), run on a cleaned copy (`floorplan/clean.py`): glyph-sized text is removed, the
-  crop leaves out title blocks, legends and logos, and line drawings (CubiCasa scans, CAD sheets) are
+  crop targets a dominant plan while keeping multi-plan sheets whole, and line drawings (CubiCasa scans, CAD sheets) are
   darkened so double-line walls read as solid. Each wall's two faces are paired into one centreline at any
   angle, and walls run through the doors and windows the converter finds. The shown image keeps its text.
   WallNet is retired. Samples are prebuilt in `data/samples/` (`scripts/rebuild_sample_walls.py` rebuilds

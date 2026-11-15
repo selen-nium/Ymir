@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import pytest
 
 from ymir.build import build_drawing
 from ymir.build.floorplan.clean import clean_plan, drawing_box, remove_text, text_mask
@@ -69,6 +70,44 @@ def test_sheet_without_a_dominant_drawing_keeps_the_whole_image():
         x, y = 100 + 240 * i, 300
         cv2.rectangle(img, (x, y), (x + 120, y + 120), (0, 0, 0), 4)
     assert drawing_box(remove_text(img)[0]) == (0, 0, 1600, 1100)
+
+
+@pytest.mark.parametrize("outer", [(100, 100, 1100, 900), (30, 30, 1170, 970)])
+@pytest.mark.parametrize("detector", ["lines", "auto"])
+def test_long_exterior_walls_survive_crop_and_build(outer, detector):
+    img = sheet(w=1200, h=1000)
+    x0, y0, x1, y1 = outer
+    cv2.rectangle(img, (x0, y0), (x1, y1), (0, 0, 0), 8)
+    # An interior core is a separate ink cluster within the exterior walls.
+    cv2.rectangle(img, (300, 250), (850, 700), (0, 0, 0), 8)
+    cv2.line(img, (550, 250), (550, 700), (0, 0, 0), 8)
+    cv2.line(img, (300, 450), (850, 450), (0, 0, 0), 8)
+    raw = cv2.imencode(".png", img)[1].tobytes()
+    built = build_drawing(raw, drawing_id="t", title="t", dataset="test", kind="Plan", file="t.png", detector=detector)
+    cx0, cy0, cx1, cy1 = built.payload["source"]["crop"]
+    assert cx0 < x0 and cy0 < y0 and cx1 > x1 and cy1 > y1
+    points = [(p[0] + cx0, p[1] + cy0) for w in built.payload["walls"] for p in (w["a"], w["b"])]
+    assert min(p[0] for p in points) == pytest.approx(x0, abs=5)
+    assert max(p[0] for p in points) == pytest.approx(x1, abs=5)
+    assert min(p[1] for p in points) == pytest.approx(y0, abs=5)
+    assert max(p[1] for p in points) == pytest.approx(y1, abs=5)
+
+
+@pytest.mark.parametrize("second", [(900, 250, 1500, 850), (1000, 300, 1500, 850)])
+@pytest.mark.parametrize("detector", ["lines", "auto"])
+def test_multiple_substantial_plans_keep_both_buildings(second, detector):
+    img = sheet()
+    cv2.rectangle(img, (80, 180), (740, 900), (0, 0, 0), 8)
+    cv2.line(img, (400, 180), (400, 900), (0, 0, 0), 8)
+    x0, y0, x1, y1 = second
+    cv2.rectangle(img, (x0, y0), (x1, y1), (0, 0, 0), 8)
+    cv2.line(img, ((x0 + x1) // 2, y0), ((x0 + x1) // 2, y1), (0, 0, 0), 8)
+    raw = cv2.imencode(".png", img)[1].tobytes()
+    built = build_drawing(raw, drawing_id="t", title="t", dataset="test", kind="Plan", file="t.png", detector=detector)
+    assert built.payload["source"]["crop"] == [0, 0, 1600, 1100]
+    assert len(built.payload["rooms"]) == 4
+    assert any(w["a"][0] < 740 and w["b"][0] < 740 for w in built.payload["walls"])
+    assert any(w["a"][0] >= x0 and w["b"][0] >= x0 for w in built.payload["walls"])
 
 
 def test_build_reports_the_cleaning_and_keeps_the_original_image():

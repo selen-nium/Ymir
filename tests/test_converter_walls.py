@@ -67,6 +67,23 @@ def test_darken_fills_between_wall_faces_but_not_single_lines():
     assert (out[550, 420:480] > 200).all()  # inside the table circle stays paper
 
 
+def test_sparse_line_drawing_keeps_its_white_background_and_walls():
+    img = np.full((1100, 1600, 3), 255, np.uint8)
+    for off in (-7, 7):
+        cv2.rectangle(img, (200 + off, 200 + off), (600 - off, 450 - off), (150, 150, 150), 2)
+    out = darken(img)
+    assert (out[0, 0] == 255).all()
+    assert (out[200, 300] < 100).all()
+    built = build_drawing(png(img), drawing_id="t", title="t", dataset="test", kind="Plan", file="t.png")
+    assert len(built.payload["walls"]) == 4
+    assert len(built.payload["rooms"]) == 1
+
+
+def test_blank_sheet_stays_white_after_darkening():
+    img = np.full((1100, 1600, 3), 255, np.uint8)
+    assert np.array_equal(darken(img), img)
+
+
 @pytest.mark.parametrize("filled", [True, False])
 def test_build_uses_the_converter_for_both_drawing_styles(filled):
     built = build_drawing(png(plan(filled)), drawing_id="t", title="t", dataset="test", kind="Plan", file="t.png")

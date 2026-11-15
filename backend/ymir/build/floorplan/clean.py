@@ -5,9 +5,9 @@ works on ink connected components only (no OCR, no learned model):
 
 - Text: isolated components no bigger than a glyph are painted white. Solid square marks, such as
   columns, stay. So do words whose letters touch if they are dense like a filled bar.
-- Sheet furniture: lines spanning most of the sheet (frames, title-block dividers) are ignored while
-  finding the drawing. The crop is the largest cluster of remaining ink, so title blocks, legends and
-  logos beside the plan fall outside it.
+- Sheet furniture: lines reaching both opposite page edges (frames, title-block dividers) are ignored
+  while finding the drawing. The crop surrounds the main ink cluster; sheets with several substantial
+  drawings keep the whole image rather than discarding another plan.
 
 Thin lines are never removed: some drawing styles (CubiCasa) draw walls as thin double lines.
 """
@@ -84,19 +84,23 @@ def remove_text(bgr: np.ndarray) -> tuple[np.ndarray, int]:
 
 
 def _sheet_lines(ink: np.ndarray) -> np.ndarray:
-    """Straight lines spanning most of the sheet: frames, title-block and legend dividers."""
+    """Straight lines reaching both page edges: frames, title-block and legend dividers."""
     h, w = ink.shape
-    # 75%: a building's own outer walls can span most of an already-cropped image; dividers span it all.
-    across = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (int(0.75 * w), 1)))
-    down = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (1, int(0.75 * h))))
+    # Long exterior walls are still drawing geometry. Only ignore a line when both ends reach the
+    # outer 1% of the page; length alone cannot distinguish a building outline from a sheet frame.
+    mx, my = max(2, round(0.01 * w)), max(2, round(0.01 * h))
+    across = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (max(1, w - 2 * mx), 1)))
+    down = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (1, max(1, h - 2 * my))))
+    across[~(across[:, :mx].any(axis=1) & across[:, -mx:].any(axis=1))] = 0
+    down[:, ~(down[:my].any(axis=0) & down[-my:].any(axis=0))] = 0
     lines = cv2.dilate(across | down, np.ones((3, 3), np.uint8))
     return lines.astype(bool)
 
 
 def drawing_box(clean_bgr: np.ndarray) -> tuple[int, int, int, int]:
     """Box around the main drawing: the largest cluster of ink once sheet lines are ignored.
-    Clusters that overlap it, such as a balcony across a small gap, are kept with it. The margin
-    covers outer walls that were ignored as long lines."""
+    Clusters that overlap it, such as a balcony across a small gap, are kept with it. Multiple
+    substantial, separate clusters mean there is no single main drawing, so keep the whole sheet."""
     h, w = clean_bgr.shape[:2]
     pad = max(20, int(round(0.015 * max(h, w))))
     ink = (cv2.cvtColor(clean_bgr, cv2.COLOR_BGR2GRAY) < INK).astype(np.uint8)
@@ -119,6 +123,13 @@ def drawing_box(clean_bgr: np.ndarray) -> tuple[int, int, int, int]:
             if inside and (b[0] < main[0] or b[1] < main[1] or b[2] > main[2] or b[3] > main[3]):
                 main = [min(main[0], b[0]), min(main[1], b[1]), max(main[2], b[2]), max(main[3], b[3])]
                 grown = True
+    main_area = (main[2] - main[0]) * (main[3] - main[1])
+    for b, area in zip(boxes, areas):
+        separate = b[2] <= main[0] or b[0] >= main[2] or b[3] <= main[1] or b[1] >= main[3]
+        # A second large plan must not be mistaken for a legend. Treat either a comparable cluster
+        # or one covering 15% of the sheet as evidence that more than one drawing needs recognition.
+        if separate and (area >= 0.5 * main_area or area >= 0.15 * w * h):
+            return (0, 0, w, h)
     # The dilation grew each blob by r on every side; give it back, then add the padding.
     x0, y0, x1, y1 = main[0] + r - pad, main[1] + r - pad, main[2] - r + pad, main[3] - r + pad
     x0, y0, x1, y1 = max(0, x0), max(0, y0), min(w, x1), min(h, y1)
@@ -148,6 +159,12 @@ def darken(bgr: np.ndarray) -> np.ndarray:
     (furniture, dimensions) stay thin, and a thickness-based wall finder drops them."""
     gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
     lo, hi = np.percentile(gray, 0.5), np.percentile(gray, 60)  # darkest ink to paper
+    if hi <= lo:
+        # Sparse drawings can put both percentiles on white paper. Use their actual ink minimum;
+        # a uniform sheet has no contrast to stretch and must keep its original background.
+        lo = float(gray.min())
+        if hi <= lo:
+            return bgr.copy()
     level = np.clip((gray.astype(np.float32) - lo) / max(float(hi - lo), 1.0), 0, 1) ** 2  # gamma 2 darkens greys
     out = (level * 255).astype(np.uint8)
     band = max(4, glyph_limit(*gray.shape) // 2)  # widest gap filled between two face lines
