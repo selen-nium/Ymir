@@ -18,7 +18,7 @@ const FEATURES = [
 ];
 const STEPS = [
   ['Import', 'Upload a PDF, image, IFC or SVG. Ymir keeps the original and its SHA-256, then prepares the PDF pages, IFC storey or SVG rooms you pick.'],
-  ['Build', 'Text and title blocks are cleared from a working copy, WallNet (or OpenCV lines) traces the walls, and rooms and an estimated scale complete the 3D model.'],
+  ['Build', 'A working copy has text removed and its plan region selected. The Stoa Lens converter traces walls, doors and windows; rooms and an estimated scale complete the model.'],
   ['Assemble', 'Place sheets in one building at their levels. Ghosts show expected plans that are still missing; clicking one asks for that sheet.'],
   ['Ask', 'A job snapshots up to three sheets. DeepSeek plans the tool calls, the tools return evidence, and Ymir checks it before computing the answer.'],
 ];
@@ -27,7 +27,7 @@ const STACK: [string, [string, string?][]][] = [
   ['API & state', [['FastAPI', 'NDJSON'], ['SQLite', 'jobs, budget'], ['Pydantic', 'validation'], ['Modal', 'CPU container'], ['Python']]],
   ['Ask', [['DeepSeek', 'planner · Verda'], ['D‑FINE‑L', 'Modal GPU'], ['Kimi', 'Verda'], ['VISTA', 'crops, pixels']]],
   ['Sources & rooms', [['PyMuPDF', 'PDF text'], ['IfcOpenShell', 'IFC spaces'], ['SVG', 'room outlines'], ['Raster2Seq', 'Modal GPU'], ['Shapely', 'areas']]],
-  ['Model building', [['WallNet', 'walls'], ['OpenCV', 'text cleanup'], ['NumPy'], ['Pillow', 'images']]],
+  ['Model building', [['Stoa Lens', 'walls'], ['OpenCV', 'cleanup'], ['NumPy'], ['Pillow', 'images']]],
 ];
 
 export default function LandingPage() {

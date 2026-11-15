@@ -20,7 +20,7 @@ export function ArchitectureDiagram() {
   return (
     <svg viewBox="0 0 1160 710" role="img" aria-labelledby="architecture-title architecture-description">
       <title id="architecture-title">Ymir architecture</title>
-      <desc id="architecture-description">The Vercel frontend calls a FastAPI backend on a Modal CPU container. Import preserves originals and canonical sheets. Build clears text from a working copy, then uses WallNet or OpenCV to find walls for the model. Ask snapshots one to three sheets in a durable, single-worker queue. DeepSeek on Verda takes simple one-page counts through a compact counter and other questions through counter or room agents. It calls VISTA, D-FINE-L on a Modal GPU for its fourteen trained object classes, Kimi on Verda for other classes, native PDF text, native or Raster2Seq room geometry, and calibrated measurement tools. The host validates proposal IDs and polygons, computes counts and measurements, and streams evidence or a needs_review result. SQLite retains jobs, events, reviews and the budget. Shapely supports polygon checks and area calculations.</desc>
+      <desc id="architecture-description">The Vercel frontend calls a FastAPI backend on a Modal CPU container. Import preserves originals and canonical sheets. Build clears text from a working copy, then uses the Stoa Lens converter to find walls, doors and windows for the model. Ask snapshots one to three sheets in a durable, single-worker queue. DeepSeek on Verda takes simple one-page counts through a compact counter and other questions through counter or room agents. It calls VISTA, D-FINE-L on a Modal GPU for its fourteen trained object classes, Kimi on Verda for other classes, native PDF text, native or Raster2Seq room geometry, and calibrated measurement tools. The host validates proposal IDs and polygons, computes counts and measurements, and streams evidence or a needs_review result. SQLite retains jobs, events, reviews and the budget. Shapely supports polygon checks and area calculations.</desc>
       <defs>
         <marker id="architecture-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b9b2a4" /></marker>
         <marker id="architecture-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb" /></marker>
@@ -37,7 +37,7 @@ export function ArchitectureDiagram() {
 
       <text className={s.dgZl} x={276} y={74}>IMPORT & BUILD</text>
       {box(276, 86, 220, 64, 'Import sources', 'PDF pages · images · IFC/SVG')}
-      {box(526, 86, 260, 64, 'Build model', 'text cleared · WallNet / OpenCV walls')}
+      {box(526, 86, 260, 64, 'Build model', 'text cleanup · Stoa wall geometry')}
       {box(826, 86, 300, 64, 'Drawing store', 'originals · hashes · canonical sheets')}
       <path className={s.dgLine} d="M496 118h30M786 118h40" markerEnd="url(#architecture-arrow)" />
       <path className={s.dgLine} d="M976 150v30H386v44" markerEnd="url(#architecture-arrow)" />
