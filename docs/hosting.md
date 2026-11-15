@@ -45,7 +45,9 @@ python scripts/upload_modal_state.py --state var
 YMIR_CORS_ORIGINS=https://your-project.vercel.app python -m modal deploy deploy/modal_app.py
 ```
 
-The importer refuses an active worker or existing remote files. The hosted API
+The importer refuses an active worker or existing remote files. Uploaded document
+paths resolve against the current workspace when read, so the preserved drawing
+records work after moving to `/data` without rewriting historical JSON. The hosted API
 refuses to start without the existing ledger. Do not run local and hosted writers
 against divergent copies of that ledger. Historical conversations keep their job
 references because the migration retains IDs and artifacts.

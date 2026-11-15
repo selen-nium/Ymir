@@ -26,6 +26,29 @@ class DrawingStore:
                 return folder
         raise KeyError(drawing_id)
 
+    def _relocate_uploaded_source(self, source: dict) -> dict:
+        """Resolve preserved document paths after moving the workspace directory.
+
+        Historical JSON stays byte-identical. Only paths inside this drawing's
+        document may resolve against the current workspace's document folder.
+        """
+        document_id=source.get('document_id')
+        if not isinstance(document_id,str) or not ID.fullmatch(document_id):return source
+        folder=(self.uploads.parent/'documents'/document_id).resolve()
+        def relocate(value):
+            if isinstance(value,dict):return {k:relocate(v) for k,v in value.items()}
+            if isinstance(value,list):return [relocate(v) for v in value]
+            if not isinstance(value,str) or not Path(value).is_absolute():return value
+            parts=Path(value).parts
+            for index in range(len(parts)-1):
+                if parts[index:index+2]!=('documents',document_id):continue
+                suffix=parts[index+2:]
+                if '..' in suffix:return value
+                target=folder.joinpath(*suffix).resolve()
+                if target.is_relative_to(folder) and target.exists():return str(target)
+            return value
+        return relocate(source)
+
     def raw(self, drawing_id: str) -> dict:
         folder=self._folder(drawing_id)
         d=json.loads((folder / f"{drawing_id}.json").read_text())
@@ -33,6 +56,8 @@ class DrawingStore:
             source=d.get('lens_source',{})
             for key in ('image','pdf'):
                 if source.get(key) and not Path(source[key]).is_absolute():source[key]=str((self.samples/source[key]).resolve())
+        elif folder==self.uploads and d.get('lens_source'):
+            d['lens_source']=self._relocate_uploaded_source(d['lens_source'])
         return d
 
     def catalog(self) -> dict | None:

@@ -82,6 +82,7 @@ def health():
     return {"status": "ok", "models": ["Ymir"], "lens": readiness(jobs.budget)}
 
 
+@app.head("/api/library", include_in_schema=False)
 @app.get("/api/library")
 def library():
     return store.library()
