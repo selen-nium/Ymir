@@ -14,7 +14,7 @@ from PIL import Image
 from stoa_lens.budget import BudgetError, LensBudget
 from stoa_lens.model_config import ARGON, DEEPSEEK, SOL, PROVIDERS, resolve
 from stoa_lens.transport import OpenRouterTransport, catalog_path, refresh_pricing, validate_catalog
-from stoa_lens.streaming import Accumulator
+from stoa_lens.streaming import Accumulator, EmptyAssistantResponse, require_assistant_payload
 from stoa_lens.registry import Registry
 from stoa_lens.detection import DetectionService, DetectionError
 from stoa_lens.bound_counter import RoutedBoundDetector
@@ -164,7 +164,8 @@ def test_stream_assembly_and_continuation_are_lossless(tmp_path):
     assert bodies[0]['messages'][0]==message
 
 
-def test_sdk_has_no_retries_and_retains_reasoning(tmp_path, monkeypatch):
+@pytest.mark.parametrize('empty', [False, True])
+def test_sdk_has_no_retries_and_retains_reasoning(tmp_path, monkeypatch, empty):
     import asyncio
     import openai
     from stoa_lens.streaming import stream_sdk
@@ -174,7 +175,7 @@ def test_sdk_has_no_retries_and_retains_reasoning(tmp_path, monkeypatch):
     class Stream:
         def __aiter__(self):return self
         async def __anext__(self):
-            if getattr(self,'done',False):raise StopAsyncIteration
+            if empty or getattr(self,'done',False):raise StopAsyncIteration
             self.done=True;return Chunk()
         async def close(self):options['closed']=True
     class Raw:
@@ -187,10 +188,39 @@ def test_sdk_has_no_retries_and_retains_reasoning(tmp_path, monkeypatch):
         async def create(self,**kwargs):options['body']=kwargs;return Raw()
     monkeypatch.setattr(openai,'AsyncOpenAI',Client)
     body={'provider':{'only':['openai'],'allow_fallbacks':False,'require_parameters':True},'model':SOL}
-    result=asyncio.run(stream_sdk(body,'fixture',time.monotonic()+10,tmp_path/'chunks.jsonl',tmp_path/'headers.json'))
+    if empty:
+        with pytest.raises(EmptyAssistantResponse):
+            asyncio.run(stream_sdk(body,'fixture',time.monotonic()+10,tmp_path/'chunks.jsonl',tmp_path/'headers.json'))
+        assert (tmp_path/'chunks.jsonl').read_text()=='' and options['closed']
+    else:
+        result=asyncio.run(stream_sdk(body,'fixture',time.monotonic()+10,tmp_path/'chunks.jsonl',tmp_path/'headers.json'))
+        assert result['message']['reasoning_details'][0]['data']=='opaque' and options['closed']
     assert options['max_retries']==0 and options['base_url']=='https://openrouter.ai/api/v1'
     assert options['body']['extra_body']['provider']==body['provider']
-    assert result['message']['reasoning_details'][0]['data']=='opaque' and options['closed']
+
+
+def test_empty_stream_is_not_accepted_or_replayed_and_holds_unknown_billing(tmp_path):
+    calls=[]
+    def requester(body, deadline, directory):
+        calls.append(copy.deepcopy(body))
+        (directory/'chunks.jsonl').write_text('')
+        return {'id':None,'model':None,'provider':None,'message':{'role':'assistant','content':None},
+                'usage':None,'finish_reason':None}
+    t=transport(tmp_path,'frontier',requester)
+    with pytest.raises(EmptyAssistantResponse):t.complete([],[],time.monotonic()+10,0)
+    assert len(calls)==1
+    charge=t.budget.summary()['charges'][0]
+    assert charge['status']=='unknown' and charge['actual_usd'] is None
+    failure=json.loads((t.directory/'api/response-00/failure.json').read_text())
+    assert failure['error_type']=='EmptyAssistantResponse' and failure['reservation_state']=='unknown'
+    assert (t.directory/'api/response-00/chunks.jsonl').read_text()==''
+
+
+def test_assistant_payload_accepts_tools_and_refusals_without_claiming_a_text_answer():
+    for message in ({'content':None}, {'content':'  '}, {'content':None,'reasoning':'thinking only'}):
+        with pytest.raises(EmptyAssistantResponse):require_assistant_payload(message)
+    require_assistant_payload({'content':None,'tool_calls':[{'id':'call'}]})
+    require_assistant_payload({'content':None,'refusal':'Cannot comply'})
 
 
 def test_historical_ledger_is_unchanged_and_legacy_reservations_rejected(tmp_path):

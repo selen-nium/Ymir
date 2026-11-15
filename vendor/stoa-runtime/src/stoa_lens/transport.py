@@ -19,7 +19,7 @@ from stoa_vista_specialists.specialists.detectors import PROMPT, SpecialistRespo
 from .budget import BudgetError
 from .model_config import ARGON, DEEPSEEK, SOL, MAX_TOKENS, PROVIDERS, provider_home, resolve, validate
 from .pacing import Pacer
-from .streaming import stream_sdk
+from .streaming import stream_sdk, require_assistant_payload
 
 BASE = 'https://openrouter.ai/api/v1'
 MAX_PRICE_AGE_SECONDS = 86400
@@ -276,6 +276,7 @@ class OpenRouterTransport:
             if response.get('finish_reason') in ('length', 'error', 'content_filter'): raise ValueError('Provider response incomplete')
             message = response.get('message')
             if not isinstance(message, dict) or message.get('role') != 'assistant': raise ValueError('Malformed assistant response')
+            require_assistant_payload(message)
             return message, receipt
         except BaseException as exc:
             status = getattr(exc, 'status_code', None); http = getattr(exc, 'response', None)

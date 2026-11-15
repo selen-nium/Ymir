@@ -88,3 +88,5 @@ same sequenced durable log, and reconnect uses the existing `after` cursor witho
 resubmitting a question. The UI distinguishes sending, an actual queued job, model
 work, tool work and final checks, and shows elapsed time while a request is active.
 See [Modal streaming delivery](https://modal.com/docs/guide/streaming-endpoints).
+
+An empty provider stream is recorded as `EmptyAssistantResponse`, with its raw stream and unknown billing reservation retained. One subsequent conversation response may continue the recorded plan using remaining tools, within the original response and deadline allowances. The SDK never replays the HTTP request. A second empty response proceeds to bounded finalization; an empty final response stops. This prevents an empty stream from being mistaken for an invalid final answer that disables detail inspection.
