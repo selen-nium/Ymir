@@ -4,7 +4,7 @@ import { loadBuildTrace, loadDrawing } from './api';
 import type { Answer, Box, Citation, Drawing, Pt, TraceEvent, Wall } from './types';
 import {countNoun} from './count-language';
 import {applyReviews} from './answer-presentation';
-import {windowLayout, type ModelWindow} from './window-model';
+import {detectedOpenings, windowLayout, withDetected, type ModelWindow} from './window-model';
 export {countNoun} from './count-language';
 
 export const wallPx = (w: Pick<Wall, 'a' | 'b'>) => Math.hypot(w.b[0] - w.a[0], w.b[1] - w.a[1]);
@@ -121,8 +121,14 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
   const emit = (type: SessionEvent) => { version += 1; listeners.forEach((f) => f(type)); };
   const removedIds = () => new Set([...s.decisions].filter(([, k]) => !k).map(([id]) => id));
   const drawing = () => { if (!s.d) throw new Error('No drawing open'); return s.d; };
-  const modelWindows = (): ModelWindow[] => s.reviewShown && s.review?.cls === 'window'
-    ? s.review.items.filter(i=>i.counted).map(i=>({id:i.id,sheet:s.d!.id,box:i.box,verified:false})) : s.verifiedWindows;
+  // While windows are being reviewed, the review's boxes stand in for windows (detected doors stay).
+  // Otherwise people's reviewed windows, plus the doors and windows Build detected.
+  const modelWindows = (): ModelWindow[] => {
+    const detected = s.d ? detectedOpenings(s.d, s.d.id) : [];
+    return s.reviewShown && s.review?.cls === 'window'
+      ? [...s.review.items.filter(i=>i.counted).map(i=>({id:i.id,sheet:s.d!.id,box:i.box,verified:false})), ...detected.filter(o=>o.kind==='door')]
+      : withDetected(s.verifiedWindows, detected);
+  };
 
   function clampBox(box: Box): Box | null {
     const [w, h] = drawing().image.size;
@@ -248,7 +254,11 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
     setVerifiedWindows(windows: ModelWindow[]) { s.verifiedWindows=windows;emit('review'); },
     windowSummary() {
       const layout=windowLayout(s.d?.walls ?? [],modelWindows(),removedIds());
-      return {placed:layout.placed.length,unplaced:layout.unplaced.length,preview:s.reviewShown && s.review?.cls==='window'};
+      const detected=layout.placed.filter(w=>w.detected);
+      // Reviewed and detected openings are counted apart: only people's labels are "verified".
+      return {placed:layout.placed.filter(w=>!w.detected).length,unplaced:layout.unplaced.filter(w=>!w.detected).length,
+        detectedWindows:detected.filter(w=>w.kind!=='door').length,detectedDoors:detected.filter(w=>w.kind==='door').length,
+        preview:s.reviewShown && s.review?.cls==='window'};
     },
     citationBox(c: Citation): Box | null {
       const d = s.d;

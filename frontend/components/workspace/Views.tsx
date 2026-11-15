@@ -119,9 +119,12 @@ function Note3D() {
   else if (v?.placement.type === 'attached') text = `${kindOf(v.kind).label} sheets are linked to the building, not placed in 3D`;
   else if (v && !isPlaced(v)) text = 'Not placed yet · use Place in the sheet list or in Build';
   else if(v?.kind==='floor_plan') {
-    const windows=ws.session.windowSummary();
-    if(windows.placed || windows.unplaced)text=<>
-      {windows.preview?'Preview · ':''}{windows.placed} {windows.preview?'':'verified '}window{windows.placed===1?'':'s'} · height estimated
+    const windows=ws.session.windowSummary(), plural=(n:number,word:string)=>`${n} ${word}${n===1?'':'s'}`;
+    const parts=[windows.placed ? plural(windows.placed,windows.preview?'window':'verified window') : '',
+      windows.detectedWindows ? plural(windows.detectedWindows,'detected window') : '',
+      windows.detectedDoors ? plural(windows.detectedDoors,'detected door') : ''].filter(Boolean);
+    if(parts.length || windows.unplaced)text=<>
+      {windows.preview?'Preview · ':''}{parts.join(' · ')}{parts.length ? ' · height estimated' : ''}
       {windows.unplaced>0 && <><br />{windows.unplaced} label{windows.unplaced===1?' needs':'s need'} a wall</>}
     </>;
   }

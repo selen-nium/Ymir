@@ -25,6 +25,8 @@ export interface Located {
   box: Box;
   text?: string;
 }
+/** A door or window found by Build's wall finder (its gap scan), in image pixels. */
+export interface Opening extends Located { kind?: 'door' | 'window' }
 
 export interface Drawing {
   id: string;
@@ -41,7 +43,7 @@ export interface Drawing {
   rooms: Room[];
   texts: Located[];
   symbols: Located[];
-  openings: Located[];
+  openings: Opening[];
 }
 
 export interface LibraryEntry {

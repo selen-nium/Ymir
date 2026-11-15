@@ -13,7 +13,7 @@ import {
 } from './persist';
 import { createSession, needsReview, type ReviewRecord, type Selection, type Snapshot } from './session';
 import {applyReviews, latestReviews, savedReview} from './answer-presentation';
-import {reviewedWindows} from './window-model';
+import {detectedOpenings, reviewedWindows, withDetected} from './window-model';
 import { buildSteps } from './steps';
 import { toast } from './toast';
 import type { Plan } from './plan2d';
@@ -171,7 +171,8 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
       if (o.placement.type === 'plan') {
         const y = levelY(o.placement.level);
         others.push({ id: o.drawing_id, drawing: d, place: { type: 'plan', t: tOf(o)!, y }, walls: o.kind === 'floor_plan',
-          height: levelOf(o.placement.level)?.height_m ?? 3, faded: y > fadeY + 0.1, windows:reviewedWindows(sheetReviews.get(o.drawing_id) ?? [],o.drawing_id) });
+          height: levelOf(o.placement.level)?.height_m ?? 3, faded: y > fadeY + 0.1,
+          windows:withDetected(reviewedWindows(sheetReviews.get(o.drawing_id) ?? [],o.drawing_id),detectedOpenings(d,o.drawing_id)) });
       } else if (o.placement.type === 'elevation') {
         others.push({ id: o.drawing_id, drawing: d, place: { type: 'elevation', y: levelY(o.placement.level) },
           frame: elevationFrame(o.placement), active: o.drawing_id === id });

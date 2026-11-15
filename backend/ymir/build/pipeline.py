@@ -200,7 +200,8 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
          f"{cleaning['text_marks_removed']} text marks removed · plan cropped" if cleaning else "Plan region cropped",
          t_plan if cleaning else 30),
         ("walls", "Detect walls", "WallNet" if learned else "Stoa wall model" if ext.get("vectorized") else "OpenCV lines", ["plan"], "done",
-         f"{len(out_walls)} walls found" + "".join(f" · {sum(o['kind'] == k for o in ext['openings'])} {k}s" for k in ("door", "window") if ext.get("openings"))
+         f"{len(out_walls)} walls found" + "".join(f" · {n} {k}{'' if n == 1 else 's'}" for k in ("door", "window") if ext.get("openings")
+                                                   for n in [sum(o["kind"] == k for o in ext["openings"])])
          + (" · line drawing darkened" if ext.get("line_drawing") else ""), ext["seconds"] * 1000),
         *([("text", "Read text", "Text extraction", ["plan"], "done", f"{len(labels)} labels", t_ocr)] if labels else []),
         ("scale", "Read scale", "Source metadata" if sheet else "Estimate", ["plan"], "done",

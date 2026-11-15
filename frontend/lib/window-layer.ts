@@ -1,10 +1,14 @@
-// Keyed window meshes keep their identity through label edits and interrupted animations.
+// Keyed window and door meshes keep their identity through label edits and interrupted animations.
 import * as THREE from 'three';
 import {openingSpans, type WallWindow} from './window-model';
 import type {Wall} from './types';
 
 interface Pose { x:number; z:number; center:number; width:number; height:number; sill:number; depth:number; angle:number; opacity:number }
-interface Item { id:string; wallId:string; mesh:THREE.Group; from:Pose; to:Pose; current:Pose; started:number; duration:number; removing:boolean; verified:boolean; signature:string; flash:boolean }
+interface Item { id:string; wallId:string; door:boolean; detected:boolean; mesh:THREE.Group; from:Pose; to:Pose; current:Pose; started:number; duration:number; removing:boolean; verified:boolean; signature:string; flash:boolean }
+// Frames: people's reviewed windows grey, review proposals orange, openings Build detected slate.
+const FRAME={verified:0x4a5357,proposal:0xc94b1f,detected:0x5f7383};
+/** Schematic heights as shares of the storey: a window from 32% to 78%, a door from the floor to 78%. */
+export const OPENING={sill:.32,head:.78};
 const ease=(t:number)=>t===1?1:1-2**(-10*t);
 const thickness=(w:Wall,scale:number)=>w.thickness_px && w.thickness_px*scale>=.06 && w.thickness_px*scale<=.6?w.thickness_px*scale:.2;
 export const wallThickness=thickness;
@@ -24,25 +28,36 @@ function makeWindow() {
   group.userData={pane,mullion,frame,glass};
   return group;
 }
+function makeDoor() {
+  const group=new THREE.Group();
+  const frame=new THREE.MeshStandardMaterial({color:FRAME.detected,roughness:.65});
+  const leaf=new THREE.MeshStandardMaterial({color:0xb08a64,roughness:.8});
+  const panel=new THREE.Mesh(new THREE.BoxGeometry(.94,.97,.12),leaf);panel.position.y=-.015;group.add(panel);
+  const head=new THREE.Mesh(new THREE.BoxGeometry(1,.03,1),frame);head.position.y=.485;group.add(head);
+  for(const x of [-.49,.49]){const post=new THREE.Mesh(new THREE.BoxGeometry(.02,1,1),frame);post.position.x=x;group.add(post);}
+  group.userData={frame,leaf};
+  return group;
+}
 
 export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
-  const group=new THREE.Group();group.name='Reviewed windows';
+  const group=new THREE.Group();group.name='Windows and doors';
   const items=new Map<string,Item>();
   function render(item:Item,progress:number) {
     const p=item.current;
     item.mesh.position.set(p.x,p.sill+p.height/2,p.z);
     item.mesh.rotation.y=p.angle;item.mesh.scale.set(Math.max(.00001,p.width),p.height,p.depth*.82);
-    const {frame,glass,mullion,pane}=item.mesh.userData;
-    frame.color.set(item.verified?0x4a5357:0xc94b1f);
+    const {frame,glass,mullion,pane,leaf}=item.mesh.userData;
+    frame.color.set(item.verified?FRAME.verified:item.detected?FRAME.detected:FRAME.proposal);
     if(item.flash)frame.color.lerp(new THREE.Color(0x2563eb),1-progress);
     frame.transparent=p.opacity<1;frame.opacity=p.opacity;
+    item.mesh.userData.verified=item.verified;
+    item.mesh.userData.windowId=item.id;
+    if(item.door){leaf.transparent=p.opacity<1;leaf.opacity=p.opacity;return;}
     glass.opacity=(.42+.18*(item.flash?1-progress:0))*p.opacity;
     // On confirmation the pane closes from its outer edge into the frame.
     const reveal=item.flash?Math.max(.04,ease(progress)):1;
     pane.scale.x=reveal;pane.position.x=-(.96*(1-reveal))/2;
     mullion.visible=p.width>1.2;
-    item.mesh.userData.verified=item.verified;
-    item.mesh.userData.windowId=item.id;
   }
   function frame(now=performance.now()): Set<string> {
     const changed=new Set<string>();
@@ -65,10 +80,11 @@ export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
     for(const window of windows) {
       const wall=walls.find(w=>w.id===window.wallId);if(!wall)continue;
       const length=Math.hypot(wall.b[0]-wall.a[0],wall.b[1]-wall.a[1]);
-      const center=(window.start+window.end)/2;
+      const center=(window.start+window.end)/2, door=window.kind==='door';
+      const sill=door?0:height*OPENING.sill;
       const to:Pose={x:(wall.a[0]+(wall.b[0]-wall.a[0])*center/length)*scale,z:(wall.a[1]+(wall.b[1]-wall.a[1])*center/length)*scale,
-        center:center*scale,width:(window.end-window.start)*scale,height:height*.46,sill:height*.32,depth:thickness(wall,scale),angle:Math.atan2(-(wall.b[1]-wall.a[1]),wall.b[0]-wall.a[0]),opacity:1};
-      const key=`${window.sheet}:${window.id}@${wall.id}`;wanted.add(key);
+        center:center*scale,width:(window.end-window.start)*scale,height:height*OPENING.head-sill,sill,depth:thickness(wall,scale),angle:Math.atan2(-(wall.b[1]-wall.a[1]),wall.b[0]-wall.a[0]),opacity:1};
+      const key=`${window.sheet}:${door?'door':'window'}:${window.id}@${wall.id}`;wanted.add(key);
       const signature=JSON.stringify([to,window.verified]);
       const previous=items.get(key);
       if(previous?.signature===signature && !previous.removing){
@@ -76,9 +92,9 @@ export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
         continue;
       }
       const animated=animate && !reducedMotion();
-      const mesh=previous?.mesh ?? makeWindow();if(!previous)group.add(mesh);
+      const mesh=previous?.mesh ?? (door?makeDoor():makeWindow());if(!previous)group.add(mesh);
       const from=previous?{...previous.current}:{...to,width:animated ? .00001 : to.width,opacity:animated?0:1};
-      const item:Item={id:window.id,wallId:wall.id,mesh,from,to,current:{...from},started:now+(previous?0:Math.min(120,stagger++*35)),duration:animated?(previous?300:520):0,
+      const item:Item={id:window.id,wallId:wall.id,door,detected:!!window.detected,mesh,from,to,current:{...from},started:now+(previous?0:Math.min(120,stagger++*35)),duration:animated?(previous?300:520):0,
         removing:false,verified:window.verified,signature,flash:animated && window.verified && (!previous || !previous.verified)};
       if(!animated)item.current={...to};
       items.set(key,item);render(item,animated?0:1);
@@ -91,20 +107,28 @@ export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
   return {group,sync,frame,
     get animating(){return [...items.values()].some(item=>item.duration>0);},
     get count(){return [...items.values()].filter(item=>!item.removing).length;},
-    spans(wallId:string):[number,number][]{return openingSpans([...items.values()].filter(item=>item.wallId===wallId).map(item=>[item.current.center-item.current.width/2,item.current.center+item.current.width/2]));},
+    /** Window holes along a wall (metres from its start); doorSpans gives the door notches. */
+    spans(wallId:string):[number,number][]{return openingSpans([...items.values()].filter(item=>item.wallId===wallId && !item.door).map(item=>[item.current.center-item.current.width/2,item.current.center+item.current.width/2]));},
+    doorSpans(wallId:string):[number,number][]{return openingSpans([...items.values()].filter(item=>item.wallId===wallId && item.door).map(item=>[item.current.center-item.current.width/2,item.current.center+item.current.width/2]));},
     reset(){items.forEach(item=>release(item.mesh));items.clear();},
   };
 }
 
-/** Extrude the wall face with real openings. Shared openings are merged before triangulation. */
-export function wallGeometry(length:number,height:number,depth:number,spans:[number,number][]=[]) {
-  if(!spans.length){const geometry=new THREE.BoxGeometry(length+depth,height,depth);geometry.translate(0,height/2,0);return geometry;}
-  const shape=new THREE.Shape();const left=-(length+depth)/2,right=(length+depth)/2;
-  shape.moveTo(left,0);shape.lineTo(right,0);shape.lineTo(right,height);shape.lineTo(left,height);shape.closePath();
-  for(const [a,b] of openingSpans(spans)) {
-    const x0=Math.max(left+.00001,a-length/2),x1=Math.min(right-.00001,b-length/2);
-    if(x1-x0<.0001)continue;
-    const path=new THREE.Path();path.moveTo(x0,height*.32);path.lineTo(x0,height*.78);path.lineTo(x1,height*.78);path.lineTo(x1,height*.32);path.closePath();shape.holes.push(path);
+/** Extrude the wall face with real openings: window holes between OPENING.sill and .head, and door
+ *  notches from the floor to OPENING.head. Shared openings are merged before triangulation; a window
+ *  overlapping a door is left to the door. */
+export function wallGeometry(length:number,height:number,depth:number,spans:[number,number][]=[],doors:[number,number][]=[]) {
+  if(!spans.length && !doors.length){const geometry=new THREE.BoxGeometry(length+depth,height,depth);geometry.translate(0,height/2,0);return geometry;}
+  const left=-(length+depth)/2,right=(length+depth)/2,head=height*OPENING.head;
+  const clip=([a,b]:[number,number]):[number,number]=>[Math.max(left+.00001,a-length/2),Math.min(right-.00001,b-length/2)];
+  const notches=openingSpans(doors).map(clip).filter(([x0,x1])=>x1-x0>=.0001);
+  const shape=new THREE.Shape();
+  shape.moveTo(left,0);
+  for(const [x0,x1] of notches){shape.lineTo(x0,0);shape.lineTo(x0,head);shape.lineTo(x1,head);shape.lineTo(x1,0);}
+  shape.lineTo(right,0);shape.lineTo(right,height);shape.lineTo(left,height);shape.closePath();
+  for(const [x0,x1] of openingSpans(spans).map(clip)) {
+    if(x1-x0<.0001 || notches.some(([d0,d1])=>x0<d1 && x1>d0))continue;
+    const path=new THREE.Path();path.moveTo(x0,height*OPENING.sill);path.lineTo(x0,head);path.lineTo(x1,head);path.lineTo(x1,height*OPENING.sill);path.closePath();shape.holes.push(path);
   }
   const geometry=new THREE.ExtrudeGeometry(shape,{depth,bevelEnabled:false,steps:1,curveSegments:1});geometry.translate(0,0,-depth/2);return geometry;
 }
