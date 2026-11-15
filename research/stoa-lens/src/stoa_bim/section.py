@@ -33,6 +33,20 @@ def _cut(verts, faces, z):
     return segs
 
 
+def _even_odd(faces):
+    """Solid part of a cut: polygonize returns every face of the line arrangement, including the hole inside a
+    ring-shaped wall. A face is solid when its point lies inside an odd number of the closed cut loops."""
+    if len(faces) == 1:
+        return faces[0]
+    loops = [Polygon(f.exterior) for f in faces]
+    keep = []
+    for f in faces:
+        p = f.representative_point()
+        if sum(1 for L in loops if L.contains(p)) % 2 == 1:
+            keep.append(f)
+    return unary_union(keep or faces)
+
+
 def section(ifc_path, z=CUT):
     """{class: [shapely geometry]} of the plan section of every product, plus annotation curves, in metres."""
     import ifcopenshell
@@ -59,7 +73,7 @@ def section(ifc_path, z=CUT):
                 q = lambda pt: (round(pt[0], 5), round(pt[1], 5))  # join endpoints computed from different triangles
                 lines = unary_union([LineString([q(a), q(b)]) for a, b in segs if q(a) != q(b)])
                 polys = list(polygonize(lines))
-                g = unary_union(polys) if polys else MultiLineString(segs)
+                g = _even_odd(polys) if polys else MultiLineString(segs)
                 out.setdefault(key, []).append(g)
         for rep in e.Representation.Representations:
             if rep.RepresentationIdentifier in ('Annotation', 'Plan', 'FootPrint') and rep.RepresentationType in ('Curve2D', 'GeometricCurveSet'):

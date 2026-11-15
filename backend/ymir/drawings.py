@@ -120,6 +120,34 @@ class DrawingStore:
         image = self.image_path(drawing_id)
         for path in (self.uploads / f"{drawing_id}.json", self.uploads / f"{drawing_id}.trace.json", image):
             path.unlink(missing_ok=True)
+        import shutil
+        shutil.rmtree(self.model_dir(drawing_id), ignore_errors=True)
+
+    def model_dir(self, drawing_id: str) -> Path:
+        """Folder of the converter's building-model files for an uploaded drawing."""
+        if not ID.fullmatch(drawing_id):
+            raise KeyError(drawing_id)
+        return self.uploads / f"{drawing_id}.model"
+
+    def set_model_files(self, drawing_id: str, record: dict, geometry: dict | None = None) -> None:
+        path = self.uploads / f"{drawing_id}.json"
+        payload = json.loads(path.read_text())
+        payload["model_files"] = record
+        if geometry:
+            # Build's own line walls stay in the file for reference; the app draws the converter's model.
+            payload["build_lines"] = {"walls": payload["walls"], "rooms": payload["rooms"], "openings": payload.get("openings", [])}
+            payload["walls"] = []
+            payload.update(geometry)
+        path.write_text(json.dumps(payload, ensure_ascii=False))
+
+    def model_file(self, drawing_id: str, name: str) -> Path:
+        from .build.floorplan.model_files import FILES
+        if name not in FILES or name not in self.raw(drawing_id).get("model_files", {}).get("files", []):
+            raise KeyError(name)
+        path = self.model_dir(drawing_id) / name
+        if not path.is_file():
+            raise KeyError(name)
+        return path
 
     def save(self, payload: dict, trace: list, image: bytes, ext: str) -> str:
         """Store a newly built drawing; returns its id."""

@@ -5,17 +5,33 @@ from functools import lru_cache
 
 
 def available() -> bool:
-    try:
-        import rapidocr_onnxruntime  # noqa: F401
-        return True
-    except ImportError:
-        return False
+    """True when a RapidOCR package is installed: `rapidocr_onnxruntime` (older) or `rapidocr` (3.x)."""
+    for name in ("rapidocr_onnxruntime", "rapidocr"):
+        try:
+            __import__(name)
+            return True
+        except ImportError:
+            continue
+    return False
 
 
 @lru_cache(None)
 def _engine():
-    from rapidocr_onnxruntime import RapidOCR
-    return RapidOCR()
+    """One callable for both packages: image -> [(quad, text, score)]."""
+    try:
+        from rapidocr_onnxruntime import RapidOCR
+        eng = RapidOCR()
+        return lambda img: eng(img)[0] or []
+    except ImportError:
+        import logging
+        logging.getLogger("RapidOCR").setLevel(logging.ERROR)
+        from rapidocr import RapidOCR
+        eng = RapidOCR()
+
+        def run(img):
+            r = eng(img)
+            return [] if r.txts is None else list(zip(r.boxes.tolist(), r.txts, r.scores))
+        return run
 
 
 def _quad_box(q):
@@ -41,8 +57,7 @@ def ocr_image(img, tile=1200, overlap=250, rot90=True):
     dets = []
 
     def run(sub, ox, oy, rotated=False):
-        res, _ = eng(sub)
-        for quad, text, score in res or []:
+        for quad, text, score in eng(sub):
             b = _quad_box(quad)
             if rotated:  # sub was rotated 90° clockwise: (x', y') = (h-1-y, x)
                 h = sub.shape[1]

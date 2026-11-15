@@ -216,6 +216,21 @@ export function createViewer(el: HTMLElement) {
         const m = blockMesh(b.polygon, s, view.height, C.wall, 0.55);
         if (m) blocksG.add(m);
       }
+      // A converter-built model has wall outlines and no line walls, so its doors and windows have no wall
+      // segment to sit in. Draw them where the converter found them: a door leaf from the floor to the door
+      // head, a pane of glass at window height.
+      if (!d.walls.length) {
+        for (const o of d.openings ?? []) {
+          const [x0, y0, x1, y1] = o.box;
+          const door = o.kind !== 'window';
+          const h = door ? Math.min(2.1, view.height) : Math.max(0.3, Math.min(1.2, view.height - 0.9));
+          const g = new THREE.BoxGeometry(Math.max((x1 - x0) * s, 0.08), h, Math.max((y1 - y0) * s, 0.08));
+          const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: door ? 0x9a5a2a : 0x7fb4d8, roughness: 0.6, transparent: !door, opacity: door ? 1 : 0.65 }));
+          m.position.set(((x0 + x1) / 2) * s, door ? h / 2 : 0.9 + h / 2, ((y0 + y1) / 2) * s);
+          m.castShadow = true;
+          blocksG.add(m);
+        }
+      }
     }
     buildMarkers();
   }

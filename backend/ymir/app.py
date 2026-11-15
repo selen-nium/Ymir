@@ -123,6 +123,18 @@ def drawing_image(drawing_id: str):
     return FileResponse(store.image_path(drawing_id))
 
 
+@app.get("/api/drawings/{drawing_id}/model/{name}")
+def drawing_model_file(drawing_id: str, name: str):
+    """A building-model file written by the converter for an uploaded drawing: model.ifc, .glb, .dxf, .svg, .pdf, .json."""
+    drawing_or_404(drawing_id)
+    from .build.floorplan.model_files import FILES
+    try:
+        path = store.model_file(drawing_id, name)
+    except KeyError:
+        raise HTTPException(404, "No such model file for this drawing")
+    return FileResponse(path, media_type=FILES[name], filename=f"{drawing_id}-{name}")
+
+
 @app.get("/api/drawings/{drawing_id}/suggestions")
 def suggestions(drawing_id: str):
     return qa.suggestions(drawing_or_404(drawing_id))
