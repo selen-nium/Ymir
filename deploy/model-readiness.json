@@ -1,0 +1,192 @@
+{
+  "schema": "ymir-modal-readiness-v1",
+  "passed": true,
+  "started_unix": 1794708441.6556613,
+  "report_sha256": "8f9a09ba0dc3e3b2cea21205bfd28e59887ddf20e8f12f3c839c2d1da56a22b0",
+  "asset_manifest_sha256": "fb0af353c43eaab489f502086e97e99971605200803e9f9f70b407d33cb1538a",
+  "source_sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+  "reference_annotations_provided": false,
+  "automatic_retries": false,
+  "models": {
+    "dfine": {
+      "passed": true,
+      "receipt": {
+        "checkpoint_sha256": "0f76bfabb562647a98f34d5dd3dd0d240eb5ef5ff7c1072fe14a4c667147cb8d",
+        "checkpoint_epoch_zero_based": 18,
+        "weights": "EMA",
+        "architecture": "D-FINE-L",
+        "resolution": 960,
+        "precision": "BF16",
+        "model_state_loaded_strictly": true,
+        "head_classes": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "all_heads_foreground": true,
+        "upstream_commit": "956d1709314c2c6a4df6f34de232054578a7449f",
+        "upstream_tree_sha256": "ae2fe7efd6339676228c148a333163c0c5a853bcb3136ef3aae73699f3fd4988",
+        "gpu": "NVIDIA A10",
+        "head_policy": {
+          "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+          "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+          "heads": [
+            "door_single",
+            "door_double",
+            "door_sliding",
+            "window",
+            "toilet_bowl",
+            "sink",
+            "bathtub",
+            "shower",
+            "cooker_stove",
+            "refrigerator",
+            "washing_machine",
+            "dishwasher",
+            "door",
+            "appliance"
+          ]
+        },
+        "threshold": 0.25,
+        "coordinate_space": "crop pixels xyxy",
+        "requested_class": "window",
+        "selection": "requested head only; no parent/child summation",
+        "hosting": "Modal",
+        "elapsed_seconds": 18.801926644999998
+      }
+    },
+    "raster2seq": {
+      "passed": true,
+      "checkpoint_sha256": "f7c0ef9379aa8cf11349da8b2179214e0d495af758383984a2361a1309aab3b7",
+      "checkpoint_coverage": {
+        "state_keys": 616,
+        "model_state_keys": 616,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "ema": true,
+        "ignored_runtime_buffers": {
+          "transformer.decoder.layers.2.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.4.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.3.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.1.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.2.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.1.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.3.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.3.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ],
+          "transformer.decoder.layers.4.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ],
+          "transformer.decoder.layers.5.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.0.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.2.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ],
+          "transformer.decoder.layers.5.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ],
+          "transformer.decoder.layers.5.kv_cache.v_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.4.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.1.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ],
+          "transformer.decoder.layers.0.kv_cache.k_cache": [
+            55,
+            512,
+            256
+          ],
+          "transformer.decoder.layers.0.cross_attn.cache.v_cache": [
+            55,
+            1360,
+            8,
+            32
+          ]
+        }
+      },
+      "source_commit": "d938188027cd4f2bed9f95c883e5cc6d80b507f5",
+      "source_tree_sha256": "9a36260ab13605c2cf3c47fd76974dd139e1f6110b5327ba9e02a0317578efcb",
+      "cuda_extensions": {
+        "models/ops/MultiScaleDeformableAttention.cpython-310-x86_64-linux-gnu.so": "8e1ff1217a7e34accfda4d8dbcaf4d6e8e3bec4fa7a2286d0e7a4ada336bfe29",
+        "diff_ras/native_rasterizer.cpython-310-x86_64-linux-gnu.so": "f4851bd830d5e6c8df0b1f91939248b21ef37ed7f8008f6cd6ae56d9160c86fb"
+      },
+      "worker_sha256": "43a287410d363a6618718c9c8cfd2a357f16f1c87dd7bcf5e21c4ea7328ebda8",
+      "gpu": "NVIDIA A10",
+      "torch": "2.3.1+cu118",
+      "cuda": "11.8",
+      "batch_size": 1,
+      "loader_workers": 0,
+      "runtime_seconds": 2.6518818469999985
+    }
+  }
+}

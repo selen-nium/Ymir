@@ -1,0 +1,125 @@
+{
+  "id": "junction-duplex",
+  "title": "Duplex apartments",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/duplex_arc.ifc",
+    "licence": "CC-BY-ND-3.0",
+    "credit": "BSI (2020) \"Duplex Apartment Test Files,\" buildingSMART International, https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%202.3.0.1%20(IFC%202x3)/Duplex%20Apartment",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/duplex",
+    "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656"
+  },
+  "thumbnail": "api/drawings/junction-duplex-l1/image",
+  "levels": [
+    {
+      "id": "L0",
+      "name": "T/FDN",
+      "z_m": -1.25,
+      "height_m": 1.25
+    },
+    {
+      "id": "L1",
+      "name": "Level 1",
+      "z_m": 0.0,
+      "height_m": 3.100000000000378
+    },
+    {
+      "id": "L2",
+      "name": "Level 2",
+      "z_m": 3.100000000000378,
+      "height_m": 2.899999999999622
+    },
+    {
+      "id": "L3",
+      "name": "Roof",
+      "z_m": 6.0,
+      "height_m": 3.0
+    }
+  ],
+  "sheets": [
+    {
+      "drawing_id": "junction-duplex-l1",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L1",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-duplex-l0",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L0",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-duplex-l2",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L2",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-duplex-l3",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L3",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    }
+  ]
+}

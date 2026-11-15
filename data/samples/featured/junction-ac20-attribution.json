@@ -1,0 +1,8 @@
+{
+  "dataset": "Junction · IFC-Bench",
+  "file": "ifc_bench/ac20_arc.ifc",
+  "licence": "LicenseRef-KIT-unrestricted",
+  "credit": "Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples",
+  "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/ac20",
+  "sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c"
+}

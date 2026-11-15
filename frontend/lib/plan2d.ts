@@ -236,6 +236,13 @@ export function createPlan(el: HTMLElement) {
         mk('text', { class: `ref-label${view.refConfirmed ? ' confirmed' : ''}`, 'text-anchor': 'middle', 'dominant-baseline': 'middle' }, g).textContent = view.refLabel;
       }
     }
+    for (const region of view.answer?.regions ?? []) {
+      const path=[region.polygon,...region.holes].map(r=>`M ${r.map(p=>p.join(',')).join(' L ')} Z`).join(' ');
+      mk('path',{d:path,fill:'var(--answer)', 'fill-opacity':0.12,stroke:'var(--answer)','stroke-width':2,'vector-effect':'non-scaling-stroke','fill-rule':'evenodd'},gEvidence);
+    }
+    for(const endpoints of view.answer?.segments ?? []) {
+      mk('line',{x1:endpoints[0][0],y1:endpoints[0][1],x2:endpoints[1][0],y2:endpoints[1][1],stroke:'var(--answer)','stroke-width':3,'vector-effect':'non-scaling-stroke'},gEvidence);
+    }
     for (const b of view.answer?.boxes ?? []) {
       const [x0, y0, x1, y1] = b.box;
       mk('rect', { x: x0 - 3, y: y0 - 3, width: x1 - x0 + 6, height: y1 - y0 + 6, rx: 3, class: 'evidence' }, gEvidence);

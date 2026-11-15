@@ -1,0 +1,14 @@
+{
+  "id": "doc-junction-duplex",
+  "filename": "duplex_arc.ifc",
+  "title": "junction-duplex",
+  "format": "ifc",
+  "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656",
+  "project_identity": "junction-duplex",
+  "dataset": "Junction · IFC-Bench",
+  "exposure": "prepared_showcase; previously exposed diagnostic",
+  "pages": [],
+  "page_count": 0,
+  "selectors": [],
+  "limitations": []
+}

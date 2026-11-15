@@ -1,0 +1,850 @@
+{
+  "id": "sample-cubicasa-2536",
+  "title": "CubiCasa · apartment 2536",
+  "source": {
+    "file": "F1_scaled.png",
+    "sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+    "dataset": "CubiCasa5K",
+    "kind": "Prepared drawing",
+    "crop": [
+      0,
+      48,
+      1288,
+      1075
+    ],
+    "build_to_source": [
+      1.0,
+      0,
+      0,
+      1.0,
+      0.0,
+      48.0
+    ],
+    "source_to_build": [
+      1.0,
+      0,
+      0,
+      1.0,
+      0,
+      -48
+    ],
+    "document_id": "doc-sample-cubicasa-2536",
+    "prepared": true,
+    "credit": "Aalto University / CubiCasa",
+    "licence": "CC-BY-NC-SA-4.0",
+    "preparation": "Cached local geometry; source previously inspected",
+    "prior_run": {
+      "model": "gpt-6.1-sol",
+      "status": "completed",
+      "sha256": "5bfa972afd257e343f10ca6eb13f3e33f12d52a3f3035fd52433d08554a00333"
+    }
+  },
+  "image": {
+    "url": "sample-cubicasa-2536.png",
+    "size": [
+      1301,
+      1075
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.03,
+    "source": "estimate",
+    "confidence": 0.2
+  },
+  "default_height_m": 2.7,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0.0,
+        48.0,
+        1288.0,
+        1075.0
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        59.0,
+        71.3
+      ],
+      "b": [
+        59.0,
+        985.0
+      ],
+      "thickness_px": 18.4,
+      "confidence": 0.888
+    },
+    {
+      "id": "w2",
+      "a": [
+        400.9,
+        193.5
+      ],
+      "b": [
+        1265.0,
+        193.5
+      ],
+      "thickness_px": 29.8,
+      "confidence": 0.892
+    },
+    {
+      "id": "w3",
+      "a": [
+        1238.1,
+        178.0
+      ],
+      "b": [
+        1238.1,
+        1009.0
+      ],
+      "thickness_px": 38.9,
+      "confidence": 0.9
+    },
+    {
+      "id": "w4",
+      "a": [
+        400.9,
+        589.0
+      ],
+      "b": [
+        946.0,
+        589.0
+      ],
+      "thickness_px": 18.0,
+      "confidence": 0.866
+    },
+    {
+      "id": "w5",
+      "a": [
+        400.9,
+        71.3
+      ],
+      "b": [
+        400.9,
+        589.0
+      ],
+      "thickness_px": 18.8,
+      "confidence": 0.88
+    },
+    {
+      "id": "w6",
+      "a": [
+        663.0,
+        179.0
+      ],
+      "b": [
+        663.0,
+        589.0
+      ],
+      "thickness_px": 11.3,
+      "confidence": 0.913
+    },
+    {
+      "id": "w7",
+      "a": [
+        9.0,
+        71.3
+      ],
+      "b": [
+        400.9,
+        71.3
+      ],
+      "thickness_px": 10.6,
+      "confidence": 0.88
+    },
+    {
+      "id": "w8",
+      "a": [
+        286.1,
+        421.2
+      ],
+      "b": [
+        286.1,
+        811.9
+      ],
+      "thickness_px": 12.5,
+      "confidence": 0.899
+    },
+    {
+      "id": "w9",
+      "a": [
+        59.0,
+        198.5
+      ],
+      "b": [
+        378.0,
+        198.5
+      ],
+      "thickness_px": 17.7,
+      "confidence": 0.91
+    },
+    {
+      "id": "w10",
+      "a": [
+        22.0,
+        662.8
+      ],
+      "b": [
+        286.1,
+        662.8
+      ],
+      "thickness_px": 12.9,
+      "confidence": 0.861
+    },
+    {
+      "id": "w11",
+      "a": [
+        22.0,
+        811.9
+      ],
+      "b": [
+        286.1,
+        811.9
+      ],
+      "thickness_px": 11.4,
+      "confidence": 0.873
+    },
+    {
+      "id": "w12",
+      "a": [
+        590.4,
+        729.0
+      ],
+      "b": [
+        590.4,
+        974.0
+      ],
+      "thickness_px": 13.4,
+      "confidence": 0.918
+    },
+    {
+      "id": "w13",
+      "a": [
+        405.0,
+        729.0
+      ],
+      "b": [
+        590.4,
+        729.0
+      ],
+      "thickness_px": 10.1,
+      "confidence": 0.889
+    },
+    {
+      "id": "w14",
+      "a": [
+        164.3,
+        832.0
+      ],
+      "b": [
+        164.3,
+        988.0
+      ],
+      "thickness_px": 13.9,
+      "confidence": 0.899
+    },
+    {
+      "id": "w15",
+      "a": [
+        22.0,
+        662.8
+      ],
+      "b": [
+        22.0,
+        811.9
+      ],
+      "thickness_px": 13.8,
+      "confidence": 0.848
+    },
+    {
+      "id": "w16",
+      "a": [
+        164.9,
+        662.8
+      ],
+      "b": [
+        164.9,
+        811.9
+      ],
+      "thickness_px": 8.5,
+      "confidence": 0.902
+    },
+    {
+      "id": "w17",
+      "a": [
+        466.0,
+        802.0
+      ],
+      "b": [
+        466.0,
+        944.0
+      ],
+      "thickness_px": 4.6,
+      "confidence": 0.785
+    },
+    {
+      "id": "w18",
+      "a": [
+        59.0,
+        342.7
+      ],
+      "b": [
+        188.1,
+        342.7
+      ],
+      "thickness_px": 4.8,
+      "confidence": 0.844
+    },
+    {
+      "id": "w19",
+      "a": [
+        538.3,
+        729.0
+      ],
+      "b": [
+        538.3,
+        851.0
+      ],
+      "thickness_px": 3.6,
+      "confidence": 0.796
+    },
+    {
+      "id": "w20",
+      "a": [
+        433.8,
+        800.0
+      ],
+      "b": [
+        433.8,
+        907.0
+      ],
+      "thickness_px": 5.8,
+      "confidence": 0.743
+    },
+    {
+      "id": "w21",
+      "a": [
+        400.9,
+        515.4
+      ],
+      "b": [
+        488.0,
+        515.4
+      ],
+      "thickness_px": 7.1,
+      "confidence": 0.766
+    },
+    {
+      "id": "w22",
+      "a": [
+        275.7,
+        969.0
+      ],
+      "b": [
+        275.7,
+        1055.0
+      ],
+      "thickness_px": 24.0,
+      "confidence": 0.799
+    },
+    {
+      "id": "w23",
+      "a": [
+        399.5,
+        967.0
+      ],
+      "b": [
+        399.5,
+        1050.0
+      ],
+      "thickness_px": 6.6,
+      "confidence": 0.667
+    },
+    {
+      "id": "w24",
+      "a": [
+        188.1,
+        267.0
+      ],
+      "b": [
+        188.1,
+        342.7
+      ],
+      "thickness_px": 4.6,
+      "confidence": 0.824
+    },
+    {
+      "id": "w25",
+      "a": [
+        533.1,
+        659.0
+      ],
+      "b": [
+        533.1,
+        729.0
+      ],
+      "thickness_px": 4.2,
+      "confidence": 0.788
+    },
+    {
+      "id": "w26",
+      "a": [
+        286.1,
+        421.2
+      ],
+      "b": [
+        353.0,
+        421.2
+      ],
+      "thickness_px": 10.3,
+      "confidence": 0.886
+    },
+    {
+      "id": "w27",
+      "a": [
+        790.8,
+        523.0
+      ],
+      "b": [
+        790.8,
+        589.0
+      ],
+      "thickness_px": 2.6,
+      "confidence": 0.742
+    },
+    {
+      "id": "w28",
+      "a": [
+        475.5,
+        523.1
+      ],
+      "b": [
+        475.5,
+        589.0
+      ],
+      "thickness_px": 3.9,
+      "confidence": 0.792
+    },
+    {
+      "id": "w29",
+      "a": [
+        535.0,
+        523.1
+      ],
+      "b": [
+        535.0,
+        589.0
+      ],
+      "thickness_px": 3.0,
+      "confidence": 0.77
+    },
+    {
+      "id": "w30",
+      "a": [
+        466.1,
+        729.0
+      ],
+      "b": [
+        466.1,
+        793.0
+      ],
+      "thickness_px": 4.4,
+      "confidence": 0.812
+    },
+    {
+      "id": "w31",
+      "a": [
+        127.3,
+        416.0
+      ],
+      "b": [
+        127.3,
+        479.0
+      ],
+      "thickness_px": 5.2,
+      "confidence": 0.789
+    },
+    {
+      "id": "w32",
+      "a": [
+        164.9,
+        701.6
+      ],
+      "b": [
+        225.0,
+        701.6
+      ],
+      "thickness_px": 5.8,
+      "confidence": 0.815
+    },
+    {
+      "id": "w33",
+      "a": [
+        408.3,
+        832.0
+      ],
+      "b": [
+        408.3,
+        892.0
+      ],
+      "thickness_px": 3.2,
+      "confidence": 0.616
+    },
+    {
+      "id": "w34",
+      "a": [
+        475.5,
+        523.1
+      ],
+      "b": [
+        535.0,
+        523.1
+      ],
+      "thickness_px": 4.6,
+      "confidence": 0.734
+    },
+    {
+      "id": "w35",
+      "a": [
+        94.9,
+        764.0
+      ],
+      "b": [
+        94.9,
+        811.9
+      ],
+      "thickness_px": 2.5,
+      "confidence": 0.677
+    },
+    {
+      "id": "w36",
+      "a": [
+        1221.0,
+        206.0
+      ],
+      "b": [
+        1265.0,
+        206.0
+      ],
+      "thickness_px": 4.8,
+      "confidence": 0.776
+    },
+    {
+      "id": "w37",
+      "a": [
+        857.3,
+        972.0
+      ],
+      "b": [
+        857.3,
+        1016.0
+      ],
+      "thickness_px": 16.3,
+      "confidence": 0.845
+    },
+    {
+      "id": "w38",
+      "a": [
+        946.0,
+        547.0
+      ],
+      "b": [
+        946.0,
+        589.0
+      ],
+      "thickness_px": 2.4,
+      "confidence": 0.683
+    },
+    {
+      "id": "w39",
+      "a": [
+        436.5,
+        179.0
+      ],
+      "b": [
+        436.5,
+        215.0
+      ],
+      "thickness_px": 17.6,
+      "confidence": 0.798
+    },
+    {
+      "id": "w40",
+      "a": [
+        506.5,
+        179.0
+      ],
+      "b": [
+        506.5,
+        214.0
+      ],
+      "thickness_px": 3.9,
+      "confidence": 0.843
+    },
+    {
+      "id": "w41",
+      "a": [
+        920.4,
+        974.0
+      ],
+      "b": [
+        920.4,
+        1009.0
+      ],
+      "thickness_px": 21.3,
+      "confidence": 0.809
+    },
+    {
+      "id": "w42",
+      "a": [
+        897.0,
+        976.0
+      ],
+      "b": [
+        897.0,
+        1009.0
+      ],
+      "thickness_px": 1.0,
+      "confidence": 0.825
+    },
+    {
+      "id": "w43",
+      "a": [
+        689.5,
+        558.0
+      ],
+      "b": [
+        689.5,
+        589.0
+      ],
+      "thickness_px": 1.9,
+      "confidence": 0.737
+    }
+  ],
+  "openings": [],
+  "rooms": [
+    {
+      "id": "space-1",
+      "polygon": [
+        [
+          400.9,
+          193.5
+        ],
+        [
+          436.5,
+          193.5
+        ],
+        [
+          506.5,
+          193.5
+        ],
+        [
+          663.0,
+          193.5
+        ],
+        [
+          663.0,
+          589.0
+        ],
+        [
+          535.0,
+          589.0
+        ],
+        [
+          535.0,
+          523.1
+        ],
+        [
+          475.5,
+          523.1
+        ],
+        [
+          475.5,
+          589.0
+        ],
+        [
+          400.9,
+          589.0
+        ],
+        [
+          400.9,
+          515.4
+        ],
+        [
+          400.9,
+          193.5
+        ]
+      ],
+      "polygon_basis": "centreline",
+      "holes": []
+    },
+    {
+      "id": "space-2",
+      "polygon": [
+        [
+          286.1,
+          662.8
+        ],
+        [
+          286.1,
+          811.9
+        ],
+        [
+          164.9,
+          811.9
+        ],
+        [
+          164.9,
+          701.6
+        ],
+        [
+          164.9,
+          662.8
+        ],
+        [
+          286.1,
+          662.8
+        ]
+      ],
+      "polygon_basis": "centreline",
+      "holes": []
+    },
+    {
+      "id": "space-3",
+      "polygon": [
+        [
+          59.0,
+          811.9
+        ],
+        [
+          59.0,
+          662.8
+        ],
+        [
+          164.9,
+          662.8
+        ],
+        [
+          164.9,
+          701.6
+        ],
+        [
+          164.9,
+          811.9
+        ],
+        [
+          94.9,
+          811.9
+        ],
+        [
+          59.0,
+          811.9
+        ]
+      ],
+      "polygon_basis": "centreline",
+      "holes": []
+    },
+    {
+      "id": "space-4",
+      "polygon": [
+        [
+          59.0,
+          662.8
+        ],
+        [
+          59.0,
+          811.9
+        ],
+        [
+          22.0,
+          811.9
+        ],
+        [
+          22.0,
+          662.8
+        ],
+        [
+          59.0,
+          662.8
+        ]
+      ],
+      "polygon_basis": "centreline",
+      "holes": []
+    },
+    {
+      "id": "space-5",
+      "polygon": [
+        [
+          535.0,
+          589.0
+        ],
+        [
+          475.5,
+          589.0
+        ],
+        [
+          475.5,
+          523.1
+        ],
+        [
+          535.0,
+          523.1
+        ],
+        [
+          535.0,
+          589.0
+        ]
+      ],
+      "polygon_basis": "centreline",
+      "holes": []
+    },
+    {
+      "id": "prior-r2s-c8cc74b9202403152b7d423b",
+      "polygon": [
+        [
+          603.69140625,
+          592.8387096774193
+        ],
+        [
+          603.69140625,
+          966.7096774193549
+        ],
+        [
+          1231.81640625,
+          970.6451612903226
+        ],
+        [
+          1227.890625,
+          592.8387096774193
+        ],
+        [
+          662.578125,
+          592.8387096774193
+        ]
+      ],
+      "holes": [],
+      "label": "OH",
+      "provenance": "saved model prediction; not a reference annotation"
+    }
+  ],
+  "symbols": [],
+  "texts": [],
+  "kind": "floor_plan",
+  "lens_source": {
+    "document_id": "doc-sample-cubicasa-2536",
+    "source_sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+    "project_identity": "cubicasa-2536",
+    "dataset": "CubiCasa5K",
+    "exposure": "prepared_showcase; previously exposed diagnostic",
+    "source_page": 1,
+    "document_page_count": 1,
+    "packet_included_pages": 1,
+    "width": 1301,
+    "height": 1075,
+    "image": "sample-cubicasa-2536.png",
+    "image_sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75"
+  }
+}

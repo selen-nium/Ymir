@@ -1,0 +1,1777 @@
+{
+  "id": "junction-ac20-l1",
+  "title": "Erdgeschoss",
+  "kind": "floor_plan",
+  "sheet_number": "A-002",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/ac20_arc.ifc",
+    "licence": "LicenseRef-KIT-unrestricted",
+    "credit": "Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/ac20",
+    "sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c",
+    "kind": "Rendered from IFC",
+    "storey": "Erdgeschoss",
+    "document_id": "doc-junction-ac20",
+    "prepared": true,
+    "model_units_to_metres": 1.0,
+    "preparation": "Cached IFC geometry",
+    "limitations": [
+      "Plan image rendered from the preserved IFC model."
+    ]
+  },
+  "image": {
+    "url": "junction-ac20-l1.png",
+    "size": [
+      1152,
+      552
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.041666666666666664,
+    "source": "model",
+    "text": "1:100"
+  },
+  "default_height_m": 3.0,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0,
+        0,
+        1152,
+        552
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        792.0,
+        232.8
+      ],
+      "b": [
+        792.0,
+        127.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1tQgCOlQ19deavPeJlRZDx"
+    },
+    {
+      "id": "w2",
+      "a": [
+        79.2,
+        291.6
+      ],
+      "b": [
+        504.0,
+        291.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0Cp2aAca94mRqMc0MSzZN0"
+    },
+    {
+      "id": "w3",
+      "a": [
+        1008.0,
+        232.8
+      ],
+      "b": [
+        1008.0,
+        127.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1U1oW1sAHBYQKKweh9c7E2"
+    },
+    {
+      "id": "w4",
+      "a": [
+        432.0,
+        400.8
+      ],
+      "b": [
+        432.0,
+        295.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1TG_f7WfXACvGvZKFbVS6v"
+    },
+    {
+      "id": "w5",
+      "a": [
+        144.0,
+        400.8
+      ],
+      "b": [
+        144.0,
+        295.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1pOW7Mn9TD$xI0y62RCLDe"
+    },
+    {
+      "id": "w6",
+      "a": [
+        640.8,
+        123.6
+      ],
+      "b": [
+        1080.0,
+        123.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "2LES77BC56KQ3R7uNhrxe2"
+    },
+    {
+      "id": "w7",
+      "a": [
+        648.0,
+        291.6
+      ],
+      "b": [
+        1072.8,
+        291.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "15FnNlztjC7vnddscl7y9q"
+    },
+    {
+      "id": "w8",
+      "a": [
+        507.6,
+        408.0
+      ],
+      "b": [
+        507.6,
+        127.2
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1DPAiLw8z7UOS6MROTEe9q"
+    },
+    {
+      "id": "w9",
+      "a": [
+        648.0,
+        452.4
+      ],
+      "b": [
+        504.0,
+        452.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "2xrOyxR9nEifMekjrljPsL"
+    },
+    {
+      "id": "w10",
+      "a": [
+        864.0,
+        232.8
+      ],
+      "b": [
+        864.0,
+        127.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3TLauWy$r6BP48CfZGppsL"
+    },
+    {
+      "id": "w11",
+      "a": [
+        864.0,
+        400.8
+      ],
+      "b": [
+        864.0,
+        295.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0nG5nAAT595BryB8i9NgTL"
+    },
+    {
+      "id": "w12",
+      "a": [
+        75.6,
+        408.0
+      ],
+      "b": [
+        75.6,
+        120.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "2M$VFKOm95iv8NI96wAPul"
+    },
+    {
+      "id": "w13",
+      "a": [
+        432.0,
+        127.2
+      ],
+      "b": [
+        432.0,
+        232.8
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3WB_OmiKjCuRLWyouXiTke"
+    },
+    {
+      "id": "w14",
+      "a": [
+        644.4,
+        408.0
+      ],
+      "b": [
+        644.4,
+        127.2
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3UHq8yqkf4oQOgspFsMBg$"
+    },
+    {
+      "id": "w15",
+      "a": [
+        640.8,
+        404.4
+      ],
+      "b": [
+        1080.0,
+        404.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "01Hsj8Zoj47f3xDgoQzQH_"
+    },
+    {
+      "id": "w16",
+      "a": [
+        644.4,
+        127.2
+      ],
+      "b": [
+        644.4,
+        72.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1QjkZhkJHDXvqiuYRJXgHb"
+    },
+    {
+      "id": "w17",
+      "a": [
+        648.0,
+        236.4
+      ],
+      "b": [
+        1072.8,
+        236.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0fhDs_SDn9a8x9PU70oHGj"
+    },
+    {
+      "id": "w18",
+      "a": [
+        79.2,
+        236.4
+      ],
+      "b": [
+        504.0,
+        236.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3hbkmd1qbBiPqCbdQME7PO"
+    },
+    {
+      "id": "w19",
+      "a": [
+        1076.4,
+        120.0
+      ],
+      "b": [
+        1076.4,
+        408.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1urUcYP71DIf1u38ogU1RV"
+    },
+    {
+      "id": "w20",
+      "a": [
+        720.0,
+        232.8
+      ],
+      "b": [
+        720.0,
+        127.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1kipoXIGrCGwrOTfUS4l5M"
+    },
+    {
+      "id": "w21",
+      "a": [
+        72.0,
+        123.6
+      ],
+      "b": [
+        511.2,
+        123.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1r7dVjs_50zw9skBo0gwIq"
+    },
+    {
+      "id": "w22",
+      "a": [
+        504.0,
+        75.6
+      ],
+      "b": [
+        648.0,
+        75.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1wk9c1dpX2_PJQtcSI9FcM"
+    },
+    {
+      "id": "w23",
+      "a": [
+        936.0,
+        232.8
+      ],
+      "b": [
+        936.0,
+        127.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1PZopcCGLE1gg8vjYpfhIA"
+    },
+    {
+      "id": "w24",
+      "a": [
+        288.0,
+        400.8
+      ],
+      "b": [
+        288.0,
+        295.2
+      ],
+      "thickness_px": 4.8,
+      "ifc": "2fPOa6PzvBr9CXTAP3tUbE"
+    },
+    {
+      "id": "w25",
+      "a": [
+        216.0,
+        127.2
+      ],
+      "b": [
+        216.0,
+        232.8
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3d6U2voMvC8Oso0kmQIjMA"
+    },
+    {
+      "id": "w26",
+      "a": [
+        507.6,
+        456.0
+      ],
+      "b": [
+        507.6,
+        408.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0tNy_iP2b0Ge3YC49v0CwY"
+    },
+    {
+      "id": "w27",
+      "a": [
+        72.0,
+        404.4
+      ],
+      "b": [
+        511.2,
+        404.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3nHMcJ8q56uR8twwvBap_b"
+    },
+    {
+      "id": "w28",
+      "a": [
+        644.4,
+        456.0
+      ],
+      "b": [
+        644.4,
+        408.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "054SZ4_9H5tRVfRLsmTmFu"
+    },
+    {
+      "id": "w29",
+      "a": [
+        507.6,
+        127.2
+      ],
+      "b": [
+        507.6,
+        72.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "09MDBnUZP8hhAAplbz1Q$1"
+    }
+  ],
+  "openings": [],
+  "rooms": [
+    {
+      "id": "space-1",
+      "polygon": [
+        [
+          434.4,
+          221.1
+        ],
+        [
+          434.4,
+          127.2
+        ],
+        [
+          442.1,
+          127.2
+        ],
+        [
+          504.0,
+          127.2
+        ],
+        [
+          504.0,
+          138.9
+        ],
+        [
+          504.0,
+          232.8
+        ],
+        [
+          496.3,
+          232.8
+        ],
+        [
+          434.4,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "WC Damen",
+      "label_box": [
+        435.2,
+        168.0,
+        502.2,
+        177.0
+      ],
+      "printed_area_m2": 12.76,
+      "number": "113",
+      "ifc": "1oKaKV7Wz8IOJ10cA1PGWP"
+    },
+    {
+      "id": "space-2",
+      "polygon": [
+        [
+          671.7,
+          295.2
+        ],
+        [
+          861.6,
+          295.2
+        ],
+        [
+          861.6,
+          306.9
+        ],
+        [
+          861.6,
+          400.8
+        ],
+        [
+          837.9,
+          400.8
+        ],
+        [
+          648.0,
+          400.8
+        ],
+        [
+          648.0,
+          389.1
+        ],
+        [
+          648.0,
+          295.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Studenten I",
+      "label_box": [
+        700.8,
+        335.0,
+        809.8,
+        345.0
+      ],
+      "printed_area_m2": 39.16,
+      "number": "105",
+      "ifc": "1DxredyET5bf_85HZe8$FO"
+    },
+    {
+      "id": "space-3",
+      "polygon": [
+        [
+          945.9,
+          127.2
+        ],
+        [
+          1005.6,
+          127.2
+        ],
+        [
+          1005.6,
+          138.9
+        ],
+        [
+          1005.6,
+          232.8
+        ],
+        [
+          998.1,
+          232.8
+        ],
+        [
+          938.4,
+          232.8
+        ],
+        [
+          938.4,
+          221.1
+        ],
+        [
+          938.4,
+          127.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Meyr",
+      "label_box": [
+        938.0,
+        168.0,
+        1007.0,
+        180.0
+      ],
+      "printed_area_m2": 12.32,
+      "number": "108",
+      "ifc": "3Xu6SpY4vC89stuKlMWE2n"
+    },
+    {
+      "id": "space-4",
+      "polygon": [
+        [
+          695.2,
+          240.0
+        ],
+        [
+          1072.8,
+          240.0
+        ],
+        [
+          1072.8,
+          245.3
+        ],
+        [
+          1072.8,
+          288.0
+        ],
+        [
+          1025.6,
+          288.0
+        ],
+        [
+          648.0,
+          288.0
+        ],
+        [
+          648.0,
+          282.7
+        ],
+        [
+          648.0,
+          240.0
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Flur EG Ost",
+      "label_box": [
+        826.4,
+        251.0,
+        894.4,
+        261.0
+      ],
+      "printed_area_m2": 35.4,
+      "number": "118",
+      "ifc": "0_TtqXcOrDbeTXyb5q0Uxb"
+    },
+    {
+      "id": "space-5",
+      "polygon": [
+        [
+          511.2,
+          376.8
+        ],
+        [
+          511.2,
+          127.2
+        ],
+        [
+          511.2,
+          121.9
+        ],
+        [
+          511.2,
+          79.2
+        ],
+        [
+          525.6,
+          79.2
+        ],
+        [
+          640.8,
+          79.2
+        ],
+        [
+          640.8,
+          84.5
+        ],
+        [
+          640.8,
+          127.2
+        ],
+        [
+          640.8,
+          158.4
+        ],
+        [
+          640.8,
+          408.0
+        ],
+        [
+          640.8,
+          412.5
+        ],
+        [
+          640.8,
+          448.8
+        ],
+        [
+          626.4,
+          448.8
+        ],
+        [
+          511.2,
+          448.8
+        ],
+        [
+          511.2,
+          444.3
+        ],
+        [
+          511.2,
+          408.0
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Flur EG Eingang",
+      "label_box": [
+        528.0,
+        254.6,
+        624.0,
+        267.6
+      ],
+      "printed_area_m2": 83.16,
+      "number": "117",
+      "ifc": "1RP4kkhTDFJuLugWfrM_1s"
+    },
+    {
+      "id": "space-6",
+      "polygon": [
+        [
+          270.1,
+          400.8
+        ],
+        [
+          146.4,
+          400.8
+        ],
+        [
+          146.4,
+          389.1
+        ],
+        [
+          146.4,
+          295.2
+        ],
+        [
+          161.9,
+          295.2
+        ],
+        [
+          285.6,
+          295.2
+        ],
+        [
+          285.6,
+          306.9
+        ],
+        [
+          285.6,
+          400.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Labor I",
+      "label_box": [
+        195.0,
+        335.0,
+        236.0,
+        345.0
+      ],
+      "printed_area_m2": 25.52,
+      "number": "102",
+      "ifc": "1_Evy7T$DCiwLgTMLHCRoe"
+    },
+    {
+      "id": "space-7",
+      "polygon": [
+        [
+          94.1,
+          127.2
+        ],
+        [
+          213.6,
+          127.2
+        ],
+        [
+          213.6,
+          138.9
+        ],
+        [
+          213.6,
+          232.8
+        ],
+        [
+          198.7,
+          232.8
+        ],
+        [
+          79.2,
+          232.8
+        ],
+        [
+          79.2,
+          221.1
+        ],
+        [
+          79.2,
+          127.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Obermeier",
+      "label_box": [
+        94.4,
+        167.0,
+        197.4,
+        177.0
+      ],
+      "printed_area_m2": 24.64,
+      "number": "115",
+      "ifc": "03hhkFXKT4RPFNu5rDrZPL"
+    },
+    {
+      "id": "space-8",
+      "polygon": [
+        [
+          722.4,
+          221.1
+        ],
+        [
+          722.4,
+          127.2
+        ],
+        [
+          729.9,
+          127.2
+        ],
+        [
+          789.6,
+          127.2
+        ],
+        [
+          789.6,
+          138.9
+        ],
+        [
+          789.6,
+          232.8
+        ],
+        [
+          782.1,
+          232.8
+        ],
+        [
+          722.4,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Maier",
+      "label_box": [
+        720.0,
+        168.0,
+        793.0,
+        177.0
+      ],
+      "printed_area_m2": 12.32,
+      "number": "111",
+      "ifc": "3t8qjHTuTAigDlC1x7D16b"
+    },
+    {
+      "id": "space-9",
+      "polygon": [
+        [
+          866.4,
+          221.1
+        ],
+        [
+          866.4,
+          127.2
+        ],
+        [
+          873.9,
+          127.2
+        ],
+        [
+          933.6,
+          127.2
+        ],
+        [
+          933.6,
+          138.9
+        ],
+        [
+          933.6,
+          232.8
+        ],
+        [
+          926.1,
+          232.8
+        ],
+        [
+          866.4,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Mayer",
+      "label_box": [
+        862.0,
+        168.0,
+        938.0,
+        180.0
+      ],
+      "printed_area_m2": 12.32,
+      "number": "109",
+      "ifc": "1loQAAB191MA5YmsaMJHkI"
+    },
+    {
+      "id": "space-10",
+      "polygon": [
+        [
+          889.3,
+          295.2
+        ],
+        [
+          1072.8,
+          295.2
+        ],
+        [
+          1072.8,
+          306.9
+        ],
+        [
+          1072.8,
+          400.8
+        ],
+        [
+          1049.9,
+          400.8
+        ],
+        [
+          866.4,
+          400.8
+        ],
+        [
+          866.4,
+          389.1
+        ],
+        [
+          866.4,
+          295.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Studenten II",
+      "label_box": [
+        913.6,
+        335.0,
+        1025.6,
+        345.0
+      ],
+      "printed_area_m2": 37.84,
+      "number": "106",
+      "ifc": "3$FatfHY1Cg9apAMwbKPN8"
+    },
+    {
+      "id": "space-11",
+      "polygon": [
+        [
+          241.9,
+          127.2
+        ],
+        [
+          429.6,
+          127.2
+        ],
+        [
+          429.6,
+          138.9
+        ],
+        [
+          429.6,
+          232.8
+        ],
+        [
+          406.1,
+          232.8
+        ],
+        [
+          218.4,
+          232.8
+        ],
+        [
+          218.4,
+          221.1
+        ],
+        [
+          218.4,
+          127.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Studenten III",
+      "label_box": [
+        266.0,
+        167.0,
+        382.0,
+        177.0
+      ],
+      "printed_area_m2": 38.72,
+      "number": "114",
+      "ifc": "0jhU4VZ6XCxee3pjfx5VMh"
+    },
+    {
+      "id": "space-12",
+      "polygon": [
+        [
+          134.7,
+          400.8
+        ],
+        [
+          79.2,
+          400.8
+        ],
+        [
+          79.2,
+          389.1
+        ],
+        [
+          79.2,
+          295.2
+        ],
+        [
+          86.1,
+          295.2
+        ],
+        [
+          141.6,
+          295.2
+        ],
+        [
+          141.6,
+          306.9
+        ],
+        [
+          141.6,
+          400.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Meier",
+      "label_box": [
+        74.4,
+        336.0,
+        147.4,
+        345.0
+      ],
+      "printed_area_m2": 11.44,
+      "number": "101",
+      "ifc": "3EN96kdYDB2OOGjNLp8e86"
+    },
+    {
+      "id": "space-13",
+      "polygon": [
+        [
+          126.4,
+          240.0
+        ],
+        [
+          504.0,
+          240.0
+        ],
+        [
+          504.0,
+          245.3
+        ],
+        [
+          504.0,
+          288.0
+        ],
+        [
+          456.8,
+          288.0
+        ],
+        [
+          79.2,
+          288.0
+        ],
+        [
+          79.2,
+          282.7
+        ],
+        [
+          79.2,
+          240.0
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Flur EG West",
+      "label_box": [
+        253.6,
+        251.0,
+        330.6,
+        261.0
+      ],
+      "printed_area_m2": 35.4,
+      "number": "116",
+      "ifc": "3KaloR8018sAKZVwuYVbSu"
+    },
+    {
+      "id": "space-14",
+      "polygon": [
+        [
+          648.0,
+          221.1
+        ],
+        [
+          648.0,
+          127.2
+        ],
+        [
+          655.7,
+          127.2
+        ],
+        [
+          717.6,
+          127.2
+        ],
+        [
+          717.6,
+          138.9
+        ],
+        [
+          717.6,
+          232.8
+        ],
+        [
+          709.9,
+          232.8
+        ],
+        [
+          648.0,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "WC Herren",
+      "label_box": [
+        650.8,
+        168.0,
+        715.8,
+        177.0
+      ],
+      "printed_area_m2": 12.76,
+      "number": "112",
+      "ifc": "3j5r$vfHT3JfqUfpdRoXnP"
+    },
+    {
+      "id": "space-15",
+      "polygon": [
+        [
+          794.4,
+          221.1
+        ],
+        [
+          794.4,
+          127.2
+        ],
+        [
+          801.9,
+          127.2
+        ],
+        [
+          861.6,
+          127.2
+        ],
+        [
+          861.6,
+          138.9
+        ],
+        [
+          861.6,
+          232.8
+        ],
+        [
+          854.1,
+          232.8
+        ],
+        [
+          794.4,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Meyer",
+      "label_box": [
+        790.0,
+        168.0,
+        866.0,
+        180.0
+      ],
+      "printed_area_m2": 12.32,
+      "number": "110",
+      "ifc": "2ED0MLfrf17BXIsuJYCs7R"
+    },
+    {
+      "id": "space-16",
+      "polygon": [
+        [
+          1010.4,
+          221.1
+        ],
+        [
+          1010.4,
+          127.2
+        ],
+        [
+          1017.3,
+          127.2
+        ],
+        [
+          1072.8,
+          127.2
+        ],
+        [
+          1072.8,
+          138.9
+        ],
+        [
+          1072.8,
+          232.8
+        ],
+        [
+          1065.9,
+          232.8
+        ],
+        [
+          1010.4,
+          232.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Mayr",
+      "label_box": [
+        1007.6,
+        168.0,
+        1076.6,
+        180.0
+      ],
+      "printed_area_m2": 11.44,
+      "number": "107",
+      "ifc": "3yAAZZ86j388XApaG$h1X6"
+    },
+    {
+      "id": "space-17",
+      "polygon": [
+        [
+          434.4,
+          389.1
+        ],
+        [
+          434.4,
+          295.2
+        ],
+        [
+          442.1,
+          295.2
+        ],
+        [
+          504.0,
+          295.2
+        ],
+        [
+          504.0,
+          306.9
+        ],
+        [
+          504.0,
+          400.8
+        ],
+        [
+          496.3,
+          400.8
+        ],
+        [
+          434.4,
+          400.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Buero Hausmeister",
+      "label_box": [
+        411.2,
+        336.0,
+        526.2,
+        345.0
+      ],
+      "printed_area_m2": 12.76,
+      "number": "104",
+      "ifc": "25QUQJ9jHAFengkpc9N7GR"
+    },
+    {
+      "id": "space-18",
+      "polygon": [
+        [
+          290.4,
+          389.1
+        ],
+        [
+          290.4,
+          295.2
+        ],
+        [
+          305.9,
+          295.2
+        ],
+        [
+          429.6,
+          295.2
+        ],
+        [
+          429.6,
+          306.9
+        ],
+        [
+          429.6,
+          400.8
+        ],
+        [
+          414.1,
+          400.8
+        ],
+        [
+          290.4,
+          400.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Labor II",
+      "label_box": [
+        338.0,
+        335.0,
+        383.0,
+        345.0
+      ],
+      "printed_area_m2": 25.52,
+      "number": "103",
+      "ifc": "3eQ_MQ5er5UeRXq4xxAoKl"
+    }
+  ],
+  "symbols": [],
+  "texts": [
+    {
+      "id": "t1",
+      "text": "WC Damen",
+      "box": [
+        435.2,
+        168.0,
+        502.2,
+        177.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t2",
+      "text": "12.76 m²",
+      "box": [
+        446.2,
+        185.0,
+        492.2,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t3",
+      "text": "Buero Studenten I",
+      "box": [
+        700.8,
+        335.0,
+        809.8,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t4",
+      "text": "39.16 m²",
+      "box": [
+        731.8,
+        353.0,
+        777.8,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t5",
+      "text": "Buero Meyr",
+      "box": [
+        938.0,
+        168.0,
+        1007.0,
+        180.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t6",
+      "text": "12.32 m²",
+      "box": [
+        949.0,
+        185.0,
+        995.0,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t7",
+      "text": "Flur EG Ost",
+      "box": [
+        826.4,
+        251.0,
+        894.4,
+        261.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t8",
+      "text": "35.40 m²",
+      "box": [
+        837.4,
+        269.0,
+        883.4,
+        276.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t9",
+      "text": "Flur EG Eingang",
+      "box": [
+        528.0,
+        254.6,
+        624.0,
+        267.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t10",
+      "text": "83.16 m²",
+      "box": [
+        553.0,
+        272.6,
+        599.0,
+        279.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t11",
+      "text": "Labor I",
+      "box": [
+        195.0,
+        335.0,
+        236.0,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t12",
+      "text": "25.52 m²",
+      "box": [
+        193.0,
+        353.0,
+        239.0,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t13",
+      "text": "Buero Obermeier",
+      "box": [
+        94.4,
+        167.0,
+        197.4,
+        177.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t14",
+      "text": "24.64 m²",
+      "box": [
+        123.4,
+        185.0,
+        169.4,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t15",
+      "text": "Buero Maier",
+      "box": [
+        720.0,
+        168.0,
+        793.0,
+        177.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t16",
+      "text": "12.32 m²",
+      "box": [
+        733.0,
+        185.0,
+        779.0,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t17",
+      "text": "Buero Mayer",
+      "box": [
+        862.0,
+        168.0,
+        938.0,
+        180.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t18",
+      "text": "12.32 m²",
+      "box": [
+        877.0,
+        185.0,
+        923.0,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t19",
+      "text": "Buero Studenten II",
+      "box": [
+        913.6,
+        335.0,
+        1025.6,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t20",
+      "text": "37.84 m²",
+      "box": [
+        946.6,
+        353.0,
+        992.6,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t21",
+      "text": "Buero Studenten III",
+      "box": [
+        266.0,
+        167.0,
+        382.0,
+        177.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t22",
+      "text": "38.72 m²",
+      "box": [
+        301.0,
+        185.0,
+        347.0,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t23",
+      "text": "Buero Meier",
+      "box": [
+        74.4,
+        336.0,
+        147.4,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t24",
+      "text": "11.44 m²",
+      "box": [
+        87.4,
+        353.0,
+        133.4,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t25",
+      "text": "Flur EG West",
+      "box": [
+        253.6,
+        251.0,
+        330.6,
+        261.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t26",
+      "text": "35.40 m²",
+      "box": [
+        268.6,
+        269.0,
+        314.6,
+        276.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t27",
+      "text": "WC Herren",
+      "box": [
+        650.8,
+        168.0,
+        715.8,
+        177.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t28",
+      "text": "12.76 m²",
+      "box": [
+        659.8,
+        185.0,
+        705.8,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t29",
+      "text": "Buero Meyer",
+      "box": [
+        790.0,
+        168.0,
+        866.0,
+        180.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t30",
+      "text": "12.32 m²",
+      "box": [
+        805.0,
+        185.0,
+        851.0,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t31",
+      "text": "Buero Mayr",
+      "box": [
+        1007.6,
+        168.0,
+        1076.6,
+        180.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t32",
+      "text": "11.44 m²",
+      "box": [
+        1018.6,
+        185.0,
+        1064.6,
+        192.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t33",
+      "text": "Buero Hausmeister",
+      "box": [
+        411.2,
+        336.0,
+        526.2,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t34",
+      "text": "12.76 m²",
+      "box": [
+        446.2,
+        353.0,
+        492.2,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t35",
+      "text": "Labor II",
+      "box": [
+        338.0,
+        335.0,
+        383.0,
+        345.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t36",
+      "text": "25.52 m²",
+      "box": [
+        337.0,
+        353.0,
+        383.0,
+        360.0
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t37",
+      "text": "A-002  Erdgeschoss",
+      "box": [
+        842,
+        513,
+        960,
+        526
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t38",
+      "text": "AC20 institute building · IFC model",
+      "box": [
+        842,
+        530,
+        1016,
+        540
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "lens_source": {
+    "document_id": "doc-junction-ac20",
+    "source_sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c",
+    "project_identity": "junction-ac20",
+    "dataset": "Junction · IFC-Bench",
+    "exposure": "prepared_showcase; not a holdout",
+    "source_page": 1,
+    "width": 1152,
+    "height": 552,
+    "ifc_storey_id": "0jrZ4kmNLEyeIrSAFW8xw8",
+    "image": "junction-ac20-l1.png",
+    "image_sha256": "19a091aa5137b1dde1de4a432bd793cd8a5ccd3d9f25a8ddbcbc12fbd71edd6f"
+  }
+}

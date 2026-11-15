@@ -1,0 +1,152 @@
+{
+  "id": "junction-ac20",
+  "title": "AC20 institute building",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/ac20_arc.ifc",
+    "licence": "LicenseRef-KIT-unrestricted",
+    "credit": "Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/ac20",
+    "sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c"
+  },
+  "thumbnail": "api/drawings/junction-ac20-l1/image",
+  "levels": [
+    {
+      "id": "L0",
+      "name": "Keller",
+      "z_m": -3.0,
+      "height_m": 3.0
+    },
+    {
+      "id": "L1",
+      "name": "Erdgeschoss",
+      "z_m": 0.0,
+      "height_m": 3.0
+    },
+    {
+      "id": "L2",
+      "name": "1. Obergeschoss",
+      "z_m": 3.0,
+      "height_m": 3.0
+    },
+    {
+      "id": "L3",
+      "name": "2. Obergeschoss",
+      "z_m": 6.0,
+      "height_m": 3.0
+    },
+    {
+      "id": "L4",
+      "name": "Dachgeschoss",
+      "z_m": 9.0,
+      "height_m": 3.0
+    }
+  ],
+  "sheets": [
+    {
+      "drawing_id": "junction-ac20-l1",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L1",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-ac20-l0",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L0",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-ac20-l2",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L2",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-ac20-l3",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L3",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-ac20-l4",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L4",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    }
+  ]
+}

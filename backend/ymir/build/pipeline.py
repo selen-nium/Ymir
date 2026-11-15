@@ -66,9 +66,9 @@ def auto_crop(png):
 
 def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind: str, file: str,
                   crop=None, scale_denominator: int | None = None, scale_text: str | None = None,
-                  read_text: bool | None = None, detector: str = "auto") -> Built:
+                  read_text: bool = False, detector: str = "auto") -> Built:
     """scale_denominator: 1:N sheet scale on an A3 page (else the scale is estimated from image size).
-    read_text: run OCR for room labels and printed areas (default: if RapidOCR is installed)."""
+    read_text: legacy offline text extraction, disabled for live imports."""
     import cv2
     import numpy as np
     from PIL import Image
@@ -122,8 +122,6 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
     crop_img = Image.open(io.BytesIO(png)).convert("RGB").crop(crop)
     labels = []
     t_ocr = t_rooms = 0.0
-    if read_text is None:
-        read_text = ocr.available()
     if read_text:
         t = time.perf_counter()
         bgr = cv2.cvtColor(np.array(crop_img), cv2.COLOR_RGB2BGR)
@@ -187,10 +185,9 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
         ("read", "Read drawing", "Pillow", [], "done", f"{kind} · {x1 - x0}×{y1 - y0} px", t_read),
         ("plan", "Find plan", "OpenCV", ["read"], "done", "Plan region cropped", 30),
         ("walls", "Detect walls", "WallNet" if learned else "OpenCV lines", ["plan"], "done", f"{len(out_walls)} walls found", ext["seconds"] * 1000),
-        ("text", "Read text", "RapidOCR", ["plan"], "done" if labels else "skipped", f"{len(labels)} labels" if labels else "No text pass", t_ocr),
-        ("scale", "Read scale", "RapidOCR" if sheet else "Estimate", ["text"], "done",
+        *([("text", "Read text", "Text extraction", ["plan"], "done", f"{len(labels)} labels", t_ocr)] if labels else []),
+        ("scale", "Read scale", "Source metadata" if sheet else "Estimate", ["plan"], "done",
          f"Read “{scale_text}”" if sheet and scale_text else "No scale printed: estimate", 20),
-        ("vision", "Claude vision", "fallback", ["scale"], "skipped", "Not needed" if sheet else "Standby", None),
-        ("rooms", "Find rooms", "Shapely", ["walls", "text"], "done", f"{len(rooms)} rooms", t_rooms + 50),
+        ("rooms", "Find rooms", "Shapely", ["walls"], "done", f"{len(rooms)} rooms", t_rooms + 50),
     ])
     return Built(payload, trace, buf.getvalue(), ext_name)

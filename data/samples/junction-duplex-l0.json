@@ -1,0 +1,180 @@
+{
+  "id": "junction-duplex-l0",
+  "title": "T/FDN",
+  "kind": "floor_plan",
+  "sheet_number": "A-001",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/duplex_arc.ifc",
+    "licence": "CC-BY-ND-3.0",
+    "credit": "BSI (2020) \"Duplex Apartment Test Files,\" buildingSMART International, https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%202.3.0.1%20(IFC%202x3)/Duplex%20Apartment",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/duplex",
+    "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656",
+    "kind": "Rendered from IFC",
+    "storey": "T/FDN",
+    "document_id": "doc-junction-duplex",
+    "prepared": true,
+    "model_units_to_metres": 1.0,
+    "preparation": "Cached IFC geometry",
+    "limitations": [
+      "Plan image rendered from the preserved IFC model."
+    ]
+  },
+  "image": {
+    "url": "junction-duplex-l0.png",
+    "size": [
+      319,
+      734
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.041666666666666664,
+    "source": "model",
+    "text": "1:100"
+  },
+  "default_height_m": 1.25,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0,
+        0,
+        319,
+        734
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        260.0,
+        163.2
+      ],
+      "b": [
+        260.0,
+        580.4
+      ],
+      "thickness_px": 10.0,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FK9N"
+    },
+    {
+      "id": "w2",
+      "a": [
+        58.8,
+        163.2
+      ],
+      "b": [
+        58.8,
+        570.4
+      ],
+      "thickness_px": 10.0,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FKE5"
+    },
+    {
+      "id": "w3",
+      "a": [
+        159.4,
+        388.0
+      ],
+      "b": [
+        159.4,
+        345.6
+      ],
+      "thickness_px": 10.4,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FK1b"
+    },
+    {
+      "id": "w4",
+      "a": [
+        154.2,
+        340.4
+      ],
+      "b": [
+        255.0,
+        340.4
+      ],
+      "thickness_px": 10.4,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FK3E"
+    },
+    {
+      "id": "w5",
+      "a": [
+        53.8,
+        158.2
+      ],
+      "b": [
+        265.0,
+        158.2
+      ],
+      "thickness_px": 10.0,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FK80"
+    },
+    {
+      "id": "w6",
+      "a": [
+        53.8,
+        575.4
+      ],
+      "b": [
+        255.0,
+        575.4
+      ],
+      "thickness_px": 10.0,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FKEr"
+    },
+    {
+      "id": "w7",
+      "a": [
+        63.8,
+        393.2
+      ],
+      "b": [
+        164.6,
+        393.2
+      ],
+      "thickness_px": 10.4,
+      "ifc": "2O2Fr$t4X7Zf8NOew3FK04"
+    }
+  ],
+  "openings": [],
+  "rooms": [],
+  "symbols": [],
+  "texts": [
+    {
+      "id": "t1",
+      "text": "A-001  T/FDN",
+      "box": [
+        9,
+        696,
+        88,
+        706
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t2",
+      "text": "Duplex apartments · IFC model",
+      "box": [
+        9,
+        712,
+        165,
+        722
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "lens_source": {
+    "document_id": "doc-junction-duplex",
+    "source_sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656",
+    "project_identity": "junction-duplex",
+    "dataset": "Junction · IFC-Bench",
+    "exposure": "prepared_showcase; not a holdout",
+    "source_page": 1,
+    "width": 319,
+    "height": 734,
+    "ifc_storey_id": "1xS3BCk291UvhgP2dvNsgp",
+    "image": "junction-duplex-l0.png",
+    "image_sha256": "09f5c0276c23181fe3e8c3c660d321122a124778b02703c8c0dbce09f3898320"
+  }
+}

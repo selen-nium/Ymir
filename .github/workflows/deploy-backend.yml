@@ -1,26 +1,25 @@
-# Deploys the API to Modal on demand (Actions tab → Deploy backend → Run workflow).
-# Needs repository secrets MODAL_TOKEN_ID and MODAL_TOKEN_SECRET (modal.com → Settings → API tokens)
-# and repository variables YMIR_CORS_ORIGINS (and optionally YMIR_CORS_ORIGIN_REGEX, YMIR_MODELS).
 name: Deploy backend
-
 on:
   workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: true   # model weights
+          lfs: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install modal
+      - run: pip install modal==1.6.4
+      # Model volume and Verda secret are provisioned separately. No weights or keys in GitHub.
+      - run: modal deploy deploy/modal_models.py
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
       - run: modal deploy deploy/modal_app.py
         env:
           MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
           YMIR_CORS_ORIGINS: ${{ vars.YMIR_CORS_ORIGINS }}
           YMIR_CORS_ORIGIN_REGEX: ${{ vars.YMIR_CORS_ORIGIN_REGEX }}
-          YMIR_MODELS: ${{ vars.YMIR_MODELS }}

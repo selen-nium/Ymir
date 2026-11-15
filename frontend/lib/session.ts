@@ -2,6 +2,10 @@
 // low-confidence box review. An external store: React subscribes through `subscribe` / `version`.
 import { loadBuildTrace, loadDrawing } from './api';
 import type { Answer, Box, Citation, Drawing, Pt, TraceEvent, Wall } from './types';
+import {countNoun} from './count-language';
+import {applyReviews} from './answer-presentation';
+import {windowLayout, type ModelWindow} from './window-model';
+export {countNoun} from './count-language';
 
 export const wallPx = (w: Pick<Wall, 'a' | 'b'>) => Math.hypot(w.b[0] - w.a[0], w.b[1] - w.a[1]);
 
@@ -29,19 +33,12 @@ export const FLAG_BELOW = 0.85; // walls under this confidence are shown red for
 export const REVIEW_BELOW = 0.8; // box-count answers under this confidence ask the user to check the boxes
 export const BOX_CHECK_BELOW = 0.7; // counted boxes under this score are shown red until the user touches them
 
-const NOUNS: Record<string, [string, string]> = {
-  window: ['window', 'windows'], door: ['door', 'doors'], toilet_bowl: ['toilet', 'toilets'], sink: ['sink', 'sinks'],
-  bathtub: ['bathtub', 'bathtubs'], shower: ['shower', 'showers'],
-};
-export function countNoun(cls: string, n: number) {
-  const name = String(cls).replaceAll('_', ' ');
-  return (NOUNS[cls] ?? [name, `${name}s`])[n === 1 ? 0 : 1];
-}
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 /** A box-count answer the user should check: the backend sent its boxes and a confidence under REVIEW_BELOW,
  *  or picked this confident answer for a spot check (so confidence is measured where the model is sure too). */
 export function needsReview(a: Answer | null | undefined): boolean {
+  if(a?.job_id)return a.status==='needs_review' && !!a.review?.boxes.length;
   return a?.status === 'answered' && Array.isArray(a.review?.boxes) && typeof a.confidence === 'number'
     && (a.confidence < REVIEW_BELOW || a.review?.audit === true);
 }
@@ -66,15 +63,21 @@ export function formatValue(a: Answer) {
 export type Focus = 'scale' | 'walls' | null;
 export type Selection = { type: 'wall' | 'room' | 'box' | 'sheet'; id: string } | null;
 export interface Marker { px: Pt; text: string; cls?: string; y?: number }
-export interface AnswerMarks { rooms: string[]; walls: string[]; boxes: { n: number | string; box: Box }[]; markers: Marker[] }
-export interface Review { answer: Answer; question: string; cls: string; threshold: number; added: number; items: ReviewItem[] }
+export interface AnswerMarks { rooms: string[]; walls: string[]; boxes: { n: number | string; box: Box }[]; markers: Marker[]; regions?: {polygon: Pt[]; holes: Pt[][]}[]; segments?: [Pt,Pt][] }
+export interface Review { answer: Answer; question: string; cls: string; threshold: number; added: number; items: ReviewItem[]; saved?: ReviewRecord }
 export interface ReviewRecord {
   schema: 'drawing-qa-review-v1';
   drawing: { id: string; title: string; dataset?: string; image_size: Pt };
   question: string; class: string; user_count: number;
-  model: { value: Answer['value']; confidence?: number; threshold: number; scores: Record<string, number | null>;
+  model: { value: Answer['value']; confidence?: number | null; threshold: number; scores: Record<string, number | null>;
     boxes: Record<string, number[]>; audit?: true };
   objects: { id: string; class: string; bbox_xyxy: number[]; subtype: string; status: 'accepted' | 'rejected'; proposal_id?: string }[];
+  job_id?: string;
+  sheet_id?: string;
+  id?: number;
+  revision_of?: number;
+  reviewer?: string;
+  server_received_at?: string;
   reviewed_at: string;
 }
 
@@ -93,9 +96,10 @@ export interface SessionState {
   answerPayload: Answer | null;
   review: Review | null;
   reviewShown: boolean;
+  verifiedWindows: ModelWindow[];
 }
 export type SessionEvent = 'load' | 'scale' | 'walls' | 'select' | 'answer' | 'review';
-export type Snapshot = Pick<SessionState, 'd' | 'build' | 'scale' | 'height' | 'scaleConfirmed' | 'decisions' | 'added' | 'refId'>;
+export type Snapshot = Pick<SessionState, 'd' | 'build' | 'scale' | 'height' | 'scaleConfirmed' | 'decisions' | 'added' | 'refId' | 'verifiedWindows'>;
 
 /** What the 2D and 3D views draw for the current state. */
 export interface ViewState {
@@ -106,16 +110,19 @@ export interface ViewState {
   showRemoved: boolean; showKept: boolean;
   review: { items: { id: string; box: Box; state: BoxState }[] } | null;
   answer: AnswerMarks | null;
+  windows: ModelWindow[];
 }
 
 export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = {}) {
   const listeners = new Set<(type: SessionEvent) => void>();
   const s: SessionState = { d: null, build: [], scale: 1, height: 2.7, scaleConfirmed: false, decisions: new Map(), selected: null,
-    added: 0, focus: 'scale', refId: null, answer: null, answerPayload: null, review: null, reviewShown: true };
+    added: 0, focus: 'scale', refId: null, answer: null, answerPayload: null, review: null, reviewShown: true, verifiedWindows:[] };
   let version = 0;
   const emit = (type: SessionEvent) => { version += 1; listeners.forEach((f) => f(type)); };
   const removedIds = () => new Set([...s.decisions].filter(([, k]) => !k).map(([id]) => id));
   const drawing = () => { if (!s.d) throw new Error('No drawing open'); return s.d; };
+  const modelWindows = (): ModelWindow[] => s.reviewShown && s.review?.cls === 'window'
+    ? s.review.items.filter(i=>i.counted).map(i=>({id:i.id,sheet:s.d!.id,box:i.box,verified:false})) : s.verifiedWindows;
 
   function clampBox(box: Box): Box | null {
     const [w, h] = drawing().image.size;
@@ -130,10 +137,11 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       markers: kept.map((i, k) => ({ px: [(i.box[0] + i.box[2]) / 2, (i.box[1] + i.box[3]) / 2], text: String(k + 1), cls: 'cite', y: s.height + 0.4 })) };
   }
   function answerView(a: Answer | null): AnswerMarks | null {
-    if (!a || a.status !== 'answered' || !s.d) return null;
+    if (!a || !['answered','needs_review'].includes(a.status) || !s.d) return null;
     const d = s.d, hl = a.highlight ?? {};
     const boxes: AnswerMarks['boxes'] = [], markers: Marker[] = [];
     for (const c of a.citations ?? []) {
+      if(c.sheet && c.sheet!==d.id)continue;
       const box = c.room_id && !c.box ? null : api.citationBox(c);
       if (box) boxes.push({ n: c.n, box });
     }
@@ -154,7 +162,10 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
         if (r) markers.push({ px: centroid(r.polygon), text: String(i + 1), cls: 'cite', y: s.height + 0.4 });
       });
     }
-    return { rooms, walls: hl.walls ?? [], boxes, markers };
+    const cited=(a.citations ?? []).filter(c=>!c.sheet || c.sheet===d.id);
+    return { rooms, walls: hl.walls ?? [], boxes, markers,
+      regions:cited.filter(c=>c.polygon).map(c=>({polygon:c.polygon!,holes:c.holes ?? []})),
+      segments:cited.filter(c=>c.endpoints).map(c=>c.endpoints!) };
   }
 
   const api = {
@@ -170,13 +181,13 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       // a scale that comes from the model (an IFC-rendered sheet) needs no confirming
       Object.assign(s, { d, build, scale: d.scale.m_per_px, height: d.default_height_m ?? 2.7, scaleConfirmed: d.scale.source === 'model',
         decisions: new Map(), selected: null, added: 0, focus: 'scale', refId: longestHorizontal(d.walls)?.id ?? null,
-        answer: null, answerPayload: null, review: null });
+        answer: null, answerPayload: null, review: null, verifiedWindows:[] });
       emit('load');
     },
     /** Switching sheets in a project keeps each sheet's Build decisions. */
     snapshot(): Snapshot | null {
       return s.d && { d: s.d, build: s.build, scale: s.scale, height: s.height, scaleConfirmed: s.scaleConfirmed,
-        decisions: new Map(s.decisions), added: s.added, refId: s.refId };
+        decisions: new Map(s.decisions), added: s.added, refId: s.refId, verifiedWindows:s.verifiedWindows };
     },
     restore(snap: Snapshot) {
       Object.assign(s, snap, { decisions: new Map(snap.decisions), selected: null, focus: 'scale', answer: null, answerPayload: null, review: null });
@@ -234,9 +245,15 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
     },
     /** a = answer payload or null. Views get the derived marks (rooms, walls, boxes, 3D markers). */
     setAnswer(a: Answer | null) { s.answerPayload = a; s.answer = answerView(a); emit('answer'); },
+    setVerifiedWindows(windows: ModelWindow[]) { s.verifiedWindows=windows;emit('review'); },
+    windowSummary() {
+      const layout=windowLayout(s.d?.walls ?? [],modelWindows(),removedIds());
+      return {placed:layout.placed.length,unplaced:layout.unplaced.length,preview:s.reviewShown && s.review?.cls==='window'};
+    },
     citationBox(c: Citation): Box | null {
       const d = s.d;
       if (!d) return null;
+      if (c.sheet && c.sheet!==d.id)return null;
       if (c.box) return c.box;
       if (c.text_id) return d.texts.find((x) => x.id === c.text_id)?.box ?? null;
       if (c.symbol_id) return d.symbols.find((x) => x.id === c.symbol_id)?.box ?? null;
@@ -246,11 +263,22 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       return null;
     },
     /** Box review: the model's boxes start pre-filled; the user counts or drops, resizes and adds boxes. */
-    startReview(a: Answer, question = '') {
+    startReview(a: Answer, question = '', saved?: ReviewRecord) {
       const t = a.review!.threshold ?? 0;
       s.review = { answer: a, question, cls: a.review!.class, threshold: t, added: 0,
         items: a.review!.boxes.map((b) => ({ id: String(b.id), box: [...b.box] as Box, orig: [...b.box] as Box, score: b.score,
-          counted: b.score >= t, touched: false, user: false })) };
+          counted: b.accepted ?? (b.score ?? 0) >= t, touched: false, user: false })) };
+      if (saved) {
+        s.review.saved = saved;
+        for (const it of s.review.items) {
+          const o = saved.objects.find(o => o.proposal_id === it.id);
+          if (o) Object.assign(it, {box:[...o.bbox_xyxy] as Box,counted:o.status === 'accepted',touched:true});
+          else Object.assign(it,{counted:false,touched:true});
+        }
+        for (const o of saved.objects.filter(o => !o.proposal_id)) {
+          s.review.items.push({id:o.id,box:[...o.bbox_xyxy] as Box,orig:null,score:null,counted:o.status === 'accepted',touched:true,user:true});
+        }
+      }
       emit('review');
     },
     showReview(on: boolean) { if (s.reviewShown !== on) { s.reviewShown = on; emit('review'); } },
@@ -276,13 +304,13 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
     addBox(box: Box): ReviewItem | null {
       const r = s.review, b = r && clampBox(box);
       if (!r || !b) return null;
-      r.added += 1;
+      do { r.added += 1; } while (r.items.some(i => i.id === `u${r.added}`));
       const it: ReviewItem = { id: `u${r.added}`, box: b, orig: null, score: null, counted: true, touched: true, user: true };
       r.items.push(it);
       emit('review');
       return it;
     },
-    finishReview(): { answer: Answer; record: ReviewRecord; changes: { removed: number; added: number; resized: number } } | null {
+    finishReview(keepOpen = false): { answer: Answer; record: ReviewRecord; changes: { removed: number; added: number; resized: number } } | null {
       const r = s.review, d = s.d;
       if (!r || !d) return null;
       const kept = r.items.filter((i) => i.counted), model = r.items.filter((i) => !i.user);
@@ -295,11 +323,13 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       const n = kept.length, cites = n > 1 ? `<cite>1</cite>–<cite>${n}</cite>` : n ? '<cite>1</cite>' : '';
       const one = cap(countNoun(r.cls, 1));
       const answer: Answer = { ...r.answer, value: n, checked: true, focus: null,
-        text: n ? `<b>${n}</b> ${countNoun(r.cls, n)}, checked by you ${cites}.` : `No ${countNoun(r.cls, 2)}, checked by you.`,
-        citations: kept.map((i, k) => ({ n: k + 1, label: i.user ? `${one} · added by you` : `${one} · ${Math.round((i.score ?? 0) * 100)}%`, box: round(i.box) as Box })) };
+        text: n ? `I found <b>${n}</b> ${countNoun(r.cls, n)} ${cites}.` : `I found 0 ${countNoun(r.cls, 0)}.`,
+        citations: kept.map((i, k) => ({ n: k + 1, label: `${one} · human-verified label`, box: round(i.box) as Box })) };
       // Objects follow the stoahackjunction annotation workbench schema so they can join its training data.
       const record: ReviewRecord = {
         schema: 'drawing-qa-review-v1',
+        ...(r.answer.job_id?{job_id:r.answer.job_id,sheet_id:d.id}:{}),
+        ...(r.saved?.id ? {revision_of:r.saved.id} : {}),
         drawing: { id: d.id, title: d.title, dataset: d.source?.dataset, image_size: d.image.size },
         question: r.question, class: r.cls, user_count: n,
         model: { value: r.answer.value, confidence: r.answer.confidence, threshold: r.threshold,
@@ -310,9 +340,10 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
           status: i.counted ? 'accepted' as const : 'rejected' as const, ...(i.user ? {} : { proposal_id: i.id }) })),
         reviewed_at: new Date().toISOString(),
       };
-      s.review = null;
+      const shown: Answer=r.answer.job_id ? applyReviews(r.answer,[record]) : answer;
+      if(!keepOpen)s.review = null;
       emit('review');
-      return { answer, record, changes };
+      return { answer:shown, record, changes };
     },
     skipReview(): Answer | null {
       const a = s.review && { ...s.review.answer, unchecked: true };
@@ -320,6 +351,7 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       emit('review');
       return a;
     },
+    endReview() { s.review=null;emit('review'); },
     roomArea: (r: { polygon: Pt[] }) => polyAreaPx(r.polygon) * s.scale ** 2,
     areaCheck() {
       const errs = (s.d?.rooms ?? []).filter((r) => r.printed_area_m2)
@@ -333,7 +365,7 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
         const it = s.review?.items.find((i) => i.id === sel.id);
         if (!it) return '';
         if (it.user) return 'Added by you · click to remove';
-        return `${cap(countNoun(s.review!.cls, 1))} · ${Math.round((it.score ?? 0) * 100)}%${it.counted ? '' : ' · not counted'}`;
+        return `${cap(countNoun(s.review!.cls, 1))}${it.score==null?'':` · score ${it.score.toFixed(2)}`}${it.counted ? '' : ' · not counted'}`;
       }
       if (sel.type === 'room') {
         const r = d.rooms.find((x) => x.id === sel.id);
@@ -357,7 +389,7 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
         pending: new Set(s.focus === 'walls' ? pend : []), ref: s.refId,
         refLabel: `${api.refLength().toFixed(2)} m`, refConfirmed: s.scaleConfirmed, refActive: s.focus === 'scale',
         candidates: s.focus === 'scale' ? api.candidates() : [], showRemoved: !!opts.pickRef && s.focus === 'walls',
-        showKept: !!opts.pickRef && s.focus === 'walls', review, answer: review ? reviewMarks() : s.answer };
+        showKept: !!opts.pickRef && s.focus === 'walls', review, answer: review ? reviewMarks() : s.answer, windows:modelWindows() };
     },
   };
   return api;

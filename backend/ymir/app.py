@@ -7,11 +7,12 @@ and the frontend on Vercel.
 """
 from __future__ import annotations
 
-import json
+import asyncio
 import logging
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
@@ -23,9 +24,20 @@ from .reviews import Review, ReviewStore
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("ymir")
 
-app = FastAPI(title="Ymir", version="0.1.0")
+@asynccontextmanager
+async def lifespan(app):
+    await asyncio.to_thread(jobs.start)
+    yield
+    await asyncio.to_thread(jobs.stop)
+
+app = FastAPI(title="Ymir", version="0.2.0", lifespan=lifespan)
 store = DrawingStore()
 reviews = ReviewStore()
+from .documents import DocumentStore, SheetSelection
+from .lens_jobs import JobStore
+from .lens_readiness import readiness
+documents = DocumentStore(store)
+jobs = JobStore(store, documents)
 
 if settings.CORS_ORIGINS or settings.CORS_ORIGIN_REGEX:
     app.add_middleware(CORSMiddleware, allow_origins=settings.CORS_ORIGINS, allow_origin_regex=settings.CORS_ORIGIN_REGEX,
@@ -56,13 +68,18 @@ class AskContext(BaseModel):
 
 class AskRequest(BaseModel):
     drawing_id: str
+    request_id: str = Field(min_length=1,max_length=120)
+    selected_drawing_ids: list[str] = Field(min_length=1,max_length=3)
+    project_id: str = Field(min_length=1,max_length=120)
+    conversation_id: str = Field(min_length=1,max_length=120)
+    prior_job_ids: list[str] = Field(default_factory=list,max_length=30)
     question: str = Field(min_length=1, max_length=2000)
     context: AskContext = Field(default_factory=AskContext)
 
 
 @app.get("/api/health")
 def health():
-    return {"status": "ok", "models": [d.name for d in models.detectors()]}
+    return {"status": "ok", "models": ["Ymir"], "lens": readiness(jobs.budget)}
 
 
 @app.get("/api/library")
@@ -95,7 +112,7 @@ def suggestions(drawing_id: str):
 
 @app.get("/api/agents")
 def agents():
-    return qa.graph()
+    return [{'type':'node','id':'lens','name':'Ymir','tool':'DeepSeek','parents':[]},{'type':'status','id':'lens','state':'pending','summary':'Select sources and ask a question'}]
 
 
 @app.get("/api/projects")
@@ -113,33 +130,92 @@ def project(project_id: str):
 
 @app.post("/api/ask")
 def ask(req: AskRequest):
-    d = drawing_or_404(req.drawing_id)
-    c = req.context
-    ctx = qa.Context(d, req.question.strip(), image_path=store.image_path(req.drawing_id), m_per_px=c.m_per_px,
-                     scale_confirmed=c.scale_confirmed, height_m=c.height_m, removed_walls=set(c.removed_walls),
-                     added_walls=[w.model_dump() for w in c.added_walls], reviews=reviews)
-    lines = (json.dumps(ev, ensure_ascii=False) + "\n" for ev in qa.ask(ctx))
-    return StreamingResponse(lines, media_type="application/x-ndjson")
+    for ident in req.selected_drawing_ids:drawing_or_404(ident)
+    if req.drawing_id not in req.selected_drawing_ids:
+        raise HTTPException(422, 'Active drawing must be in the selected scope')
+    if not req.question.strip():raise HTTPException(422, 'A nonempty question is required')
+    try:
+        ident=jobs.submit(req.model_dump())
+    except ValueError as e:raise HTTPException(409, str(e))
+    return StreamingResponse(jobs.stream(ident),media_type='application/x-ndjson',headers={'X-Lens-Job':ident,'Cache-Control':'no-store','X-Accel-Buffering':'no'})
+
+
+@app.get('/api/lens/status')
+def lens_status():return readiness(jobs.budget)
+
+
+@app.get('/api/lens/jobs')
+def lens_jobs(project_id: str, conversation_id: str | None = None):
+    return [dict(job, human_reviews=reviews.for_job(job['id'])) for job in jobs.list(project_id,conversation_id)]
+
+
+@app.get('/api/lens/jobs/{ident}')
+def lens_job(ident: str):
+    try:return dict(jobs.lookup(ident), human_reviews=reviews.for_job(ident))
+    except KeyError:raise HTTPException(404,'Unknown Ymir job')
+
+
+@app.get('/api/lens/jobs/{ident}/events')
+def lens_events(ident: str, after: int = Query(default=0,ge=0)):
+    try:jobs.lookup(ident)
+    except KeyError:raise HTTPException(404,'Unknown Ymir job')
+    return StreamingResponse(jobs.stream(ident,after),media_type='application/x-ndjson',headers={'Cache-Control':'no-store','X-Accel-Buffering':'no'})
+
+
+@app.post('/api/lens/jobs/{ident}/cancel')
+def lens_cancel(ident: str):
+    try:return jobs.cancel(ident)
+    except KeyError:raise HTTPException(404,'Unknown Ymir job')
+
+
+@app.get('/api/lens/jobs/{ident}/artifacts')
+def lens_artifacts(ident: str):
+    try:return jobs.artifact_inventory(ident)
+    except KeyError:raise HTTPException(404,'Unknown Ymir job')
+
+
+@app.get('/api/lens/jobs/{ident}/artifacts/{name}')
+def lens_artifact(ident: str, name: str):
+    try:
+        artifact=jobs.artifact(ident,name)
+        return FileResponse(artifact) if isinstance(artifact,Path) else artifact
+    except KeyError:raise HTTPException(404,'Unknown allowlisted artifact')
+
+
+@app.post('/api/documents')
+def upload_document(file: UploadFile = File(...), project_identity: str | None = Form(default=None)):
+    raw=file.file.read(int(settings.MAX_UPLOAD_MB*1024*1024)+1)
+    if len(raw)>settings.MAX_UPLOAD_MB*1024*1024:raise HTTPException(413,f'File exceeds the {settings.MAX_UPLOAD_MB:g} MB upload limit. Use a smaller file.')
+    try:return documents.upload(raw,file.filename or 'drawing.png',project_identity)
+    except ValueError as e:raise HTTPException(422,str(e))
+
+
+@app.get('/api/documents/{ident}')
+def document(ident: str):
+    try:return documents.get(ident)
+    except KeyError:raise HTTPException(404,'Unknown document')
+
+
+@app.get('/api/documents/{ident}/original')
+def original_document(ident: str):
+    try:return FileResponse(documents.original(ident),filename=documents.get(ident)['filename'])
+    except KeyError:raise HTTPException(404,'Unknown document')
+
+
+@app.post('/api/documents/{ident}/sheets')
+def prepare_sheets(ident: str, selection: SheetSelection):
+    try:return documents.prepare(ident,selection)
+    except KeyError:raise HTTPException(404,'Unknown document')
+    except ValueError as e:raise HTTPException(422,str(e))
 
 
 @app.post("/api/drawings")
 def upload(file: UploadFile = File(...)):
     """Build a new drawing from an uploaded plan image (PNG, JPEG or WebP)."""
-    from .build import build_drawing
-    raw = file.file.read(int(settings.MAX_UPLOAD_MB * 1024 * 1024) + 1)
-    if len(raw) > settings.MAX_UPLOAD_MB * 1024 * 1024:
-        raise HTTPException(413, f"Drawings up to {settings.MAX_UPLOAD_MB:g} MB")
-    name = Path(file.filename or "Uploaded drawing").stem[:80] or "Uploaded drawing"
-    try:
-        built = build_drawing(raw, drawing_id="upload", title=name, dataset="Upload", kind="Uploaded image",
-                              file=file.filename or "")
-    except ValueError as e:
-        raise HTTPException(422, str(e))
-    except Exception:
-        log.exception("Building %s failed", file.filename)
-        raise HTTPException(422, "This drawing could not be read. Try a PNG or JPEG of one floor plan.")
-    drawing_id = store.save(built.payload, built.trace, built.image, built.ext)
-    return next(e for e in store.library() if e["id"] == drawing_id)
+    uploaded=upload_document(file,project_identity=None)
+    prepared=documents.prepare(uploaded['id'],SheetSelection())
+    if not prepared['sheets']:raise HTTPException(422,'No supported sheets in this document')
+    return prepared['sheets'][0]
 
 
 @app.delete("/api/drawings/{drawing_id}", status_code=204)
@@ -158,11 +234,31 @@ def delete_drawing(drawing_id: str):
 def add_review(review: Review):
     d = drawing_or_404(str(review.drawing.get("id", "")))
     # The server says which detector was checked (the client can't), so reviews calibrate the right model.
+    if review.job_id:
+        try:job=jobs.lookup(review.job_id)
+        except KeyError:raise HTTPException(404,'Unknown Ymir job')
+        if job['status']!='completed':raise HTTPException(409,'Review requires a completed Ymir job')
+        review_group=next((r for r in (job['answer'] or {}).get('reviews',[]) if r['sheet']==review.sheet_id and r['class']==review.class_),None)
+        if not review_group or review.sheet_id!=d['id']:raise HTTPException(422,'Review sheet/class is outside this job')
+        ids=[o.id for o in review.objects];proposal_ids=[o.proposal_id for o in review.objects if o.proposal_id]
+        if len(set(ids))!=len(ids) or len(set(proposal_ids))!=len(proposal_ids):raise HTTPException(422,'Review identities must be unique')
+        if any(o.class_!=review.class_ for o in review.objects):raise HTTPException(422,'Review objects must match the reviewed class')
+        proposals={b['id']:b for b in review_group['boxes']}
+        if any(o.proposal_id and o.proposal_id not in proposals for o in review.objects):raise HTTPException(422,'Unknown originating proposal')
+        if review.user_count!=sum(o.status=='accepted' for o in review.objects):raise HTTPException(422,'Count does not match accepted objects')
+        w,h=d['image']['size']
+        if any(o.bbox_xyxy[2]>w or o.bbox_xyxy[3]>h for o in review.objects):raise HTTPException(422,'Review box outside source image')
+        review.model={'value':review_group['count'],'boxes':{k:v['box'] for k,v in proposals.items()},'scores':{k:v['score'] for k,v in proposals.items()},'proposal_attribution':{k:{f:v.get(f) for f in ('model','confidence_kind')} for k,v in proposals.items()},'detector':{'name':'Ymir','version':'job:'+review.job_id},'attribution':'server','job_id':review.job_id,'sheet_id':review.sheet_id,'page_id':review_group['page_id']}
+        review.drawing={'id':d['id'],'title':d['title'],'image_size':d['image']['size'],'dataset':d.get('source',{}).get('dataset')}
+        try:ident=reviews.add(review)
+        except ValueError as exc:raise HTTPException(409,str(exc))
+        return {'id':ident,'record':reviews.get(ident)}
     det = models.detector_for(d, review.class_)
     review.model.pop("detector", None)
     if det:
         review.model["detector"] = calibration.detector_info(det)
-    return {"id": reviews.add(review)}
+    ident=reviews.add(review)
+    return {"id": ident, "record": reviews.get(ident)}
 
 
 @app.get("/api/reviews")

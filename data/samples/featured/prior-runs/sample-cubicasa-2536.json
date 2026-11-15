@@ -1,0 +1,103 @@
+{
+  "model": "gpt-6.1-sol",
+  "status": "completed",
+  "output": {
+    "status": "selected",
+    "answer": "Selected the large lower-right living room labeled OH, the largest visible living-room space.",
+    "candidate_id": "r2s-c8cc74b9202403152b7d423b",
+    "calibration_id": null,
+    "value_m2": null,
+    "visible_room_label": "OH",
+    "boundary_evidence": "Inspected the returned overlay: the polygon follows the bedroom-side boundary, right exterior wall and bottom exterior wall, with its left edge beside the closet and open hall connection. No quality flags or clipped boundaries.",
+    "calibration_evidence": "No independently readable length dimension or scale bar. The printed apartment area cannot establish scale.",
+    "uncertainties": [
+      "The open connection to the hall has no physical dividing wall; the returned polygon supplies that division."
+    ]
+  },
+  "selection": {
+    "candidate_id": "r2s-c8cc74b9202403152b7d423b",
+    "candidate": {
+      "candidate_id": "r2s-c8cc74b9202403152b7d423b",
+      "polygon": {
+        "exterior": [
+          [
+            603.69140625,
+            592.8387096774193
+          ],
+          [
+            603.69140625,
+            966.7096774193549
+          ],
+          [
+            1231.81640625,
+            970.6451612903226
+          ],
+          [
+            1227.890625,
+            592.8387096774193
+          ],
+          [
+            662.578125,
+            592.8387096774193
+          ]
+        ],
+        "holes": []
+      },
+      "semantic_class": 2,
+      "semantic_label": "Living Room",
+      "model_vertices": [
+        [
+          85,
+          99
+        ],
+        [
+          85,
+          194
+        ],
+        [
+          245,
+          195
+        ],
+        [
+          244,
+          99
+        ],
+        [
+          100,
+          99
+        ]
+      ],
+      "quality_flags": [],
+      "provenance": {
+        "backend": "raster2seq",
+        "source_id": "cubicasa-test-0001",
+        "source_sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+        "view_id": "view-69e80ef7b706bae7ee64",
+        "prediction_key": "7d5f4ce504f7c1ded8c99049ceb92ca3207b6023ec9723596ba9f200b9ca8e1e",
+        "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+        "preprocessing": {
+          "original_width": 1600,
+          "original_height": 971,
+          "resized_width": 256,
+          "resized_height": 155,
+          "left": 0,
+          "top": 50,
+          "model_size": 256
+        },
+        "view_transform": {
+          "scale_x": 0.628125,
+          "scale_y": 0.6282183316168898,
+          "origin_x": 270,
+          "origin_y": 400
+        },
+        "coordinate_space": "original_full_page_pixels"
+      }
+    },
+    "pixel_area": 235332.0967741936,
+    "canonical_area_m2": null,
+    "calibration_id": null,
+    "calibration_status": "unavailable; geometry selected in original pixels"
+  },
+  "source_sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+  "trajectory_sha256": "5bfa972afd257e343f10ca6eb13f3e33f12d52a3f3035fd52433d08554a00333"
+}

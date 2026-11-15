@@ -1,0 +1,2 @@
+# Editable source snapshot for Ask; see vendor/stoa-runtime/README.md.
+-e ./vendor/stoa-runtime

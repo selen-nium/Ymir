@@ -4,30 +4,30 @@ import { HeroScene } from '@/components/landing/HeroScene';
 import s from '@/components/landing/landing.module.css';
 
 const PROBLEMS = [
-  ['Spread across sheets', 'How long are the footings under the outside walls? That takes the foundation plan, the floor plan and a schedule, drawn by three disciplines.'],
-  ['Answers without evidence', 'A number without a source is a liability. Engineers need to see which room, which wall and which sheet it came from, and how sure the model is.'],
-  ['Every set is different', 'Scanned archives, CAD exports and IFC models; Finnish, German and Danish labels; metric and imperial. One fixed pipeline doesn’t fit them all.'],
+  ['Spread across sheets', 'A detail can name a wall on one sheet and send you to a schedule on another. You need both to check it.'],
+  ['A number needs a source', 'A count or area is hard to check without the drawing behind it. You need the sheet, the location and the evidence used.'],
+  ['Different sources need different tools', 'PDFs can contain positioned text. Scans need visual inspection. Supported IFC and SVG geometry can supply explicit room boundaries.'],
 ];
 const FEATURES = [
-  ['Cited in 2D and 3D', 'Numbered citations mark the rooms, walls and symbols behind an answer, on the sheet and on the model. Click one to fly there.'],
-  ['One building from many sheets', 'Plans lie flat at their level, elevations stand on their facade, schedules link to what they describe. Two clicks line up a new sheet.'],
-  ['Honest about gaps', 'Missing sheets show as ghosts in the model. Ymir abstains instead of guessing, and points at the sheet it would need.'],
-  ['A person in the loop', 'You confirm the scale and the doubtful walls. When a count is unsure you check its boxes, and your corrections become training labels.'],
-  ['See how it answered', 'A live trace shows the planner, the tools it called and the verifier’s check as they run, so a wrong answer is easy to diagnose.'],
-  ['Any drawing, any language', 'A scan, a CAD export or an IFC-rendered sheet: Ymir sorts it by kind, reads its labels and asks you when it isn’t sure.'],
+  ['Follow the evidence', 'Click a citation to open its sheet and focus the relevant text, box or room. Placed sheets also show the evidence in 3D.'],
+  ['Assemble your building', 'Place plans at their floor level and align elevations with the building. Keep schedules and details alongside them.'],
+  ['Choose the sheets', 'Ask across one to three selected sheets. Follow-up questions keep the conversation and record the scope of each answer.'],
+  ['Check a count', 'Review the proposed boxes, resize them or draw missing ones. Your corrections are saved separately from the model’s answer.'],
+  ['See the work', 'The trace shows Ymir tool activity as it happens. Jobs and results stay available after you leave or reload the page.'],
+  ['Readings and measurements', 'Printed areas appear as readings. Measured areas and distances require source calibration; incomplete evidence is marked for review.'],
 ];
 const STEPS = [
-  ['Upload', 'A sheet of any kind, or a whole set.'],
-  ['Build', 'Walls, rooms, text and scale are read from the image. You confirm what the model isn’t sure about.'],
-  ['Assemble', 'Sheets take their place in one building. What’s missing becomes a ghost.'],
-  ['Ask', 'The planner routes the question to tools, the verifier checks, the answer cites its sources.'],
+  ['Import', 'Upload a PDF or image, or select supported IFC/SVG geometry. Choose the pages or storey you need.'],
+  ['Build', 'Check the walls and estimated scale. Verified window labels add window shapes to the model.'],
+  ['Assemble', 'Place sheets in the building. Dashed shapes show where expected plans are missing.'],
+  ['Ask', 'Choose up to three sheets. Ymir uses their text, pixels and available geometry, then links the answer to its evidence.'],
 ];
 const STACK: [string, [string, string?][]][] = [
-  ['Frontend', [['Next.js', 'Vercel'], ['React'], ['three.js', '3D model'], ['TypeScript']]],
-  ['API', [['Python 3.12'], ['FastAPI', 'streaming'], ['Pydantic'], ['Modal', 'scale to zero']]],
-  ['Vision', [['PyTorch', 'WallNet'], ['YOLO11', 'symbols'], ['RapidOCR', 'ONNX'], ['OpenCV']]],
-  ['Geometry · BIM', [['Shapely', 'rooms, areas'], ['IfcOpenShell', 'IFC → sheets'], ['NumPy'], ['Claude', 'vision fallback']]],
-  ['Data · ops', [['SQLite', 'reviews'], ['Git LFS', 'weights'], ['GitHub Actions', 'CI, deploy'], ['Vitest · pytest']]],
+  ['Frontend', [['Next.js', 'Vercel'], ['React'], ['three.js', '3D views'], ['TypeScript']]],
+  ['API & state', [['FastAPI', 'NDJSON'], ['SQLite', 'jobs, reviews, budget'], ['Pydantic', 'validation'], ['Python'], ['Modal', 'backend hosting']]],
+  ['Ask tools', [['DeepSeek', 'Verda tool loop'], ['D-FINE-L', 'Modal detector'], ['Kimi', 'Verda fallback'], ['VISTA', 'pixel inspection']]],
+  ['Room geometry', [['Raster2Seq', 'Modal room polygons'], ['IfcOpenShell', 'IFC spaces'], ['SVG', 'room boundaries'], ['Shapely', 'validation, areas']]],
+  ['Model building', [['WallNet', 'walls'], ['OpenCV', 'line fallback'], ['NumPy', 'image processing']]],
 ];
 
 export default function LandingPage() {
@@ -45,60 +45,54 @@ export default function LandingPage() {
         <div className={`${s.wrap} ${s.heroGrid}`}>
           <div className={s.heroText}>
             <h1>Ask the drawings.<br /><em>See the answer in 3D.</em></h1>
-            <p>Ymir assembles your sheets into one building, answers in plain language, and points to the evidence.</p>
+            <p>Ymir brings your sheets into one building. Ask about up to three sheets and open the drawing evidence behind the answer.</p>
             <div className={s.ctas}>
-              <Link className={`${s.btn} ${s.acc}`} href="/building?id=ac20">Explore the sample building</Link>
+              <Link className={`${s.btn} ${s.acc}`} href="/building?id=junction-ac20">Explore the sample building</Link>
               <Link className={s.btn} href="/home">Upload a drawing</Link>
             </div>
           </div>
           <div className={s.stage}>
             <HeroScene />
             <div className={s.ask}>Which is the largest room?</div>
+            <p className={s.sceneCaption}>Prebuilt sample view</p>
           </div>
         </div>
       </section>
 
       <section id="problem" className={s.section}>
         <div className={s.wrap}>
-          <span className={s.kicker}>The problem</span>
-          <h2>The answers are in the drawings. Finding them takes hours.</h2>
+          <h2>One question can send you across several sheets.</h2>
           <div className={s.cards}>
             {PROBLEMS.map(([t, d]) => <div key={t} className={s.pcard}><h3>{t}</h3><p>{d}</p></div>)}
           </div>
-          <div className={s.stats}>
-            <div><b>14,000</b><span>construction drawings</span></div>
-            <div><b>~30</b><span>languages on the sheets</span></div>
-            <div><b>120,000</b><span>quantity-takeoff questions</span></div>
-            <small>In the Stoa challenge dataset Ymir is built and tested on.</small>
-          </div>
+          <p className={s.sourceNote}>Ymir keeps uploaded originals, page numbers and source hashes so you can check an answer against its source.</p>
         </div>
       </section>
 
       <section id="features" className={`${s.section} ${s.darkSection}`}>
         <div className={s.wrap}>
-          <span className={s.kicker}>What Ymir does</span>
-          <h2>Every answer comes with its evidence. Every gap is shown.</h2>
+          <h2>Check the drawing behind each answer</h2>
           <div className={s.features}>
-            {FEATURES.map(([t, d], i) => <div key={t} className={s.fcard}><span className={s.fnum}>{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>)}
+            {FEATURES.map(([t, d]) => <div key={t} className={s.fcard}><h3>{t}</h3><p>{d}</p></div>)}
           </div>
         </div>
       </section>
 
       <section id="architecture" className={s.section}>
         <div className={s.wrap}>
-          <span className={s.kicker}>How it works</span>
-          <h2>From a scanned sheet to a cited answer</h2>
+          <h2>How Ymir builds a model and answers a question</h2>
+          <p className={s.sectionIntro}>Build prepares the 3D view. Ask runs Ymir against the selected source sheets and adds its findings as evidence overlays. The deployment uses Vercel for the frontend, Modal for the API and vision models, and Verda for DeepSeek and Kimi.</p>
           <div className={s.steps}>
             {STEPS.map(([t, d], i) => <div key={t} className={s.step}><span>{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>)}
           </div>
-          <div className={s.diagram}><ArchitectureDiagram /></div>
+          <div className={s.diagram} tabIndex={0} role="region" aria-label="Ymir architecture diagram; scroll to view on small screens"><ArchitectureDiagram /></div>
+          <p className={s.sourceNote}>Shapely checks and measures polygons from native geometry or Raster2Seq. Ymir measurements use source calibration; Build’s estimated scale stays with the 3D model.</p>
         </div>
       </section>
 
       <section id="stack" className={s.section} style={{ paddingTop: 20 }}>
         <div className={s.wrap}>
-          <span className={s.kicker}>Tech stack</span>
-          <h2>Small, plain and quick to change</h2>
+          <h2>The tools behind Ymir</h2>
           <div className={s.stack}>
             {STACK.map(([group, items]) => (
               <div key={group} className={s.scol}>
@@ -112,9 +106,9 @@ export default function LandingPage() {
 
       <div className={s.cta}>
         <h2>See it on a real building</h2>
-        <p>Five sheets from an IFC model, one waiting to be placed, and a plumbing plan that isn’t there.</p>
+        <p>The sample has five sheets from an IFC model. Place the remaining floor plan and inspect the markers for missing plans.</p>
         <div className={s.ctas}>
-          <Link className={`${s.btn} ${s.dark}`} href="/building?id=ac20">Open the sample building</Link>
+          <Link className={`${s.btn} ${s.dark}`} href="/building?id=junction-ac20">Open the sample building</Link>
           <Link className={s.btn} href="/home">Upload your own drawing</Link>
         </div>
       </div>

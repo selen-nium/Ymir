@@ -1,0 +1,14 @@
+{
+  "drawings": [
+    "sample-cubicasa-2536",
+    "sample-swiss-5733"
+  ],
+  "projects": [
+    "junction-ac20",
+    "junction-duplex",
+    "junction-digitalhub",
+    "junction-sports-complex"
+  ],
+  "selection_reason": "User-requested Ymir showcase: Junction IFC-Bench, IFC Models, Opening Design, CubiCasa and Swiss Dwellings. Reuses prior Sol sources where available; no benchmark sampling or new inference.",
+  "legacy_samples_preserved": true
+}

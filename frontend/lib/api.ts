@@ -2,7 +2,7 @@
 // {type:'node'|'status'|'answer'}; see backend/ymir/qa/stream.py.
 // The browser calls /api/* on this site and next.config.ts forwards it to the API. Setting
 // NEXT_PUBLIC_YMIR_API_BASE makes it call the API directly instead (the API then needs CORS for this origin).
-import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent } from './types';
+import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus } from './types';
 import type { Project } from './project';
 
 const BASE = (process.env.NEXT_PUBLIC_YMIR_API_BASE ?? '').replace(/\/+$/, '');
@@ -35,42 +35,57 @@ export const loadSuggestions = (drawingId: string) => get<string[]>(`api/drawing
 
 export interface AskBody {
   drawing_id: string;
+  request_id: string;
+  selected_drawing_ids: string[];
+  conversation_id: string;
+  prior_job_ids: string[];
   question: string;
   project_id?: string;
   sheet_id?: string;
   context: { m_per_px: number; scale_confirmed: boolean; height_m: number; removed_walls: string[]; added_walls: { id: string; a: [number, number]; b: [number, number] }[] };
 }
-/** Streams one answer's trace events. Returns a cancel function. */
+/** Disconnecting a subscriber never cancels a durable job. */
 export function ask(body: AskBody, onEvent: (ev: TraceEvent) => void): () => void {
+  return streamEvents('api/ask',onEvent,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+}
+export function reconnectJob(id: string, onEvent: (ev: TraceEvent) => void, after = 0) {
+  return streamEvents(`api/lens/jobs/${encodeURIComponent(id)}/events?after=${after}`,onEvent);
+}
+function streamEvents(path: string,onEvent: (ev: TraceEvent) => void,init: RequestInit = {}): () => void {
   const ctl = new AbortController();
   (async () => {
     try {
-      const res = await fetch(api('api/ask'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
-      if (!res.ok || !res.body) await json(res);
-      const reader = res.body!.pipeThrough(new TextDecoderStream()).getReader();
-      let buf = '';
+      const res=await fetch(api(path),{...init,signal:ctl.signal});
+      if(!res.ok){
+        let message=`Request failed (${res.status})`;try{await json(res);}catch(e){message=(e as Error).message;}
+        onEvent({type:'answer',answer:{status:'error',text:message,citations:[]}});return;
+      }
+      if(!res.body)throw new Error('No event stream. Reload to reconnect.');
+      const reader=res.body!.pipeThrough(new TextDecoderStream()).getReader();
+      let buf='';
       for (;;) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        buf += value;
-        for (let i = buf.indexOf('\n'); i >= 0; i = buf.indexOf('\n')) {
-          const line = buf.slice(0, i).trim();
-          buf = buf.slice(i + 1);
-          if (line) onEvent(JSON.parse(line) as TraceEvent);
+        const {value,done}=await reader.read(); if(done) break;
+        buf+=value;
+        for(let i=buf.indexOf('\n');i>=0;i=buf.indexOf('\n')) {
+          const line=buf.slice(0,i).trim();buf=buf.slice(i+1);
+          if(line) onEvent(JSON.parse(line) as TraceEvent);
         }
       }
-      if (buf.trim()) onEvent(JSON.parse(buf) as TraceEvent);
-    } catch (e) {
-      if ((e as Error).name !== 'AbortError') {
-        onEvent({ type: 'answer', answer: { status: 'error', citations: [], text: 'The answering service is unavailable right now. Try again in a moment.' } });
-      }
+      if(buf.trim())onEvent(JSON.parse(buf) as TraceEvent);
+    } catch(e) {
+      if((e as Error).name!=='AbortError')onEvent({type:'connection',message:(e as Error).message || 'Connection interrupted. Reload to reconnect to this job.'});
     }
   })();
   return () => ctl.abort();
 }
+export const lensStatus = () => get<LensStatus>('api/lens/status');
+export const loadJobs = (project: string) => get<LensJob[]>(`api/lens/jobs?project_id=${encodeURIComponent(project)}&conversation_id=${encodeURIComponent(project)}`);
+export const loadJobTrace = (id: string) => get<TraceEvent[]>(`api/lens/jobs/${encodeURIComponent(id)}/artifacts/events`);
+export const loadReviews = (sheet: string) => get<import('./session').ReviewRecord[]>(`api/reviews?drawing_id=${encodeURIComponent(sheet)}`);
+export const cancelJob = (id: string) => fetch(api(`api/lens/jobs/${encodeURIComponent(id)}/cancel`),{method:'POST'}).then(r=>json<LensJob>(r));
 
 export const submitReview = (record: unknown) =>
-  fetch(api('api/reviews'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }).then((r) => json<{ id: number }>(r));
+  fetch(api('api/reviews'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }).then((r) => json<{ id: number; record: import('./session').ReviewRecord }>(r));
 
 /** Deletes an uploaded drawing on the server (samples can't be deleted). */
 export async function deleteDrawing(id: string) {
@@ -78,8 +93,19 @@ export async function deleteDrawing(id: string) {
   if (!res.ok && res.status !== 404) await json(res);
 }
 
-export function uploadDrawing(file: File) {
-  const form = new FormData();
-  form.append('file', file);
-  return fetch(api('api/drawings'), { method: 'POST', body: form }).then((r) => json<LibraryEntry>(r));
+export interface DocumentInventory { id: string; filename: string; format: string; page_count: number; pages: {number: number; rotation?: number; native_text?: boolean}[]; selectors: {id: string; label: string}[]; limitations: string[] }
+export interface ImportSelection { pages?: number[]; options?: { element_ids?: string[]; storey_id?: string; svg_scale?: {p0: number[]; p1: number[]; length: number; unit: string; reading: string; reviewer: string} } }
+const imports = new WeakMap<File,{doc: DocumentInventory; selection: ImportSelection}>();
+export const selectImport = (file: File,doc: DocumentInventory,selection: ImportSelection) => imports.set(file,{doc,selection});
+export function uploadDocument(file: File) {
+  const form=new FormData();form.append('file',file);
+  return fetch(api('api/documents'),{method:'POST',body:form}).then(r=>json<DocumentInventory>(r));
 }
+export async function uploadDrawings(file: File) {
+  const selected=imports.get(file);
+  const doc=selected?.doc ?? await uploadDocument(file);
+  const prepared=await fetch(api(`api/documents/${doc.id}/sheets`),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(selected?.selection ?? {})}).then(r=>json<{sheets: LibraryEntry[]; limitations: string[]}>(r));
+  if(!prepared.sheets.length)throw new Error(prepared.limitations.join(' · ') || 'No supported room geometry was found.');
+  return prepared.sheets;
+}
+export async function uploadDrawing(file: File) { return (await uploadDrawings(file))[0]; }

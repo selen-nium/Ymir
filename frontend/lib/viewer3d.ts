@@ -6,6 +6,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import type { ElevationFrame, GhostKind, Similarity } from './project';
 import { wallState, type Selection, type ViewState } from './session';
 import type { Drawing, Pt, Wall } from './types';
+import {windowLayout, type ModelWindow} from './window-model';
+import {createWindowLayer, wallGeometry, wallThickness} from './window-layer';
 
 const css = (name: string, fallback: string) => {
   const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -31,12 +33,13 @@ export interface OtherSheet {
   faded?: boolean;
   frame?: ElevationFrame | null;
   active?: boolean;
+  windows?: ModelWindow[];
 }
 export interface GhostShape { id: string; kind: GhostKind; polygon: Pt[]; y0: number; y1: number; active: boolean }
 export interface SceneContext { place: ActivePlace; walls: boolean; others: OtherSheet[]; ghosts: GhostShape[] }
 export interface CameraView { pos: THREE.Vector3; look: THREE.Vector3; lift: number }
 
-type WallMesh = THREE.Mesh<THREE.BoxGeometry, THREE.MeshStandardMaterial>;
+type WallMesh = THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial>;
 
 export function createViewer(el: HTMLElement) {
   const colors = () => ({
@@ -74,10 +77,13 @@ export function createViewer(el: HTMLElement) {
   const active = new THREE.Group(); // local coords: sheet px × scale, y up in metres
   const wallsG = new THREE.Group();
   const roomsG = new THREE.Group();
-  active.add(roomsG, wallsG);
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const windows=createWindowLayer(()=>reducedMotion.matches);
+  const evidenceG = new THREE.Group();
+  active.add(roomsG, wallsG, windows.group);
   const othersG = new THREE.Group();
   const ghostsG = new THREE.Group();
-  root.add(active, othersG, ghostsG);
+  root.add(active, othersG, ghostsG, evidenceG);
   scene.add(root);
 
   let d: Drawing | null = null, view: ViewState | null = null, floor: THREE.Mesh | null = null, texture: THREE.Texture | null = null;
@@ -118,6 +124,16 @@ export function createViewer(el: HTMLElement) {
   }
   const toWorld = (px: Pt, y: number) => { const [x, z] = toLocal(px); return active.localToWorld(new THREE.Vector3(x, y, z)); };
 
+  const elevationSource=()=>ctx.place?.type==='elevation'?ctx.others.find(o=>o.id===d?.id && o.frame):undefined;
+  function evidenceWorld(px: Pt, y: number) {
+    const elevation=elevationSource();
+    if(!elevation?.frame)return toWorld(px,y);
+    const f=elevation.frame,m=f.map(px),p0=f.map([0,0]),p1=f.map([1,0]),p2=f.map([0,1]);
+    const x=new THREE.Vector3(p1.x-p0.x,p1.h-p0.h,p1.y-p0.y).normalize();
+    const up=new THREE.Vector3(p0.x-p2.x,p0.h-p2.h,p0.y-p2.y).normalize();
+    return new THREE.Vector3(m.x,elevation.place.y+m.h,m.y).addScaledVector(x.cross(up),.86);
+  }
+
   function buildFloor() {
     if (floor) { active.remove(floor); floor.geometry.dispose(); (floor.material as THREE.Material).dispose(); }
     const op = (ctx.place?.type === 'plan' ? ctx.place.opacity : undefined) ?? 1;
@@ -148,14 +164,13 @@ export function createViewer(el: HTMLElement) {
   }
 
   /** One extruded wall in a sheet's local frame (px × scale). */
-  function wallMesh(w: Wall, scale: number, height: number, color: THREE.Color, edgeOpacity: number): WallMesh | null {
+  function wallMesh(w: Wall, scale: number, height: number, color: THREE.Color, edgeOpacity: number, spans:[number,number][]=[]): WallMesh | null {
     const [ax, az] = [w.a[0] * scale, w.a[1] * scale], [bx, bz] = [w.b[0] * scale, w.b[1] * scale];
     const len = Math.hypot(bx - ax, bz - az);
     if (len < 0.05) return null;
     // drawn thickness from the detector when plausible, else 20 cm
-    const tw = w.thickness_px && w.thickness_px * scale >= 0.06 && w.thickness_px * scale <= 0.6 ? w.thickness_px * scale : 0.2;
-    const g = new THREE.BoxGeometry(len + tw, height, tw);
-    g.translate(0, height / 2, 0);
+    const tw = wallThickness(w,scale);
+    const g = wallGeometry(len,height,tw,spans);
     const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color, roughness: 0.9 }));
     m.position.set((ax + bx) / 2, 0, (az + bz) / 2);
     m.rotation.y = Math.atan2(-(bz - az), bx - ax);
@@ -165,12 +180,14 @@ export function createViewer(el: HTMLElement) {
   }
 
   function buildWalls() {
+    const projected=ctx.walls!==false && active.visible && d && view ? windowLayout(d.walls,view.windows ?? [],view.removed).placed : [];
+    windows.sync(projected,d?.walls ?? [],s,view?.height ?? 2.7);
     disposeTree(wallsG);
     wallsG.clear();
     if (d && view && ctx.walls !== false) {
       for (const w of d.walls) {
         if (!wallLook(w)) continue;
-        const m = wallMesh(w, s, view.height, C.wall, 0.55);
+        const m = wallMesh(w, s, view.height, C.wall, 0.55,windows.spans(w.id));
         if (!m) continue;
         m.scale.y = Math.max(0.02, lift);
         m.userData = { type: 'wall', id: w.id, w };
@@ -180,18 +197,39 @@ export function createViewer(el: HTMLElement) {
     }
     buildMarkers();
   }
+  function updateWindowWalls(ids:Set<string>) {
+    for(const child of wallsG.children) {
+      const mesh=child as WallMesh,w=mesh.userData.w as Wall;
+      if(!ids.has(w.id))continue;
+      const length=Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1])*s;
+      mesh.geometry.dispose();mesh.geometry=wallGeometry(length,view!.height,wallThickness(w,s),windows.spans(w.id));
+      const edges=mesh.children[0] as THREE.LineSegments;
+      edges.geometry.dispose();edges.geometry=new THREE.EdgesGeometry(mesh.geometry);
+    }
+  }
 
   // HTML badges pinned to 3D points (candidate letters, answer citations, room labels)
   function buildMarkers() {
+    disposeTree(evidenceG);evidenceG.clear();
+    const canProject=active.visible || !!elevationSource();
+    for(const region of (canProject?view?.answer?.regions:[]) ?? []) {
+      for(const ring of [region.polygon,...region.holes]) {
+        const pts=ring.map(([x,y])=>evidenceWorld([x,y],0.06));
+        evidenceG.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:C.answer})));
+      }
+    }
+    for(const endpoints of (canProject?view?.answer?.segments:[]) ?? []) {
+      evidenceG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(endpoints.map(([x,y])=>evidenceWorld([x,y],0.08))),new THREE.LineBasicMaterial({color:C.answer})));
+    }
     markerLayer.replaceChildren();
     markers = [];
-    if (!active.visible || !d || !view) return;
+    if (!canProject || !d || !view) return;
     const add = (px: Pt, y: number, text: string, cls: string) => {
       const node = document.createElement('div');
       node.className = `marker ${cls}`;
       node.textContent = text;
       markerLayer.appendChild(node);
-      markers.push({ el: node, world: toWorld(px, y) });
+      markers.push({ el: node, world: evidenceWorld(px, y) });
     };
     for (const c of view.candidates) {
       const w = d.walls.find((x) => x.id === c.id);
@@ -256,12 +294,16 @@ export function createViewer(el: HTMLElement) {
         plane.userData = o.faded ? {} : { type: 'sheet', id: o.id };
         g.add(plane);
         if (o.walls) {
+          const otherWindows=createWindowLayer(()=>true);
+          otherWindows.sync(windowLayout(o.drawing.walls,o.windows ?? []).placed,o.drawing.walls,L,o.height ?? 3,false);
+          g.add(otherWindows.group);
           for (const wall of o.drawing.walls ?? []) {
-            const m = wallMesh(wall, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3);
+            const m = wallMesh(wall, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3,otherWindows.spans(wall.id));
             if (!m) continue;
             if (o.faded) { m.material.transparent = true; m.material.opacity = 0.12; m.material.depthWrite = false; m.castShadow = false; }
             g.add(m);
           }
+          if(o.faded)otherWindows.group.traverse(object=>{const material=(object as THREE.Mesh).material as THREE.Material|undefined;if(material){material.transparent=true;material.opacity=.12;material.depthWrite=false;}});
         }
         othersG.add(g);
       } else if (o.frame) {
@@ -376,6 +418,7 @@ export function createViewer(el: HTMLElement) {
     touched = true;
     camTarget.from.copy(camera.position); camTarget.fromLook.copy(controls.target);
     camTarget.pos.copy(pos); camTarget.look.copy(look); camTarget.t = 0;
+    if(reducedMotion.matches){camera.position.copy(pos);controls.target.copy(look);camTarget.t=1;}
     dirty = true;
   }
   function moveCamera(kind: 'top' | '3d', animate = true) {
@@ -395,7 +438,10 @@ export function createViewer(el: HTMLElement) {
   }
 
   let liftAnim: { from: number; to: number; start: number; ms: number } | null = null;
-  const animateLift = (to: number, ms = 900) => { liftAnim = { from: lift, to, start: performance.now(), ms }; };
+  const animateLift = (to: number, ms = 900) => {
+    if(reducedMotion.matches){lift=to;wallsG.children.forEach(m=>{m.scale.y=Math.max(.02,lift);});liftAnim=null;dirty=true;return;}
+    liftAnim = { from: lift, to, start: performance.now(), ms };
+  };
 
   // Picking: the active sheet's walls and rooms, and the other sheets (ghosts are picked from the sheet list)
   const ray = new THREE.Raycaster();
@@ -448,12 +494,18 @@ export function createViewer(el: HTMLElement) {
   controls.addEventListener('change', invalidate);
   controls.addEventListener('start', () => { touched = true; });
   renderer.setAnimationLoop(() => {
+    const windowWalls=windows.frame();
+    if(windowWalls.size){updateWindowWalls(windowWalls);dirty=true;}
+    const windowCount=String(windows.count),windowMotion=windows.animating?'running':'settled';
+    if(canvas.dataset.windowCount!==windowCount)canvas.dataset.windowCount=windowCount;
+    if(canvas.dataset.windowMotion!==windowMotion)canvas.dataset.windowMotion=windowMotion;
     if (liftAnim) {
       const t = Math.min(1, (performance.now() - liftAnim.start) / liftAnim.ms);
       lift = liftAnim.from + (liftAnim.to - liftAnim.from) * ease(t);
       wallsG.children.forEach((m) => { m.scale.y = Math.max(0.02, lift); });
       if (t >= 1) liftAnim = null;
     }
+    windows.group.scale.y=Math.max(.02,lift);
     if (camTarget.t < 1) {
       camTarget.t = Math.min(1, camTarget.t + 0.03);
       const k = ease(camTarget.t);
@@ -471,11 +523,14 @@ export function createViewer(el: HTMLElement) {
     load(drawing: Drawing, v: ViewState) {
       dirty = true;
       d = drawing; view = v; selected = null; hover = null;
+      windows.reset();
       [W, H] = d.image.size; s = v.scale;
       texture = texFor(d.image.url);
       const keep = keepView && hasView;
       if (!keep) lift = 0;
       placeActive(); buildFloor(); buildWalls(); buildRooms(); placeSun();
+      windows.sync(ctx.walls!==false && active.visible ? windowLayout(d.walls,v.windows ?? [],v.removed).placed : [],d.walls,s,v.height,false);
+      updateWindowWalls(new Set(d.walls.map(w=>w.id)));
       if (!keep) { moveCamera('3d', false); animateLift(1, 1100); }
       hasView = true;
     },
@@ -506,7 +561,8 @@ export function createViewer(el: HTMLElement) {
     },
     /** Frame a region given in the active sheet's pixels [x0, y0, x1, y1], keeping the current view direction. */
     focusBox([x0, y0, x1, y1]: [number, number, number, number]) {
-      const look = toWorld([(x0 + x1) / 2, (y0 + y1) / 2], 0.4);
+      if(ctx.place?.type==='hidden')return;
+      const look = evidenceWorld([(x0 + x1) / 2, (y0 + y1) / 2], 0.4);
       const R = Math.max((x1 - x0) * s, (y1 - y0) * s, 4);
       const dir = camera.position.clone().sub(controls.target).normalize();
       animateCamera(look.clone().add(dir.multiplyScalar(R * 3.2 + 9)), look);
@@ -537,6 +593,7 @@ export function createViewer(el: HTMLElement) {
       renderer.setAnimationLoop(null);
       resizeObserver.disconnect();
       controls.dispose();
+      windows.reset();
       disposeTree(root);
       textures.forEach((t) => t.dispose());
       renderer.dispose();

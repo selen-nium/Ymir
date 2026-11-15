@@ -1,0 +1,23 @@
+{
+  "id": "doc-sample-cubicasa-2536",
+  "filename": "F1_scaled.png",
+  "title": "cubicasa-2536",
+  "format": "png",
+  "sha256": "c4ab50bef59596d913099166886216769daa369aea54546650a54fc888c7ee75",
+  "project_identity": "cubicasa-2536",
+  "dataset": "CubiCasa5K",
+  "exposure": "prepared_showcase; previously exposed diagnostic",
+  "pages": [
+    {
+      "number": 1,
+      "size": [
+        1301,
+        1075
+      ],
+      "native_text": false
+    }
+  ],
+  "page_count": 1,
+  "selectors": [],
+  "limitations": []
+}

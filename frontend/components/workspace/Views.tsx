@@ -96,6 +96,10 @@ function GhostCard() {
 
 function Note2D() {
   const placing = useWs((s) => s.placing);
+  const ws=useWorkspace();useSessionTick();
+  const src=ws.session.state.d?.source;
+  if(!placing && src?.image_registration?.resized){const reg=src.image_registration;return <div className="vnote">Working image {reg.sheet_size.map(n=>n.toLocaleString()).join(' × ')} · full-resolution original preserved</div>;}
+  if(!placing && src?.limitations?.length)return <div className="vnote"><details><summary>{src.rendering_scope ? 'Generated room-footprint preview' : 'Source document'}{src.source_page?` · page ${src.source_page}`:''}</summary>{src.limitations.map((text,i)=><p key={i}>{text}</p>)}</details></div>;
   if (placing?.step !== 'sheet') return null;
   return <div className="vnote place"><b>This sheet</b> · click point {placing.sheet.length + 1}: a building corner or grid crossing</div>;
 }
@@ -114,5 +118,12 @@ function Note3D() {
   else if (!baseId && !project.single) text = 'Add a floor plan to start the building';
   else if (v?.placement.type === 'attached') text = `${kindOf(v.kind).label} sheets are linked to the building, not placed in 3D`;
   else if (v && !isPlaced(v)) text = 'Not placed yet · use Place in the sheet list or in Build';
+  else if(v?.kind==='floor_plan') {
+    const windows=ws.session.windowSummary();
+    if(windows.placed || windows.unplaced)text=<>
+      {windows.preview?'Preview · ':''}{windows.placed} {windows.preview?'':'verified '}window{windows.placed===1?'':'s'} · height estimated
+      {windows.unplaced>0 && <><br />{windows.unplaced} label{windows.unplaced===1?' needs':'s need'} a wall</>}
+    </>;
+  }
   return text ? <div className={`vnote${place ? ' place' : ''}`}>{text}</div> : null;
 }

@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, "codex/**"]
   pull_request:
 
 jobs:
@@ -16,6 +16,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - run: pip install torch==2.10.0 torchvision==0.25.0 --index-url https://download.pytorch.org/whl/cpu
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q
 

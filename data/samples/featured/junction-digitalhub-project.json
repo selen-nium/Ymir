@@ -1,0 +1,98 @@
+{
+  "id": "junction-digitalhub",
+  "title": "DigitalHub office building",
+  "source": {
+    "dataset": "Junction · IFC Models",
+    "file": "ifc_models/rwth-digitalhub_digitalhub-fm-arc-v2.ifc",
+    "licence": "MIT",
+    "credit": "Copyright (c) 2020 RWTH Aachen University - E3D Institute of Energy Efficiency and Sustainable Building (MIT License)",
+    "url": "https://github.com/RWTH-E3D/DigitalHub/tree/master/Version_2",
+    "sha256": "19d7d02d53c2b88e86890ee236297b12bbb0f7748030cd32ff6a22762e9966bb"
+  },
+  "thumbnail": "api/drawings/junction-digitalhub-l1/image",
+  "levels": [
+    {
+      "id": "L0",
+      "name": "B01_OKRD",
+      "z_m": -3.37,
+      "height_m": 3.22
+    },
+    {
+      "id": "L1",
+      "name": "E00_OKRD",
+      "z_m": -0.15,
+      "height_m": 3.9
+    },
+    {
+      "id": "L2",
+      "name": "E01_OKRD",
+      "z_m": 3.75,
+      "height_m": 3.0
+    }
+  ],
+  "sheets": [
+    {
+      "drawing_id": "junction-digitalhub-l1",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L1",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-digitalhub-l0",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L0",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    },
+    {
+      "drawing_id": "junction-digitalhub-l2",
+      "views": [
+        {
+          "kind": "floor_plan",
+          "kindSure": true,
+          "discipline": "architecture",
+          "placement": {
+            "type": "plan",
+            "level": "L2",
+            "transform": [
+              0.041666666666666664,
+              0,
+              0,
+              0
+            ],
+            "by": "model"
+          }
+        }
+      ]
+    }
+  ]
+}

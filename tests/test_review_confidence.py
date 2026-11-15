@@ -52,9 +52,12 @@ def save(store, rec):
 
 
 def ask(question, drawing="cubi"):
-    res = client.post("/api/ask", json={"drawing_id": drawing, "question": question})
-    assert res.status_code == 200
-    return [json.loads(line) for line in res.text.splitlines() if line]
+    """Historical mock QA regression; production Ask is covered in test_lens_integration."""
+    import importlib
+    from ymir import qa
+    api_module=importlib.import_module('ymir.app')
+    ctx=qa.Context(api_module.store.raw(drawing),question,image_path=api_module.store.image_path(drawing),reviews=api_module.reviews)
+    return list(qa.ask(ctx))
 
 
 def answer(events):

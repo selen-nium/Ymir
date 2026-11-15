@@ -1,0 +1,15 @@
+[
+  {
+    "type": "node",
+    "id": "prepared-6b9bb41c13",
+    "name": "Load prepared model",
+    "tool": "IfcOpenShell",
+    "parents": []
+  },
+  {
+    "type": "status",
+    "id": "prepared-6b9bb41c13",
+    "state": "done",
+    "summary": "24 walls · 17 rooms · native IFC units"
+  }
+]
