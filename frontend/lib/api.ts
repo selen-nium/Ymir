@@ -2,7 +2,7 @@
 // {type:'node'|'status'|'answer'}; see backend/ymir/qa/stream.py.
 // The browser calls /api/* on this site and next.config.ts forwards it to the API. Setting
 // NEXT_PUBLIC_YMIR_API_BASE makes it call the API directly instead (the API then needs CORS for this origin).
-import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus } from './types';
+import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus, RoutingMode } from './types';
 import type { Project } from './project';
 
 const BASE = (process.env.NEXT_PUBLIC_YMIR_API_BASE ?? '').replace(/\/+$/, '');
@@ -34,6 +34,7 @@ export const previewGraph = () => get<TraceEvent[]>('api/agents').catch(() => []
 export const loadSuggestions = (drawingId: string) => get<string[]>(`api/drawings/${encodeURIComponent(drawingId)}/suggestions`).catch(() => []);
 
 export interface AskBody {
+  routing_mode: RoutingMode;
   drawing_id: string;
   request_id: string;
   selected_drawing_ids: string[];

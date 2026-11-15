@@ -40,7 +40,7 @@ def tool(name, description, properties, required=None):
 
 TOOLS = [
     tool('read_pdf_vectors', 'Inspect original PDF vector paths in registered full-page pixel coordinates. Returns lines, rectangles, quads and cubic control points with source IDs; paginate using next_cursor. Paths alone do not establish rooms or scale. Do not treat page backgrounds, nested shapes or legends as room boundaries.', {'view_id':S,'cursor':{'type':'integer','minimum':0}}, ['view_id']),
-    tool('detect_objects', 'Localize one requested class. The host selects D-FINE for trained classes and Kimi otherwise, with no fallback. Never broaden an untrained subtype to a trained parent. Generic doors/appliances use only their parent head. Edge proposals need a wider crop.',
+    tool('detect_objects', 'Localize one requested class. The host selects D-FINE for trained classes and Argon otherwise, with no fallback. Never broaden an untrained subtype to a trained parent. Generic doors/appliances use only their parent head. Edge proposals need a wider crop.',
          {'view_id': S, 'object_class': S, 'region': {'type': 'array', 'items': {'type': 'integer'}, 'minItems': 4, 'maxItems': 4, 'description':'Integer VIEW-pixel corners [left, top, right, bottom]. Full view: [0, 0, width, height]. VISTA inspect instead uses an object {x, y, width, height}.'}, 'reason': S}),
     tool('native_room_candidates', 'Enumerate source-native room outlines when supported. Omit room_identifier to list all rooms; if supplied, use an exact source identifier, not a room name. The string "all" is not a wildcard. An unsupported source is explicit; then use Raster2Seq. A footprint preview is not the complete original drawing.',
          {'page_id': S, 'room_identifier': S}, ['page_id']),
@@ -76,7 +76,7 @@ SYSTEM = '''You are Stoa Lens. Answer questions about registered construction dr
 
 Stop inspecting once the evidence supports an answer or abstention.
 
-For object counts, call detect_objects early on the full view for each requested class. The host routes trained classes to D-FINE and other classes to Kimi; do not override routing or retry a failed detector with another backend. The host computes counts solely from accepted proposal IDs. Reject uncertain, duplicate and clipped proposals. Request at most three tools per response.
+For object counts, call detect_objects early on the full view for each requested class. The host routes trained classes to D-FINE and other classes to Argon; do not override routing or retry a failed detector with another backend. The host computes counts solely from accepted proposal IDs. Reject uncertain, duplicate and clipped proposals. Request at most three tools per response.
 
 For rooms, prefer verified native candidates and otherwise use Raster2Seq. Select source-bound geometry and use source-bound calibration for areas and distances. Printed areas are readings, not calibration or computed geometry. If scale or evidence is insufficient, report uncertainty instead of inventing a measurement.
 

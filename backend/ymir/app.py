@@ -11,6 +11,7 @@ import asyncio
 import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,7 +39,7 @@ app = FastAPI(title="Ymir", version="0.2.0", lifespan=lifespan)
 store = DrawingStore()
 reviews = ReviewStore()
 from .documents import DocumentStore, SheetSelection
-from .lens_jobs import JobStore
+from .lens_jobs import JobStore, RouteUnavailable
 from .lens_readiness import readiness
 documents = DocumentStore(store)
 jobs = JobStore(store, documents)
@@ -84,6 +85,8 @@ class AskContext(BaseModel):
 
 
 class AskRequest(BaseModel):
+    model_config = {"extra": "forbid"}
+    routing_mode: Literal["smart", "frontier"] = "smart"
     drawing_id: str
     request_id: str = Field(min_length=1,max_length=120)
     selected_drawing_ids: list[str] = Field(min_length=1,max_length=3)
@@ -130,7 +133,7 @@ def suggestions(drawing_id: str):
 
 @app.get("/api/agents")
 def agents():
-    return [{'type':'node','id':'lens','name':'Ymir','tool':'DeepSeek','parents':[]},{'type':'status','id':'lens','state':'pending','summary':'Select sources and ask a question'}]
+    return [{'type':'node','id':'lens','name':'Ymir','tool':'Ymir','parents':[]},{'type':'status','id':'lens','state':'pending','summary':'Select sources and ask a question'}]
 
 
 @app.get("/api/projects")
@@ -155,6 +158,7 @@ def ask(req: AskRequest):
     try:
         ident=jobs.submit(req.model_dump())
     except ValueError as e:raise HTTPException(409, str(e))
+    except RouteUnavailable as e:raise HTTPException(503, str(e))
     return StreamingResponse(jobs.stream(ident),media_type='application/x-ndjson',headers={'X-Lens-Job':ident,'Cache-Control':'no-store','X-Accel-Buffering':'no'})
 
 

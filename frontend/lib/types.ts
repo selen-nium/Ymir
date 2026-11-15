@@ -89,7 +89,11 @@ export interface ReviewBox {
 
 export interface CountReview { sheet?: string; page_id?: string; class: string; threshold: number; boxes: ReviewBox[]; count?: number | null; audit?: boolean }
 
+export type RoutingMode = 'smart' | 'frontier';
+
 export interface Answer {
+  routing_mode?: RoutingMode;
+  configuration?: Record<string, unknown>;
   status: 'answered' | 'needs_review' | 'abstained' | 'error';
   text: string;
   value?: number | string | null;
@@ -119,9 +123,9 @@ export type TraceEvent = (
   | { type: 'node'; id: string; name: string; tool?: string; detail?: string; parents?: string[] }
   | { type: 'status'; id: string; state: TraceState; summary?: string; ms?: number }
   | { type: 'answer'; answer: Answer }
-  | { type: 'job'; job_id: string; status: string; request_id?: string }
+  | { type: 'job'; job_id: string; status: string; request_id?: string; routing_mode?: RoutingMode }
   | { type: 'progress'; activity: Record<string, unknown> }
   | { type: 'connection'; message: string }) & { seq?: number; job_id?: string };
 
-export interface LensStatus { ready: boolean; checks: Record<string, boolean>; budget: { cap_usd: number; remaining_usd: number; actual_usd: number; unresolved_reserved_usd: number } }
-export interface LensJob { id: string; status: string; request: { request_id: string; question: string; drawing_id: string; selected_drawing_ids: string[] }; answer: Answer | null; human_reviews?: import('./session').ReviewRecord[]; created_at: string }
+export interface LensStatus { modes?: Record<RoutingMode, {ready: boolean; checks: Record<string, boolean>}>; ready: boolean; checks: Record<string, boolean>; budget: { cap_usd: number; remaining_usd: number; actual_usd: number; unresolved_reserved_usd: number } }
+export interface LensJob { id: string; status: string; request: { routing_mode?: RoutingMode; request_id: string; question: string; drawing_id: string; selected_drawing_ids: string[] }; answer: Answer | null; human_reviews?: import('./session').ReviewRecord[]; created_at: string }

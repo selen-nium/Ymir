@@ -154,9 +154,9 @@ def test_source_transform_maps_holes_boxes_and_scale():
 
 def test_shared_budget_holds_reservations_and_refuses_over_cap(integration):
     jobs,_,_,_=integration
-    key=jobs.budget.reserve('deepseek-4-1-flash-1017','test',24)
+    key=jobs.budget.reserve('deepseek/deepseek-v4.1-flash-1017','test',24)
     assert jobs.budget.summary()['remaining_usd']==1
-    with pytest.raises(BudgetError):jobs.budget.reserve('kimi-k3-1-pro','test',2)
+    with pytest.raises(BudgetError):jobs.budget.reserve('google/gemini-4-argon','test',2)
     jobs.budget.settle(key,None)
     assert jobs.budget.summary()['unresolved_reserved_usd']==24
 

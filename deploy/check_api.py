@@ -34,7 +34,10 @@ def writer(request_id):
         class OrchestratorFixture:
             def complete(self,*args,**kwargs):
                 return {'role':'assistant','content':json.dumps({'status':'needs_review','accepted_proposal_ids':[],'count_requests':[],'rooms':[]})}
-            def kimi(self,*args,**kwargs):raise AssertionError('No paid fallback in deployment fixture')
+            def argon(self):
+                from stoa_lens.transport import Argon
+                return Argon(self)
+            def _call(self,*args,**kwargs):raise AssertionError('No paid localization in deployment fixture')
         answer=run([store.raw('sample-cubicasa-2536')['lens_source']],'Deployment fixture',
             Path('/check-data')/('factory-'+request_id),budget=jobs.budget,transport=OrchestratorFixture())
         assert answer['status']=='needs_review'

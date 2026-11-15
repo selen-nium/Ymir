@@ -83,10 +83,10 @@ def test_grouped_routed_detection_counts_each_backend_invocation(tmp_path,monkey
             self.calls.append(kind);b=[10,10,20,20] if kind=='bathtub' else [30,10,40,20]
             return {'status':'complete','instances':[{'label':kind,'bbox_2d':b,'confidence':.8}],'uncertainties':[]},{}
         def close(self):pass
-    class Kimi:
-        model='kimi-test'
-        def predict(self,*args):pytest.fail('No Kimi fallback for trained class')
-    model=Model();detector=RoutedBoundDetector(DetectionService(model,Kimi(),tmp_path/'det'),['bathtub','shower'])
+    class Argon:
+        model='argon-test'
+        def predict(self,*args):pytest.fail('No Argon fallback for trained class')
+    model=Model();detector=RoutedBoundDetector(DetectionService(model,Argon(),tmp_path/'det'),['bathtub','shower'])
     h=BoundCounter(registry,detector,object(),tmp_path/'job',page_id=registry.initial['page_id'],
        target_classes=['bathtub','shower'],description='bathtubs and showers',backend='dfine')
     h.tool_deadline=time.monotonic()+20
@@ -109,15 +109,15 @@ def test_compact_progress_projects_actual_dfine_to_job_trace(tmp_path):
         model='d-fine-test'
         def predict(self,path,kind,timeout):return {'status':'complete','instances':[{'label':kind,'bbox_2d':[10,10,20,20],'confidence':.8}],'uncertainties':[]},{}
         def close(self):pass
-    class Kimi:
-        model='kimi-test'
-        def predict(self,*args):pytest.fail('unexpected Kimi')
+    class Argon:
+        model='argon-test'
+        def predict(self,*args):pytest.fail('unexpected Argon')
     class Transport:
         def complete(self,messages,tools,deadline,index,final=False):
             if index==0:return {'role':'assistant','content':None,'tool_calls':[{'id':'x','type':'function','function':{'name':'detect_objects','arguments':json.dumps({'region':[0,0,100,80],'reason':'Find doors'})}}]}
             result=next(json.loads(m['content']) for m in reversed(messages) if m.get('role')=='tool')
             return {'role':'assistant','content':json.dumps({'status':'answered','accepted_proposal_ids':[result['proposals'][0]['id']]})}
-    jobs=JobStore(None,None,tmp_path/'jobs');detector=RoutedBoundDetector(DetectionService(Model(),Kimi(),tmp_path/'det'),['door'])
+    jobs=JobStore(None,None,tmp_path/'jobs');detector=RoutedBoundDetector(DetectionService(Model(),Argon(),tmp_path/'det'),['door'])
     counter=BoundCounter(registry,detector,Transport(),tmp_path/'counter',page_id=registry.initial['page_id'],target_classes=['door'],
       description='doors',backend='dfine',progress=lambda ev:jobs._progress('trace-test',ev))
     assert counter.run('Count doors')['count']==1
@@ -135,10 +135,10 @@ def test_mixed_group_progress_does_not_claim_single_model(tmp_path):
     from stoa_lens.bound_counter import BoundCounter,RoutedBoundDetector
     image=tmp_path/'p.png';Image.new('RGB',(10,10),'white').save(image)
     registry=Registry([{'image':str(image),'width':10,'height':10}],tmp_path/'views')
-    dfine=type('D',(),{'model':'d-fine-test'})();kimi=type('K',(),{'model':'kimi-test'})()
-    detector=RoutedBoundDetector(DetectionService(dfine,kimi,tmp_path/'det'),['door','chair']);events=[]
+    dfine=type('D',(),{'model':'d-fine-test'})();argon=type('K',(),{'model':'argon-test'})()
+    detector=RoutedBoundDetector(DetectionService(dfine,argon,tmp_path/'det'),['door','chair']);events=[]
     counter=BoundCounter(registry,detector,object(),tmp_path/'job',page_id=registry.initial['page_id'],
       target_classes=['door','chair'],description='doors and chairs',backend='mixed',progress=events.append)
     counter._emit(operation='tool',phase='started',tool='detect_objects')
     assert events[0]['routing']['backend']=='mixed' and 'model' not in events[0]
-    assert events[0]['models']==['d-fine-test','kimi-test']
+    assert events[0]['models']==['d-fine-test','argon-test']

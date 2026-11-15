@@ -191,11 +191,11 @@ def parser():
     ask.add_argument('--max-pages', type=int, default=3)
     ask.add_argument('--question', required=True)
     ask.add_argument('--agent', choices=('general','counter','rooms','compact_counter'), default='general',
-                     help='Task-specific DeepSeek prompt/tools/schema; general preserves the original harness.')
+                     help='Task-specific orchestrator prompt/tools/schema; general preserves the original harness.')
     ask.add_argument('--bound-page-index',type=int,help='Zero-based page index; compact counting requires one page and index 0.')
     ask.add_argument('--bound-class',action='append',help='Host-bound target class; repeat for a group. Routed groups use one detector request per class.')
     ask.add_argument('--bound-description',help='Human description of the bound target group.')
-    ask.add_argument('--bound-backend',choices=('routed','kimi_atomic'),help='Default routed product policy; kimi_atomic is an explicit diagnostic.')
+    ask.add_argument('--bound-backend',choices=('routed','argon_atomic'),help='Default routed product policy; argon_atomic is an explicit diagnostic.')
     ask.add_argument('--output', type=Path, required=True, help='Fresh immutable job directory.')
     _budget_args(ask)
     prepare = sub.add_parser('pilot-prepare', help='Freeze the original nine-case pilot; no model calls.')

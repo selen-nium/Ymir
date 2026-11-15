@@ -1,8 +1,8 @@
-# Vercel, Modal and Verda
+# Vercel, Modal and OpenRouter
 
 The Next.js frontend runs on Vercel. A single CPU API container on Modal owns
 SQLite, the durable inference queue and source artifacts. D-FINE-L and Raster2Seq
-run as private Modal GPU functions. DeepSeek and Kimi stay on Verda. Browser code
+run as private Modal GPU functions. DeepSeek, Sol and Argon use pinned OpenRouter endpoints. Browser code
 contains only the API origin; provider credentials stay in the backend secret.
 
 ## Models
@@ -33,8 +33,7 @@ an unverified checkpoint and records the model proof in each job manifest.
 
 ## API and state
 
-Create the backend-only Modal secret `ymir-verda` with `VERDA_INFERENCE_API_KEY`,
-`VERDA_CLIENT_ID` and `VERDA_CLIENT_SECRET`. Do not put these in Vercel variables.
+Create the backend-only Modal secret `ymir-openrouter` with `OPENROUTER_API_KEY`. Do not put these in Vercel variables.
 Obtain secrets through your existing secret manager or Modal dashboard, never Git.
 
 The existing local US$25 ledger must move with the jobs, uploads and reviews. Finish
@@ -63,8 +62,12 @@ Job streams are async and hold no worker thread, and the container accepts up to
 128 concurrent requests, so many viewers can watch jobs at once.
 All mutations commit the data volume, including source intake failures. Job status,
 progress, reservations and settlements commit at operation boundaries. Interrupted
-jobs stay stopped, and unknown billing retains its reservation. Fresh Verda pricing
-is checked before dispatch. Each private GPU call holds $0.25 in the same budget;
+jobs stay stopped, and unknown billing retains its reservation. Fresh OpenRouter endpoint metadata
+is checked before dispatch. The catalogs and pacing database live under `/data/lens/openrouter`
+(`YMIR_OPENROUTER_HOME` overrides this). The writer refreshes each model independently at startup;
+dispatch refreshes its own model if needed. No OAuth or Verda credentials are used. Readiness
+reports Smart and Frontier separately, including their shared Argon and GPU tools. OpenRouter
+`usage.cost` settles reservations; missing billing keeps the full hold. Each private GPU call holds $0.25 in the same budget;
 actual Modal billing must be reconciled separately. It is never reported as an
 LLM token charge or guessed from inference duration.
 
@@ -89,7 +92,7 @@ Changing a `NEXT_PUBLIC_` variable requires rebuilding the frontend.
 
 The manual GitHub Actions deployment deploys private GPU functions first, then the
 API. It expects the preprovisioned model volume, state volume, smoke receipt and
-Verda secret; it never uploads weights or resets the ledger automatically.
+OpenRouter secret; it never uploads weights or resets the ledger automatically.
 
 ## Validation performed
 
@@ -118,3 +121,26 @@ billing; these are reservations, not claims about actual spend.
 
 The private GPU deployment is live. The workspace and frontend remain local;
 public API cutover and Vercel publication use the setup above and the same state.
+
+## Smart / Frontier migration
+
+The backend accepts only `routing_mode: "smart" | "frontier"`, defaulting new jobs
+to Smart. It snapshots the selected model, endpoint and detector policy with the
+job. Request IDs cannot be reused with a different mode. Legacy request replay
+keeps its original manifest and recorded Verda events without inference. Legacy
+queued jobs without a routing snapshot stop before dispatch.
+
+The selector beside Send is remembered independently for each conversation, is
+locked while a job is active, and displays only selected-mode readiness. The UI
+does not display balances or holds. Backend accounting fields and the original
+US$25 ceiling remain available. Never initialize a new ledger for migration.
+
+For local setup, export `OPENROUTER_API_KEY` in the backend environment, then run
+`python scripts/refresh_openrouter_catalog.py`. `YMIR_STOA_ROOT` still selects
+GPU/native geometry assets. It does not select provider credentials or experiment
+pacing. No experiment runtime, job, report or ledger is imported or modified.
+The migration does not require changing or redeploying GPU checkpoints.
+
+See [routing and validation](openrouter-routing.md) for endpoint pins, continuation
+handling and verification scope. This change is delivered by normal Git push; no
+manual deployment is part of the migration.

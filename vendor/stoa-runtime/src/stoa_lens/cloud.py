@@ -1,4 +1,4 @@
-"""Private, once-only Modal GPU calls. Verda owns every language-model call."""
+"""Private, once-only Modal GPU calls. OpenRouter owns every language-model call."""
 from pathlib import Path
 import hashlib
 import json

@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install modal==1.6.4
-      # Model volume and Verda secret are provisioned separately. No weights or keys in GitHub.
+      # Model volume and OpenRouter secret are provisioned separately. No weights or keys in GitHub.
       - run: modal deploy deploy/modal_models.py
         env:
           MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}

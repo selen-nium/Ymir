@@ -62,9 +62,12 @@ and render everything else from the workspace store (zustand).
   WallNet is retired. Samples are prebuilt in `data/samples/` (`scripts/rebuild_sample_walls.py` rebuilds
   their walls); uploads run it live.
 - **Ask:** `POST /api/ask` snapshots one to three selected sheets and records a durable job.
-  The source-controlled runtime in `vendor/stoa-runtime` calls DeepSeek and Kimi on Verda,
+  The source-controlled runtime in `vendor/stoa-runtime` uses OpenRouter: Smart selects `deepseek/deepseek-v4.1-flash-1017`, Frontier selects `openai/gpt-6.1-sol`,
+  and both use `google/gemini-4-argon` for untrained object classes,
   D-FINE for its trained classes, and native or Raster2Seq room tools. Counts use recorded
-  proposals. Measurements require source calibration.
+  proposals. Measurements require source calibration. New chats default to Smart; the composer
+  remembers the selected mode per conversation. Each question snapshots its mode and sources.
+  See [routing and capability details](docs/openrouter-routing.md).
 - **Review:** incomplete counts with proposals open the box editor. Completed counts can be
   reviewed manually. Saved labels remain editable; each edit adds a server-attributed
   revision. Verified windows animate into the walls. Their height remains an estimate.
@@ -151,8 +154,8 @@ editing a saved review creates a revision and preserves the earlier record.
 ## Deploy (frontend on Vercel, API on Modal)
 
 The frontend calls the Modal API directly for uploads and durable job streams.
-D-FINE-L and Raster2Seq run in separate private GPU functions; DeepSeek and Kimi
-remain on Verda. The CPU API keeps one writer for jobs, reviews and the shared
+D-FINE-L and Raster2Seq run in separate private GPU functions; DeepSeek, Sol and Argon
+run through pinned OpenRouter endpoints. The CPU API keeps one writer for jobs, reviews and the shared
 US$25 ledger. GPU workers scale to zero.
 
 Follow [the hosting setup](docs/hosting.md) for model smoke checks, state cutover,

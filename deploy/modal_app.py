@@ -1,4 +1,4 @@
-"""CPU API on Modal; private GPU functions in modal_models.py; LLMs on Verda.
+"""CPU API on Modal; private GPU functions in modal_models.py; LLMs on OpenRouter.
 
 Deploy models and pass their smoke receipt before deploying this API. See docs/hosting.md.
 """
@@ -36,7 +36,7 @@ image=(modal.Image.debian_slim(python_version='3.12').apt_install('libgl1','libg
               env={'YMIR_CORS_ORIGINS':os.environ.get('YMIR_CORS_ORIGINS',''),
                    'YMIR_CORS_ORIGIN_REGEX':os.environ.get('YMIR_CORS_ORIGIN_REGEX','')},
               min_containers=1,max_containers=1,
-              secrets=[modal.Secret.from_name('ymir-verda',required_keys=['VERDA_INFERENCE_API_KEY','VERDA_CLIENT_ID','VERDA_CLIENT_SECRET'])])
+              secrets=[modal.Secret.from_name('ymir-openrouter',required_keys=['OPENROUTER_API_KEY'])])
 # Job streams are async and hold no worker thread, so many viewers can watch jobs at once.
 # Uploads and builds still share the server's thread pool and the container's two CPUs.
 @modal.concurrent(max_inputs=128)
@@ -49,7 +49,6 @@ def web():
         raise RuntimeError('Import the existing Ymir state and $25 ledger before starting the hosted API.')
     from ymir.app import app as api,jobs
     from ymir.writer_lease import WriterLease
-    from stoa_lens.service import ROOT as runtime_root
     from stoa_lens.transport import refresh_pricing
 
     # A single warm CPU container owns all SQLite writers and the inference thread, but a redeploy
@@ -71,10 +70,10 @@ def web():
         jobs.start()  # marks jobs the previous container left running as interrupted
         data.commit()
         def pricing():
-            try:refresh_pricing(runtime_root,runtime_root/'data/stoa-lens/provider')
+            try:refresh_pricing()
             except Exception:return  # readiness reports unavailable; dispatch rechecks catalog freshness
             commit()
-        threading.Thread(target=pricing,name='pricing-refresh',daemon=True).start()
+        threading.Thread(target=pricing,name='openrouter-catalog-refresh',daemon=True).start()
 
     def step_down():
         jobs.stop()

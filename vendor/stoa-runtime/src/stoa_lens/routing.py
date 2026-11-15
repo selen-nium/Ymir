@@ -2,7 +2,7 @@
 import re
 from .dfine import HEADS, verified_head_policy
 
-# Explicit equivalences only; broad or ambiguous terms stay with Kimi.
+# Explicit equivalences only; broad or ambiguous terms stay with Argon.
 ALIASES={
  'door':'door','doors':'door','single door':'door_single','single doors':'door_single',
  'double door':'door_double','double doors':'door_double','sliding door':'door_sliding','sliding doors':'door_sliding',
@@ -29,7 +29,7 @@ class ClassRouter:
     def route(self,object_class):
         normalized=normalize(object_class)
         canonical=ALIASES.get(normalized)
-        return {'backend':'dfine' if canonical else 'kimi','requested_class':object_class,
+        return {'backend':'dfine' if canonical else 'argon','requested_class':object_class,
                 'canonical_class':canonical if canonical else normalized,'class_id':HEADS.index(canonical) if canonical else None}
 
     def accepts_label(self,requested,label):

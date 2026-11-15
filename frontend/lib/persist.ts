@@ -2,7 +2,7 @@
 // to each project, and what was opened recently. localStorage only, so every read and write survives it being
 // blocked (private windows, previews) and the app still works without it.
 import { BASE_LEVEL, placementFor, type Level, type Overlay, type Project } from './project';
-import type { Answer, Drawing, TraceEvent } from './types';
+import type { Answer, Drawing, TraceEvent, RoutingMode } from './types';
 import type {ReviewRecord} from './session';
 
 export interface KeyValueStorage {
@@ -54,6 +54,7 @@ export const saveOverlay = (pid: string, overlay: Overlay, storage = browserStor
 /* ---------- Conversations: one thread per project ('ac20', 'local-…') or drawing ('d:cubi') ---------- */
 export const MAX_THREAD = 30;
 export interface StoredEntry {
+  routing_mode?: RoutingMode;
   q: string;
   sheet: string;
   answer?: Answer;
@@ -76,9 +77,15 @@ export function loadThread(pid: string, storage = browserStorage()): StoredEntry
 /** Keeps what re-showing an answer needs: the question, the sheet it was asked on, the answer and its trace. */
 export function saveThread(pid: string, entries: Partial<StoredEntry>[], storage = browserStorage()): boolean {
   const kept = entries.filter((e) => e.answer || e.job_id || e.request_id).slice(-MAX_THREAD)
-    .map(({ q, sheet, sheets, answer, modelAnswer, records, record, events, at, id, job_id, request_id, status }) => ({ q, sheet, sheets, answer, modelAnswer, records, record, events: events ?? [], at: at ?? Date.now(), id, job_id, request_id, status }));
+    .map(({ q, sheet, sheets, routing_mode, answer, modelAnswer, records, record, events, at, id, job_id, request_id, status }) => ({ q, sheet, sheets, routing_mode, answer, modelAnswer, records, record, events: events ?? [], at: at ?? Date.now(), id, job_id, request_id, status }));
   return write(storage, threadKey(pid), kept);
 }
+const routingKey = (pid: string) => `ymir.routing.${pid}`;
+export function loadRoutingMode(pid: string, storage = browserStorage()): RoutingMode | null {
+  const value = read<unknown>(storage, routingKey(pid), null);
+  return value === 'smart' || value === 'frontier' ? value : null;
+}
+export const saveRoutingMode = (pid: string, mode: RoutingMode, storage = browserStorage()) => write(storage, routingKey(pid), mode);
 export function threadSummary(pid: string, storage = browserStorage()) {
   const t = loadThread(pid, storage);
   if (!t.length) return null;
@@ -114,6 +121,7 @@ export function createLocalProject(
 }
 export function removeLocalProject(id: string, storage = browserStorage()) {
   write(storage, LOCAL, localProjects(storage).filter((p) => p.id !== id));
+  remove(storage, routingKey(id));
   remove(storage, threadKey(id));
   remove(storage, overlayKey(id));
 }
@@ -137,6 +145,7 @@ export function setHidden(key: string, hidden: boolean, storage = browserStorage
 }
 /** Forget what this browser kept about a drawing that was deleted (its conversation, its recent entry). */
 export function forgetDrawing(id: string, storage = browserStorage()) {
+  remove(storage, routingKey(`d:${id}`));
   remove(storage, threadKey(`d:${id}`));
   write(storage, RECENT, recent(storage).filter((r) => r.id !== id));
 }

@@ -3,7 +3,9 @@ from pathlib import Path
 from functools import lru_cache
 import json
 from stoa_lens.service import ROOT
-from stoa_lens.transport import _env, _validate_pricing
+from stoa_lens.transport import validate_catalog, catalog_path
+from stoa_lens.model_config import resolve, provider_home
+import os
 
 
 @lru_cache(maxsize=8)
@@ -29,8 +31,21 @@ def readiness(budget):
         try:manifest();remote=True
         except (OSError,KeyError,ValueError):remote=False
         checks={key:remote for key in ('dfine_checkpoint','dfine_environment','dfine_upstream','raster2seq')}
-    env=_env(ROOT);checks['credentials']=bool(env.get('VERDA_INFERENCE_API_KEY') or env.get('VERDA_API_KEY')) and bool(env.get('VERDA_CLIENT_ID') and env.get('VERDA_CLIENT_SECRET'))
-    try:
-        _validate_pricing(json.loads((ROOT/'data/stoa-lens/provider/catalog.json').read_text()));checks['catalog']=True
-    except (ValueError,OSError,KeyError):checks['catalog']=False
-    return {'ready':all(checks.values()),'checks':checks,'budget':{k:v for k,v in budget.summary().items() if k!='charges'},'single_inference_worker':True,'automatic_retries':False}
+    checks['credentials']=bool(os.environ.get('OPENROUTER_API_KEY','').strip())
+    modes={}
+    for mode in ('smart','frontier'):
+        config=resolve(mode)
+        route_checks=dict(checks)
+        for role in ('orchestrator','detector'):
+            model=config[role]['model']
+            try:
+                validate_catalog(json.loads(catalog_path(provider_home(),model).read_text()),model)
+                route_checks[role+'_catalog']=True
+            except (ValueError,OSError,KeyError):route_checks[role+'_catalog']=False
+        modes[mode]={'ready':all(route_checks.values()),'checks':route_checks,'configuration':config}
+    # Existing clients retain the combined readiness/checks and accounting shape;
+    # new clients consult the selected route. One ready route is enough overall.
+    checks['catalog']=any(all(r['checks'][k] for k in ('orchestrator_catalog','detector_catalog')) for r in modes.values())
+    return {'ready':any(r['ready'] for r in modes.values()),'checks':checks,'modes':modes,
+            'budget':{k:v for k,v in budget.summary().items() if k!='charges'},
+            'single_inference_worker':True,'automatic_retries':False}

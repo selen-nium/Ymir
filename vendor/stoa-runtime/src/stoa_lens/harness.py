@@ -1,4 +1,4 @@
-"""Bounded DeepSeek tool loop, with host-owned counts and measurements."""
+"""Bounded model tool loop, with host-owned counts and measurements."""
 from __future__ import annotations
 
 import copy
@@ -43,7 +43,9 @@ def validation_message(exc):
 
 class LensHarness:
     def __init__(self, registry, detector, geometry, transport, directory, limits=None,
-                 progress=None,conversation_context=None,cancelled=None,*,agent_profile=None):
+                 progress=None,conversation_context=None,cancelled=None,*,agent_profile=None,configuration=None):
+        from .model_config import resolve,validate
+        self.configuration=validate(configuration if configuration is not None else resolve())
         self.registry, self.detector, self.geometry, self.transport = registry, detector, geometry, transport
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
@@ -78,6 +80,12 @@ class LensHarness:
             raise Cancelled('Cancelled after current operation; no further dispatch')
 
     def _emit(self, **event):
+        if event.get('operation')=='response':
+            if event.get('phase')=='completed':
+                receipt=getattr(self.transport,'last_response',{})
+                event.update(actual_model=receipt.get('actual_model'),actual_provider=receipt.get('actual_provider'))
+            event.update(routing_mode=self.configuration['routing_mode'],model=self.configuration['orchestrator']['model'],
+                         provider=self.configuration['orchestrator']['provider'],endpoint=self.configuration['orchestrator']['endpoint'])
         if self.progress is not None:self.progress(public(event))
 
     def _consume(self, name):
@@ -383,7 +391,10 @@ class LensHarness:
         result['evidence_views']={ident:public(view) for ident,view in self.registry.views.items()}
         result['calibrations']=public(list(self.geometry.calibrations.values()))
         result['elapsed_seconds'] = time.monotonic() - self.started
-        result['configuration'] = {'orchestrator': 'deepseek-4-1-flash-1017', 'reasoning': 'high',
+        result['model_calls']=[{k:r.get(k) for k in ('model','actual_model','provider','endpoint','actual_provider','generation_id')} for r in getattr(self.transport,'receipts',[])]
+        result['routing_mode']=self.configuration['routing_mode']
+        result['configuration'] = {**self.configuration, 'orchestrator': self.configuration['orchestrator']['model'],
+                                   'models': {'orchestrator':self.configuration['orchestrator'],'detector':self.configuration['detector']}, 'reasoning': 'high',
                                    'max_output_tokens': 65536, 'dedicated_ocr': False,
                                    'class_policy': self.router.policy, 'limits': self.limits.__dict__}
         if self.agent_profile:
@@ -430,9 +441,9 @@ class LensHarness:
                     self._emit(operation='response',phase='completed',response_index=index,final=final)
                     self._boundary()
                 except BudgetError as exc:
-                    self._emit(operation='response',phase='failed',response_index=index,final=final,reason='Budget stopped before dispatch')
+                    self._emit(operation='response',phase='failed',response_index=index,final=final,reason='Request incomplete. The recorded evidence is available for review.')
                     self.transcript.append({'response_index': index, 'budget_stopped': str(exc)})
-                    return self._partial('Budget stopped before dispatch')
+                    return self._partial('Request incomplete. The recorded evidence is available for review.')
                 except Exception as exc:
                     from .service import Cancelled
                     if isinstance(exc,Cancelled):raise
@@ -480,6 +491,7 @@ class LensHarness:
                             detail={'routing':route,'model':getattr(adapter,'model',None)}
                         except (KeyError,TypeError,ValueError):pass
                     self._emit(operation='tool',phase='started',tool=name,call_id=call.get('id'),response_index=index,**detail)
+                    spending_stopped=False
                     try:
                         if final or call_index >= self.limits.tools_per_response:
                             self._consume(name)
@@ -499,12 +511,18 @@ class LensHarness:
                         if isinstance(exc,jsonschema.ValidationError):result['raw']={'validation_error':str(exc)}
                         if getattr(exc, 'receipt', None):
                             result['receipt'] = exc.receipt
+                        cause=exc
+                        while cause is not None:
+                            if isinstance(cause,BudgetError):spending_stopped=True;break
+                            cause=cause.__cause__
                         if isinstance(exc, (TimeoutError, BudgetError)):
                             force_final = True
                     result = dict(result, remaining_resources=self.resources())
                     self.transcript.append({'tool_call_id': call.get('id'), 'tool': name, 'result': result})
                     self._save()
-                    self._emit(operation='tool',phase='completed',tool=name,call_id=call.get('id'),response_index=index,result=public(result),**detail)
+                    visible={'error_type':'IncompleteRequest','error':'Request incomplete. The recorded evidence is available for review.'} if spending_stopped else public(result)
+                    self._emit(operation='tool',phase='completed',tool=name,call_id=call.get('id'),response_index=index,result=visible,**detail)
+                    if spending_stopped:return self._partial('Request incomplete. The recorded evidence is available for review.')
                     self._boundary()
                     messages.append({'role': 'tool', 'tool_call_id': call['id'], 'content': json.dumps(public(result), ensure_ascii=False)})
                     pending_images.extend(images)

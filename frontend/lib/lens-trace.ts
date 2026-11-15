@@ -1,7 +1,8 @@
 // Project Lens's durable activity into an execution sequence. Recorded events stay
 // unchanged, including older jobs whose node events all pointed at one root.
 import type {TraceEvent,TraceState} from './types';
-import {productName, answerText} from './answer-presentation';
+import {orchestratorLabel} from './routing';
+import {productName, answerText, requestStatus} from './answer-presentation';
 
 type NodeEvent=Extract<TraceEvent,{type:'node'}>;
 type Activity=Record<string,unknown>;
@@ -25,7 +26,7 @@ export function createLensTraceSequence(){
   }
   function status(id:string,state:TraceState,summary:string):TraceEvent[]{
     if(state==='running')active.set(id,summary);else active.delete(id);
-    return [{type:'status',id,state,summary}];
+    return [{type:'status',id,state,summary:requestStatus(summary)}];
   }
   function finishActive(state:TraceState,summary:string):TraceEvent[]{
     return [...active.keys()].flatMap(id=>status(id,state,summary));
@@ -43,7 +44,7 @@ export function createLensTraceSequence(){
         if(a.operation==='response'){
           if(typeof a.response_index==='number')response=a.response_index;
           const id=`response-${response+1}`;
-          if(a.phase==='started')return [...node(id,`Ymir response ${response+1}`,'DeepSeek'),...status(id,'running',a.final?'Finalize from recorded evidence':'Read evidence and choose tools')];
+          if(a.phase==='started')return [...node(id,`Ymir response ${response+1}`,str(a.model)?orchestratorLabel(str(a.model)):'DeepSeek',str(a.model)||undefined),...status(id,'running',a.final?'Finalize from recorded evidence':'Read evidence and choose tools')];
           return status(id,a.phase==='failed'?'failed':'done',str(a.reason)||str(a.error_type)||(a.final?'Final response received':'Response received'));
         }
         if(a.operation==='tool'){
@@ -58,7 +59,7 @@ export function createLensTraceSequence(){
           const backend=str(route.backend),model=str(a.model ?? result.model);
           const kind=str(route.requested_class)||str(route.canonical_class)||toolKinds.get(id)||'';
           if(kind)toolKinds.set(id,kind);
-          const detector=backend==='dfine'?'D-FINE-L':backend==='kimi'?'Kimi':model;
+          const detector=backend==='dfine'?'D-FINE-L':backend==='argon'?'Argon':backend==='kimi'?'Kimi':model;
           const events=node(id,title(name),name==='detect_objects'?(detector||nodes.get(id)?.tool||'Detector'):name==='inspect' || name==='read_pixels'?'VISTA':name==='read_pdf_text'?'Native PDF':name==='predict_room_polygons'?'Raster2Seq':'Geometry',model||nodes.get(id)?.detail);
           const summary=[kind,str(result.error_type)||str(result.status)].filter(Boolean).join(' · ') || (a.phase==='started'?'Running':'Complete');
           return [...events,...status(id,a.phase==='started'?'running':result.error_type?'failed':'done',summary)];

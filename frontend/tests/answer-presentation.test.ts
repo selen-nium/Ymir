@@ -75,3 +75,11 @@ test('combined targets retain a single readable total after presentation and rev
   expect(answerText(reviewed)).toBe(reviewed.text);
   expect(reviewed.counts![0].object_classes).toEqual(['shower','bathtub']);
 });
+
+
+test('spending failures use plain incomplete copy without account details',()=>{
+  const answer: Answer={status:'error',text:'Budget ceiling exhausted: $25 held',reasons:['Budget limit exhausted; $25 reserved']};
+  expect(answerText({status:'answered',text:'Original source preserved.'})).toBe('Original source preserved.');
+  expect(answerText(answer)).toBe('Request incomplete. The recorded evidence is available for review.');
+  expect(answerNotes(answer)).toEqual(['Request incomplete. The recorded evidence is available for review.']);
+});

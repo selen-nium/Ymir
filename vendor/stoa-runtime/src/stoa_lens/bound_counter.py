@@ -1,8 +1,8 @@
 """Host-bound compact counting profile for a single registered page.
 
-The atomic Kimi crop and proposal contract is adapted from the frozen
+The atomic Argon crop and proposal contract is adapted from the frozen
 vista-specialists-v2 full rerun (runtime-full): one native-page crop,
-PROMPT + reason, normalized crop boxes, no Kimi label filtering. Unlike that
+PROMPT + reason, normalized crop boxes, no Argon label filtering. Unlike that
 study, a numeric answer here requires at least one *complete* detector reply;
 a partial but valid reply alone cannot establish the count. No old study files
 are imported at runtime, and this profile does not change the product router.
@@ -67,33 +67,33 @@ class RoutedBoundDetector:
                 'receipt':{'calls':results,'routes':self.routes}}
     def close(self):self.service.close()
 
-class KimiAtomicDetector:
-    """Reference-free callback around the existing high/65536 Kimi adapter.
+class ArgonAtomicDetector:
+    """Reference-free callback around the existing high/65536 Argon adapter.
 
-    Kimi.predict receives the original reason untouched; it adds its existing
+    Argon.predict receives the original reason untouched; it adds its existing
     frozen PROMPT internally. Unlike generic Lens routing, no target-label
-    prefix or label filter is applied to Kimi output.
+    prefix or label filter is applied to Argon output.
     """
-    def __init__(self,kimi,directory):
-        self.kimi=kimi;self.directory=Path(directory);self.requests=0;self.request_units=1;self.backend='kimi'
+    def __init__(self,argon,directory):
+        self.argon=argon;self.directory=Path(directory);self.requests=0;self.request_units=1;self.backend='argon'
     def __call__(self,view,region,reason,timeout):
         self.requests+=1
-        return detect(self.kimi,view,region,reason,timeout=timeout,
+        return detect(self.argon,view,region,reason,timeout=timeout,
                       artifacts_dir=self.directory/str(self.requests))
     def close(self):
-        if callable(getattr(self.kimi,'close',None)):self.kimi.close()
+        if callable(getattr(self.argon,'close',None)):self.argon.close()
 
 class BoundCounter(LensHarness):
     """Lens loop with host-bound page and target group and one detector callback."""
     def __init__(self,registry,detector,transport,directory,*,page_id,target_classes,
-                 description,backend,limits=None,progress=None,cancelled=None,conversation_context=None):
+                 description,backend,limits=None,progress=None,cancelled=None,conversation_context=None,configuration=None):
         if len(registry.sources)!=1 or page_id not in registry.sources:raise ValueError('Exactly one registered target page required')
         if registry.sources[page_id].get('native_geometry'):raise ValueError('A room-footprint preview cannot establish object counts')
         if not isinstance(target_classes,(list,tuple)) or not target_classes or any(not isinstance(x,str) or not x.strip() for x in target_classes):raise ValueError('Nonempty target classes required')
         if not isinstance(description,str) or not description.strip():raise ValueError('Nonempty target description required')
         if not isinstance(backend,str) or not backend.strip():raise ValueError('Explicit detector backend required')
         super().__init__(registry,detector,_NoGeometry(),transport,directory,limits=limits,progress=progress,
-                         cancelled=cancelled,conversation_context=conversation_context)
+                         cancelled=cancelled,conversation_context=conversation_context,configuration=configuration)
         self.page_id=page_id;self.target_classes=list(target_classes);self.description=description;self.backend=backend
         self.group_class=self.target_classes[0] if len(self.target_classes)==1 else self.description
         self.initial_view=registry.checked_view(registry.initial_for(page_id)['view_id'])
@@ -119,8 +119,8 @@ class BoundCounter(LensHarness):
                     adapter=getattr(self.detector.service,item['backend'],None)
                     model=getattr(adapter,'model',None)
                     if model and model not in models:models.append(model)
-            elif isinstance(self.detector,KimiAtomicDetector):
-                model=getattr(self.detector.kimi,'model',None)
+            elif isinstance(self.detector,ArgonAtomicDetector):
+                model=getattr(self.detector.argon,'model',None)
                 if model:models.append(model)
             if models:event['models']=models
             if len(models)==1 and self.backend!='mixed':event['model']=models[0]

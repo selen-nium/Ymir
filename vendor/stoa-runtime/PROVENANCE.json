@@ -102,30 +102,34 @@
     "src/stoa_junction/verda_baseline/accounting.py": "74c77f0d0045dd9f58b590f8dc745e5b775f8b8906ce73aa15c5185e2f5a4d02",
     "src/stoa_junction/verda_baseline/common.py": "a52b35af831fbaedc3e7caf5a89a6c1cac797737ffab129485f0c22c0a519cf3",
     "src/stoa_junction/verda_baseline/transport.py": "6bb17d90a33337616aeb73b4dcde68aa49349e554398a3560a468081ebdfdcb0",
-    "src/stoa_lens/__init__.py": "846d81caade57ce9b3c4f1c837cbc4cd17b9bc5c0d63e3bd51364bc339ed1c2a",
-    "src/stoa_lens/__main__.py": "ac3af7664d5d1978fa0d5059f9547ffce25f0c1155b83bd0b7187ce85c4569fe",
-    "src/stoa_lens/agents.py": "f2ea5660f8ee8840b4df9bbe0ea07916cd0dcd28aa951dd907248ba1898fb790",
-    "src/stoa_lens/bound_counter.py": "1be6cc6b323e70719c4aaa85ad6cc7894ec815dc56474eafc8ab745564245fb4",
-    "src/stoa_lens/budget.py": "c77c29fbe36e7379bc22755d2a47836523384eddfa7d798e9e89472f0fc1713f",
-    "src/stoa_lens/cloud.py": "ac69b17cac6a249f0793df6e2d03a02eab0b7c7ff8cd04a32f1fec8defc7b6f8",
-    "src/stoa_lens/contracts.py": "83806e29c69769540bd6d51e4b7ca58e28ed6283be52dd6fbfd8ae9e89472f17",
-    "src/stoa_lens/detection.py": "21707017d2f691da4bb3afc60c023abdd0bcf931eb2e1117b63d1a9f8d7b0dc2",
+    "src/stoa_lens/__init__.py": "1b67a0fa32e937e85ebb470010a66bc70444ae5dd42706cd235ca88346ba4efc",
+    "src/stoa_lens/__main__.py": "7770b4a888bf7513b94de237fe63abb52b1961779bdf8105de8c5c299bb2b279",
+    "src/stoa_lens/agents.py": "49c77bf27be5ad1126290ba310eee4617614a18b8f29dbcdf54ff121afb8e0ab",
+    "src/stoa_lens/bound_counter.py": "d3afc1f30666cd8e717e5fb1cb623dff0339481d6913bc6523dd35bcefa41674",
+    "src/stoa_lens/budget.py": "f727354322cb891aab205e240b8ef9be6f68f15ea9ff3e7c3b32634f1f273175",
+    "src/stoa_lens/cloud.py": "e61bb2a193d169efce8cc3f598b6ffda54c9df4705cf2a91ab61efa17d645245",
+    "src/stoa_lens/contracts.py": "5a092b5dc7c641bd24fc5cdcb77ecf9f06d0be0b61fdcbeabeac4cfaf1044400",
+    "src/stoa_lens/detection.py": "aaf56bc2afcc79dd283385c0ae64fef70b10347afb2c13961c37d4302c9ac3e6",
     "src/stoa_lens/dfine.py": "80527dbee21e8e791493129ca0e8cfd270aacdf96dd7b7bf456977a48aeeca4f",
     "src/stoa_lens/dfine_worker.py": "acf7e8dd4db62cfd94b5acf943e115099e4e01e572a4714d6cca85d86a616c74",
     "src/stoa_lens/geometry.py": "041607b050b4c2fa025ab6e3e3d0974d600608d054653385fe43c80559296077",
-    "src/stoa_lens/harness.py": "5394bd232f6d8d01021f4825a2de42f3a45fb36c2cc8a2ee46c49a18e5562951",
+    "src/stoa_lens/harness.py": "b9e65108f8dbff7884c80e05ec44e09e4e89e3b3c7b71c98dcf66a9eacad3407",
+    "src/stoa_lens/model_config.py": "884647f341ff2a1ba3403057dc07aada717589aac0a7b966f619b63ba7c5ee2c",
     "src/stoa_lens/native_text.py": "33e4b0e7ffe871ee70f988431acc3b0bd406cd544499ace897bcba39a96b0bea",
+    "src/stoa_lens/native_vectors.py": "e9a5d20c4ac5e8a7b5ae0dc459fbf4d2967eb86f3a8b66e9d8d9cebe12a7fb6b",
     "src/stoa_lens/pacing.py": "ba8bcebc575dfd60cf025b28d5fd1bff6b181c05f93fc632a844c0206dd774db",
     "src/stoa_lens/pilot.py": "cab3c3ec43868a4dba6a5d3456287d39fe133e450fd5dd598911c0efd042eaa9",
     "src/stoa_lens/registry.py": "b97d32e020dedc51cb5a6b8a1e8b3c0ee397a52665c2fb09ac563d31fd9c9330",
     "src/stoa_lens/review.py": "2b7d803d265ecc12f5c35a30d98014ee2965971a32aee66e801b551cfb29c4eb",
-    "src/stoa_lens/routing.py": "3b767582360e307803412d82eb727f2fa3e614a420eb3fbb7975db23214702b0",
-    "src/stoa_lens/service.py": "7ce2fa486d6aa7267f4296a753bd414a5213f42302c906c527276a0e1ee0b6aa",
-    "src/stoa_lens/transport.py": "12c852d1c6acd80f3ea263caa351267ef3a9bd8cb4b7e2096ea72662ef8c77c2",
+    "src/stoa_lens/routing.py": "9c2a3ab42806f4d107549bf134f7a75b1978a1cb35b226943d1007ab4ace7885",
+    "src/stoa_lens/service.py": "424d63118a3addf6daa04423a2150b79468b661eb536361071058375f6618826",
+    "src/stoa_lens/streaming.py": "5ef8cd420872dc4db7784b7e6d555c91bc56e3f10be44f64b2181b309216305a",
+    "src/stoa_lens/transport.py": "15cf51df5a8ebae7377e40edc7c33d7ff86448b2aeb49ae163fff0a1568f935e",
     "src/stoa_native_geometry/__init__.py": "fef0a7334137a39bcac2308223ede6bad0a45ae7dbf845fac3506fae197ee093",
     "src/stoa_native_geometry/__main__.py": "05418510473a4c9b711aee8451a5793550643c8c170bebdc6747fb88f5636787",
     "src/stoa_native_geometry/backend.py": "ce22e970c49fd012ceb7c413c28d5c373d54cc78735caf8b51ca2afaceffa3b5",
     "src/stoa_native_geometry/common.py": "454a5583bc98a708892c4e98149ea477d960d1ea3bcfab1e0b91a98ec9e99dfb",
+    "src/stoa_native_geometry/dxf.py": "86fa9ecde5eb2f5086e2150789f63d27be7b3c18fb72948e6aa808b06241260b",
     "src/stoa_native_geometry/ifc.py": "ab39ab6e78f36809983931113434df65f8d526969e4d8a9d31e1b0183369c39e",
     "src/stoa_native_geometry/svg.py": "32b3436fd87d8c37893f6732848acb80ca417fe8c91b8b76e5a3ac35d349ad45",
     "src/stoa_room_area_specialists/__init__.py": "643293d5403598bca9266805246459794ce1205aa72fc2a6fa1c9147856eb3a9",
@@ -153,9 +157,7 @@
     "src/vista/core/prompts/claude.md": "c52f73d33e8c1e9d47e70c185242ce670bed4ff96b7f4f571b5801cd1f52f1f5",
     "src/vista/core/prompts/codex.md": "c52f73d33e8c1e9d47e70c185242ce670bed4ff96b7f4f571b5801cd1f52f1f5",
     "src/vista/core/session.py": "d6d930935558a9c4bbfbc9ae00510d58e3b6a5f70faf4db78fe4a35d29de8ede",
-    "src/vista/core/tools.py": "aab064a20bff0d09c0ad42c623f10d1ca7ddbf6ee17110b4898c79222f777ec9",
-    "src/stoa_native_geometry/dxf.py": "86fa9ecde5eb2f5086e2150789f63d27be7b3c18fb72948e6aa808b06241260b",
-    "src/stoa_lens/native_vectors.py": "e9a5d20c4ac5e8a7b5ae0dc459fbf4d2967eb86f3a8b66e9d8d9cebe12a7fb6b"
+    "src/vista/core/tools.py": "aab064a20bff0d09c0ad42c623f10d1ca7ddbf6ee17110b4898c79222f777ec9"
   },
   "adaptations": [
     "YMIR_STOA_ROOT asset lookup",
@@ -181,7 +183,8 @@
     "content-derived identifiers and source fields for host area and distance results",
     "DXF model-space selected boundaries, block transforms and explicit unit confirmation using ezdxf 1.4.3",
     "explicit host measurement selection in final answers; exploratory calculations remain in tool journals",
-    "registered PDF vector inspection with source hashes, exact cubic control points and preserved visual capabilities"
+    "registered PDF vector inspection with source hashes, exact cubic control points and preserved visual capabilities",
+    "OpenRouter Smart/Frontier routing with atomic Argon localization; see openrouter_migration for adopted source bytes and adaptations."
   ],
   "selective_upstream_updates": [
     {
@@ -233,5 +236,51 @@
       }
     },
     "preserved": "cloud.py, compute reservations, callbacks, environment overrides, remote adapters and actual-vendor code receipts"
+  },
+  "openrouter_migration": {
+    "recorded_at_utc": "2026-11-15T06:45:35.467108+00:00",
+    "adopted_from_repository": "https://github.com/bersamin12/stoahackjunction",
+    "source_head_at_read": "bc88f0238f76b8154495425b51cc23f4ed99673b",
+    "source_files_sha256": {
+      "src/stoa_lens/gemini_cv.py": "1606516ce7ae4c250fbc1387adb89e11f2141d9c91841f9a6a2d3da0367ce916",
+      "src/stoa_junction/verda_baseline/transport.py": "6bb17d90a33337616aeb73b4dcde68aa49349e554398a3560a468081ebdfdcb0"
+    },
+    "source_note": "Reviewed current Stoa working-tree source; hashes identify bytes independently of source HEAD.",
+    "frozen_experiment_read_only": {
+      "path": "/mnt/berstorage/stoa/data/stoa-lens/hardprobs/sol-argon-dfine-v1",
+      "manifest_sha256": "37a32bf7b87a019801098402301725a6a6932a74d886ac18176e70c3145405db",
+      "all_frozen_hashes_verified": true,
+      "files_verified": 241
+    },
+    "ports": {
+      "src/stoa_lens/transport.py": "OpenRouterTransport, endpoint catalog validation, reservations, verified usage.cost billing and atomic Argon crop adapter from gemini_cv.py.",
+      "src/stoa_lens/streaming.py": "merge_delta, Accumulator and once-only stream_sdk from reviewed stream helper; retain model/provider/generation IDs and reasoning indexes, preserve repeated identity fields, detect stream errors."
+    },
+    "adaptations": [
+      "Explicit server-owned routing snapshot is injected into service, harness and compact counter; no process-wide monkeypatches or experiment imports.",
+      "Production D-FINE trained-class / Argon other-class policy; the experimental hybrid router is not adopted.",
+      "Existing production ledger and ceiling; historical rows and unresolved holds retained; new reservations limited to the three approved OpenRouter models.",
+      "Backend-only OPENROUTER_API_KEY; per-model production metadata and isolated pacing state under YMIR_DATA_DIR/lens/openrouter.",
+      "Verified usage.cost billing including partial streams; missing billing holds reservation; per-image/request fees included in conservative reservation.",
+      "No automatic retries, provider fallbacks, mode escalation or historical job relabelling."
+    ],
+    "preserved": [
+      "Frozen experiment runtime, jobs, reports, pacing and budget ledger are never used as writable state.",
+      "Existing PDF vector, DXF/native geometry, Raster2Seq, VISTA and measurement adaptations."
+    ],
+    "previous_vendored_sha256": {
+      "src/stoa_lens/__init__.py": "846d81caade57ce9b3c4f1c837cbc4cd17b9bc5c0d63e3bd51364bc339ed1c2a",
+      "src/stoa_lens/__main__.py": "ac3af7664d5d1978fa0d5059f9547ffce25f0c1155b83bd0b7187ce85c4569fe",
+      "src/stoa_lens/agents.py": "f2ea5660f8ee8840b4df9bbe0ea07916cd0dcd28aa951dd907248ba1898fb790",
+      "src/stoa_lens/bound_counter.py": "1be6cc6b323e70719c4aaa85ad6cc7894ec815dc56474eafc8ab745564245fb4",
+      "src/stoa_lens/budget.py": "c77c29fbe36e7379bc22755d2a47836523384eddfa7d798e9e89472f0fc1713f",
+      "src/stoa_lens/cloud.py": "ac69b17cac6a249f0793df6e2d03a02eab0b7c7ff8cd04a32f1fec8defc7b6f8",
+      "src/stoa_lens/contracts.py": "83806e29c69769540bd6d51e4b7ca58e28ed6283be52dd6fbfd8ae9e89472f17",
+      "src/stoa_lens/detection.py": "21707017d2f691da4bb3afc60c023abdd0bcf931eb2e1117b63d1a9f8d7b0dc2",
+      "src/stoa_lens/harness.py": "5394bd232f6d8d01021f4825a2de42f3a45fb36c2cc8a2ee46c49a18e5562951",
+      "src/stoa_lens/routing.py": "3b767582360e307803412d82eb727f2fa3e614a420eb3fbb7975db23214702b0",
+      "src/stoa_lens/service.py": "7ce2fa486d6aa7267f4296a753bd414a5213f42302c906c527276a0e1ee0b6aa",
+      "src/stoa_lens/transport.py": "12c852d1c6acd80f3ea263caa351267ef3a9bd8cb4b7e2096ea72662ef8c77c2"
+    }
   }
 }

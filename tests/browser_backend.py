@@ -19,8 +19,8 @@ def fixture_runner(pages,question,directory,**hooks):
                 emit('tool','started',response_index=i,call_id=f'inspect-{j}',tool='inspect');time.sleep(.3)
                 emit('tool','completed',response_index=i,call_id=f'inspect-{j}',tool='inspect',result={'ok':True})
         else:
-            routing={'backend':'dfine' if i==1 else 'kimi','requested_class':'door' if i==1 else 'folding door'}
-            model='d-fine-l-junction-ema' if i==1 else 'kimi-k3-1-pro'
+            routing={'backend':'dfine' if i==1 else 'argon','requested_class':'door' if i==1 else 'folding door'}
+            model='d-fine-l-junction-ema' if i==1 else 'google/gemini-4-argon'
             detail={'response_index':i,'call_id':f'detect-{i}','tool':'detect_objects','routing':routing,'model':model}
             emit('tool','started',**detail);time.sleep(2)
             if hooks['cancelled']():raise Cancelled()
@@ -34,3 +34,10 @@ def fixture_runner(pages,question,directory,**hooks):
       'accepted_proposal_ids':['proposal-1'],'rooms':[], 'text_evidence':[], 'measurements':[], 'readings':[], 'notes':['Browser fixture: incomplete source evidence.']}
 
 jobs.runner=fixture_runner
+
+# Deterministic readiness for UI validation; no credentials, catalogs or paid calls.
+def fixture_readiness(budget):
+    return {'ready':True,'checks':{},'modes':{mode:{'ready':True,'checks':{}} for mode in ('smart','frontier')},
+            'budget':{k:v for k,v in budget.summary().items() if k!='charges'}}
+import importlib
+importlib.import_module('ymir.app').readiness=fixture_readiness

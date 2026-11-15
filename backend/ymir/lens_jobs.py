@@ -13,11 +13,14 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from stoa_lens.budget import LensBudget
+from stoa_lens.budget import LensBudget, BudgetError
+from stoa_lens.model_config import resolve, validate
 from stoa_lens.registry import Registry, sha
 from stoa_lens.service import Cancelled, run
 from . import settings
 from .lens_answers import answer_for
+
+class RouteUnavailable(RuntimeError): pass
 
 TERMINAL={'completed','failed','cancelled','interrupted'}
 
@@ -97,13 +100,23 @@ class JobStore:
 
     def submit(self, request):
         normalized=copy.deepcopy(request)
+        configuration=resolve(normalized.setdefault('routing_mode','smart'))
+        request=normalized
         signature=json.dumps(normalized,sort_keys=True,allow_nan=False)
         with self.lock,self.db() as db:
             db.execute('BEGIN IMMEDIATE')
             old=db.execute('SELECT * FROM jobs WHERE request_id=?',(request['request_id'],)).fetchone()
             if old:
-                if old['signature']!=signature:raise ValueError('Request ID already belongs to a different request')
+                old_request=json.loads(old['signature'])
+                # A matching legacy Smart/default replay retains its original events,
+                # manifest and Verda identity. Never infer or rewrite old model labels.
+                old_request.setdefault('routing_mode','smart')
+                if old_request!=normalized:raise ValueError('Request ID already belongs to a different request')
                 return old['id']
+            if self.runner is run:
+                from .lens_readiness import readiness
+                if not readiness(self.budget)['modes'][configuration['routing_mode']]['ready']:
+                    raise RouteUnavailable(configuration['routing_mode'].capitalize()+' is unavailable. Try again when it is ready.')
             ids=request['selected_drawing_ids']
             if not 1<=len(ids)<=3 or len(set(ids))!=len(ids):raise ValueError('Select one to three unique sheets')
             ident=uuid.uuid4().hex;folder=self.root/'jobs'/ident;snapshot=folder/'sources';snapshot.mkdir(parents=True)
@@ -143,11 +156,11 @@ class JobStore:
             snapshot_hashes={str(p.relative_to(folder)):sha(p) for p in snapshot.rglob('*') if p.is_file()}
             from .lens_intent import bind_count_scope
             count_scope=bind_count_scope(request['question'],pages)
-            manifest={'snapshot_sha256':snapshot_hashes,'schema':'ymir-lens-job-v1','request':request,'pages':pages,'sheets':drawings,'page_sheets':page_sheets,'conversation_context':prior,'created_at':now(),'build_context_is_calibration':False,'count_scope':count_scope}
+            manifest={'routing_mode':configuration['routing_mode'],'configuration':configuration,'models':{'orchestrator':configuration['orchestrator'],'untrained_detector':configuration['detector']},'snapshot_sha256':snapshot_hashes,'schema':'ymir-lens-job-v1','request':request,'pages':pages,'sheets':drawings,'page_sheets':page_sheets,'conversation_context':prior,'created_at':now(),'build_context_is_calibration':False,'count_scope':count_scope}
             (folder/'manifest.json').write_text(json.dumps(manifest,indent=2,allow_nan=False))
             db.execute('INSERT INTO jobs (id,request_id,signature,project,conversation,request,manifest,status,created) VALUES (?,?,?,?,?,?,?,?,?)',
                        (ident,request['request_id'],signature,request['project_id'],request['conversation_id'],json.dumps(request),json.dumps(manifest),'queued',now()))
-            self.event(ident,{'type':'job','status':'queued','request_id':request['request_id']},db)
+            self.event(ident,{'type':'job','status':'queued','request_id':request['request_id'],'routing_mode':configuration['routing_mode'],'configuration':configuration},db)
         self.checkpoint()
         self.start();self.wake.set()
         return ident
@@ -164,6 +177,11 @@ class JobStore:
         return self.lookup(ident)
 
     def _terminal(self, ident, state, answer, db):
+        row=db.execute('SELECT manifest FROM jobs WHERE id=?',(ident,)).fetchone()
+        configuration=json.loads(row[0]).get('configuration') if row else None
+        if configuration:
+            answer=dict(answer,routing_mode=configuration['routing_mode'])
+            if not answer.get('configuration'):answer['configuration']=configuration
         db.execute('UPDATE jobs SET status=?,answer=?,finished=? WHERE id=?',(state,json.dumps(answer),now(),ident))
         self.event(ident,{'type':'job','status':state},db);self.event(ident,{'type':'answer','answer':answer},db)
 
@@ -210,7 +228,9 @@ class JobStore:
                 try:
                     if cancelled():raise Cancelled('Cancelled before dispatch')
                     if any(sha(folder/path)!=expected for path,expected in manifest.get('snapshot_sha256',{}).items()):raise ValueError('Immutable job source snapshot changed')
-                    hooks={'budget':self.budget,'conversation_context':manifest['conversation_context'],
+                    if 'configuration' not in manifest:raise ValueError('Legacy job has no executable routing snapshot; replay only')
+                    configuration=validate(manifest['configuration'])
+                    hooks={'configuration':configuration,'budget':self.budget,'conversation_context':manifest['conversation_context'],
                            'progress':lambda ev:self._progress(ident,ev),'cancelled':cancelled}
                     if manifest.get('count_scope') is not None:
                         hooks.update(agent='compact_counter',count_scope=manifest['count_scope'])
@@ -219,6 +239,8 @@ class JobStore:
                     answer=answer_for(ident,result,manifest['page_sheets']);state='completed'
                 except Cancelled:
                     state='interrupted' if self.stopping.is_set() else 'cancelled';answer={'status':'error','text':'Cancelled after the current operation. No further calls were dispatched.','job_id':ident,'citations':[]}
+                except BudgetError:
+                    state='failed';answer={'status':'error','text':'Request incomplete. The recorded evidence is available for review.','job_id':ident,'citations':[]}
                 except BaseException as exc:
                     state='interrupted' if self.stopping.is_set() else 'failed'
                     answer={'status':'error','text':'Ymir stopped ('+type(exc).__name__+'). This job will not be retried.','job_id':ident,'citations':[]}
@@ -233,6 +255,13 @@ class JobStore:
         # attaching every tool call to a reused model node.
         with self.lock,self.db() as db:
             db.execute('BEGIN IMMEDIATE')
+            row=db.execute('SELECT manifest FROM jobs WHERE id=?',(ident,)).fetchone()
+            manifest=json.loads(row[0]) if row else {}
+            configuration=manifest.get('configuration')
+            ev=copy.deepcopy(ev)
+            if ev.get('operation')=='response' and configuration:
+                identity=configuration['orchestrator']
+                ev.update(routing_mode=configuration['routing_mode'],model=identity['model'],provider=identity['provider'],endpoint=identity['endpoint'])
             previous=db.execute("SELECT event FROM events WHERE job=? AND json_extract(event,'$.type')='node' ORDER BY seq DESC LIMIT 1",(ident,)).fetchone()
             parent=json.loads(previous[0])['id'] if previous else None
             index=ev.get('response_index')
@@ -243,14 +272,16 @@ class JobStore:
                 node=f"tool-{index+1}-{ev.get('call_id') or ev['tool']}"
                 result=ev.get('result') or {};route=ev.get('routing') or result.get('routing') or {}
                 model=ev.get('model') or result.get('model')
-                detector={'dfine':'D-FINE-L','kimi':'Kimi'}.get(route.get('backend'),model or 'Detector')
+                detector={'dfine':'D-FINE-L','argon':'Argon','kimi':'Kimi'}.get(route.get('backend'),model or 'Detector')
                 tool=detector if ev['tool']=='detect_objects' else ev['tool']
                 name=ev['tool'].replace('_',' ').capitalize()
                 kind=route.get('requested_class') or route.get('canonical_class')
                 summary=' · '.join(str(v) for v in (tool if ev['tool']=='detect_objects' else None,kind,result.get('error_type') or result.get('status')) if v) or ev['tool']
                 state='running' if ev['phase']=='started' else 'failed' if result.get('error_type') else 'done'
             else:
-                node=f'response-{index+1}';name=f'Ymir response {index+1}';tool='DeepSeek';model=None
+                node=f'response-{index+1}';name=f'Ymir response {index+1}'
+                model=ev.get('model')
+                tool={'deepseek/deepseek-v4.1-flash-1017':'DeepSeek','openai/gpt-6.1-sol':'Sol'}.get(model,model or 'DeepSeek')
                 summary=ev.get('reason') or ev.get('error_type') or f'Response {index+1}'
                 state={'started':'running','failed':'failed'}.get(ev['phase'],'done')
             old=db.execute("SELECT event FROM events WHERE job=? AND json_extract(event,'$.type')='node' AND json_extract(event,'$.id')=? ORDER BY seq LIMIT 1",(ident,node)).fetchone()
