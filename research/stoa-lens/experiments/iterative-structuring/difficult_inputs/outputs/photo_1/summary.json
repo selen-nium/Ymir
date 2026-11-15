@@ -1,0 +1,80 @@
+{
+ "image": "photo_1_2026-11-15_06-08-52.jpg",
+ "size": [
+  1280,
+  905
+ ],
+ "megapixels": 1.2,
+ "instances": {
+  "swiss": 144,
+  "cubicasa": 132
+ },
+ "rooms_n0": 41,
+ "rooms_final": 42,
+ "room_types": {
+  "storeroom": 14,
+  "bathroom": 7,
+  "kitchen": 6,
+  "corridor": 7,
+  "room": 5,
+  "outdoor": 1,
+  "stair_lift": 1,
+  "unknown": 1
+ },
+ "repair_log": [
+  {
+   "iteration": 1,
+   "flags": 18,
+   "applied": [
+    "C7-add",
+    "C3-snap",
+    "C3-snap",
+    "C3-snap"
+   ]
+  },
+  {
+   "iteration": 2,
+   "flags": 13,
+   "applied": []
+  }
+ ],
+ "flags_left": {
+  "C1": 1,
+  "C2": 0,
+  "C3": 5,
+  "C4": 0,
+  "C7": 7,
+  "C8": 0,
+  "C11": 0
+ },
+ "ocr_tokens": 23,
+ "roundtrip": {
+  "dxf": {
+   "rooms": 42,
+   "read_back": 42,
+   "closed": 42,
+   "areas_match": true
+  },
+  "ifc": {
+   "rooms": 42,
+   "read_back": 42,
+   "closed": 42,
+   "areas_match": true
+  },
+  "geojson": {
+   "rooms": 42,
+   "read_back": 42,
+   "closed": 42,
+   "areas_match": true
+  }
+ },
+ "seconds": {
+  "load": 0.0,
+  "eomt_swiss": 6.9,
+  "eomt_cubicasa": 4.5,
+  "ocr": 4.3,
+  "repair": 4.8,
+  "export": 0.9
+ },
+ "peak_rss_gb": 3.63
+}
