@@ -1,0 +1,50 @@
+{
+  "case_id": "length-ifcbench-88013",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the total length of all walls on '1.OG', in metres?",
+  "sources": [
+    {
+      "page_id": "page-b9e28cdd488bd7457aaf7b64",
+      "source_id": "page-b9e28cdd488bd7457aaf7b64",
+      "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-smiley-west_ac-20-smiley-west-10-bldg_plan-03-1-og.render.png",
+      "width": 4395,
+      "height": 688,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-smiley-west_ac-20-smiley-west-10-bldg_plan-03-1-og.pdf",
+      "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "c56d242d51f4d4ac6bde33b95e275661bed067d833b7474cf93b1ee802f3f82b",
+  "evaluation_mode": "computed_geometry"
+}

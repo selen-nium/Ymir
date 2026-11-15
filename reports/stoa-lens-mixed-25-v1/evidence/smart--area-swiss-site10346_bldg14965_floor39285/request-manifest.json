@@ -1,0 +1,39 @@
+{
+  "case_id": "area-swiss-site10346_bldg14965_floor39285",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the net floor area of room 3.05 ('Wohnen/Essen') in m\u00b2? Calculate from verified room geometry and scale. Keep any printed area as a separate reading.",
+  "sources": [
+    {
+      "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+      "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+      "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+      "path": "stoa-workspace/data/room-area-pilot/sources/site10346_bldg14965_floor39285.png",
+      "width": 4961,
+      "height": 3508,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "computed_geometry"
+}

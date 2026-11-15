@@ -1,0 +1,3668 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "printed_area",
+        "value": 5183,
+        "unit": "SF",
+        "evidence_ids": [
+          "view-161dfd287db4984e5c652142",
+          "view-2772e7d1c7db70a92e8285ac"
+        ],
+        "description": "Finish Room Schedule row for Room Number 118, Room Name FITNESS CENTER: Area column reads '5183 SF'. Verified in a second zoom that the value is left-aligned against the column border with no clipped leading digit, and that the cell sits between rows 117 (55 SF, RESTROOM) and 119 (263 SF, ELEC. ROOM).",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "Sheet A-801 ('Door and Finish Schedules & Wall Types', 09/24/2018) is a schedule sheet, not a floor plan: no room outlines exist here, so no room candidates, polygons or computed areas were used and the rooms array is intentionally empty.",
+      "The 5183 SF figure is a printed schedule reading taken from the drawing text/image, not a measurement derived from geometry; no scale calibration was applied or required.",
+      "Only the supplied page was inspected; no other sheets of the Xcel Sports Complex set were available to cross-check the fitness center area against a plan."
+    ],
+    "text_associations": [
+      {
+        "text_id": "text-1bbffbae1cadd40852127062",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-1ab02cd57b802a627790894f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d0694d8640b33c24183a46d9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-19df989cce2490c076ee80e2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-20cb4f5d60090e4ca2b85f4c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-bcebd2e844213657cab939ea",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-2898148d5b02c815e67c7ca4",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-c4afbc4280300192e6b4a7b9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e15fb89b52c710cbbc126d17",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-7aa9264d6be58559c8a1c962",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-24f7081aaeb738cc1ba1ca89",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d5a75c4705e422e6c767ff34",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-15332d19ae55360b4d7adbdf",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-f843b393c7a2a29859a864c5",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-724104c2ef2f1c441df2286c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e534b365c567f061ee11255d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-bfa8e5829d0ef1c9755aa39e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-505660237c4ffa922abd5eb2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-62d462827357c62377198547",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-55f2822bda514d7738a2837c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-2e003d03b393e7924a8b5a8b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e6464b92f6dcfa273306865e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-1b35a8f584fe56a74a31af80",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-966810bcdb071a773a249847",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-baf01f709e3be9926990917b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-3c2ced0dba0267c849ec1fe7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e4370d744510d5f96d44f23b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d924c172aa116e68f4aa1db2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-8b8501e578aff64993726338",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-5cd0fc43c3a1bd414a32b270",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-ad8f1f8d1715211b8a125677",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-c08d66ce8f355d682db927b2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-ce8f6c2d5cb1f246aa2f3b9d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-b279fea55b1399569f3ee7ea",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-8e662c7f8f2a4054bcb3c86b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e3b76fe420f91a67f044f284",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-2c1eac571ca624eed4605542",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-828905df0e7e7a8feb389c4f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-dd3260ae4484c5d1444296f5",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-c406c6fb6e0e259ad9660a15",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-62df7f88177781706a20c296",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-948758edff53ac8e4d95a768",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-ba29f5dba4bbe9af1368cc00",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-4946c16dcee9b270a07be805",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-8c2bca2c6ddb814bb832b27e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-49fb572dd8cda445e352f8f2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-fea5187cb89f0b8e6ae31b3a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e88bc926d981ff2b9a81b382",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-1ee54d8671dd97c95c7e8951",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d7a192f45ca0810c993021a8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-cc0e1378e1a018fe0968a606",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-88844da557dc4a72f1288ab3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-b59d4c8f28cd23a44584d4e3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-b7c761f3023fbbd37c831eca",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-7b9a39e5bd681a1ea9aeb79a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-eb92ecc45c2e66a018e044e2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-759af8f8bbdcb8d5cdc7bf08",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-479fa00226f5e6a9bdd0be6a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-bce0bfd648f43816d7832ec8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-bea61e934d60205fa96b72f3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-1134f6ae8718b38fd97b6ec7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-382f7eca8e60f0b02d829da4",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-341fb701aaea0a98202f00d2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-291dd27c68f6b9015b9943b1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-dbb9d99d584c895e59bead87",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-01b6d11aaf8e9da6344d41a9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-fc5437ec044f7953dd6017a0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-717c9ca6d03905c1b033da8e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-e03a3e25f5341bd4bd7a45f4",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-ae6a69b0c06531dc8d1ce368",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-3e748396c319b1f5c8bd9cba",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-0d91fdf2770a01cd82b14228",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-44b40c1d6c74f1c034473cc8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d7ca9331e2caef9ee4ad0995",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-4f9058ecc089f0da639f919d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-27fe87bf15ba6d523f90bfad",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-7f27b353715179f52c6e5007",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-11f6dc53a20040eebb972284",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-5b81a80119f20ead72bddc30",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-fbce81a58a488ae335fcdc7d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-b8e024e704c61f599d5acc6e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-8c6661028e0a546b9afcfdb8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-4d752eb21370af930d86616f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-2967c7d6cc25b7559fa346cc",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-77bb55945aaa3cd0e34158f8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-7a186fdf1b5d728e8119469f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-78780cc027df4c63f8fd9a25",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-a8d814da572f5a1f6f75995c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-836f3c94a8f7a0a8962fdab0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-267e92a3f9d5ab42e0ff5103",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d58ba84b1455fc933ff514cf",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-2a62a87bd1cc0563aaf9c90f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-ca3241024cbcccfab62b3b34",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-b1e78490d351e05f92f1b899",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-87f4589788dc14a8baea15f0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-4c1eada3573fdac206ead3ba",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-af2b627026c5afe4168ef82a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-d91c29d1849fdd81e4db5404",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-0af9a9f813692886281c6d94",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      },
+      {
+        "text_id": "text-342d166c72335f8514531546",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-630c49ad73556b0ad500de9f"
+      }
+    ],
+    "text_evidence": [
+      {
+        "id": "text-1bbffbae1cadd40852127062",
+        "text": "DEEP LEG OF DEFLECTION TRACK",
+        "box": [
+          4647.12060546875,
+          3119.408203125,
+          4926.1563720703125,
+          3136.407470703125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3119.408203125,
+          4926.1563720703125,
+          3136.407470703125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-1ab02cd57b802a627790894f",
+        "text": "(2\" MIN. DEFLECTION)",
+        "box": [
+          4647.12060546875,
+          3140.5283203125,
+          4826.9422607421875,
+          3157.527587890625
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3140.5283203125,
+          4826.9422607421875,
+          3157.527587890625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d0694d8640b33c24183a46d9",
+        "text": "UNDERSIDE OF STRUCTURE",
+        "box": [
+          4647.12060546875,
+          3179.168212890625,
+          4866.622314453125,
+          3196.16748046875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3179.168212890625,
+          4866.622314453125,
+          3196.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-19df989cce2490c076ee80e2",
+        "text": "ABOVE",
+        "box": [
+          4647.12060546875,
+          3200.288330078125,
+          4707.021240234375,
+          3217.28759765625
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3200.288330078125,
+          4707.021240234375,
+          3217.28759765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-20cb4f5d60090e4ca2b85f4c",
+        "text": "ACOUSTICAL SEALANT, TYP.",
+        "box": [
+          4647.12060546875,
+          3259.808349609375,
+          4878.828125,
+          3276.8076171875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3259.808349609375,
+          4878.828125,
+          3276.8076171875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-bcebd2e844213657cab939ea",
+        "text": "5/8\" GYPSUM BOARD, TYP.",
+        "box": [
+          4647.12060546875,
+          3291.96826171875,
+          4867.78759765625,
+          3308.967529296875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3291.96826171875,
+          4867.78759765625,
+          3308.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-2898148d5b02c815e67c7ca4",
+        "text": "(V) = CONTINUOUS INTERIOR AIR &",
+        "box": [
+          4647.12060546875,
+          3497.415771484375,
+          4941.098876953125,
+          3514.6474609375
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3497.415771484375,
+          4941.098876953125,
+          3514.6474609375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-c4afbc4280300192e6b4a7b9",
+        "text": "VAPOR BARRIER",
+        "box": [
+          4647.12060546875,
+          3518.768310546875,
+          4783.1611328125,
+          3535.767578125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3518.768310546875,
+          4783.1611328125,
+          3535.767578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e15fb89b52c710cbbc126d17",
+        "text": "STRUCTURAL SUB-FLOOR",
+        "box": [
+          4647.12060546875,
+          3783.96826171875,
+          4850.59912109375,
+          3800.967529296875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3783.96826171875,
+          4850.59912109375,
+          3800.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-7aa9264d6be58559c8a1c962",
+        "text": "ACOUSTICAL SEALANT, TYP.",
+        "box": [
+          4647.12060546875,
+          3739.328125,
+          4878.828125,
+          3756.327392578125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3739.328125,
+          4878.828125,
+          3756.327392578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-24f7081aaeb738cc1ba1ca89",
+        "text": "SCHEDULED WALL BASE",
+        "box": [
+          4647.12060546875,
+          3701.648193359375,
+          4844.542724609375,
+          3718.6474609375
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3701.648193359375,
+          4844.542724609375,
+          3718.6474609375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d5a75c4705e422e6c767ff34",
+        "text": "METAL RUNNER ANCHORED TO",
+        "box": [
+          4647.12060546875,
+          3649.328125,
+          4909.243408203125,
+          3666.327392578125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3649.328125,
+          4909.243408203125,
+          3666.327392578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-15332d19ae55360b4d7adbdf",
+        "text": "SUBSTRATE",
+        "box": [
+          4647.12060546875,
+          3670.4482421875,
+          4734.141845703125,
+          3687.447509765625
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3670.4482421875,
+          4734.141845703125,
+          3687.447509765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-f843b393c7a2a29859a864c5",
+        "text": "(B) = FIBERGLASS BATT INSULATION",
+        "box": [
+          4647.12060546875,
+          3615.255859375,
+          4936.4776611328125,
+          3632.487548828125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3615.255859375,
+          4936.4776611328125,
+          3632.487548828125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-724104c2ef2f1c441df2286c",
+        "text": "(A6) = 6\" METAL STUD 20 GA. SPACED 16\"",
+        "box": [
+          4647.12060546875,
+          3386.2958984375,
+          4991.9559326171875,
+          3403.527587890625
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3386.2958984375,
+          4991.9559326171875,
+          3403.527587890625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e534b365c567f061ee11255d",
+        "text": "O.C.",
+        "box": [
+          4647.12060546875,
+          3407.648193359375,
+          4686.58984375,
+          3424.6474609375
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3407.648193359375,
+          4686.58984375,
+          3424.6474609375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-bfa8e5829d0ef1c9755aa39e",
+        "text": "*EXAMPLE* (A6VB) = A WALL THAT INCLUDES 6\" STUDS,",
+        "box": [
+          4226.88037109375,
+          3866.535888671875,
+          4682.75146484375,
+          3883.767578125
+        ],
+        "raw_box": [
+          4226.88037109375,
+          3866.535888671875,
+          4682.75146484375,
+          3883.767578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-505660237c4ffa922abd5eb2",
+        "text": "VAPOR BARRIER, AND SOUND ISOLATION BATTS",
+        "box": [
+          4226.88037109375,
+          3887.887451171875,
+          4625.4677734375,
+          3904.88671875
+        ],
+        "raw_box": [
+          4226.88037109375,
+          3887.887451171875,
+          4625.4677734375,
+          3904.88671875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-62d462827357c62377198547",
+        "text": "1\"",
+        "box": [
+          4198.93505859375,
+          3231.18896484375,
+          4217.7548828125,
+          3244.560546875
+        ],
+        "raw_box": [
+          4198.93505859375,
+          3231.18896484375,
+          4217.7548828125,
+          3244.560546875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-55f2822bda514d7738a2837c",
+        "text": "4 1/2\"",
+        "box": [
+          4162.93505859375,
+          3282.30859375,
+          4181.7548828125,
+          3319.680419921875
+        ],
+        "raw_box": [
+          4162.93505859375,
+          3282.30859375,
+          4181.7548828125,
+          3319.680419921875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-2e003d03b393e7924a8b5a8b",
+        "text": "TYP. GYP BD SCREW. DO NOT",
+        "box": [
+          4647.12060546875,
+          3326.04833984375,
+          4893.7095947265625,
+          3343.047607421875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3326.04833984375,
+          4893.7095947265625,
+          3343.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e6464b92f6dcfa273306865e",
+        "text": "ATTACH TO DEFLECTION TRACK",
+        "box": [
+          4647.12060546875,
+          3347.168212890625,
+          4911.7559814453125,
+          3364.16748046875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3347.168212890625,
+          4911.7559814453125,
+          3364.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-1b35a8f584fe56a74a31af80",
+        "text": "(A3) = 3-5/8\" METAL STUD 20 GA. SPACED",
+        "box": [
+          4647.12060546875,
+          3441.255859375,
+          4995.345947265625,
+          3458.487548828125
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3441.255859375,
+          4995.345947265625,
+          3458.487548828125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-966810bcdb071a773a249847",
+        "text": "16\" O.C.",
+        "box": [
+          4647.12060546875,
+          3462.608154296875,
+          4716.58984375,
+          3479.607421875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3462.608154296875,
+          4716.58984375,
+          3479.607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-baf01f709e3be9926990917b",
+        "text": "ROOF INSULATION IN CAVITY",
+        "box": [
+          4647.12060546875,
+          3070.688232421875,
+          4890.413330078125,
+          3087.6875
+        ],
+        "raw_box": [
+          4647.12060546875,
+          3070.688232421875,
+          4890.413330078125,
+          3087.6875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-3c2ced0dba0267c849ec1fe7",
+        "text": "UNDERSIDE OF STRUCTURE",
+        "box": [
+          3685.200439453125,
+          3243.48828125,
+          3904.7021484375,
+          3260.487548828125
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3243.48828125,
+          3904.7021484375,
+          3260.487548828125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e4370d744510d5f96d44f23b",
+        "text": "ABOVE",
+        "box": [
+          3685.200439453125,
+          3264.608154296875,
+          3745.101806640625,
+          3281.607421875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3264.608154296875,
+          3745.101806640625,
+          3281.607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d924c172aa116e68f4aa1db2",
+        "text": "CONTINUOUS FIRESTOP",
+        "box": [
+          3685.200439453125,
+          3757.568115234375,
+          3880.25439453125,
+          3774.5673828125
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3757.568115234375,
+          3880.25439453125,
+          3774.5673828125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-8b8501e578aff64993726338",
+        "text": "(B6) = 6\" 20 GA. METAL STUD SPACED @",
+        "box": [
+          3685.200439453125,
+          3447.73583984375,
+          4017.3690185546875,
+          3464.967529296875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3447.73583984375,
+          4017.3690185546875,
+          3464.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-5cd0fc43c3a1bd414a32b270",
+        "text": "16\" O.C.",
+        "box": [
+          3685.200439453125,
+          3469.088134765625,
+          3754.670166015625,
+          3486.08740234375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3469.088134765625,
+          3754.670166015625,
+          3486.08740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-ad8f1f8d1715211b8a125677",
+        "text": "(2) 5/8\" TYPE-X GYPSUM BD. TYP.",
+        "box": [
+          3685.200439453125,
+          3374.768310546875,
+          3953.630126953125,
+          3391.767578125
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3374.768310546875,
+          3953.630126953125,
+          3391.767578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-c08d66ce8f355d682db927b2",
+        "text": "METAL RUNNER ANCHORED",
+        "box": [
+          3685.200439453125,
+          3832.208251953125,
+          3919.669677734375,
+          3849.20751953125
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3832.208251953125,
+          3919.669677734375,
+          3849.20751953125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-ce8f6c2d5cb1f246aa2f3b9d",
+        "text": "TO SUBSTRATE",
+        "box": [
+          3685.200439453125,
+          3853.328125,
+          3799.821533203125,
+          3870.327392578125
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3853.328125,
+          3799.821533203125,
+          3870.327392578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-b279fea55b1399569f3ee7ea",
+        "text": "SCHEDULED WALL BASE",
+        "box": [
+          3685.200439453125,
+          3726.608154296875,
+          3882.622802734375,
+          3743.607421875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3726.608154296875,
+          3882.622802734375,
+          3743.607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-8e662c7f8f2a4054bcb3c86b",
+        "text": "STRUCTURAL SUB-FLOOR",
+        "box": [
+          3685.200439453125,
+          3787.088134765625,
+          3888.68017578125,
+          3804.08740234375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3787.088134765625,
+          3888.68017578125,
+          3804.08740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e3b76fe420f91a67f044f284",
+        "text": "SLIP TRACK HEADER",
+        "box": [
+          3685.200439453125,
+          3150.128173828125,
+          3850.76123046875,
+          3167.12744140625
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3150.128173828125,
+          3850.76123046875,
+          3167.12744140625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-2c1eac571ca624eed4605542",
+        "text": "ANCHORED TO SUBSTRATE",
+        "box": [
+          3685.200439453125,
+          3171.248291015625,
+          3906.382568359375,
+          3188.24755859375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3171.248291015625,
+          3906.382568359375,
+          3188.24755859375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-828905df0e7e7a8feb389c4f",
+        "text": "(V) = CONTINUOUS INTERIOR AIR & VAPOR",
+        "box": [
+          3685.200439453125,
+          3576.61572265625,
+          4045.880859375,
+          3593.847412109375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3576.61572265625,
+          4045.880859375,
+          3593.847412109375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-dd3260ae4484c5d1444296f5",
+        "text": "BARRIER",
+        "box": [
+          3685.200439453125,
+          3597.96826171875,
+          3754.281005859375,
+          3614.967529296875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3597.96826171875,
+          3754.281005859375,
+          3614.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-c406c6fb6e0e259ad9660a15",
+        "text": "SCHEDULED CEILING - SEE",
+        "box": [
+          3685.200439453125,
+          3318.84814453125,
+          3902.542724609375,
+          3335.847412109375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3318.84814453125,
+          3902.542724609375,
+          3335.847412109375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-62df7f88177781706a20c296",
+        "text": "REFLECTED CEILING PLANS",
+        "box": [
+          3685.200439453125,
+          3339.96826171875,
+          3909.069091796875,
+          3356.967529296875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3339.96826171875,
+          3909.069091796875,
+          3356.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-948758edff53ac8e4d95a768",
+        "text": "(B) = SOUND ISOLATION BATTS",
+        "box": [
+          3685.200439453125,
+          3691.815673828125,
+          3938.34814453125,
+          3709.047607421875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3691.815673828125,
+          3938.34814453125,
+          3709.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-ba29f5dba4bbe9af1368cc00",
+        "text": "ROOF INSULATION IN CAVITY",
+        "box": [
+          3685.200439453125,
+          3110.288330078125,
+          3928.495361328125,
+          3127.28759765625
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3110.288330078125,
+          3928.495361328125,
+          3127.28759765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-4946c16dcee9b270a07be805",
+        "text": "(B3) = 3-5/8\" 20 GA. METAL STUD SPACED @",
+        "box": [
+          3685.200439453125,
+          3513.73583984375,
+          4050.9693603515625,
+          3530.967529296875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3513.73583984375,
+          4050.9693603515625,
+          3530.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-8c2bca2c6ddb814bb832b27e",
+        "text": "16\" O.C.",
+        "box": [
+          3685.200439453125,
+          3535.088134765625,
+          3754.670166015625,
+          3552.08740234375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3535.088134765625,
+          3754.670166015625,
+          3552.08740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-49fb572dd8cda445e352f8f2",
+        "text": "*EXAMPLE* (B6VB) = A WALL THAT INCLUDES 6\"",
+        "box": [
+          3189.360595703125,
+          3865.335693359375,
+          3583.15869140625,
+          3882.5673828125
+        ],
+        "raw_box": [
+          3189.360595703125,
+          3865.335693359375,
+          3583.15869140625,
+          3882.5673828125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-fea5187cb89f0b8e6ae31b3a",
+        "text": "STUDS, VAPOR BARRIER, AND SOUND",
+        "box": [
+          3189.36083984375,
+          3886.687255859375,
+          3500.149658203125,
+          3903.6865234375
+        ],
+        "raw_box": [
+          3189.36083984375,
+          3886.687255859375,
+          3500.149658203125,
+          3903.6865234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e88bc926d981ff2b9a81b382",
+        "text": "ISOLATION BATTS",
+        "box": [
+          3189.36083984375,
+          3907.80810546875,
+          3330.908447265625,
+          3924.807373046875
+        ],
+        "raw_box": [
+          3189.36083984375,
+          3907.80810546875,
+          3330.908447265625,
+          3924.807373046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-1ee54d8671dd97c95c7e8951",
+        "text": "ACOUSTICAL SEALANT, TYP.",
+        "box": [
+          3685.200439453125,
+          3291.00830078125,
+          3916.911376953125,
+          3308.007568359375
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3291.00830078125,
+          3916.911376953125,
+          3308.007568359375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d7a192f45ca0810c993021a8",
+        "text": "RESILIENT",
+        "box": [
+          3685.200439453125,
+          3632.04833984375,
+          3761.392822265625,
+          3649.047607421875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3632.04833984375,
+          3761.392822265625,
+          3649.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-cc0e1378e1a018fe0968a606",
+        "text": "CHANNELS @ 2'-0\"",
+        "box": [
+          3685.200439453125,
+          3653.168212890625,
+          3836.83837890625,
+          3670.16748046875
+        ],
+        "raw_box": [
+          3685.200439453125,
+          3653.168212890625,
+          3836.83837890625,
+          3670.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-88844da557dc4a72f1288ab3",
+        "text": "SLIP TRACK HEADER ANCHORED",
+        "box": [
+          2753.520263671875,
+          3141.248291015625,
+          3025.429443359375,
+          3158.24755859375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3141.248291015625,
+          3025.429443359375,
+          3158.24755859375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-b59d4c8f28cd23a44584d4e3",
+        "text": "TO UNDERSIDE OF STRUCTURE",
+        "box": [
+          2753.520263671875,
+          3162.3681640625,
+          3000.621826171875,
+          3179.367431640625
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3162.3681640625,
+          3000.621826171875,
+          3179.367431640625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-b7c761f3023fbbd37c831eca",
+        "text": "SOUND ISOLATION BATTS TO",
+        "box": [
+          2753.520263671875,
+          3454.92822265625,
+          2989.484375,
+          3471.927490234375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3454.92822265625,
+          2989.484375,
+          3471.927490234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-7b9a39e5bd681a1ea9aeb79a",
+        "text": "STRUCTURAL DECK",
+        "box": [
+          2753.520263671875,
+          3476.04833984375,
+          2909.67724609375,
+          3493.047607421875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3476.04833984375,
+          2909.67724609375,
+          3493.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-eb92ecc45c2e66a018e044e2",
+        "text": "5/8\" GYPSUM BOARD, TYP.",
+        "box": [
+          2753.520263671875,
+          3533.168212890625,
+          2974.1904296875,
+          3550.16748046875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3533.168212890625,
+          2974.1904296875,
+          3550.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-759af8f8bbdcb8d5cdc7bf08",
+        "text": "SCHEDULED CEILING SEE",
+        "box": [
+          2753.520263671875,
+          3569.168212890625,
+          2960.302001953125,
+          3586.16748046875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3569.168212890625,
+          2960.302001953125,
+          3586.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-479fa00226f5e6a9bdd0be6a",
+        "text": "REFLECTED CEILING PLANS",
+        "box": [
+          2753.520263671875,
+          3590.288330078125,
+          2977.388916015625,
+          3607.28759765625
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3590.288330078125,
+          2977.388916015625,
+          3607.28759765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-bce0bfd648f43816d7832ec8",
+        "text": "STRUCTURAL SUB-FLOOR",
+        "box": [
+          2753.520263671875,
+          3788.04833984375,
+          2957.00048828125,
+          3805.047607421875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3788.04833984375,
+          2957.00048828125,
+          3805.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-bea61e934d60205fa96b72f3",
+        "text": "ACOUSTICAL SEALANT, TYP.",
+        "box": [
+          2753.520263671875,
+          3754.92822265625,
+          2985.23095703125,
+          3771.927490234375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3754.92822265625,
+          2985.23095703125,
+          3771.927490234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-1134f6ae8718b38fd97b6ec7",
+        "text": "SCHEDULED WALL BASE",
+        "box": [
+          2753.520263671875,
+          3720.3681640625,
+          2950.942138671875,
+          3737.367431640625
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3720.3681640625,
+          2950.942138671875,
+          3737.367431640625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-382f7eca8e60f0b02d829da4",
+        "text": "METAL RUNNER",
+        "box": [
+          2753.520263671875,
+          3648.128173828125,
+          2881.640869140625,
+          3665.12744140625
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3648.128173828125,
+          2881.640869140625,
+          3665.12744140625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-341fb701aaea0a98202f00d2",
+        "text": "ANCHORED TO",
+        "box": [
+          2753.520263671875,
+          3669.248291015625,
+          2882.44482421875,
+          3686.24755859375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3669.248291015625,
+          2882.44482421875,
+          3686.24755859375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-291dd27c68f6b9015b9943b1",
+        "text": "SUBSTRATE",
+        "box": [
+          2753.520263671875,
+          3690.3681640625,
+          2840.541748046875,
+          3707.367431640625
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3690.3681640625,
+          2840.541748046875,
+          3707.367431640625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-dbb9d99d584c895e59bead87",
+        "text": "3-5/8\" METAL STUD 20 GA.",
+        "box": [
+          2753.520263671875,
+          3335.648193359375,
+          2969.871337890625,
+          3352.6474609375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3335.648193359375,
+          2969.871337890625,
+          3352.6474609375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-01b6d11aaf8e9da6344d41a9",
+        "text": "STAGGERED SPACED 16\" O.C.",
+        "box": [
+          2753.520263671875,
+          3356.768310546875,
+          3005.151611328125,
+          3373.767578125
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3356.768310546875,
+          3005.151611328125,
+          3373.767578125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-fc5437ec044f7953dd6017a0",
+        "text": "MIN. 6\"",
+        "box": [
+          2251.810791015625,
+          3398.69775390625,
+          2270.96826171875,
+          3462.48046875
+        ],
+        "raw_box": [
+          2251.810791015625,
+          3398.69775390625,
+          2270.96826171875,
+          3462.48046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-717c9ca6d03905c1b033da8e",
+        "text": "UNDERSIDE OF STRUCTURE ABOVE",
+        "box": [
+          2753.520263671875,
+          3257.168212890625,
+          3038.062744140625,
+          3274.16748046875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3257.168212890625,
+          3038.062744140625,
+          3274.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-e03a3e25f5341bd4bd7a45f4",
+        "text": "VARIES, SEE PLAN",
+        "box": [
+          2387.2802734375,
+          3856.69091796875,
+          2558.525634765625,
+          3875.848388671875
+        ],
+        "raw_box": [
+          2387.2802734375,
+          3856.69091796875,
+          2558.525634765625,
+          3875.848388671875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-ae6a69b0c06531dc8d1ce368",
+        "text": "METAL STUD BRACING @ 4'-0\" O.C.,",
+        "box": [
+          2753.520263671875,
+          3398.04833984375,
+          3048.59130859375,
+          3415.047607421875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3398.04833984375,
+          3048.59130859375,
+          3415.047607421875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-3e748396c319b1f5c8bd9cba",
+        "text": "MAX. ABOVE SLAB",
+        "box": [
+          2753.520263671875,
+          3419.168212890625,
+          2909.13525390625,
+          3436.16748046875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3419.168212890625,
+          2909.13525390625,
+          3436.16748046875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-0d91fdf2770a01cd82b14228",
+        "text": "DEEP LEG OF DEFLECTION TRACK",
+        "box": [
+          2753.520263671875,
+          3087.96826171875,
+          3032.557373046875,
+          3104.967529296875
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3087.96826171875,
+          3032.557373046875,
+          3104.967529296875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-44b40c1d6c74f1c034473cc8",
+        "text": "(2\" MIN. DEFLECTION)",
+        "box": [
+          2753.520263671875,
+          3109.088134765625,
+          2933.34130859375,
+          3126.08740234375
+        ],
+        "raw_box": [
+          2753.520263671875,
+          3109.088134765625,
+          2933.34130859375,
+          3126.08740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d7ca9331e2caef9ee4ad0995",
+        "text": "ACOUSTICAL SEALANT, TYP.",
+        "box": [
+          2752.080322265625,
+          3291.00830078125,
+          2983.791015625,
+          3308.007568359375
+        ],
+        "raw_box": [
+          2752.080322265625,
+          3291.00830078125,
+          2983.791015625,
+          3308.007568359375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-4f9058ecc089f0da639f919d",
+        "text": "DOOR TYPE A1",
+        "box": [
+          3391.92041015625,
+          645.9752807617188,
+          3515.9150390625,
+          662.663330078125
+        ],
+        "raw_box": [
+          3391.92041015625,
+          645.9752807617188,
+          3515.9150390625,
+          662.663330078125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-27fe87bf15ba6d523f90bfad",
+        "text": "SWING DOOR",
+        "box": [
+          3391.200439453125,
+          677.647705078125,
+          3509.240234375,
+          694.6470947265625
+        ],
+        "raw_box": [
+          3391.200439453125,
+          677.647705078125,
+          3509.240234375,
+          694.6470947265625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-7f27b353715179f52c6e5007",
+        "text": "DOOR TYPE A2",
+        "box": [
+          3571.92041015625,
+          645.9752807617188,
+          3695.9150390625,
+          662.663330078125
+        ],
+        "raw_box": [
+          3571.92041015625,
+          645.9752807617188,
+          3695.9150390625,
+          662.663330078125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-11f6dc53a20040eebb972284",
+        "text": "DOUBLE SWING DOOR",
+        "box": [
+          3571.92041015625,
+          677.647705078125,
+          3762.440185546875,
+          694.6470947265625
+        ],
+        "raw_box": [
+          3571.92041015625,
+          677.647705078125,
+          3762.440185546875,
+          694.6470947265625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-5b81a80119f20ead72bddc30",
+        "text": "DOOR TYPE B1",
+        "box": [
+          3896.160400390625,
+          645.9752807617188,
+          4017.2752685546875,
+          662.663330078125
+        ],
+        "raw_box": [
+          3896.160400390625,
+          645.9752807617188,
+          4017.2752685546875,
+          662.663330078125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-fbce81a58a488ae335fcdc7d",
+        "text": "ALUMINIUM",
+        "box": [
+          3896.160400390625,
+          677.647705078125,
+          3995.0107421875,
+          694.6470947265625
+        ],
+        "raw_box": [
+          3896.160400390625,
+          677.647705078125,
+          3995.0107421875,
+          694.6470947265625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-b8e024e704c61f599d5acc6e",
+        "text": "DOOR WITH",
+        "box": [
+          3896.160400390625,
+          698.7677001953125,
+          3996.107421875,
+          715.76708984375
+        ],
+        "raw_box": [
+          3896.160400390625,
+          698.7677001953125,
+          3996.107421875,
+          715.76708984375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-8c6661028e0a546b9afcfdb8",
+        "text": "GLAZING",
+        "box": [
+          3896.160400390625,
+          719.8876953125,
+          3974.018310546875,
+          736.8870849609375
+        ],
+        "raw_box": [
+          3896.160400390625,
+          719.8876953125,
+          3974.018310546875,
+          736.8870849609375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-4d752eb21370af930d86616f",
+        "text": "DOOR TYPE B2",
+        "box": [
+          4096.80029296875,
+          645.9752807617188,
+          4217.9156494140625,
+          662.663330078125
+        ],
+        "raw_box": [
+          4096.80029296875,
+          645.9752807617188,
+          4217.9156494140625,
+          662.663330078125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-2967c7d6cc25b7559fa346cc",
+        "text": "DOUBLE ALUMINIUM",
+        "box": [
+          4096.80029296875,
+          677.647705078125,
+          4268.372802734375,
+          694.6470947265625
+        ],
+        "raw_box": [
+          4096.80029296875,
+          677.647705078125,
+          4268.372802734375,
+          694.6470947265625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-77bb55945aaa3cd0e34158f8",
+        "text": "DOOR WITH GLAZING",
+        "box": [
+          4096.80029296875,
+          698.7677001953125,
+          4279.777587890625,
+          715.76708984375
+        ],
+        "raw_box": [
+          4096.80029296875,
+          698.7677001953125,
+          4279.777587890625,
+          715.76708984375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-7a186fdf1b5d728e8119469f",
+        "text": "DOOR TYPE C1",
+        "box": [
+          3384.720458984375,
+          1214.5352783203125,
+          3509.435791015625,
+          1231.223388671875
+        ],
+        "raw_box": [
+          3384.720458984375,
+          1214.5352783203125,
+          3509.435791015625,
+          1231.223388671875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-78780cc027df4c63f8fd9a25",
+        "text": "ROLL-UP INSULATED DOOR",
+        "box": [
+          3384.00048828125,
+          1246.207763671875,
+          3608.120849609375,
+          1263.2071533203125
+        ],
+        "raw_box": [
+          3384.00048828125,
+          1246.207763671875,
+          3608.120849609375,
+          1263.2071533203125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-a8d814da572f5a1f6f75995c",
+        "text": "EQ",
+        "box": [
+          3606.96044921875,
+          276.13043212890625,
+          3634.075439453125,
+          295.2880554199219
+        ],
+        "raw_box": [
+          3606.96044921875,
+          276.13043212890625,
+          3634.075439453125,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-836f3c94a8f7a0a8962fdab0",
+        "text": "EQ",
+        "box": [
+          3714.96044921875,
+          276.13043212890625,
+          3742.075439453125,
+          295.2880554199219
+        ],
+        "raw_box": [
+          3714.96044921875,
+          276.13043212890625,
+          3742.075439453125,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-267e92a3f9d5ab42e0ff5103",
+        "text": "EQ",
+        "box": [
+          4140.720703125,
+          276.13043212890625,
+          4167.8353271484375,
+          295.2880554199219
+        ],
+        "raw_box": [
+          4140.720703125,
+          276.13043212890625,
+          4167.8353271484375,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d58ba84b1455fc933ff514cf",
+        "text": "EQ",
+        "box": [
+          4266.720703125,
+          276.13043212890625,
+          4293.8353271484375,
+          295.2880554199219
+        ],
+        "raw_box": [
+          4266.720703125,
+          276.13043212890625,
+          4293.8353271484375,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-2a62a87bd1cc0563aaf9c90f",
+        "text": "DOOR TYPE B3",
+        "box": [
+          4528.80029296875,
+          645.9752807617188,
+          4649.9156494140625,
+          662.663330078125
+        ],
+        "raw_box": [
+          4528.80029296875,
+          645.9752807617188,
+          4649.9156494140625,
+          662.663330078125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-ca3241024cbcccfab62b3b34",
+        "text": "ALUMINIUM SLIDING",
+        "box": [
+          4528.80029296875,
+          677.647705078125,
+          4700.019287109375,
+          694.6470947265625
+        ],
+        "raw_box": [
+          4528.80029296875,
+          677.647705078125,
+          4700.019287109375,
+          694.6470947265625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-b1e78490d351e05f92f1b899",
+        "text": "EQ",
+        "box": [
+          4572.720703125,
+          276.13043212890625,
+          4599.8353271484375,
+          295.2880554199219
+        ],
+        "raw_box": [
+          4572.720703125,
+          276.13043212890625,
+          4599.8353271484375,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-87f4589788dc14a8baea15f0",
+        "text": "EQ",
+        "box": [
+          4698.720703125,
+          276.13043212890625,
+          4725.8353271484375,
+          295.2880554199219
+        ],
+        "raw_box": [
+          4698.720703125,
+          276.13043212890625,
+          4725.8353271484375,
+          295.2880554199219
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-4c1eada3573fdac206ead3ba",
+        "text": "FRAME TYPE A",
+        "box": [
+          3460.800537109375,
+          1888.2154541015625,
+          3579.05078125,
+          1904.903564453125
+        ],
+        "raw_box": [
+          3460.800537109375,
+          1888.2154541015625,
+          3579.05078125,
+          1904.903564453125
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-af2b627026c5afe4168ef82a",
+        "text": "VARIES",
+        "box": [
+          3396.131103515625,
+          1641.8077392578125,
+          3415.28857421875,
+          1710.72021484375
+        ],
+        "raw_box": [
+          3396.131103515625,
+          1641.8077392578125,
+          3415.28857421875,
+          1710.72021484375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-d91c29d1849fdd81e4db5404",
+        "text": "0' - 2\"",
+        "box": [
+          3394.2109375,
+          1479.4173583984375,
+          3413.368408203125,
+          1529.7601318359375
+        ],
+        "raw_box": [
+          3394.2109375,
+          1479.4173583984375,
+          3413.368408203125,
+          1529.7601318359375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-0af9a9f813692886281c6d94",
+        "text": "VARIES",
+        "box": [
+          3482.640380859375,
+          1825.8106689453125,
+          3551.313720703125,
+          1844.96826171875
+        ],
+        "raw_box": [
+          3482.640380859375,
+          1825.8106689453125,
+          3551.313720703125,
+          1844.96826171875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      {
+        "id": "text-342d166c72335f8514531546",
+        "text": "0' - 2\"",
+        "box": [
+          3416.88037109375,
+          1825.8106689453125,
+          3467.22314453125,
+          1844.96826171875
+        ],
+        "raw_box": [
+          3416.88037109375,
+          1825.8106689453125,
+          3467.22314453125,
+          1844.96826171875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      }
+    ],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-3f236df6d7f7fa9af8e5275e",
+        "view-5100f0d40480ddafec5a8124",
+        "view-394abe000dd244c7c23beb3e",
+        "view-161dfd287db4984e5c652142",
+        "view-2772e7d1c7db70a92e8285ac"
+      ],
+      "calibration_ids": [],
+      "text_ids": [
+        "text-1bbffbae1cadd40852127062",
+        "text-1ab02cd57b802a627790894f",
+        "text-d0694d8640b33c24183a46d9",
+        "text-19df989cce2490c076ee80e2",
+        "text-20cb4f5d60090e4ca2b85f4c",
+        "text-bcebd2e844213657cab939ea",
+        "text-2898148d5b02c815e67c7ca4",
+        "text-c4afbc4280300192e6b4a7b9",
+        "text-e15fb89b52c710cbbc126d17",
+        "text-7aa9264d6be58559c8a1c962",
+        "text-24f7081aaeb738cc1ba1ca89",
+        "text-d5a75c4705e422e6c767ff34",
+        "text-15332d19ae55360b4d7adbdf",
+        "text-f843b393c7a2a29859a864c5",
+        "text-724104c2ef2f1c441df2286c",
+        "text-e534b365c567f061ee11255d",
+        "text-bfa8e5829d0ef1c9755aa39e",
+        "text-505660237c4ffa922abd5eb2",
+        "text-62d462827357c62377198547",
+        "text-55f2822bda514d7738a2837c",
+        "text-2e003d03b393e7924a8b5a8b",
+        "text-e6464b92f6dcfa273306865e",
+        "text-1b35a8f584fe56a74a31af80",
+        "text-966810bcdb071a773a249847",
+        "text-baf01f709e3be9926990917b",
+        "text-3c2ced0dba0267c849ec1fe7",
+        "text-e4370d744510d5f96d44f23b",
+        "text-d924c172aa116e68f4aa1db2",
+        "text-8b8501e578aff64993726338",
+        "text-5cd0fc43c3a1bd414a32b270",
+        "text-ad8f1f8d1715211b8a125677",
+        "text-c08d66ce8f355d682db927b2",
+        "text-ce8f6c2d5cb1f246aa2f3b9d",
+        "text-b279fea55b1399569f3ee7ea",
+        "text-8e662c7f8f2a4054bcb3c86b",
+        "text-e3b76fe420f91a67f044f284",
+        "text-2c1eac571ca624eed4605542",
+        "text-828905df0e7e7a8feb389c4f",
+        "text-dd3260ae4484c5d1444296f5",
+        "text-c406c6fb6e0e259ad9660a15",
+        "text-62df7f88177781706a20c296",
+        "text-948758edff53ac8e4d95a768",
+        "text-ba29f5dba4bbe9af1368cc00",
+        "text-4946c16dcee9b270a07be805",
+        "text-8c2bca2c6ddb814bb832b27e",
+        "text-49fb572dd8cda445e352f8f2",
+        "text-fea5187cb89f0b8e6ae31b3a",
+        "text-e88bc926d981ff2b9a81b382",
+        "text-1ee54d8671dd97c95c7e8951",
+        "text-d7a192f45ca0810c993021a8",
+        "text-cc0e1378e1a018fe0968a606",
+        "text-88844da557dc4a72f1288ab3",
+        "text-b59d4c8f28cd23a44584d4e3",
+        "text-b7c761f3023fbbd37c831eca",
+        "text-7b9a39e5bd681a1ea9aeb79a",
+        "text-eb92ecc45c2e66a018e044e2",
+        "text-759af8f8bbdcb8d5cdc7bf08",
+        "text-479fa00226f5e6a9bdd0be6a",
+        "text-bce0bfd648f43816d7832ec8",
+        "text-bea61e934d60205fa96b72f3",
+        "text-1134f6ae8718b38fd97b6ec7",
+        "text-382f7eca8e60f0b02d829da4",
+        "text-341fb701aaea0a98202f00d2",
+        "text-291dd27c68f6b9015b9943b1",
+        "text-dbb9d99d584c895e59bead87",
+        "text-01b6d11aaf8e9da6344d41a9",
+        "text-fc5437ec044f7953dd6017a0",
+        "text-717c9ca6d03905c1b033da8e",
+        "text-e03a3e25f5341bd4bd7a45f4",
+        "text-ae6a69b0c06531dc8d1ce368",
+        "text-3e748396c319b1f5c8bd9cba",
+        "text-0d91fdf2770a01cd82b14228",
+        "text-44b40c1d6c74f1c034473cc8",
+        "text-d7ca9331e2caef9ee4ad0995",
+        "text-4f9058ecc089f0da639f919d",
+        "text-27fe87bf15ba6d523f90bfad",
+        "text-7f27b353715179f52c6e5007",
+        "text-11f6dc53a20040eebb972284",
+        "text-5b81a80119f20ead72bddc30",
+        "text-fbce81a58a488ae335fcdc7d",
+        "text-b8e024e704c61f599d5acc6e",
+        "text-8c6661028e0a546b9afcfdb8",
+        "text-4d752eb21370af930d86616f",
+        "text-2967c7d6cc25b7559fa346cc",
+        "text-77bb55945aaa3cd0e34158f8",
+        "text-7a186fdf1b5d728e8119469f",
+        "text-78780cc027df4c63f8fd9a25",
+        "text-a8d814da572f5a1f6f75995c",
+        "text-836f3c94a8f7a0a8962fdab0",
+        "text-267e92a3f9d5ab42e0ff5103",
+        "text-d58ba84b1455fc933ff514cf",
+        "text-2a62a87bd1cc0563aaf9c90f",
+        "text-ca3241024cbcccfab62b3b34",
+        "text-b1e78490d351e05f92f1b899",
+        "text-87f4589788dc14a8baea15f0",
+        "text-4c1eada3573fdac206ead3ba",
+        "text-af2b627026c5afe4168ef82a",
+        "text-d91c29d1849fdd81e4db5404",
+        "text-0af9a9f813692886281c6d94",
+        "text-342d166c72335f8514531546"
+      ],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 2,
+        "read_pdf_text": 3
+      },
+      "vista_views_used": 4,
+      "sources": [
+        {
+          "page_id": "page-630c49ad73556b0ad500de9f",
+          "source_id": "page-630c49ad73556b0ad500de9f",
+          "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+          "width": 6048,
+          "height": 4320,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c"
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-3f236df6d7f7fa9af8e5275e": {
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 6048,
+        "height": 4320,
+        "original_width": 6048,
+        "original_height": 4320,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "pdf_to_page": [
+          0.0,
+          2.0,
+          -2.0,
+          0.0,
+          6048.0,
+          0.0
+        ],
+        "view_id": "view-3f236df6d7f7fa9af8e5275e"
+      },
+      "view-5100f0d40480ddafec5a8124": {
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 960,
+        "original_width": 6048,
+        "original_height": 4320,
+        "transform": {
+          "scale_x": 0.78125,
+          "scale_y": 0.78125,
+          "origin_x": 100,
+          "origin_y": 1050
+        },
+        "image_sha256": "125b3a0286e33aa456eceefbd6cdba9d5e270e92128a5e37cdd9ec2d9a1c414f",
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "pdf_to_page": [
+          0.0,
+          2.0,
+          -2.0,
+          0.0,
+          6048.0,
+          0.0
+        ],
+        "view_id": "view-5100f0d40480ddafec5a8124"
+      },
+      "view-394abe000dd244c7c23beb3e": {
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 866,
+        "original_width": 6048,
+        "original_height": 4320,
+        "transform": {
+          "scale_x": 1.5,
+          "scale_y": 1.5011547344110854,
+          "origin_x": 300,
+          "origin_y": 1550
+        },
+        "image_sha256": "49048c966c56fffb6d722ec71de26f377d96c6e64c8b54f5256c71a67d6c558f",
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "pdf_to_page": [
+          0.0,
+          2.0,
+          -2.0,
+          0.0,
+          6048.0,
+          0.0
+        ],
+        "view_id": "view-394abe000dd244c7c23beb3e"
+      },
+      "view-161dfd287db4984e5c652142": {
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 437,
+        "original_width": 6048,
+        "original_height": 4320,
+        "transform": {
+          "scale_x": 0.59375,
+          "scale_y": 0.5949656750572082,
+          "origin_x": 150,
+          "origin_y": 2270
+        },
+        "image_sha256": "eb72166d2b797717c671ecd0ba280eca675aa27c35d5783cc95b36d18cd3659d",
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "pdf_to_page": [
+          0.0,
+          2.0,
+          -2.0,
+          0.0,
+          6048.0,
+          0.0
+        ],
+        "view_id": "view-161dfd287db4984e5c652142"
+      },
+      "view-2772e7d1c7db70a92e8285ac": {
+        "page_id": "page-630c49ad73556b0ad500de9f",
+        "source_id": "page-630c49ad73556b0ad500de9f",
+        "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 288,
+        "original_width": 6048,
+        "original_height": 4320,
+        "transform": {
+          "scale_x": 0.3125,
+          "scale_y": 0.3125,
+          "origin_x": 240,
+          "origin_y": 2280
+        },
+        "image_sha256": "ad544d67977eab78eaa3dee675f154f363050484dfa4e1788baab13f8c9e13e4",
+        "pdf_page": 0,
+        "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+        "pdf_to_page": [
+          0.0,
+          2.0,
+          -2.0,
+          0.0,
+          6048.0,
+          0.0
+        ],
+        "view_id": "view-2772e7d1c7db70a92e8285ac"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 45.4721186067909,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  },
+  "cleanup_errors": []
+}

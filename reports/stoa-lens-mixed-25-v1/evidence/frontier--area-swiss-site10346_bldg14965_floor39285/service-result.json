@@ -1,0 +1,151 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "needs_review",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "text",
+        "value": "3.05 \u2014 Wohnen/Essen",
+        "unit": null,
+        "evidence_ids": [
+          "view-a8743c22231aaddd52f44c13"
+        ],
+        "description": "Visually read room identifier and label. No printed area is visible for this room.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "A verified net floor area cannot be reported from the available evidence on the supplied page.",
+      "The exact native-room lookup for identifier 3.05 returned unsupported_native_source, despite the stated availability of registered Swiss native geometry.",
+      "The Raster2Seq fallback did not isolate room 3.05: its overlapping candidate includes adjacent kitchen and corridor space. It was rejected rather than repaired or used for measurement.",
+      "No area was computed. A verified native boundary for room 3.05 is needed before calculating its net area using source-bound scale."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [
+        "r2s-b08721bdca8b515578765890",
+        "r2s-6be93870663da8d5695f8e15",
+        "r2s-7492cd2b3e676a027dc056ab",
+        "r2s-7888210f779f7603cc0c8e22",
+        "r2s-3383ca26f9b5a11ab8afdebd",
+        "r2s-f31870e15b7b7dfca7952912",
+        "r2s-f6057faa96480c8e8ef10b79",
+        "r2s-91ddf93af23bfcd5b04dc039",
+        "r2s-fba95408eab33df74a8fc658",
+        "r2s-b1388f5e8bac89abc8a06a4f",
+        "r2s-fda540fd78e32e835038645d"
+      ],
+      "view_ids": [
+        "view-a8743c22231aaddd52f44c13"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 1,
+        "read_pdf_text": 3,
+        "task_plan": 1
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "width": 4961,
+          "height": 3508,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-a8743c22231aaddd52f44c13": {
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4961,
+        "height": 3508,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "view_id": "view-a8743c22231aaddd52f44c13"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 35.58584760315716,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "frontier",
+      "explicit_planning": true
+    },
+    "task_plan": [
+      "Retrieve the verified native candidate for exact room identifier 3.05 and positioned PDF text.",
+      "Bind a visible length scale to native page coordinates, then compute the candidate\u2019s net area including represented holes.",
+      "Return computed m\u00b2 with geometry/calibration evidence; report any printed area separately."
+    ]
+  },
+  "cleanup_errors": []
+}

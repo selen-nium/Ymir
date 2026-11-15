@@ -1,0 +1,39 @@
+{
+  "case_id": "count-cubicasa5k-door-6827",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "How many doors are shown on this floor plan? Count doorways fitted with a door; open doorways without a door leaf do not count.",
+  "sources": [
+    {
+      "page_id": "page-66e85fc4bb8583db3d6bff78",
+      "source_id": "page-66e85fc4bb8583db3d6bff78",
+      "source_sha256": "b472e884ec68d219a3ea7a6a675677ebb9311f5559a686582418ada9eb39d68c",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/cubicasa5k/high_quality-1140.png",
+      "width": 833,
+      "height": 525,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "object_count"
+}

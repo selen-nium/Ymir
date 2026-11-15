@@ -1,0 +1,356 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "needs_review",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [
+      {
+        "room_id": "2.16",
+        "page_id": "page-4950bd3d02aac76a15cefaf0",
+        "candidate_id": "r2s-26812096f7790259cba88de2",
+        "calibration_id": "cal-40740e1b9197cf693632b7b8",
+        "label": "K\u00fcche",
+        "identifier": "2.16",
+        "types": [
+          "kitchen"
+        ],
+        "basis": "visually inferred",
+        "text_ids": [],
+        "polygon": [
+          [
+            691.5458937198067,
+            1712.8125
+          ],
+          [
+            691.5458937198067,
+            2064.765625
+          ],
+          [
+            998.9855072463768,
+            2066.8359375
+          ],
+          [
+            1001.0628019323672,
+            1712.8125
+          ],
+          [
+            1003.1400966183576,
+            1710.7421875
+          ]
+        ],
+        "holes": [],
+        "geometry_provenance": {
+          "backend": "raster2seq",
+          "source_id": "page-4950bd3d02aac76a15cefaf0",
+          "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+          "view_id": "view-e5e6d2a20f748fcc6fd4e832",
+          "prediction_key": "a96d386cd23c3b44547d079b72a3323845615879cc4e72c28e15f2a38ae64cf8",
+          "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+          "preprocessing": {
+            "original_width": 1298,
+            "original_height": 1600,
+            "resized_width": 207,
+            "resized_height": 256,
+            "left": 24,
+            "top": 0,
+            "model_size": 256
+          },
+          "view_transform": {
+            "scale_x": 0.3312788906009245,
+            "scale_y": 0.33125,
+            "origin_x": 650,
+            "origin_y": 1630
+          },
+          "coordinate_space": "original_full_page_pixels",
+          "page": 0
+        },
+        "quality_flags": [],
+        "measurement": {
+          "status": "available",
+          "candidate_id": "r2s-26812096f7790259cba88de2",
+          "calibration_id": "cal-40740e1b9197cf693632b7b8",
+          "pixel_area": 109210.68463164254,
+          "area_m2": 7.790435296609819,
+          "estimate": true,
+          "limitations": [
+            "Raster quantization, minimum-region cutoff, and no hole prediction"
+          ]
+        },
+        "area_m2": 7.790435296609819,
+        "text_associations": []
+      }
+    ],
+    "room_count": 1,
+    "readings": [
+      {
+        "kind": "printed_area",
+        "value": 8.0,
+        "unit": "m\u00b2",
+        "evidence_ids": [
+          "view-e5e6d2a20f748fcc6fd4e832"
+        ],
+        "description": "Printed area for K\u00fcche 2.16, separate from the geometric calculation.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      },
+      {
+        "kind": "dimension",
+        "value": 5,
+        "unit": "m",
+        "evidence_ids": [
+          "view-a9024cc771512332673e9ed0"
+        ],
+        "description": "Visible 0\u20135 m scale bar used for source-bound calibration.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "Calculated fallback raster estimate: approximately 7.79 m\u00b2, using candidate r2s-26812096f7790259cba88de2 and calibration cal-40740e1b9197cf693632b7b8.",
+      "The native-room lookup for exact identifier 2.16 returned unsupported_native_source. The requested verified native geometry could not be retrieved.",
+      "The raster estimate is subject to quantization and lacks hole prediction, so the requested verified net floor area remains unconfirmed.",
+      "The printed 8.00 m\u00b2 was not used for calibration or geometric calculation."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_room",
+        "arguments": {
+          "candidate_id": "r2s-26812096f7790259cba88de2",
+          "calibration_id": "cal-40740e1b9197cf693632b7b8"
+        },
+        "result": {
+          "status": "available",
+          "candidate_id": "r2s-26812096f7790259cba88de2",
+          "calibration_id": "cal-40740e1b9197cf693632b7b8",
+          "pixel_area": 109210.68463164254,
+          "area_m2": 7.790435296609819,
+          "estimate": true,
+          "limitations": [
+            "Raster quantization, minimum-region cutoff, and no hole prediction"
+          ]
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [
+        "r2s-0934122ea3a406615fcd996b",
+        "r2s-a17c66274b706b410dae8f74",
+        "r2s-12c970c2b96c11e4b10c963e",
+        "r2s-f92817a9e7e690025e266016",
+        "r2s-17cdc4ab92a72f00c8eb4be5",
+        "r2s-9221f751f5e2e70578d331e5",
+        "r2s-ee663fb3dee55643315eaef8",
+        "r2s-2c6314b3b1c3ed808906e5f1",
+        "r2s-b0b7e9c142fc68805c172295",
+        "r2s-5b20f02386d25d26370ca983",
+        "r2s-6eb23ec61bddfab5b2594e25",
+        "r2s-88dad325a87c7208c30e56dc",
+        "r2s-1dc7cce4d23e48619b591ff9",
+        "r2s-dce7dfc7170ec482311eb731",
+        "r2s-d37d23d459f6f1c65080d51e",
+        "r2s-3fbc81552213260c3d5fe169",
+        "r2s-76a05cf5a10bb08788b9ae6b",
+        "r2s-87b57a1facd2ffee65f2b43c",
+        "r2s-0229a78b012ee535601a324a",
+        "r2s-c21a0fbbc31c2258a106806a",
+        "r2s-65af06dc4891257b13d5d5b4",
+        "r2s-c45be65c4038f52e7333d916",
+        "r2s-6e754821316238ab4427ca1c",
+        "r2s-cf22e7c86b4cf4006196494f",
+        "r2s-d8c276a59400aeed69f9c200",
+        "r2s-26812096f7790259cba88de2",
+        "r2s-2f89809dca77860e14659c32",
+        "r2s-98ea63ad1b994c12503d2ecd"
+      ],
+      "view_ids": [
+        "view-d56f48c2c185d2ffa069591e",
+        "view-e5e6d2a20f748fcc6fd4e832",
+        "view-a9024cc771512332673e9ed0"
+      ],
+      "calibration_ids": [
+        "cal-40740e1b9197cf693632b7b8"
+      ],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 0,
+        "read_pdf_text": 3,
+        "task_plan": 1
+      },
+      "vista_views_used": 4,
+      "sources": [
+        {
+          "page_id": "page-4950bd3d02aac76a15cefaf0",
+          "source_id": "page-4950bd3d02aac76a15cefaf0",
+          "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+          "width": 4961,
+          "height": 3508,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-d56f48c2c185d2ffa069591e": {
+        "page_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4961,
+        "height": 3508,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+        "view_id": "view-d56f48c2c185d2ffa069591e"
+      },
+      "view-e5e6d2a20f748fcc6fd4e832": {
+        "page_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1298,
+        "height": 1600,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 0.3312788906009245,
+          "scale_y": 0.33125,
+          "origin_x": 650,
+          "origin_y": 1630
+        },
+        "image_sha256": "2e634db5d4a9f3ef0c63db65bf8ca3a79d3836ed8342862c8e0c69d8cfcd0007",
+        "view_id": "view-e5e6d2a20f748fcc6fd4e832"
+      },
+      "view-a9024cc771512332673e9ed0": {
+        "page_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 432,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 0.4625,
+          "scale_y": 0.46296296296296297,
+          "origin_x": 1185,
+          "origin_y": 3150
+        },
+        "image_sha256": "f683478977fad179000193b8d04a2a98f46a436a0d89d2346bd3e5b3a328ba3c",
+        "view_id": "view-a9024cc771512332673e9ed0"
+      }
+    },
+    "calibrations": [
+      {
+        "source_id": "page-4950bd3d02aac76a15cefaf0",
+        "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+        "page": 0,
+        "evidence_id": "length-evidence-91c3cfe3190ff5ad1bc02f07",
+        "evidence": {
+          "kind": "visible_scale_bar",
+          "p0": [
+            1228,
+            3238
+          ],
+          "p1": [
+            1820,
+            3238
+          ],
+          "length": 5,
+          "unit": "m",
+          "page_id": "page-4950bd3d02aac76a15cefaf0",
+          "source_id": "page-4950bd3d02aac76a15cefaf0",
+          "source_sha256": "3adfdc97ff6a3c49480d823e8ef824e8320e0636d8c5cba4f5161b77c137c486",
+          "page": 0,
+          "description": "Visible scale bar from 0 to 5 m",
+          "upstream_evidence_id": "view-a9024cc771512332673e9ed0",
+          "reading_provenance": "model_read_visible_pixels"
+        },
+        "p0": [
+          1228,
+          3238
+        ],
+        "p1": [
+          1820,
+          3238
+        ],
+        "length": 5,
+        "unit": "m",
+        "kind": "visible_length",
+        "metres_per_pixel": 0.008445945945945946,
+        "calibration_id": "cal-40740e1b9197cf693632b7b8"
+      }
+    ],
+    "elapsed_seconds": 70.10871702805161,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "frontier",
+      "explicit_planning": true
+    },
+    "task_plan": [
+      "Retrieve verified native geometry for exact room identifier 2.16 and positioned PDF text.",
+      "Bind the visible scale bar to native page-pixel endpoints, then measure the verified room geometry in m\u00b2.",
+      "Return computed net area separately from the printed area, citing registered evidence."
+    ]
+  },
+  "cleanup_errors": []
+}

@@ -1,0 +1,730 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "object_class": "sink",
+        "object_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "count": 2,
+        "accepted_proposal_ids": [
+          "proposal_1ffc4ff4c27fd19f81c8",
+          "proposal_9e314d91785e93734376"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 2,
+    "accepted_proposal_ids": [
+      "proposal_1ffc4ff4c27fd19f81c8",
+      "proposal_9e314d91785e93734376"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_9e314d91785e93734376",
+        "label": "sink",
+        "raw_box_xyxy": [
+          1388.079833984375,
+          614.9196166992188,
+          1410.752685546875,
+          644.7920532226562
+        ],
+        "view_box_xyxy": [
+          1388.079833984375,
+          614.9196166992188,
+          1410.752685546875,
+          644.7920532226562
+        ],
+        "native_box_xyxy": [
+          1388.079833984375,
+          614.9196166992188,
+          1410.752685546875,
+          644.7920532226562
+        ],
+        "confidence": 0.5940803289413452,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_dbaefb58b68b282d3e0c",
+        "label": "sink",
+        "raw_box_xyxy": [
+          1409.40576171875,
+          571.1114501953125,
+          1433.9776611328125,
+          600.4682006835938
+        ],
+        "view_box_xyxy": [
+          1409.40576171875,
+          571.1114501953125,
+          1433.9776611328125,
+          600.4682006835938
+        ],
+        "native_box_xyxy": [
+          1409.40576171875,
+          571.1114501953125,
+          1433.9776611328125,
+          600.4682006835938
+        ],
+        "confidence": 0.5102524757385254,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_f33ddf0077c1ad365826",
+        "label": "sink",
+        "raw_box_xyxy": [
+          1154.6595458984375,
+          772.6719360351562,
+          1186.416259765625,
+          791.4463500976562
+        ],
+        "view_box_xyxy": [
+          1154.6595458984375,
+          772.6719360351562,
+          1186.416259765625,
+          791.4463500976562
+        ],
+        "native_box_xyxy": [
+          1154.6595458984375,
+          772.6719360351562,
+          1186.416259765625,
+          791.4463500976562
+        ],
+        "confidence": 0.446977436542511,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_1ffc4ff4c27fd19f81c8",
+        "label": "sink",
+        "raw_box_xyxy": [
+          1354.2640380859375,
+          585.903076171875,
+          1373.8428955078125,
+          613.049560546875
+        ],
+        "view_box_xyxy": [
+          1354.2640380859375,
+          585.903076171875,
+          1373.8428955078125,
+          613.049560546875
+        ],
+        "native_box_xyxy": [
+          1354.2640380859375,
+          585.903076171875,
+          1373.8428955078125,
+          613.049560546875
+        ],
+        "confidence": 0.37387579679489136,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_216b6166914f27ff00b5",
+        "label": "sink",
+        "raw_box_xyxy": [
+          1385.999755859375,
+          614.6043701171875,
+          1424.1453857421875,
+          644.5580444335938
+        ],
+        "view_box_xyxy": [
+          1385.999755859375,
+          614.6043701171875,
+          1424.1453857421875,
+          644.5580444335938
+        ],
+        "native_box_xyxy": [
+          1385.999755859375,
+          614.6043701171875,
+          1424.1453857421875,
+          644.5580444335938
+        ],
+        "confidence": 0.30404165387153625,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_1db628fc4101192009d2",
+        "label": "sink",
+        "raw_box_xyxy": [
+          566.0,
+          421.0,
+          577.0,
+          444.0
+        ],
+        "view_box_xyxy": [
+          1348.212,
+          584.348,
+          1374.414,
+          616.2719999999999
+        ],
+        "native_box_xyxy": [
+          1348.212,
+          584.348,
+          1374.414,
+          616.2719999999999
+        ],
+        "confidence": 0.95,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_83b8992473f22e85322b",
+        "label": "sink",
+        "raw_box_xyxy": [
+          583.0,
+          444.0,
+          593.0,
+          467.0
+        ],
+        "view_box_xyxy": [
+          1388.7060000000001,
+          616.2719999999999,
+          1412.526,
+          648.1959999999999
+        ],
+        "native_box_xyxy": [
+          1388.7060000000001,
+          616.2719999999999,
+          1412.526,
+          648.1959999999999
+        ],
+        "confidence": 0.95,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_62dd854a06b830e04e29",
+        "label": "sink",
+        "raw_box_xyxy": [
+          80.17603302001953,
+          145.24002075195312,
+          121.33180236816406,
+          161.4027099609375
+        ],
+        "view_box_xyxy": [
+          80.17603302001953,
+          1533.2400207519531,
+          121.33180236816406,
+          1549.4027099609375
+        ],
+        "native_box_xyxy": [
+          80.17603302001953,
+          1533.2400207519531,
+          121.33180236816406,
+          1549.4027099609375
+        ],
+        "confidence": 0.39233678579330444,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_2692ad9c051a3f6869b6",
+        "label": "sink",
+        "raw_box_xyxy": [
+          324.8376159667969,
+          64.70748901367188,
+          372.9127197265625,
+          79.12452697753906
+        ],
+        "view_box_xyxy": [
+          324.8376159667969,
+          1452.7074890136719,
+          372.9127197265625,
+          1467.124526977539
+        ],
+        "native_box_xyxy": [
+          324.8376159667969,
+          1452.7074890136719,
+          372.9127197265625,
+          1467.124526977539
+        ],
+        "confidence": 0.2735744118690491,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "2 washbasins: one in bathroom 0.04 and one in bathroom 0.05. Duplicate detections and legend symbols are excluded."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "target_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          2382,
+          1388
+        ],
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "proposal_ids": [
+          "proposal_9e314d91785e93734376",
+          "proposal_dbaefb58b68b282d3e0c",
+          "proposal_f33ddf0077c1ad365826",
+          "proposal_1ffc4ff4c27fd19f81c8",
+          "proposal_216b6166914f27ff00b5",
+          "proposal_1db628fc4101192009d2",
+          "proposal_83b8992473f22e85322b"
+        ]
+      },
+      {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "target_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          1388,
+          2382,
+          1684
+        ],
+        "view_id": "view-a1fac9b685e20b7f216a9d6b",
+        "proposal_ids": [
+          "proposal_62dd854a06b830e04e29",
+          "proposal_2692ad9c051a3f6869b6"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_9e314d91785e93734376",
+        "proposal_dbaefb58b68b282d3e0c",
+        "proposal_f33ddf0077c1ad365826",
+        "proposal_1ffc4ff4c27fd19f81c8",
+        "proposal_216b6166914f27ff00b5",
+        "proposal_1db628fc4101192009d2",
+        "proposal_83b8992473f22e85322b",
+        "proposal_62dd854a06b830e04e29",
+        "proposal_2692ad9c051a3f6869b6"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-a1fac9b685e20b7f216a9d6b",
+        "view-0f3aff14fc81e243db1ea4bc",
+        "view-7aac4ab74dcc3d2901410287",
+        "view-d576535c87820c8a58f9501c"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4,
+        "coverage_plan": 1
+      },
+      "vista_views_used": 3,
+      "sources": [
+        {
+          "page_id": "page-753a73eaa2651c637667de2e",
+          "source_id": "page-753a73eaa2651c637667de2e",
+          "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+          "width": 2382,
+          "height": 1684,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84"
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "object_classes": [
+          "sink"
+        ],
+        "description": "sink"
+      },
+      "coverage_plan": {
+        "plan_submitted": true,
+        "regions": [
+          {
+            "id": "plan",
+            "name": "Entire floor plan and upper page",
+            "region": [
+              0,
+              0,
+              2382,
+              1388
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          },
+          {
+            "id": "footer",
+            "name": "Legend and title block",
+            "region": [
+              0,
+              1388,
+              2382,
+              1684
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": true,
+      "regions": [
+        {
+          "id": "plan",
+          "name": "Entire floor plan and upper page",
+          "region": [
+            0,
+            0,
+            2382,
+            1388
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        },
+        {
+          "id": "footer",
+          "name": "Legend and title block",
+          "region": [
+            0,
+            1388,
+            2382,
+            1684
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+    },
+    "evidence_views": {
+      "view-a1fac9b685e20b7f216a9d6b": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 2382,
+        "height": 1684,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "pdf_page": 0,
+        "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-a1fac9b685e20b7f216a9d6b"
+      },
+      "view-0f3aff14fc81e243db1ea4bc": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 932,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.48875,
+          "scale_y": 1.4892703862660943,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "d1a56535d2bd7ed7c7818e4fafd54d97cd613d13517d6e8f972438bae2ef27ac",
+        "pdf_page": 0,
+        "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-0f3aff14fc81e243db1ea4bc"
+      },
+      "view-7aac4ab74dcc3d2901410287": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 198,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.48875,
+          "scale_y": 1.494949494949495,
+          "origin_x": 0,
+          "origin_y": 1388
+        },
+        "image_sha256": "5d10f7e71a76f3f86cbe0397e4e3fd5f66e9aba90c0049ae748a84c42c2aa555",
+        "pdf_page": 0,
+        "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-7aac4ab74dcc3d2901410287"
+      },
+      "view-d576535c87820c8a58f9501c": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "source_id": "page-753a73eaa2651c637667de2e",
+        "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1016,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.265625,
+          "scale_y": 0.265748031496063,
+          "origin_x": 1035,
+          "origin_y": 540
+        },
+        "image_sha256": "d080d5fffc5868da7f69617d5bbca7e5231239582f498b9e6474b88129bca59c",
+        "pdf_page": 0,
+        "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-d576535c87820c8a58f9501c"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 119.28350349375978,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-753a73eaa2651c637667de2e",
+        "target_classes": [
+          "sink"
+        ],
+        "description": "sink",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": true,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

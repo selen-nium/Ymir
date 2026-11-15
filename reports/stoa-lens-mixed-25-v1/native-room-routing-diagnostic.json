@@ -1,0 +1,46 @@
+{
+  "issue": "Swiss native geometry unavailable due to study adapter source-ID mismatch",
+  "scope": "Study runner bridge; these findings do not evaluate the production native upload backend. IFC length/volume sources use a separate backend and are unaffected.",
+  "cause": "Runner supplies page.source_id = Swiss dataset ID, but Registry deliberately derives source_id = page_id. The injected legacy NativeBackend retains Swiss dataset-ID keys; GeometryTools.native_room_candidates cannot find the page ID and returns unsupported_native_source before extraction.",
+  "affected_jobs": [
+    {
+      "job": "smart--area-swiss-site641_bldg1384_floor6052",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "fdb8c326330c7223827619f63467438741948be21e99c1b99cbfd3d407901797"
+    },
+    {
+      "job": "frontier--area-swiss-site534_bldg1225_floor5451",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "24b79cd85440a99a44ba0e3b77be1ca10f0b802d9955ab3c547a47ec2207889f"
+    },
+    {
+      "job": "frontier--area-swiss-site10346_bldg14965_floor39285",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "9d01c46ff3d4bf2ce7d8988e0e6364c5076fd8727deb312dbbecbd5757ed46d7"
+    },
+    {
+      "job": "frontier--area-swiss-site641_bldg1384_floor6052",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "07503927cbd639b15eb735013f5b312488c006ad1204414d6e57567cc43162e3"
+    },
+    {
+      "job": "smart--area-swiss-site10346_bldg14965_floor39285",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "ab7865c62736773f62cef66f70962735e1df974fd4e2ebbe3e086311d9753474"
+    },
+    {
+      "job": "smart--area-swiss-site534_bldg1225_floor5451",
+      "native_calls": 1,
+      "unsupported_source_calls": 1,
+      "transcript_sha256": "e533754b55bfe3bd4cd8dbf187ccc73d9da5969c0264b9c0ed46f5b2454aeb0b"
+    }
+  ],
+  "interpretation": "Computed-area results are raster fallback results, not evidence of failed native geometry extraction. Both routes share this limitation.",
+  "source_runtime_or_past_results_changed": false,
+  "paid_reruns": false
+}

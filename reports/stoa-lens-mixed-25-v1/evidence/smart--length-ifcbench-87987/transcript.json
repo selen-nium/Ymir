@@ -1,0 +1,2327 @@
+{
+  "transcript": [
+    {
+      "response_index": 0,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "",
+        "reasoning": "The question asks for total wall length on storey 'KG' from IFC source ifc-26734e67bdc0fd2ab30cb560. Let's call model_inventory first.",
+        "reasoning_details": [
+          {
+            "type": "reasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.text",
+            "text": "The question asks for total wall length on storey 'KG' from IFC source ifc-26734e67bdc0fd2ab30cb560. Let's call model_inventory first.",
+            "format": "unknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknown"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_a0e42be64c974c819772caf1",
+            "function": {
+              "arguments": "{\"source_id\": \"ifc-26734e67bdc0fd2ab30cb560\"}",
+              "name": "model_inventory"
+            },
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "tool_call_id": "call_a0e42be64c974c819772caf1",
+      "tool": "model_inventory",
+      "result": {
+        "status": "available",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "schema": "IFC4",
+        "project_name": "Smiley West",
+        "storeys": [
+          {
+            "storey_id": "0eLD6321X73BGqB5WeSKCe",
+            "name": "KG",
+            "element_counts": {
+              "IfcWall": 60,
+              "IfcSlab": 10
+            }
+          },
+          {
+            "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+            "name": "EG",
+            "element_counts": {
+              "IfcWall": 81,
+              "IfcSlab": 40
+            }
+          },
+          {
+            "storey_id": "0Lz7dRJK5CdfSh5PhR5gUV",
+            "name": "1.OG",
+            "element_counts": {
+              "IfcWall": 70,
+              "IfcSlab": 30
+            }
+          },
+          {
+            "storey_id": "0pYOL8pVH0bBC2MnVS84J_",
+            "name": "2.OG",
+            "element_counts": {
+              "IfcWall": 70,
+              "IfcSlab": 30
+            }
+          },
+          {
+            "storey_id": "1y5XMII898hfivwb6v5YU6",
+            "name": "Dach",
+            "element_counts": {
+              "IfcWall": 0,
+              "IfcSlab": 10
+            }
+          }
+        ],
+        "length_unit_metres": 1.0,
+        "ifcopenshell_version": "0.9.0.post1",
+        "methods": {
+          "measure_length": [
+            "axis_geometry",
+            "source_quantities"
+          ],
+          "measure_volume": [
+            "net_geometry",
+            "source_quantities"
+          ]
+        },
+        "note": "Source quantities are authored IFC values, distinct from independently calculated geometry.",
+        "remaining_resources": {
+          "responses_remaining": 11,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 4,
+            "model_inventory": 3,
+            "measure_length": 4,
+            "measure_volume": 4
+          },
+          "tool_seconds_remaining": 714.3,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 1,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_5df4561a1efc417dbd188db2",
+            "function": {
+              "arguments": "{\"source_id\": \"ifc-26734e67bdc0fd2ab30cb560\", \"storey_id\": \"0eLD6321X73BGqB5WeSKCe\", \"element_type\": \"IfcWall\", \"method\": \"axis_geometry\"}",
+              "name": "measure_length"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_5df4561a1efc417dbd188db2",
+      "tool": "measure_length",
+      "result": {
+        "status": "available",
+        "kind": "length",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0eLD6321X73BGqB5WeSKCe",
+        "storey_name": "KG",
+        "element_type": "IfcWall",
+        "method": "axis_geometry",
+        "quantity_basis": "computed_geometry",
+        "unit": "m",
+        "value": 384.55000004289997,
+        "partial_value": 384.55000004289997,
+        "expected_elements": 60,
+        "measured_elements": 60,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "0$gQuAVrT6DveZGoTjLqlW",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "02kNomHefBm8gLC0TLit83",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0F_ADUTlXCHOAF5nICwk2x",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0Fy_XN4cP5wRkN$oNOO$FK",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "0TxAYc_5v1i8_KiwL3jxv7",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0VzkbPjXf7s9gniZplBYo1",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0WzeAna3nCuA2PL734yn7L",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0dITJAjpzDRw6Tqws8ccIO",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0kJTj6gKD1CuDWYMqO2Qnq",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "0l94Qy92fCY9j$Su5rcGDr",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0qxSE1G7j9TgnyZZYgKduA",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0rDyuSDov1ivtIh_Kja1VF",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0vfZTOs9bE3uFkEhh4H4bf",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0wpHdKxwLBC9sjEtqqvxbe",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "11O5ZOsa56zRpbLrj$INWL",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "12yz0YD_H5Wu2CDwmyeg1F",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "13hBs4PZXFzA6GpSS7JJQN",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "13lPAyHKL7t8C8ytcRb2EL",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "16FljoWD104eSud1GYjb8d",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "1D_x$VZfz3BgYXWu36mzRE",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1GJzhFq1zAVuRlQQEDvjS6",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1NqgPg9e196urml9a8Nimm",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1Nvv$MCGr4ige2BbFOz6hJ",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1TOrntnBD0NuLOGojgDewo",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1W1uT4KcD2A82HzI8xRc7k",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1XaA5$O45DKQ9RoZVD5HbP",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1bin5B9Pf9xwU2EDbuxgVx",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1qfnvAxy17owngs1t6iqLA",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "1tNBfHDUX4Ex40aLQ57AqT",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1wEH1BGOj2v9xl5E5hVDSD",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1xA9r1Klf93Qf_DsHFgXda",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2$o_dX_1rD8f5LXdr3gNif",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2Gmos7YT5AufQRmOXkUZ8R",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2O8dI8KNT6VwFS2gujcZGT",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2PQK6gyXrFU8__BgdjG28L",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2SL8RZF6j1z8O05r99yKT4",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2VTEcqN8H6aQh9ZUZo5oNr",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "2WlxW2dyz6tvDjrfG8ESIt",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2b8bLJs0b53R2GuvTFC7i9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2dHKPOgq5E49cYRxY$gLL1",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2foM2Lm7r4re8KW99NC90o",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2hcZ08vCL7hQJQ1VZaUeYK",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2jky7s7onCMw4Z1v317UnJ",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2kQA47ZTnA8RyGe58D8wHA",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2kuNE79Zr0QvLszwH9XB5A",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2mrwieyY9CCwIppBpJO9qh",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3$NkQdXef3ohFShSSDJUQW",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3891jGVvrDdRzqeJhEyvAM",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3C37B7k$r8nBAxIag6xauB",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3GEpY0qmTBiglFc_ox9rcv",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3GFpm$$bb8TBO1pW5Z51C9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3JIt9wdlj4h8bCdw2nsEjT",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3LxnxwJ891SO743iWoxBMd",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3ZJptmPU1AFBE7U5Sa4eat",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3_OGjDkvr93hDjlUbjW5To",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3hxUJW$mD9mBlHltL$zzyF",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3iomqEEIr9Cwh0fq7xhEZv",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3qduFwvHXBoegjgyS0ypqX",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3t64EORJzEcPzciJueEwr2",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3zQiR8Ry9AS9YLM5WkgmAG",
+            "value_si": 2.21000000429
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": false,
+        "length_basis": "explicit IFC axis polyline",
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e",
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 4,
+            "model_inventory": 3,
+            "measure_length": 3,
+            "measure_volume": 4
+          },
+          "tool_seconds_remaining": 708.2,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 2,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "I measured the complete KG storey wall set from the IFC model.",
+        "reasoning": "The measurement is complete: 384.55 m for all 60 IfcWall axes on KG.\n\nI could optionally cross-check with source_quantities, but not necessary. The answer: 384.55 m.\n\nFinal JSON schema. Count requests empty, rooms empty, readings? The measurement is a computed geometry, not a reading. readings can include... actually readings require evidence_ids from registered views or native PDF text. The measurement isn't a reading. So leave readings empty, and put measurement_ids.\n\nnotes: mention method axis_geometry, 60/60 elements, complete.",
+        "reasoning_details": [
+          {
+            "type": "reasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.text",
+            "text": "The measurement is complete: 384.55 m for all 60 IfcWall axes on KG.\n\nI could optionally cross-check with source_quantities, but not necessary. The answer: 384.55 m.\n\nFinal JSON schema. Count requests empty, rooms empty, readings? The measurement is a computed geometry, not a reading. readings can include... actually readings require evidence_ids from registered views or native PDF text. The measurement isn't a reading. So leave readings empty, and put measurement_ids.\n\nnotes: mention method axis_geometry, 60/60 elements, complete.",
+            "format": "unknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknown"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_4a4178642e434a4f894eb49d",
+            "function": {
+              "arguments": "{\"element_type\": \"IfcWall\", \"method\": \"source_quantities\", \"source_id\": \"ifc-26734e67bdc0fd2ab30cb560\", \"storey_id\": \"0eLD6321X73BGqB5WeSKCe\"}",
+              "name": "measure_length"
+            },
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "tool_call_id": "call_4a4178642e434a4f894eb49d",
+      "tool": "measure_length",
+      "result": {
+        "status": "available",
+        "kind": "length",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0eLD6321X73BGqB5WeSKCe",
+        "storey_name": "KG",
+        "element_type": "IfcWall",
+        "method": "source_quantities",
+        "quantity_basis": "source_reported",
+        "unit": "m",
+        "value": 370.5498546226,
+        "partial_value": 370.5498546226,
+        "expected_elements": 60,
+        "measured_elements": 60,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "0$gQuAVrT6DveZGoTjLqlW",
+            "value_si": 6.81,
+            "quantity_entity_id": 22619,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "02kNomHefBm8gLC0TLit83",
+            "value_si": 7.075,
+            "quantity_entity_id": 25162,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0F_ADUTlXCHOAF5nICwk2x",
+            "value_si": 6.81,
+            "quantity_entity_id": 24629,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0Fy_XN4cP5wRkN$oNOO$FK",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 16566,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0TxAYc_5v1i8_KiwL3jxv7",
+            "value_si": 7.275,
+            "quantity_entity_id": 16830,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0VzkbPjXf7s9gniZplBYo1",
+            "value_si": 7.275,
+            "quantity_entity_id": 21994,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0WzeAna3nCuA2PL734yn7L",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 25409,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0dITJAjpzDRw6Tqws8ccIO",
+            "value_si": 6.81,
+            "quantity_entity_id": 13174,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0kJTj6gKD1CuDWYMqO2Qnq",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 17316,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0l94Qy92fCY9j$Su5rcGDr",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 16310,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0qxSE1G7j9TgnyZZYgKduA",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 23525,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0rDyuSDov1ivtIh_Kja1VF",
+            "value_si": 7.275,
+            "quantity_entity_id": 13356,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0vfZTOs9bE3uFkEhh4H4bf",
+            "value_si": 6.81,
+            "quantity_entity_id": 15065,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "0wpHdKxwLBC9sjEtqqvxbe",
+            "value_si": 7.275,
+            "quantity_entity_id": 25902,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "11O5ZOsa56zRpbLrj$INWL",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 24810,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "12yz0YD_H5Wu2CDwmyeg1F",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 27547,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "13hBs4PZXFzA6GpSS7JJQN",
+            "value_si": 7.075,
+            "quantity_entity_id": 18299,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "13lPAyHKL7t8C8ytcRb2EL",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 17562,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "16FljoWD104eSud1GYjb8d",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 17808,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1D_x$VZfz3BgYXWu36mzRE",
+            "value_si": 7.075,
+            "quantity_entity_id": 14188,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1GJzhFq1zAVuRlQQEDvjS6",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 24980,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1NqgPg9e196urml9a8Nimm",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 22407,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1Nvv$MCGr4ige2BbFOz6hJ",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 24273,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1TOrntnBD0NuLOGojgDewo",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 23048,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1W1uT4KcD2A82HzI8xRc7k",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 15881,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1XaA5$O45DKQ9RoZVD5HbP",
+            "value_si": 7.275,
+            "quantity_entity_id": 15352,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1bin5B9Pf9xwU2EDbuxgVx",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 14426,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1qfnvAxy17owngs1t6iqLA",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 17078,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1tNBfHDUX4Ex40aLQ57AqT",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 18475,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1wEH1BGOj2v9xl5E5hVDSD",
+            "value_si": 7.075,
+            "quantity_entity_id": 12617,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "1xA9r1Klf93Qf_DsHFgXda",
+            "value_si": 7.275,
+            "quantity_entity_id": 24451,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2$o_dX_1rD8f5LXdr3gNif",
+            "value_si": 7.075,
+            "quantity_entity_id": 16063,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2Gmos7YT5AufQRmOXkUZ8R",
+            "value_si": 6.81,
+            "quantity_entity_id": 15530,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2O8dI8KNT6VwFS2gujcZGT",
+            "value_si": 7.075,
+            "quantity_entity_id": 22233,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2PQK6gyXrFU8__BgdjG28L",
+            "value_si": 7.275,
+            "quantity_entity_id": 22801,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2SL8RZF6j1z8O05r99yKT4",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 23946,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2VTEcqN8H6aQh9ZUZo5oNr",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 26880,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2WlxW2dyz6tvDjrfG8ESIt",
+            "value_si": 6.81,
+            "quantity_entity_id": 24060,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2b8bLJs0b53R2GuvTFC7i9",
+            "value_si": 7.275,
+            "quantity_entity_id": 11986,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2dHKPOgq5E49cYRxY$gLL1",
+            "value_si": 7.075,
+            "quantity_entity_id": 27371,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2foM2Lm7r4re8KW99NC90o",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 15174,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2hcZ08vCL7hQJQ1VZaUeYK",
+            "value_si": 7.275,
+            "quantity_entity_id": 18660,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2jky7s7onCMw4Z1v317UnJ",
+            "value_si": 7.075,
+            "quantity_entity_id": 23764,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2kQA47ZTnA8RyGe58D8wHA",
+            "value_si": 6.81,
+            "quantity_entity_id": 13070,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2kuNE79Zr0QvLszwH9XB5A",
+            "value_si": 7.075,
+            "quantity_entity_id": 23287,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "2mrwieyY9CCwIppBpJO9qh",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 13603,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3$NkQdXef3ohFShSSDJUQW",
+            "value_si": 6.81,
+            "quantity_entity_id": 22515,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3891jGVvrDdRzqeJhEyvAM",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 12962,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3C37B7k$r8nBAxIag6xauB",
+            "value_si": 7.275,
+            "quantity_entity_id": 27732,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.275,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3GEpY0qmTBiglFc_ox9rcv",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 25653,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3GFpm$$bb8TBO1pW5Z51C9",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 15711,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3JIt9wdlj4h8bCdw2nsEjT",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 26150,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3LxnxwJ891SO743iWoxBMd",
+            "value_si": 6.81,
+            "quantity_entity_id": 24164,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3ZJptmPU1AFBE7U5Sa4eat",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 27123,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3_OGjDkvr93hDjlUbjW5To",
+            "value_si": 6.81,
+            "quantity_entity_id": 14961,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.81,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3hxUJW$mD9mBlHltL$zzyF",
+            "value_si": 6.70998538171,
+            "quantity_entity_id": 14847,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 6.70998538171,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3iomqEEIr9Cwh0fq7xhEZv",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 26634,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3qduFwvHXBoegjgyS0ypqX",
+            "value_si": 7.17500007665,
+            "quantity_entity_id": 18051,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.17500007665,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3t64EORJzEcPzciJueEwr2",
+            "value_si": 7.075,
+            "quantity_entity_id": 14665,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 7.075,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          },
+          {
+            "element_id": "3zQiR8Ry9AS9YLM5WkgmAG",
+            "value_si": 2.0100000039,
+            "quantity_entity_id": 26388,
+            "quantity_set": "BaseQuantities",
+            "field": "Length",
+            "raw_value": 2.0100000039,
+            "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": false,
+        "length_basis": null,
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-fe9582cd3ac0930cb74fdad29fd97bd9cd4f94cb2fc609b0e63f866b27817213",
+        "remaining_resources": {
+          "responses_remaining": 9,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 4,
+            "model_inventory": 3,
+            "measure_length": 2,
+            "measure_volume": 4
+          },
+          "tool_seconds_remaining": 704.8,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 3,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "{\"status\":\"answered\",\"accepted_proposal_ids\":[],\"count_requests\":[],\"rooms\":[],\"readings\":[],\"notes\":[\"Total IfcWall length on storey 'KG' (storey GlobalId 0eLD6321X73BGqB5WeSKCe) of IFC source ifc-26734e67bdc0fd2ab30cb560 = 384.55 m, computed from explicit IFC axis polylines (axis_geometry); all 60 of 60 expected walls measured, complete = true.\",\"Author-reported BaseQuantities lengths give a separate total of 370.55 m; this is an independent authored-quantity method (source_reported) and differs from computed axis geometry, so it is disclosed rather than mixed.\",\"Reported value is wall axis length; openings/subtractions are not applicable to length (opening_subtractions = false) and no thickness or volume was inferred from the plan image.\"],\"measurement_ids\":[\"quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e\",\"quantity-fe9582cd3ac0930cb74fdad29fd97bd9cd4f94cb2fc609b0e63f866b27817213\"]}"
+      }
+    },
+    {
+      "validation_error": "Select exactly one complete measurement for the requested total"
+    },
+    {
+      "response_index": 4,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "Coverage gap resolved: the requested total is the complete computed axis-geometry measurement; I select only that single measurement.\n\n{\"status\":\"answered\",\"accepted_proposal_ids\":[],\"count_requests\":[],\"rooms\":[],\"readings\":[],\"notes\":[\"Total IfcWall length on storey 'KG' (storey GlobalId 0eLD6321X73BGqB5WeSKCe) of IFC source ifc-26734e67bdc0fd2ab30cb560 = 384.55 m, computed from explicit IFC axis polylines (axis_geometry); 60 of 60 expected walls measured, complete = true.\",\"Single selected measurement: quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e (meter unit confirmed by source length_unit_metres = 1.0).\",\"Author-reported BaseQuantities sum (370.55 m) is a separate authored-quantity method and is disclosed only as a cross-check, not mixed into the reported total.\",\"Reported value is wall axis length; openings do not reduce length (opening_subtractions = false). No thickness, area or volume was inferred from the plan image, and the plan image was not used to derive the total.\"],\"measurement_ids\":[\"quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e\"]}",
+        "reasoning": "The instruction asks me to select exactly one complete measurement for the requested total. So measurement_ids should contain only the axis_geometry measurement (the requested total of wall length). Let me return the final JSON with a single measurement_id.\n\nI don't need more tool calls \u2014 I already have the complete measurement. But the instruction says \"Continue using the remaining tools to resolve this coverage gap\". The gap: only one measurement should be selected. No tool needed; just re-emit final answer with exactly one measurement ID.\n\nI'll output the final JSON with measurement_ids containing only the axis_geometry measurement.",
+        "reasoning_details": [
+          {
+            "type": "reasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.text",
+            "text": "The instruction asks me to select exactly one complete measurement for the requested total. So measurement_ids should contain only the axis_geometry measurement (the requested total of wall length). Let me return the final JSON with a single measurement_id.\n\nI don't need more tool calls \u2014 I already have the complete measurement. But the instruction says \"Continue using the remaining tools to resolve this coverage gap\". The gap: only one measurement should be selected. No tool needed; just re-emit final answer with exactly one measurement ID.\n\nI'll output the final JSON with measurement_ids containing only the axis_geometry measurement.",
+            "format": "unknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknownunknown"
+          }
+        ]
+      }
+    },
+    {
+      "validation_error": "Expected a single complete JSON object"
+    },
+    {
+      "response_index": 5,
+      "final_phase": true,
+      "response": {
+        "role": "assistant",
+        "content": "{\"status\":\"answered\",\"accepted_proposal_ids\":[],\"count_requests\":[],\"rooms\":[],\"readings\":[],\"notes\":[\"Total IfcWall length on storey 'KG' (storey GlobalId 0eLD6321X73BGqB5WeSKCe) of IFC source ifc-26734e67bdc0fd2ab30cb560 = 384.55 m, computed from explicit IFC axis polylines (axis_geometry); 60 of 60 expected walls measured, complete = true, unit metre (length_unit_metres = 1.0).\",\"Exactly one complete measurement selected: quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e.\",\"Author-reported BaseQuantities sum (370.55 m) is a separate authored-quantity method, disclosed as a cross-check only and not mixed into the reported total.\",\"Reported value is wall axis length; openings do not reduce length (opening_subtractions = false). No thickness, area or volume inferred from the plan image; the plan image was not used to derive the total. Scope is limited to the single provided page and the KG storey of the named IFC source.\"],\"measurement_ids\":[\"quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e\"]}"
+      }
+    }
+  ],
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "Total IfcWall length on storey 'KG' (storey GlobalId 0eLD6321X73BGqB5WeSKCe) of IFC source ifc-26734e67bdc0fd2ab30cb560 = 384.55 m, computed from explicit IFC axis polylines (axis_geometry); 60 of 60 expected walls measured, complete = true, unit metre (length_unit_metres = 1.0).",
+      "Exactly one complete measurement selected: quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e.",
+      "Author-reported BaseQuantities sum (370.55 m) is a separate authored-quantity method, disclosed as a cross-check only and not mixed into the reported total.",
+      "Reported value is wall axis length; openings do not reduce length (opening_subtractions = false). No thickness, area or volume inferred from the plan image; the plan image was not used to derive the total. Scope is limited to the single provided page and the KG storey of the named IFC source."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_length",
+        "arguments": {
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "storey_id": "0eLD6321X73BGqB5WeSKCe",
+          "element_type": "IfcWall",
+          "method": "axis_geometry"
+        },
+        "result": {
+          "status": "available",
+          "kind": "length",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+          "storey_id": "0eLD6321X73BGqB5WeSKCe",
+          "storey_name": "KG",
+          "element_type": "IfcWall",
+          "method": "axis_geometry",
+          "quantity_basis": "computed_geometry",
+          "unit": "m",
+          "value": 384.55000004289997,
+          "partial_value": 384.55000004289997,
+          "expected_elements": 60,
+          "measured_elements": 60,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "0$gQuAVrT6DveZGoTjLqlW",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "02kNomHefBm8gLC0TLit83",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0F_ADUTlXCHOAF5nICwk2x",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "0Fy_XN4cP5wRkN$oNOO$FK",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "0TxAYc_5v1i8_KiwL3jxv7",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0VzkbPjXf7s9gniZplBYo1",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0WzeAna3nCuA2PL734yn7L",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0dITJAjpzDRw6Tqws8ccIO",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "0kJTj6gKD1CuDWYMqO2Qnq",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "0l94Qy92fCY9j$Su5rcGDr",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0qxSE1G7j9TgnyZZYgKduA",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0rDyuSDov1ivtIh_Kja1VF",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0vfZTOs9bE3uFkEhh4H4bf",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "0wpHdKxwLBC9sjEtqqvxbe",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "11O5ZOsa56zRpbLrj$INWL",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "12yz0YD_H5Wu2CDwmyeg1F",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "13hBs4PZXFzA6GpSS7JJQN",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "13lPAyHKL7t8C8ytcRb2EL",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "16FljoWD104eSud1GYjb8d",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "1D_x$VZfz3BgYXWu36mzRE",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1GJzhFq1zAVuRlQQEDvjS6",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "1NqgPg9e196urml9a8Nimm",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "1Nvv$MCGr4ige2BbFOz6hJ",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "1TOrntnBD0NuLOGojgDewo",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1W1uT4KcD2A82HzI8xRc7k",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "1XaA5$O45DKQ9RoZVD5HbP",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1bin5B9Pf9xwU2EDbuxgVx",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1qfnvAxy17owngs1t6iqLA",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "1tNBfHDUX4Ex40aLQ57AqT",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "1wEH1BGOj2v9xl5E5hVDSD",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1xA9r1Klf93Qf_DsHFgXda",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2$o_dX_1rD8f5LXdr3gNif",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2Gmos7YT5AufQRmOXkUZ8R",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "2O8dI8KNT6VwFS2gujcZGT",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2PQK6gyXrFU8__BgdjG28L",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2SL8RZF6j1z8O05r99yKT4",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "2VTEcqN8H6aQh9ZUZo5oNr",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "2WlxW2dyz6tvDjrfG8ESIt",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "2b8bLJs0b53R2GuvTFC7i9",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2dHKPOgq5E49cYRxY$gLL1",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2foM2Lm7r4re8KW99NC90o",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "2hcZ08vCL7hQJQ1VZaUeYK",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2jky7s7onCMw4Z1v317UnJ",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2kQA47ZTnA8RyGe58D8wHA",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "2kuNE79Zr0QvLszwH9XB5A",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2mrwieyY9CCwIppBpJO9qh",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3$NkQdXef3ohFShSSDJUQW",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "3891jGVvrDdRzqeJhEyvAM",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "3C37B7k$r8nBAxIag6xauB",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3GEpY0qmTBiglFc_ox9rcv",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "3GFpm$$bb8TBO1pW5Z51C9",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3JIt9wdlj4h8bCdw2nsEjT",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "3LxnxwJ891SO743iWoxBMd",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "3ZJptmPU1AFBE7U5Sa4eat",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3_OGjDkvr93hDjlUbjW5To",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "3hxUJW$mD9mBlHltL$zzyF",
+              "value_si": 6.91
+            },
+            {
+              "element_id": "3iomqEEIr9Cwh0fq7xhEZv",
+              "value_si": 2.21000000429
+            },
+            {
+              "element_id": "3qduFwvHXBoegjgyS0ypqX",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3t64EORJzEcPzciJueEwr2",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3zQiR8Ry9AS9YLM5WkgmAG",
+              "value_si": 2.21000000429
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": false,
+          "length_basis": "explicit IFC axis polyline",
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e"
+        }
+      },
+      {
+        "tool": "measure_length",
+        "arguments": {
+          "element_type": "IfcWall",
+          "method": "source_quantities",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "storey_id": "0eLD6321X73BGqB5WeSKCe"
+        },
+        "result": {
+          "status": "available",
+          "kind": "length",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+          "storey_id": "0eLD6321X73BGqB5WeSKCe",
+          "storey_name": "KG",
+          "element_type": "IfcWall",
+          "method": "source_quantities",
+          "quantity_basis": "source_reported",
+          "unit": "m",
+          "value": 370.5498546226,
+          "partial_value": 370.5498546226,
+          "expected_elements": 60,
+          "measured_elements": 60,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "0$gQuAVrT6DveZGoTjLqlW",
+              "value_si": 6.81,
+              "quantity_entity_id": 22619,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "02kNomHefBm8gLC0TLit83",
+              "value_si": 7.075,
+              "quantity_entity_id": 25162,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0F_ADUTlXCHOAF5nICwk2x",
+              "value_si": 6.81,
+              "quantity_entity_id": 24629,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0Fy_XN4cP5wRkN$oNOO$FK",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 16566,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0TxAYc_5v1i8_KiwL3jxv7",
+              "value_si": 7.275,
+              "quantity_entity_id": 16830,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0VzkbPjXf7s9gniZplBYo1",
+              "value_si": 7.275,
+              "quantity_entity_id": 21994,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0WzeAna3nCuA2PL734yn7L",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 25409,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0dITJAjpzDRw6Tqws8ccIO",
+              "value_si": 6.81,
+              "quantity_entity_id": 13174,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0kJTj6gKD1CuDWYMqO2Qnq",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 17316,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0l94Qy92fCY9j$Su5rcGDr",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 16310,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0qxSE1G7j9TgnyZZYgKduA",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 23525,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0rDyuSDov1ivtIh_Kja1VF",
+              "value_si": 7.275,
+              "quantity_entity_id": 13356,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0vfZTOs9bE3uFkEhh4H4bf",
+              "value_si": 6.81,
+              "quantity_entity_id": 15065,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "0wpHdKxwLBC9sjEtqqvxbe",
+              "value_si": 7.275,
+              "quantity_entity_id": 25902,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "11O5ZOsa56zRpbLrj$INWL",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 24810,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "12yz0YD_H5Wu2CDwmyeg1F",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 27547,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "13hBs4PZXFzA6GpSS7JJQN",
+              "value_si": 7.075,
+              "quantity_entity_id": 18299,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "13lPAyHKL7t8C8ytcRb2EL",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 17562,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "16FljoWD104eSud1GYjb8d",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 17808,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1D_x$VZfz3BgYXWu36mzRE",
+              "value_si": 7.075,
+              "quantity_entity_id": 14188,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1GJzhFq1zAVuRlQQEDvjS6",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 24980,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1NqgPg9e196urml9a8Nimm",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 22407,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1Nvv$MCGr4ige2BbFOz6hJ",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 24273,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1TOrntnBD0NuLOGojgDewo",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 23048,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1W1uT4KcD2A82HzI8xRc7k",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 15881,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1XaA5$O45DKQ9RoZVD5HbP",
+              "value_si": 7.275,
+              "quantity_entity_id": 15352,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1bin5B9Pf9xwU2EDbuxgVx",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 14426,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1qfnvAxy17owngs1t6iqLA",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 17078,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1tNBfHDUX4Ex40aLQ57AqT",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 18475,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1wEH1BGOj2v9xl5E5hVDSD",
+              "value_si": 7.075,
+              "quantity_entity_id": 12617,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "1xA9r1Klf93Qf_DsHFgXda",
+              "value_si": 7.275,
+              "quantity_entity_id": 24451,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2$o_dX_1rD8f5LXdr3gNif",
+              "value_si": 7.075,
+              "quantity_entity_id": 16063,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2Gmos7YT5AufQRmOXkUZ8R",
+              "value_si": 6.81,
+              "quantity_entity_id": 15530,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2O8dI8KNT6VwFS2gujcZGT",
+              "value_si": 7.075,
+              "quantity_entity_id": 22233,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2PQK6gyXrFU8__BgdjG28L",
+              "value_si": 7.275,
+              "quantity_entity_id": 22801,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2SL8RZF6j1z8O05r99yKT4",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 23946,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2VTEcqN8H6aQh9ZUZo5oNr",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 26880,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2WlxW2dyz6tvDjrfG8ESIt",
+              "value_si": 6.81,
+              "quantity_entity_id": 24060,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2b8bLJs0b53R2GuvTFC7i9",
+              "value_si": 7.275,
+              "quantity_entity_id": 11986,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2dHKPOgq5E49cYRxY$gLL1",
+              "value_si": 7.075,
+              "quantity_entity_id": 27371,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2foM2Lm7r4re8KW99NC90o",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 15174,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2hcZ08vCL7hQJQ1VZaUeYK",
+              "value_si": 7.275,
+              "quantity_entity_id": 18660,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2jky7s7onCMw4Z1v317UnJ",
+              "value_si": 7.075,
+              "quantity_entity_id": 23764,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2kQA47ZTnA8RyGe58D8wHA",
+              "value_si": 6.81,
+              "quantity_entity_id": 13070,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2kuNE79Zr0QvLszwH9XB5A",
+              "value_si": 7.075,
+              "quantity_entity_id": 23287,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "2mrwieyY9CCwIppBpJO9qh",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 13603,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3$NkQdXef3ohFShSSDJUQW",
+              "value_si": 6.81,
+              "quantity_entity_id": 22515,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3891jGVvrDdRzqeJhEyvAM",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 12962,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3C37B7k$r8nBAxIag6xauB",
+              "value_si": 7.275,
+              "quantity_entity_id": 27732,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.275,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3GEpY0qmTBiglFc_ox9rcv",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 25653,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3GFpm$$bb8TBO1pW5Z51C9",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 15711,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3JIt9wdlj4h8bCdw2nsEjT",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 26150,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3LxnxwJ891SO743iWoxBMd",
+              "value_si": 6.81,
+              "quantity_entity_id": 24164,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3ZJptmPU1AFBE7U5Sa4eat",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 27123,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3_OGjDkvr93hDjlUbjW5To",
+              "value_si": 6.81,
+              "quantity_entity_id": 14961,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.81,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3hxUJW$mD9mBlHltL$zzyF",
+              "value_si": 6.70998538171,
+              "quantity_entity_id": 14847,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 6.70998538171,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3iomqEEIr9Cwh0fq7xhEZv",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 26634,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3qduFwvHXBoegjgyS0ypqX",
+              "value_si": 7.17500007665,
+              "quantity_entity_id": 18051,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.17500007665,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3t64EORJzEcPzciJueEwr2",
+              "value_si": 7.075,
+              "quantity_entity_id": 14665,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 7.075,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            },
+            {
+              "element_id": "3zQiR8Ry9AS9YLM5WkgmAG",
+              "value_si": 2.0100000039,
+              "quantity_entity_id": 26388,
+              "quantity_set": "BaseQuantities",
+              "field": "Length",
+              "raw_value": 2.0100000039,
+              "unit": "#13=IfcSIUnit(*,.LENGTHUNIT.,$,.METRE.)"
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": false,
+          "length_basis": null,
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-fe9582cd3ac0930cb74fdad29fd97bd9cd4f94cb2fc609b0e63f866b27817213"
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-642cc57484779b22a283bb89"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 2,
+        "read_pdf_text": 4,
+        "model_inventory": 3,
+        "measure_length": 2,
+        "measure_volume": 4
+      },
+      "vista_views_used": 0,
+      "sources": [
+        {
+          "page_id": "page-d44fe485154ba72a818c250f",
+          "source_id": "page-d44fe485154ba72a818c250f",
+          "source_sha256": "e697d1491cbd28e98e4729c0fe11e55da37c1eb1edd4ee4cd9be3e6e8380a7ea",
+          "width": 4616,
+          "height": 2270,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "9ae164a058e562664710f551b8c634f6e880dc963540d557058bad41fb3393b3"
+        }
+      ],
+      "quantity_measurement_ids": [
+        "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e",
+        "quantity-fe9582cd3ac0930cb74fdad29fd97bd9cd4f94cb2fc609b0e63f866b27817213"
+      ]
+    },
+    "selected_measurements": [
+      {
+        "status": "available",
+        "kind": "length",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0eLD6321X73BGqB5WeSKCe",
+        "storey_name": "KG",
+        "element_type": "IfcWall",
+        "method": "axis_geometry",
+        "quantity_basis": "computed_geometry",
+        "unit": "m",
+        "value": 384.55000004289997,
+        "partial_value": 384.55000004289997,
+        "expected_elements": 60,
+        "measured_elements": 60,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "0$gQuAVrT6DveZGoTjLqlW",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "02kNomHefBm8gLC0TLit83",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0F_ADUTlXCHOAF5nICwk2x",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0Fy_XN4cP5wRkN$oNOO$FK",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "0TxAYc_5v1i8_KiwL3jxv7",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0VzkbPjXf7s9gniZplBYo1",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0WzeAna3nCuA2PL734yn7L",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0dITJAjpzDRw6Tqws8ccIO",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0kJTj6gKD1CuDWYMqO2Qnq",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "0l94Qy92fCY9j$Su5rcGDr",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0qxSE1G7j9TgnyZZYgKduA",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0rDyuSDov1ivtIh_Kja1VF",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0vfZTOs9bE3uFkEhh4H4bf",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "0wpHdKxwLBC9sjEtqqvxbe",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "11O5ZOsa56zRpbLrj$INWL",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "12yz0YD_H5Wu2CDwmyeg1F",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "13hBs4PZXFzA6GpSS7JJQN",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "13lPAyHKL7t8C8ytcRb2EL",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "16FljoWD104eSud1GYjb8d",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "1D_x$VZfz3BgYXWu36mzRE",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1GJzhFq1zAVuRlQQEDvjS6",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1NqgPg9e196urml9a8Nimm",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1Nvv$MCGr4ige2BbFOz6hJ",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1TOrntnBD0NuLOGojgDewo",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1W1uT4KcD2A82HzI8xRc7k",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1XaA5$O45DKQ9RoZVD5HbP",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1bin5B9Pf9xwU2EDbuxgVx",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1qfnvAxy17owngs1t6iqLA",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "1tNBfHDUX4Ex40aLQ57AqT",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "1wEH1BGOj2v9xl5E5hVDSD",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1xA9r1Klf93Qf_DsHFgXda",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2$o_dX_1rD8f5LXdr3gNif",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2Gmos7YT5AufQRmOXkUZ8R",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2O8dI8KNT6VwFS2gujcZGT",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2PQK6gyXrFU8__BgdjG28L",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2SL8RZF6j1z8O05r99yKT4",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2VTEcqN8H6aQh9ZUZo5oNr",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "2WlxW2dyz6tvDjrfG8ESIt",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2b8bLJs0b53R2GuvTFC7i9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2dHKPOgq5E49cYRxY$gLL1",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2foM2Lm7r4re8KW99NC90o",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2hcZ08vCL7hQJQ1VZaUeYK",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2jky7s7onCMw4Z1v317UnJ",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2kQA47ZTnA8RyGe58D8wHA",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "2kuNE79Zr0QvLszwH9XB5A",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2mrwieyY9CCwIppBpJO9qh",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3$NkQdXef3ohFShSSDJUQW",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3891jGVvrDdRzqeJhEyvAM",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3C37B7k$r8nBAxIag6xauB",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3GEpY0qmTBiglFc_ox9rcv",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3GFpm$$bb8TBO1pW5Z51C9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3JIt9wdlj4h8bCdw2nsEjT",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3LxnxwJ891SO743iWoxBMd",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3ZJptmPU1AFBE7U5Sa4eat",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3_OGjDkvr93hDjlUbjW5To",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3hxUJW$mD9mBlHltL$zzyF",
+            "value_si": 6.91
+          },
+          {
+            "element_id": "3iomqEEIr9Cwh0fq7xhEZv",
+            "value_si": 2.21000000429
+          },
+          {
+            "element_id": "3qduFwvHXBoegjgyS0ypqX",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3t64EORJzEcPzciJueEwr2",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3zQiR8Ry9AS9YLM5WkgmAG",
+            "value_si": 2.21000000429
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": false,
+        "length_basis": "explicit IFC axis polyline",
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e"
+      }
+    ],
+    "measurement_ids": [
+      "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e"
+    ],
+    "quantity_values": [
+      {
+        "value": 384.55000004289997,
+        "unit": "m",
+        "kind": "length",
+        "method": "axis_geometry",
+        "quantity_basis": "computed_geometry",
+        "measurement_id": "quantity-21c6da60563f27a3ef2afa5a9f244c123145ff6ae6eae50496eb6d97679b698e",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0eLD6321X73BGqB5WeSKCe",
+        "element_type": "IfcWall"
+      }
+    ],
+    "evidence_views": {
+      "view-642cc57484779b22a283bb89": {
+        "page_id": "page-d44fe485154ba72a818c250f",
+        "source_id": "page-d44fe485154ba72a818c250f",
+        "source_sha256": "e697d1491cbd28e98e4729c0fe11e55da37c1eb1edd4ee4cd9be3e6e8380a7ea",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4616,
+        "height": 2270,
+        "original_width": 4616,
+        "original_height": 2270,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "e697d1491cbd28e98e4729c0fe11e55da37c1eb1edd4ee4cd9be3e6e8380a7ea",
+        "pdf_page": 0,
+        "pdf_sha256": "9ae164a058e562664710f551b8c634f6e880dc963540d557058bad41fb3393b3",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-642cc57484779b22a283bb89"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 30.85926439706236,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  }
+}

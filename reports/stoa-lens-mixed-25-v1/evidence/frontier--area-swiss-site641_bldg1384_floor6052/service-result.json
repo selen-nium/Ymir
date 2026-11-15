@@ -1,0 +1,226 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "needs_review",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [
+      {
+        "room_id": "room-4.07",
+        "page_id": "page-d9fbc74612f4e6e41a433ba1",
+        "candidate_id": "r2s-4479f95162cd319ae7ff7013",
+        "label": "Pi\u00e8ce",
+        "identifier": "4.07",
+        "types": [
+          "unknown"
+        ],
+        "basis": "visually inferred",
+        "text_ids": [],
+        "polygon": [
+          [
+            2267.6022099447514,
+            1375.90234375
+          ],
+          [
+            2248.220994475138,
+            1802.23828125
+          ],
+          [
+            2674.6077348066297,
+            1802.23828125
+          ],
+          [
+            2674.6077348066297,
+            1375.90234375
+          ],
+          [
+            2306.3646408839777,
+            1375.90234375
+          ]
+        ],
+        "holes": [],
+        "geometry_provenance": {
+          "backend": "raster2seq",
+          "source_id": "page-d9fbc74612f4e6e41a433ba1",
+          "source_sha256": "b8e6f8c9a89d911dff6405555d6dc30f9e29687a595608697187ec35b305c51c",
+          "view_id": "view-f482072e7c4ce0b442af230c",
+          "prediction_key": "6bd069bf8d1e5109b4228343f2c98aabc3c69d8ad6969e16efbed5521776474b",
+          "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+          "preprocessing": {
+            "original_width": 3508,
+            "original_height": 4961,
+            "resized_width": 181,
+            "resized_height": 256,
+            "left": 37,
+            "top": 0,
+            "model_size": 256
+          },
+          "view_transform": {
+            "scale_x": 1.0,
+            "scale_y": 1.0,
+            "origin_x": 0,
+            "origin_y": 0
+          },
+          "coordinate_space": "original_full_page_pixels",
+          "page": 0
+        },
+        "quality_flags": [],
+        "measurement": {
+          "status": "unavailable",
+          "area_m2": null,
+          "reason": "No source-bound calibration"
+        },
+        "area_m2": null,
+        "text_associations": []
+      }
+    ],
+    "room_count": 1,
+    "readings": [
+      {
+        "kind": "text",
+        "value": "Pi\u00e8ce 4.07",
+        "unit": null,
+        "evidence_ids": [
+          "view-f482072e7c4ce0b442af230c"
+        ],
+        "description": "Room label visually read from the supplied page.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "A verified net floor area in m\u00b2 could not be calculated. The exact native-room lookup for 4.07 returned unsupported_native_source, despite the supplied description of registered native geometry.",
+      "The recorded candidate is a coarse Raster2Seq fallback, not verified native geometry. It does not faithfully represent the visible recessed left boundary, and the model predicts no holes. Measuring it would not establish the requested verified net area.",
+      "No printed area is visible for room 4.07 on the supplied page."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [
+        "r2s-5d66339efc942ec8190545c3",
+        "r2s-f7c6f0972dc9a61b4da3ca04",
+        "r2s-139dec25c871c9688361b9ce",
+        "r2s-c7dddb26cf183391cf95fb6d",
+        "r2s-da4262ed03c66a6a20151cc7",
+        "r2s-a850a5b64f36a734d918b504",
+        "r2s-849a453fee77e09c9b7cea6a",
+        "r2s-46d6f2bef7d850b2152895bf",
+        "r2s-56a99c6df80183753cdd20e2",
+        "r2s-5cdbef1fba7fc1f0cac98f41",
+        "r2s-35db45ec6ce4ac6b6a426474",
+        "r2s-d6a24f3b49ea4ea83a8f1627",
+        "r2s-e8711368cf461565889615ba",
+        "r2s-d1a14d29b65609a8634da47d",
+        "r2s-dec435e2e801765e5ed827c1",
+        "r2s-40256ee6340460cca98ae1be",
+        "r2s-4479f95162cd319ae7ff7013",
+        "r2s-cf3f8e5ea295e0a6656fe51b",
+        "r2s-501535cd31a11b02d5cc9435"
+      ],
+      "view_ids": [
+        "view-f482072e7c4ce0b442af230c"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 1,
+        "read_pdf_text": 3,
+        "task_plan": 1
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-d9fbc74612f4e6e41a433ba1",
+          "source_id": "page-d9fbc74612f4e6e41a433ba1",
+          "source_sha256": "b8e6f8c9a89d911dff6405555d6dc30f9e29687a595608697187ec35b305c51c",
+          "width": 3508,
+          "height": 4961,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-f482072e7c4ce0b442af230c": {
+        "page_id": "page-d9fbc74612f4e6e41a433ba1",
+        "source_id": "page-d9fbc74612f4e6e41a433ba1",
+        "source_sha256": "b8e6f8c9a89d911dff6405555d6dc30f9e29687a595608697187ec35b305c51c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 3508,
+        "height": 4961,
+        "original_width": 3508,
+        "original_height": 4961,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "b8e6f8c9a89d911dff6405555d6dc30f9e29687a595608697187ec35b305c51c",
+        "view_id": "view-f482072e7c4ce0b442af230c"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 51.709612775128335,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "frontier",
+      "explicit_planning": true
+    },
+    "task_plan": [
+      "Retrieve the verified native geometry for exact room identifier 4.07 and read positioned page text for label, printed area and scale evidence.",
+      "Calibrate from a visible length or scale bar, measure the verified room polygon including represented holes, and return computed net area separately from any printed reading."
+    ]
+  },
+  "cleanup_errors": []
+}

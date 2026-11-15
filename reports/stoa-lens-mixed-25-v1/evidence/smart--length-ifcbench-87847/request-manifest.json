@@ -1,0 +1,50 @@
+{
+  "case_id": "length-ifcbench-87847",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the total length of all walls on 'Erdgeschoss', in metres?",
+  "sources": [
+    {
+      "page_id": "page-c9418a45559261977e9a8dff",
+      "source_id": "page-c9418a45559261977e9a8dff",
+      "source_sha256": "61eb74a9ff5ee46b037666f3fc32ced1843e6588df71aa6b5efcc547c7ebec39",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-fzk-haus_ac20-fzk-haus_plan-01-erdgeschoss.render.png",
+      "width": 1134,
+      "height": 882,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-fzk-haus_ac20-fzk-haus_plan-01-erdgeschoss.pdf",
+      "pdf_sha256": "e0a2f796bf2af221d3ba661b23d3a22319f22ef606f3e9e9bf4ca1d4ed57ad75",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "c56d242d51f4d4ac6bde33b95e275661bed067d833b7474cf93b1ee802f3f82b",
+  "evaluation_mode": "computed_geometry"
+}

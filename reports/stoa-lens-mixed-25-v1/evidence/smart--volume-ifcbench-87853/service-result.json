@@ -1,0 +1,241 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "other",
+        "value": 24.0,
+        "unit": "m3",
+        "evidence_ids": [
+          "view-de0d04f194b8fa8062ee57d5"
+        ],
+        "description": "Total net volume of all IfcSlab elements on storey 'Erdgeschoss' (GlobalId 2eyxpyOx95m90jmsXLOuR0), computed from source-bound net geometry with represented openings subtracted; total is corroborated against the registered Erdgeschoss plan view (single-storey footprint, base slab element 1pPHnf7cXCpPsNEnQf8_6B), with the quantity itself established by measurement quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "model_inventory reports exactly 1 IfcSlab on Erdgeschoss (2eyxpyOx95m90jmsXLOuR0) alongside 9 IfcWall; measured_elements=1 of expected_elements=1, so the reported value is complete and not a partial sum.",
+      "Method used is net_geometry (IFC4, length unit 1.0 m), independent of the author-reported source_quantities method, so the value is a computed geometric net volume.",
+      "The provided page (Grundriss Erdgeschoss, page-c9418a45559261977e9a8dff) is a 2D plan at 1:100 and supplies no thickness or volume evidence; it was not used to derive the quantity.",
+      "No object detection was performed and no proposals were requested, so accepted_proposal_ids and count_requests are intentionally empty."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_volume",
+        "arguments": {
+          "source_id": "ifc-70cc8ff245fc0894201d9649",
+          "storey_id": "2eyxpyOx95m90jmsXLOuR0",
+          "element_type": "IfcSlab",
+          "method": "net_geometry"
+        },
+        "result": {
+          "status": "available",
+          "kind": "volume",
+          "source_id": "ifc-70cc8ff245fc0894201d9649",
+          "source_sha256": "70cc8ff245fc0894201d96496c031005a5cbd7a96b22d8a1b87c5a883fb77994",
+          "storey_id": "2eyxpyOx95m90jmsXLOuR0",
+          "storey_name": "Erdgeschoss",
+          "element_type": "IfcSlab",
+          "method": "net_geometry",
+          "quantity_basis": "computed_geometry",
+          "unit": "m3",
+          "value": 24.0,
+          "partial_value": 24.0,
+          "expected_elements": 1,
+          "measured_elements": 1,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "1pPHnf7cXCpPsNEnQf8_6B",
+              "value_si": 24.0,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "003bda8eee6cd7e9b62ba38516a51d44baf1847bb64954dcf863be5a721a8485"
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": true,
+          "length_basis": null,
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c"
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-de0d04f194b8fa8062ee57d5"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 2,
+        "read_pdf_text": 4,
+        "model_inventory": 3,
+        "measure_length": 4,
+        "measure_volume": 3
+      },
+      "vista_views_used": 0,
+      "sources": [
+        {
+          "page_id": "page-c9418a45559261977e9a8dff",
+          "source_id": "page-c9418a45559261977e9a8dff",
+          "source_sha256": "61eb74a9ff5ee46b037666f3fc32ced1843e6588df71aa6b5efcc547c7ebec39",
+          "width": 1134,
+          "height": 882,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "e0a2f796bf2af221d3ba661b23d3a22319f22ef606f3e9e9bf4ca1d4ed57ad75"
+        }
+      ],
+      "quantity_measurement_ids": [
+        "quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c"
+      ]
+    },
+    "selected_measurements": [
+      {
+        "status": "available",
+        "kind": "volume",
+        "source_id": "ifc-70cc8ff245fc0894201d9649",
+        "source_sha256": "70cc8ff245fc0894201d96496c031005a5cbd7a96b22d8a1b87c5a883fb77994",
+        "storey_id": "2eyxpyOx95m90jmsXLOuR0",
+        "storey_name": "Erdgeschoss",
+        "element_type": "IfcSlab",
+        "method": "net_geometry",
+        "quantity_basis": "computed_geometry",
+        "unit": "m3",
+        "value": 24.0,
+        "partial_value": 24.0,
+        "expected_elements": 1,
+        "measured_elements": 1,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "1pPHnf7cXCpPsNEnQf8_6B",
+            "value_si": 24.0,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "003bda8eee6cd7e9b62ba38516a51d44baf1847bb64954dcf863be5a721a8485"
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": true,
+        "length_basis": null,
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c"
+      }
+    ],
+    "measurement_ids": [
+      "quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c"
+    ],
+    "quantity_values": [
+      {
+        "value": 24.0,
+        "unit": "m3",
+        "kind": "volume",
+        "method": "net_geometry",
+        "quantity_basis": "computed_geometry",
+        "measurement_id": "quantity-3b44a4cd06e50a0ec798e0f40486ae05bd672b0800bafc8b7b806db77974535c",
+        "source_sha256": "70cc8ff245fc0894201d96496c031005a5cbd7a96b22d8a1b87c5a883fb77994",
+        "storey_id": "2eyxpyOx95m90jmsXLOuR0",
+        "element_type": "IfcSlab"
+      }
+    ],
+    "evidence_views": {
+      "view-de0d04f194b8fa8062ee57d5": {
+        "page_id": "page-c9418a45559261977e9a8dff",
+        "source_id": "page-c9418a45559261977e9a8dff",
+        "source_sha256": "61eb74a9ff5ee46b037666f3fc32ced1843e6588df71aa6b5efcc547c7ebec39",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1134,
+        "height": 882,
+        "original_width": 1134,
+        "original_height": 882,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "61eb74a9ff5ee46b037666f3fc32ced1843e6588df71aa6b5efcc547c7ebec39",
+        "pdf_page": 0,
+        "pdf_sha256": "e0a2f796bf2af221d3ba661b23d3a22319f22ef606f3e9e9bf4ca1d4ed57ad75",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-de0d04f194b8fa8062ee57d5"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 27.10723496042192,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  },
+  "cleanup_errors": []
+}

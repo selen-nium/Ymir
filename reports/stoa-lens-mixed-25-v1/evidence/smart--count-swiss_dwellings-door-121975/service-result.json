@@ -1,0 +1,3625 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "object_class": "door",
+        "object_classes": [
+          "door"
+        ],
+        "backend": "dfine_argon",
+        "count": 18,
+        "accepted_proposal_ids": [
+          "proposal_8c0e5bb2a2c6c33dad63",
+          "proposal_8e89b99fffffab468af9",
+          "proposal_b00c240ce5ed7810f994",
+          "proposal_5a0b4f995c534ae86d98",
+          "proposal_814462b3610c80f076bc",
+          "proposal_4dd4da5cf91d7cfaac0e",
+          "proposal_a0cf2ad2b0699d0c50e3",
+          "proposal_ff9eeebc4ca662b553e1",
+          "proposal_cfee80d2da7e1c1c5b0c",
+          "proposal_bc0402554f797209adca",
+          "proposal_cf56459ec17130db5960",
+          "proposal_a9a0bb3444f25c286b05",
+          "proposal_8ab412da6f851ad25907",
+          "proposal_674dea739ee09b5db40c",
+          "proposal_ed570f0ebfd91ce08e3c",
+          "proposal_ebee6a6127bd9eeea625",
+          "proposal_e08e6d30ffbb58f64a3d",
+          "proposal_db97229e58efcdcd049f"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 18,
+    "accepted_proposal_ids": [
+      "proposal_8c0e5bb2a2c6c33dad63",
+      "proposal_8e89b99fffffab468af9",
+      "proposal_b00c240ce5ed7810f994",
+      "proposal_5a0b4f995c534ae86d98",
+      "proposal_814462b3610c80f076bc",
+      "proposal_4dd4da5cf91d7cfaac0e",
+      "proposal_a0cf2ad2b0699d0c50e3",
+      "proposal_ff9eeebc4ca662b553e1",
+      "proposal_cfee80d2da7e1c1c5b0c",
+      "proposal_bc0402554f797209adca",
+      "proposal_cf56459ec17130db5960",
+      "proposal_a9a0bb3444f25c286b05",
+      "proposal_8ab412da6f851ad25907",
+      "proposal_674dea739ee09b5db40c",
+      "proposal_ed570f0ebfd91ce08e3c",
+      "proposal_ebee6a6127bd9eeea625",
+      "proposal_e08e6d30ffbb58f64a3d",
+      "proposal_db97229e58efcdcd049f"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_cfee80d2da7e1c1c5b0c",
+        "label": "door",
+        "raw_box_xyxy": [
+          490.9535217285156,
+          255.85324096679688,
+          554.6542358398438,
+          308.1868896484375
+        ],
+        "view_box_xyxy": [
+          1140.9535217285156,
+          585.8532409667969,
+          1204.6542358398438,
+          638.1868896484375
+        ],
+        "native_box_xyxy": [
+          1140.9535217285156,
+          585.8532409667969,
+          1204.6542358398438,
+          638.1868896484375
+        ],
+        "confidence": 0.9241418242454529,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ebee6a6127bd9eeea625",
+        "label": "door",
+        "raw_box_xyxy": [
+          595.7236938476562,
+          474.31158447265625,
+          648.5419921875,
+          520.2935791015625
+        ],
+        "view_box_xyxy": [
+          1245.7236938476562,
+          804.3115844726562,
+          1298.5419921875,
+          850.2935791015625
+        ],
+        "native_box_xyxy": [
+          1245.7236938476562,
+          804.3115844726562,
+          1298.5419921875,
+          850.2935791015625
+        ],
+        "confidence": 0.9230391979217529,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_5a0b4f995c534ae86d98",
+        "label": "door",
+        "raw_box_xyxy": [
+          339.49359130859375,
+          257.08135986328125,
+          401.8432312011719,
+          309.38934326171875
+        ],
+        "view_box_xyxy": [
+          989.4935913085938,
+          587.0813598632812,
+          1051.8432312011719,
+          639.3893432617188
+        ],
+        "native_box_xyxy": [
+          989.4935913085938,
+          587.0813598632812,
+          1051.8432312011719,
+          639.3893432617188
+        ],
+        "confidence": 0.917302668094635,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_674dea739ee09b5db40c",
+        "label": "door",
+        "raw_box_xyxy": [
+          494.83453369140625,
+          524.352294921875,
+          541.3452758789062,
+          577.8756713867188
+        ],
+        "view_box_xyxy": [
+          1144.8345336914062,
+          854.352294921875,
+          1191.3452758789062,
+          907.8756713867188
+        ],
+        "native_box_xyxy": [
+          1144.8345336914062,
+          854.352294921875,
+          1191.3452758789062,
+          907.8756713867188
+        ],
+        "confidence": 0.9136765599250793,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_bc0402554f797209adca",
+        "label": "door",
+        "raw_box_xyxy": [
+          446.0899353027344,
+          323.92987060546875,
+          498.0537414550781,
+          387.50958251953125
+        ],
+        "view_box_xyxy": [
+          1096.0899353027344,
+          653.9298706054688,
+          1148.0537414550781,
+          717.5095825195312
+        ],
+        "native_box_xyxy": [
+          1096.0899353027344,
+          653.9298706054688,
+          1148.0537414550781,
+          717.5095825195312
+        ],
+        "confidence": 0.9111796617507935,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8ab412da6f851ad25907",
+        "label": "door",
+        "raw_box_xyxy": [
+          400.9325866699219,
+          473.48272705078125,
+          455.8916320800781,
+          519.4599609375
+        ],
+        "view_box_xyxy": [
+          1050.9325866699219,
+          803.4827270507812,
+          1105.8916320800781,
+          849.4599609375
+        ],
+        "native_box_xyxy": [
+          1050.9325866699219,
+          803.4827270507812,
+          1105.8916320800781,
+          849.4599609375
+        ],
+        "confidence": 0.9111796617507935,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_b00c240ce5ed7810f994",
+        "label": "door",
+        "raw_box_xyxy": [
+          209.17491149902344,
+          302.1818542480469,
+          262.945068359375,
+          348.2823486328125
+        ],
+        "view_box_xyxy": [
+          859.1749114990234,
+          632.1818542480469,
+          912.945068359375,
+          678.2823486328125
+        ],
+        "native_box_xyxy": [
+          859.1749114990234,
+          632.1818542480469,
+          912.945068359375,
+          678.2823486328125
+        ],
+        "confidence": 0.9086179733276367,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8e89b99fffffab468af9",
+        "label": "door",
+        "raw_box_xyxy": [
+          241.56521606445312,
+          190.45877075195312,
+          296.1343994140625,
+          238.10159301757812
+        ],
+        "view_box_xyxy": [
+          891.5652160644531,
+          520.4587707519531,
+          946.1343994140625,
+          568.1015930175781
+        ],
+        "native_box_xyxy": [
+          891.5652160644531,
+          520.4587707519531,
+          946.1343994140625,
+          568.1015930175781
+        ],
+        "confidence": 0.9059898257255554,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ff9eeebc4ca662b553e1",
+        "label": "door",
+        "raw_box_xyxy": [
+          814.8195190429688,
+          343.6149597167969,
+          867.4041748046875,
+          389.6283264160156
+        ],
+        "view_box_xyxy": [
+          1464.8195190429688,
+          673.6149597167969,
+          1517.4041748046875,
+          719.6283264160156
+        ],
+        "native_box_xyxy": [
+          1464.8195190429688,
+          673.6149597167969,
+          1517.4041748046875,
+          719.6283264160156
+        ],
+        "confidence": 0.8976953029632568,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_814462b3610c80f076bc",
+        "label": "door",
+        "raw_box_xyxy": [
+          582.7257080078125,
+          193.57354736328125,
+          629.1777954101562,
+          252.16436767578125
+        ],
+        "view_box_xyxy": [
+          1232.7257080078125,
+          523.5735473632812,
+          1279.1777954101562,
+          582.1643676757812
+        ],
+        "native_box_xyxy": [
+          1232.7257080078125,
+          523.5735473632812,
+          1279.1777954101562,
+          582.1643676757812
+        ],
+        "confidence": 0.8872045874595642,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_cf56459ec17130db5960",
+        "label": "door",
+        "raw_box_xyxy": [
+          203.9866485595703,
+          410.138671875,
+          263.5869445800781,
+          457.2356872558594
+        ],
+        "view_box_xyxy": [
+          853.9866485595703,
+          740.138671875,
+          913.5869445800781,
+          787.2356872558594
+        ],
+        "native_box_xyxy": [
+          853.9866485595703,
+          740.138671875,
+          913.5869445800781,
+          787.2356872558594
+        ],
+        "confidence": 0.8856314420700073,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a0cf2ad2b0699d0c50e3",
+        "label": "door",
+        "raw_box_xyxy": [
+          798.2811279296875,
+          189.06259155273438,
+          850.9623413085938,
+          235.40591430664062
+        ],
+        "view_box_xyxy": [
+          1448.2811279296875,
+          519.0625915527344,
+          1500.9623413085938,
+          565.4059143066406
+        ],
+        "native_box_xyxy": [
+          1448.2811279296875,
+          519.0625915527344,
+          1500.9623413085938,
+          565.4059143066406
+        ],
+        "confidence": 0.8840392827987671,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_e08e6d30ffbb58f64a3d",
+        "label": "door",
+        "raw_box_xyxy": [
+          816.3330078125,
+          408.8625183105469,
+          873.5805053710938,
+          454.81988525390625
+        ],
+        "view_box_xyxy": [
+          1466.3330078125,
+          738.8625183105469,
+          1523.5805053710938,
+          784.8198852539062
+        ],
+        "native_box_xyxy": [
+          1466.3330078125,
+          738.8625183105469,
+          1523.5805053710938,
+          784.8198852539062
+        ],
+        "confidence": 0.8807970285415649,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8c0e5bb2a2c6c33dad63",
+        "label": "door",
+        "raw_box_xyxy": [
+          303.7159118652344,
+          138.189697265625,
+          340.2667541503906,
+          180.32257080078125
+        ],
+        "view_box_xyxy": [
+          953.7159118652344,
+          468.189697265625,
+          990.2667541503906,
+          510.32257080078125
+        ],
+        "native_box_xyxy": [
+          953.7159118652344,
+          468.189697265625,
+          990.2667541503906,
+          510.32257080078125
+        ],
+        "confidence": 0.8807970285415649,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_4dd4da5cf91d7cfaac0e",
+        "label": "door",
+        "raw_box_xyxy": [
+          751.722412109375,
+          133.130615234375,
+          790.7296752929688,
+          179.36204528808594
+        ],
+        "view_box_xyxy": [
+          1401.722412109375,
+          463.130615234375,
+          1440.7296752929688,
+          509.36204528808594
+        ],
+        "native_box_xyxy": [
+          1401.722412109375,
+          463.130615234375,
+          1440.7296752929688,
+          509.36204528808594
+        ],
+        "confidence": 0.8705973029136658,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ed570f0ebfd91ce08e3c",
+        "label": "door",
+        "raw_box_xyxy": [
+          556.1412353515625,
+          418.4374694824219,
+          593.9342041015625,
+          466.34716796875
+        ],
+        "view_box_xyxy": [
+          1206.1412353515625,
+          748.4374694824219,
+          1243.9342041015625,
+          796.34716796875
+        ],
+        "native_box_xyxy": [
+          1206.1412353515625,
+          748.4374694824219,
+          1243.9342041015625,
+          796.34716796875
+        ],
+        "confidence": 0.8652240633964539,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_db97229e58efcdcd049f",
+        "label": "door",
+        "raw_box_xyxy": [
+          929.642822265625,
+          591.3446655273438,
+          995.9856567382812,
+          677.0485229492188
+        ],
+        "view_box_xyxy": [
+          1579.642822265625,
+          921.3446655273438,
+          1645.9856567382812,
+          1007.0485229492188
+        ],
+        "native_box_xyxy": [
+          1579.642822265625,
+          921.3446655273438,
+          1645.9856567382812,
+          1007.0485229492188
+        ],
+        "confidence": 0.8333246111869812,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_1053735f9edd17778685",
+        "label": "door",
+        "raw_box_xyxy": [
+          119.2597427368164,
+          660.5218505859375,
+          183.80413818359375,
+          744.8444213867188
+        ],
+        "view_box_xyxy": [
+          769.2597427368164,
+          990.5218505859375,
+          833.8041381835938,
+          1074.8444213867188
+        ],
+        "native_box_xyxy": [
+          769.2597427368164,
+          990.5218505859375,
+          833.8041381835938,
+          1074.8444213867188
+        ],
+        "confidence": 0.5583269596099854,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_1b8b92a43320b975a8dc",
+        "label": "door",
+        "raw_box_xyxy": [
+          744.8815307617188,
+          239.81723022460938,
+          792.761962890625,
+          251.517822265625
+        ],
+        "view_box_xyxy": [
+          1394.8815307617188,
+          569.8172302246094,
+          1442.761962890625,
+          581.517822265625
+        ],
+        "native_box_xyxy": [
+          1394.8815307617188,
+          569.8172302246094,
+          1442.761962890625,
+          581.517822265625
+        ],
+        "confidence": 0.34687307476997375,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_f0dc8221c0e3c7a35488",
+        "label": "door",
+        "raw_box_xyxy": [
+          282.0,
+          181.0,
+          318.0,
+          237.0
+        ],
+        "view_box_xyxy": [
+          951.74,
+          467.56,
+          990.26,
+          510.12
+        ],
+        "native_box_xyxy": [
+          951.74,
+          467.56,
+          990.26,
+          510.12
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8f875c9915603825145f",
+        "label": "door",
+        "raw_box_xyxy": [
+          703.0,
+          176.0,
+          740.0,
+          235.0
+        ],
+        "view_box_xyxy": [
+          1402.21,
+          463.76,
+          1441.8000000000002,
+          508.6
+        ],
+        "native_box_xyxy": [
+          1402.21,
+          463.76,
+          1441.8000000000002,
+          508.6
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_aab0a8e7f929e14a6877",
+        "label": "door",
+        "raw_box_xyxy": [
+          227.0,
+          251.0,
+          275.0,
+          313.0
+        ],
+        "view_box_xyxy": [
+          892.89,
+          520.76,
+          944.25,
+          567.88
+        ],
+        "native_box_xyxy": [
+          892.89,
+          520.76,
+          944.25,
+          567.88
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_c37ee6cf1c84a52b4ce8",
+        "label": "door",
+        "raw_box_xyxy": [
+          543.0,
+          256.0,
+          589.0,
+          331.0
+        ],
+        "view_box_xyxy": [
+          1231.01,
+          524.56,
+          1280.23,
+          581.56
+        ],
+        "native_box_xyxy": [
+          1231.01,
+          524.56,
+          1280.23,
+          581.56
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_b3d2bc04cd00537791aa",
+        "label": "door",
+        "raw_box_xyxy": [
+          746.0,
+          248.0,
+          794.0,
+          311.0
+        ],
+        "view_box_xyxy": [
+          1448.22,
+          518.48,
+          1499.58,
+          566.36
+        ],
+        "native_box_xyxy": [
+          1448.22,
+          518.48,
+          1499.58,
+          566.36
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_fdd0c6dc129880c1a488",
+        "label": "door",
+        "raw_box_xyxy": [
+          318.0,
+          338.0,
+          375.0,
+          408.0
+        ],
+        "view_box_xyxy": [
+          990.26,
+          586.88,
+          1051.25,
+          640.0799999999999
+        ],
+        "native_box_xyxy": [
+          990.26,
+          586.88,
+          1051.25,
+          640.0799999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_84e00b4a96ba7d7ea24f",
+        "label": "door",
+        "raw_box_xyxy": [
+          459.0,
+          336.0,
+          516.0,
+          407.0
+        ],
+        "view_box_xyxy": [
+          1141.13,
+          585.36,
+          1202.12,
+          639.3199999999999
+        ],
+        "native_box_xyxy": [
+          1141.13,
+          585.36,
+          1202.12,
+          639.3199999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_c1b9d46b2c6c5174dd66",
+        "label": "door",
+        "raw_box_xyxy": [
+          197.0,
+          397.0,
+          245.0,
+          458.0
+        ],
+        "view_box_xyxy": [
+          860.79,
+          631.72,
+          912.1500000000001,
+          678.0799999999999
+        ],
+        "native_box_xyxy": [
+          860.79,
+          631.72,
+          912.1500000000001,
+          678.0799999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_c1d83890a0de45b7cdeb",
+        "label": "door",
+        "raw_box_xyxy": [
+          416.0,
+          426.0,
+          466.0,
+          509.0
+        ],
+        "view_box_xyxy": [
+          1095.12,
+          653.76,
+          1148.62,
+          716.84
+        ],
+        "native_box_xyxy": [
+          1095.12,
+          653.76,
+          1148.62,
+          716.84
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_58d532097c071cbaccbd",
+        "label": "door",
+        "raw_box_xyxy": [
+          761.0,
+          450.0,
+          810.0,
+          514.0
+        ],
+        "view_box_xyxy": [
+          1464.27,
+          672.0,
+          1516.7,
+          720.64
+        ],
+        "native_box_xyxy": [
+          1464.27,
+          672.0,
+          1516.7,
+          720.64
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a893160d2dd516b6f7a9",
+        "label": "door",
+        "raw_box_xyxy": [
+          190.0,
+          540.0,
+          245.0,
+          603.0
+        ],
+        "view_box_xyxy": [
+          853.3,
+          740.4,
+          912.1500000000001,
+          788.28
+        ],
+        "native_box_xyxy": [
+          853.3,
+          740.4,
+          912.1500000000001,
+          788.28
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_0acac80821494f308869",
+        "label": "door",
+        "raw_box_xyxy": [
+          518.0,
+          555.0,
+          556.0,
+          614.0
+        ],
+        "view_box_xyxy": [
+          1204.26,
+          751.8,
+          1244.92,
+          796.64
+        ],
+        "native_box_xyxy": [
+          1204.26,
+          751.8,
+          1244.92,
+          796.64
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_6f64c1fb55272b638216",
+        "label": "door",
+        "raw_box_xyxy": [
+          762.0,
+          538.0,
+          816.0,
+          600.0
+        ],
+        "view_box_xyxy": [
+          1465.3400000000001,
+          738.88,
+          1523.12,
+          786.0
+        ],
+        "native_box_xyxy": [
+          1465.3400000000001,
+          738.88,
+          1523.12,
+          786.0
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_1c257f2761050eb71b01",
+        "label": "door",
+        "raw_box_xyxy": [
+          377.0,
+          621.0,
+          426.0,
+          685.0
+        ],
+        "view_box_xyxy": [
+          1053.39,
+          801.96,
+          1105.8200000000002,
+          850.6
+        ],
+        "native_box_xyxy": [
+          1053.39,
+          801.96,
+          1105.8200000000002,
+          850.6
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_9e152d5ff8f0a92ac34a",
+        "label": "door",
+        "raw_box_xyxy": [
+          557.0,
+          622.0,
+          606.0,
+          686.0
+        ],
+        "view_box_xyxy": [
+          1245.99,
+          802.72,
+          1298.42,
+          851.36
+        ],
+        "native_box_xyxy": [
+          1245.99,
+          802.72,
+          1298.42,
+          851.36
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a885e86cf1f0de238d80",
+        "label": "door",
+        "raw_box_xyxy": [
+          461.0,
+          691.0,
+          506.0,
+          757.0
+        ],
+        "view_box_xyxy": [
+          1143.27,
+          855.16,
+          1191.42,
+          905.32
+        ],
+        "native_box_xyxy": [
+          1143.27,
+          855.16,
+          1191.42,
+          905.32
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a417a2cd52dcfd1ee0a9",
+        "label": "door",
+        "raw_box_xyxy": [
+          868.0,
+          778.0,
+          930.0,
+          889.0
+        ],
+        "view_box_xyxy": [
+          1578.7600000000002,
+          921.28,
+          1645.1,
+          1005.64
+        ],
+        "native_box_xyxy": [
+          1578.7600000000002,
+          921.28,
+          1645.1,
+          1005.64
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a9a0bb3444f25c286b05",
+        "label": "door",
+        "raw_box_xyxy": [
+          110.0,
+          868.0,
+          173.0,
+          980.0
+        ],
+        "view_box_xyxy": [
+          767.7,
+          989.6800000000001,
+          835.11,
+          1074.8
+        ],
+        "native_box_xyxy": [
+          767.7,
+          989.6800000000001,
+          835.11,
+          1074.8
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_f8f182b11a4672bd7747",
+        "label": "door",
+        "raw_box_xyxy": [
+          1580.405517578125,
+          918.5960693359375,
+          1645.85400390625,
+          1006.353271484375
+        ],
+        "view_box_xyxy": [
+          1580.405517578125,
+          918.5960693359375,
+          1645.85400390625,
+          1006.353271484375
+        ],
+        "native_box_xyxy": [
+          1580.405517578125,
+          918.5960693359375,
+          1645.85400390625,
+          1006.353271484375
+        ],
+        "confidence": 0.9284088015556335,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_af65bc8a08849a87c1b0",
+        "label": "door",
+        "raw_box_xyxy": [
+          858.331298828125,
+          631.9357299804688,
+          912.5635986328125,
+          677.9058837890625
+        ],
+        "view_box_xyxy": [
+          858.331298828125,
+          631.9357299804688,
+          912.5635986328125,
+          677.9058837890625
+        ],
+        "native_box_xyxy": [
+          858.331298828125,
+          631.9357299804688,
+          912.5635986328125,
+          677.9058837890625
+        ],
+        "confidence": 0.9263036847114563,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_e592eb0ec9e2d67ffe39",
+        "label": "door",
+        "raw_box_xyxy": [
+          1233.55859375,
+          523.10498046875,
+          1279.2506103515625,
+          581.7052612304688
+        ],
+        "view_box_xyxy": [
+          1233.55859375,
+          523.10498046875,
+          1279.2506103515625,
+          581.7052612304688
+        ],
+        "native_box_xyxy": [
+          1233.55859375,
+          523.10498046875,
+          1279.2506103515625,
+          581.7052612304688
+        ],
+        "confidence": 0.9241418242454529,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_672eb5482a2aa925a9d3",
+        "label": "door",
+        "raw_box_xyxy": [
+          1245.828857421875,
+          803.852783203125,
+          1300.5001220703125,
+          850.4615478515625
+        ],
+        "view_box_xyxy": [
+          1245.828857421875,
+          803.852783203125,
+          1300.5001220703125,
+          850.4615478515625
+        ],
+        "native_box_xyxy": [
+          1245.828857421875,
+          803.852783203125,
+          1300.5001220703125,
+          850.4615478515625
+        ],
+        "confidence": 0.9207897186279297,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_9f240b356a886f86d3a9",
+        "label": "door",
+        "raw_box_xyxy": [
+          1447.1339111328125,
+          519.3905029296875,
+          1501.3028564453125,
+          565.6779174804688
+        ],
+        "view_box_xyxy": [
+          1447.1339111328125,
+          519.3905029296875,
+          1501.3028564453125,
+          565.6779174804688
+        ],
+        "native_box_xyxy": [
+          1447.1339111328125,
+          519.3905029296875,
+          1501.3028564453125,
+          565.6779174804688
+        ],
+        "confidence": 0.9184802770614624,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a897904cc3cc55acd54b",
+        "label": "door",
+        "raw_box_xyxy": [
+          988.1248168945312,
+          587.5826416015625,
+          1051.7392578125,
+          638.8709106445312
+        ],
+        "view_box_xyxy": [
+          988.1248168945312,
+          587.5826416015625,
+          1051.7392578125,
+          638.8709106445312
+        ],
+        "native_box_xyxy": [
+          988.1248168945312,
+          587.5826416015625,
+          1051.7392578125,
+          638.8709106445312
+        ],
+        "confidence": 0.9149009585380554,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_24527d529da5c7cb9075",
+        "label": "door",
+        "raw_box_xyxy": [
+          1464.8446044921875,
+          673.5760498046875,
+          1517.3980712890625,
+          719.2015991210938
+        ],
+        "view_box_xyxy": [
+          1464.8446044921875,
+          673.5760498046875,
+          1517.3980712890625,
+          719.2015991210938
+        ],
+        "native_box_xyxy": [
+          1464.8446044921875,
+          673.5760498046875,
+          1517.3980712890625,
+          719.2015991210938
+        ],
+        "confidence": 0.9149009585380554,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_fb36bebc991f7a5963b4",
+        "label": "door",
+        "raw_box_xyxy": [
+          889.551025390625,
+          520.3319091796875,
+          947.31787109375,
+          568.309326171875
+        ],
+        "view_box_xyxy": [
+          889.551025390625,
+          520.3319091796875,
+          947.31787109375,
+          568.309326171875
+        ],
+        "native_box_xyxy": [
+          889.551025390625,
+          520.3319091796875,
+          947.31787109375,
+          568.309326171875
+        ],
+        "confidence": 0.9136765599250793,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8fde0af95be79abd90f2",
+        "label": "door",
+        "raw_box_xyxy": [
+          1467.4969482421875,
+          739.23828125,
+          1523.158203125,
+          785.0353393554688
+        ],
+        "view_box_xyxy": [
+          1467.4969482421875,
+          739.23828125,
+          1523.158203125,
+          785.0353393554688
+        ],
+        "native_box_xyxy": [
+          1467.4969482421875,
+          739.23828125,
+          1523.158203125,
+          785.0353393554688
+        ],
+        "confidence": 0.9099069833755493,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_32fd864efe01682696c9",
+        "label": "door",
+        "raw_box_xyxy": [
+          1141.29052734375,
+          586.3306884765625,
+          1205.6998291015625,
+          637.4805908203125
+        ],
+        "view_box_xyxy": [
+          1141.29052734375,
+          586.3306884765625,
+          1205.6998291015625,
+          637.4805908203125
+        ],
+        "native_box_xyxy": [
+          1141.29052734375,
+          586.3306884765625,
+          1205.6998291015625,
+          637.4805908203125
+        ],
+        "confidence": 0.9086179733276367,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_9c2b1e03e7ef3b7539a2",
+        "label": "door",
+        "raw_box_xyxy": [
+          1144.8214111328125,
+          854.1964721679688,
+          1190.9833984375,
+          906.3963012695312
+        ],
+        "view_box_xyxy": [
+          1144.8214111328125,
+          854.1964721679688,
+          1190.9833984375,
+          906.3963012695312
+        ],
+        "native_box_xyxy": [
+          1144.8214111328125,
+          854.1964721679688,
+          1190.9833984375,
+          906.3963012695312
+        ],
+        "confidence": 0.907312273979187,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_4cc8edc8a929ad4f28cf",
+        "label": "door",
+        "raw_box_xyxy": [
+          852.9214477539062,
+          740.126708984375,
+          913.88134765625,
+          787.1755981445312
+        ],
+        "view_box_xyxy": [
+          852.9214477539062,
+          740.126708984375,
+          913.88134765625,
+          787.1755981445312
+        ],
+        "native_box_xyxy": [
+          852.9214477539062,
+          740.126708984375,
+          913.88134765625,
+          787.1755981445312
+        ],
+        "confidence": 0.9059898257255554,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a15dfd39625613eeaeb3",
+        "label": "door",
+        "raw_box_xyxy": [
+          1050.513671875,
+          803.390380859375,
+          1105.7454833984375,
+          849.492431640625
+        ],
+        "view_box_xyxy": [
+          1050.513671875,
+          803.390380859375,
+          1105.7454833984375,
+          849.492431640625
+        ],
+        "native_box_xyxy": [
+          1050.513671875,
+          803.390380859375,
+          1105.7454833984375,
+          849.492431640625
+        ],
+        "confidence": 0.9005298018455505,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_b2de060424ff98fc7b11",
+        "label": "door",
+        "raw_box_xyxy": [
+          1096.4075927734375,
+          654.6006469726562,
+          1147.8953857421875,
+          719.8643188476562
+        ],
+        "view_box_xyxy": [
+          1096.4075927734375,
+          654.6006469726562,
+          1147.8953857421875,
+          719.8643188476562
+        ],
+        "native_box_xyxy": [
+          1096.4075927734375,
+          654.6006469726562,
+          1147.8953857421875,
+          719.8643188476562
+        ],
+        "confidence": 0.8991213440895081,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_0791ca72e3e043405328",
+        "label": "door",
+        "raw_box_xyxy": [
+          953.6532592773438,
+          466.9764099121094,
+          989.8848266601562,
+          510.21240234375
+        ],
+        "view_box_xyxy": [
+          953.6532592773438,
+          466.9764099121094,
+          989.8848266601562,
+          510.21240234375
+        ],
+        "native_box_xyxy": [
+          953.6532592773438,
+          466.9764099121094,
+          989.8848266601562,
+          510.21240234375
+        ],
+        "confidence": 0.8670357465744019,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_51e07bf5087fc99f683e",
+        "label": "door",
+        "raw_box_xyxy": [
+          1399.8511962890625,
+          459.9120788574219,
+          1441.0399169921875,
+          509.5262451171875
+        ],
+        "view_box_xyxy": [
+          1399.8511962890625,
+          459.9120788574219,
+          1441.0399169921875,
+          509.5262451171875
+        ],
+        "native_box_xyxy": [
+          1399.8511962890625,
+          459.9120788574219,
+          1441.0399169921875,
+          509.5262451171875
+        ],
+        "confidence": 0.4111108183860779,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ae280c9e54b419129983",
+        "label": "door",
+        "raw_box_xyxy": [
+          950.1773071289062,
+          1039.593994140625,
+          1063.051025390625,
+          1059.9033203125
+        ],
+        "view_box_xyxy": [
+          950.1773071289062,
+          1039.593994140625,
+          1063.051025390625,
+          1059.9033203125
+        ],
+        "native_box_xyxy": [
+          950.1773071289062,
+          1039.593994140625,
+          1063.051025390625,
+          1059.9033203125
+        ],
+        "confidence": 0.3951341509819031,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_e274a7d9baecc7489181",
+        "label": "door",
+        "raw_box_xyxy": [
+          671.6824340820312,
+          430.6396484375,
+          694.1320190429688,
+          540.4105834960938
+        ],
+        "view_box_xyxy": [
+          671.6824340820312,
+          430.6396484375,
+          694.1320190429688,
+          540.4105834960938
+        ],
+        "native_box_xyxy": [
+          671.6824340820312,
+          430.6396484375,
+          694.1320190429688,
+          540.4105834960938
+        ],
+        "confidence": 0.3729618787765503,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_e3b9601e5e4530e2f348",
+        "label": "door",
+        "raw_box_xyxy": [
+          770.9340209960938,
+          990.490234375,
+          834.6021728515625,
+          1073.3114013671875
+        ],
+        "view_box_xyxy": [
+          770.9340209960938,
+          990.490234375,
+          834.6021728515625,
+          1073.3114013671875
+        ],
+        "native_box_xyxy": [
+          770.9340209960938,
+          990.490234375,
+          834.6021728515625,
+          1073.3114013671875
+        ],
+        "confidence": 0.3711366057395935,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ffca71b1539f01f4d84a",
+        "label": "door",
+        "raw_box_xyxy": [
+          1207.5574951171875,
+          740.7650756835938,
+          1244.590576171875,
+          795.2180786132812
+        ],
+        "view_box_xyxy": [
+          1207.5574951171875,
+          740.7650756835938,
+          1244.590576171875,
+          795.2180786132812
+        ],
+        "native_box_xyxy": [
+          1207.5574951171875,
+          740.7650756835938,
+          1244.590576171875,
+          795.2180786132812
+        ],
+        "confidence": 0.3638729155063629,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_662aaf0c50d78dc764b1",
+        "label": "door",
+        "raw_box_xyxy": [
+          1316.9228515625,
+          1040.593017578125,
+          1430.9444580078125,
+          1059.832763671875
+        ],
+        "view_box_xyxy": [
+          1316.9228515625,
+          1040.593017578125,
+          1430.9444580078125,
+          1059.832763671875
+        ],
+        "native_box_xyxy": [
+          1316.9228515625,
+          1040.593017578125,
+          1430.9444580078125,
+          1059.832763671875
+        ],
+        "confidence": 0.3225259780883789,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_b10e846f175d5f513fcc",
+        "label": "door",
+        "raw_box_xyxy": [
+          1700.376953125,
+          995.8787231445312,
+          1715.6441650390625,
+          1070.1361083984375
+        ],
+        "view_box_xyxy": [
+          1700.376953125,
+          995.8787231445312,
+          1715.6441650390625,
+          1070.1361083984375
+        ],
+        "native_box_xyxy": [
+          1700.376953125,
+          995.8787231445312,
+          1715.6441650390625,
+          1070.1361083984375
+        ],
+        "confidence": 0.28937169909477234,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_1ad9cb3e8e80463a0961",
+        "label": "door",
+        "raw_box_xyxy": [
+          671.9186401367188,
+          585.630615234375,
+          694.0479736328125,
+          671.081787109375
+        ],
+        "view_box_xyxy": [
+          671.9186401367188,
+          585.630615234375,
+          694.0479736328125,
+          671.081787109375
+        ],
+        "native_box_xyxy": [
+          671.9186401367188,
+          585.630615234375,
+          694.0479736328125,
+          671.081787109375
+        ],
+        "confidence": 0.2689414322376251,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_9e4449e4cb1256228e11",
+        "label": "door",
+        "raw_box_xyxy": [
+          644.4791870117188,
+          1549.3204345703125,
+          703.6547241210938,
+          1559.4578857421875
+        ],
+        "view_box_xyxy": [
+          644.4791870117188,
+          1549.3204345703125,
+          703.6547241210938,
+          1559.4578857421875
+        ],
+        "native_box_xyxy": [
+          644.4791870117188,
+          1549.3204345703125,
+          703.6547241210938,
+          1559.4578857421875
+        ],
+        "confidence": 0.25982561707496643,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_09d07d344f5f204f471a",
+        "label": "door",
+        "raw_box_xyxy": [
+          374.0,
+          307.0,
+          396.0,
+          344.0
+        ],
+        "view_box_xyxy": [
+          890.868,
+          516.9879999999999,
+          943.272,
+          579.2959999999999
+        ],
+        "native_box_xyxy": [
+          890.868,
+          516.9879999999999,
+          943.272,
+          579.2959999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_95faa39af135163750e2",
+        "label": "door",
+        "raw_box_xyxy": [
+          405.0,
+          297.0,
+          425.0,
+          326.0
+        ],
+        "view_box_xyxy": [
+          964.71,
+          500.14799999999997,
+          1012.35,
+          548.984
+        ],
+        "native_box_xyxy": [
+          964.71,
+          500.14799999999997,
+          1012.35,
+          548.984
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_15af2d546dea02785cdb",
+        "label": "door",
+        "raw_box_xyxy": [
+          415.0,
+          346.0,
+          442.0,
+          381.0
+        ],
+        "view_box_xyxy": [
+          988.5300000000001,
+          582.664,
+          1052.844,
+          641.6039999999999
+        ],
+        "native_box_xyxy": [
+          988.5300000000001,
+          582.664,
+          1052.844,
+          641.6039999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_e6363b33bea409a1b5bc",
+        "label": "door",
+        "raw_box_xyxy": [
+          360.0,
+          373.0,
+          384.0,
+          401.0
+        ],
+        "view_box_xyxy": [
+          857.5200000000001,
+          628.132,
+          914.6880000000001,
+          675.284
+        ],
+        "native_box_xyxy": [
+          857.5200000000001,
+          628.132,
+          914.6880000000001,
+          675.284
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_df7e5d9ca6599241d24c",
+        "label": "door",
+        "raw_box_xyxy": [
+          357.0,
+          437.0,
+          384.0,
+          469.0
+        ],
+        "view_box_xyxy": [
+          850.374,
+          735.908,
+          914.6880000000001,
+          789.7959999999999
+        ],
+        "native_box_xyxy": [
+          850.374,
+          735.908,
+          914.6880000000001,
+          789.7959999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_97a322d39a39aa8cc568",
+        "label": "door",
+        "raw_box_xyxy": [
+          305.0,
+          543.0,
+          350.0,
+          597.0
+        ],
+        "view_box_xyxy": [
+          726.51,
+          914.4119999999999,
+          833.7,
+          1005.348
+        ],
+        "native_box_xyxy": [
+          726.51,
+          914.4119999999999,
+          833.7,
+          1005.348
+        ],
+        "confidence": 0.97,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_2f0db6931c7ca1f0780d",
+        "label": "door",
+        "raw_box_xyxy": [
+          456.0,
+          388.0,
+          483.0,
+          426.0
+        ],
+        "view_box_xyxy": [
+          1086.192,
+          653.3919999999999,
+          1150.506,
+          717.384
+        ],
+        "native_box_xyxy": [
+          1086.192,
+          653.3919999999999,
+          1150.506,
+          717.384
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_914cd00a8784526790b4",
+        "label": "door",
+        "raw_box_xyxy": [
+          439.0,
+          474.0,
+          466.0,
+          505.0
+        ],
+        "view_box_xyxy": [
+          1045.698,
+          798.216,
+          1110.012,
+          850.42
+        ],
+        "native_box_xyxy": [
+          1045.698,
+          798.216,
+          1110.012,
+          850.42
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_1b3fbc3b2495e9d160e3",
+        "label": "door",
+        "raw_box_xyxy": [
+          479.0,
+          504.0,
+          501.0,
+          533.0
+        ],
+        "view_box_xyxy": [
+          1140.978,
+          848.736,
+          1193.382,
+          897.572
+        ],
+        "native_box_xyxy": [
+          1140.978,
+          848.736,
+          1193.382,
+          897.572
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_011d96faad60e855d59e",
+        "label": "door",
+        "raw_box_xyxy": [
+          504.0,
+          446.0,
+          524.0,
+          474.0
+        ],
+        "view_box_xyxy": [
+          1200.528,
+          751.064,
+          1248.1680000000001,
+          798.216
+        ],
+        "native_box_xyxy": [
+          1200.528,
+          751.064,
+          1248.1680000000001,
+          798.216
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_32fa4481309073e8eb49",
+        "label": "door",
+        "raw_box_xyxy": [
+          522.0,
+          474.0,
+          549.0,
+          505.0
+        ],
+        "view_box_xyxy": [
+          1243.404,
+          798.216,
+          1307.718,
+          850.42
+        ],
+        "native_box_xyxy": [
+          1243.404,
+          798.216,
+          1307.718,
+          850.42
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_d24fa7f06cec4507d88d",
+        "label": "door",
+        "raw_box_xyxy": [
+          514.0,
+          311.0,
+          541.0,
+          346.0
+        ],
+        "view_box_xyxy": [
+          1224.348,
+          523.7239999999999,
+          1288.662,
+          582.664
+        ],
+        "native_box_xyxy": [
+          1224.348,
+          523.7239999999999,
+          1288.662,
+          582.664
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_8047fc832a0de1d100f7",
+        "label": "door",
+        "raw_box_xyxy": [
+          586.0,
+          273.0,
+          606.0,
+          303.0
+        ],
+        "view_box_xyxy": [
+          1395.852,
+          459.73199999999997,
+          1443.492,
+          510.252
+        ],
+        "native_box_xyxy": [
+          1395.852,
+          459.73199999999997,
+          1443.492,
+          510.252
+        ],
+        "confidence": 0.98,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_9f63bec7f439e0eb56b7",
+        "label": "door",
+        "raw_box_xyxy": [
+          604.0,
+          307.0,
+          631.0,
+          344.0
+        ],
+        "view_box_xyxy": [
+          1438.728,
+          516.9879999999999,
+          1503.0420000000001,
+          579.2959999999999
+        ],
+        "native_box_xyxy": [
+          1438.728,
+          516.9879999999999,
+          1503.0420000000001,
+          579.2959999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_ac3868de6925de21ede6",
+        "label": "door",
+        "raw_box_xyxy": [
+          613.0,
+          399.0,
+          640.0,
+          431.0
+        ],
+        "view_box_xyxy": [
+          1460.1660000000002,
+          671.9159999999999,
+          1524.48,
+          725.804
+        ],
+        "native_box_xyxy": [
+          1460.1660000000002,
+          671.9159999999999,
+          1524.48,
+          725.804
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_f8529c30f5092bfb56e4",
+        "label": "door",
+        "raw_box_xyxy": [
+          614.0,
+          436.0,
+          641.0,
+          469.0
+        ],
+        "view_box_xyxy": [
+          1462.548,
+          734.2239999999999,
+          1526.862,
+          789.7959999999999
+        ],
+        "native_box_xyxy": [
+          1462.548,
+          734.2239999999999,
+          1526.862,
+          789.7959999999999
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_99d92c7ef9a08c52f83d",
+        "label": "door",
+        "raw_box_xyxy": [
+          642.0,
+          543.0,
+          687.0,
+          597.0
+        ],
+        "view_box_xyxy": [
+          1529.2440000000001,
+          914.4119999999999,
+          1636.434,
+          1005.348
+        ],
+        "native_box_xyxy": [
+          1529.2440000000001,
+          914.4119999999999,
+          1636.434,
+          1005.348
+        ],
+        "confidence": 0.97,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      },
+      {
+        "id": "proposal_a07df5816b4fef6e581c",
+        "label": "door",
+        "raw_box_xyxy": [
+          136.0,
+          903.0,
+          155.0,
+          924.0
+        ],
+        "view_box_xyxy": [
+          323.952,
+          1520.652,
+          369.21000000000004,
+          1556.0159999999998
+        ],
+        "native_box_xyxy": [
+          323.952,
+          1520.652,
+          369.21000000000004,
+          1556.0159999999998
+        ],
+        "confidence": 0.95,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "page": 0,
+        "query_class": "door",
+        "requested_class": "door",
+        "target_classes": [
+          "door"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "Counted 18 distinct physical doors after resolving duplicates and excluding the legend symbol."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "target_classes": [
+          "door"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          650,
+          330,
+          1720,
+          1090
+        ],
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "proposal_ids": [
+          "proposal_cfee80d2da7e1c1c5b0c",
+          "proposal_ebee6a6127bd9eeea625",
+          "proposal_5a0b4f995c534ae86d98",
+          "proposal_674dea739ee09b5db40c",
+          "proposal_bc0402554f797209adca",
+          "proposal_8ab412da6f851ad25907",
+          "proposal_b00c240ce5ed7810f994",
+          "proposal_8e89b99fffffab468af9",
+          "proposal_ff9eeebc4ca662b553e1",
+          "proposal_814462b3610c80f076bc",
+          "proposal_cf56459ec17130db5960",
+          "proposal_a0cf2ad2b0699d0c50e3",
+          "proposal_e08e6d30ffbb58f64a3d",
+          "proposal_8c0e5bb2a2c6c33dad63",
+          "proposal_4dd4da5cf91d7cfaac0e",
+          "proposal_ed570f0ebfd91ce08e3c",
+          "proposal_db97229e58efcdcd049f",
+          "proposal_1053735f9edd17778685",
+          "proposal_1b8b92a43320b975a8dc",
+          "proposal_f0dc8221c0e3c7a35488",
+          "proposal_8f875c9915603825145f",
+          "proposal_aab0a8e7f929e14a6877",
+          "proposal_c37ee6cf1c84a52b4ce8",
+          "proposal_b3d2bc04cd00537791aa",
+          "proposal_fdd0c6dc129880c1a488",
+          "proposal_84e00b4a96ba7d7ea24f",
+          "proposal_c1b9d46b2c6c5174dd66",
+          "proposal_c1d83890a0de45b7cdeb",
+          "proposal_58d532097c071cbaccbd",
+          "proposal_a893160d2dd516b6f7a9",
+          "proposal_0acac80821494f308869",
+          "proposal_6f64c1fb55272b638216",
+          "proposal_1c257f2761050eb71b01",
+          "proposal_9e152d5ff8f0a92ac34a",
+          "proposal_a885e86cf1f0de238d80",
+          "proposal_a417a2cd52dcfd1ee0a9",
+          "proposal_a9a0bb3444f25c286b05"
+        ]
+      },
+      {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "target_classes": [
+          "door"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          2382,
+          1684
+        ],
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0",
+        "proposal_ids": [
+          "proposal_f8f182b11a4672bd7747",
+          "proposal_af65bc8a08849a87c1b0",
+          "proposal_e592eb0ec9e2d67ffe39",
+          "proposal_672eb5482a2aa925a9d3",
+          "proposal_9f240b356a886f86d3a9",
+          "proposal_a897904cc3cc55acd54b",
+          "proposal_24527d529da5c7cb9075",
+          "proposal_fb36bebc991f7a5963b4",
+          "proposal_8fde0af95be79abd90f2",
+          "proposal_32fd864efe01682696c9",
+          "proposal_9c2b1e03e7ef3b7539a2",
+          "proposal_4cc8edc8a929ad4f28cf",
+          "proposal_a15dfd39625613eeaeb3",
+          "proposal_b2de060424ff98fc7b11",
+          "proposal_0791ca72e3e043405328",
+          "proposal_51e07bf5087fc99f683e",
+          "proposal_ae280c9e54b419129983",
+          "proposal_e274a7d9baecc7489181",
+          "proposal_e3b9601e5e4530e2f348",
+          "proposal_ffca71b1539f01f4d84a",
+          "proposal_662aaf0c50d78dc764b1",
+          "proposal_b10e846f175d5f513fcc",
+          "proposal_1ad9cb3e8e80463a0961",
+          "proposal_9e4449e4cb1256228e11",
+          "proposal_09d07d344f5f204f471a",
+          "proposal_95faa39af135163750e2",
+          "proposal_15af2d546dea02785cdb",
+          "proposal_e6363b33bea409a1b5bc",
+          "proposal_df7e5d9ca6599241d24c",
+          "proposal_97a322d39a39aa8cc568",
+          "proposal_2f0db6931c7ca1f0780d",
+          "proposal_914cd00a8784526790b4",
+          "proposal_1b3fbc3b2495e9d160e3",
+          "proposal_011d96faad60e855d59e",
+          "proposal_32fa4481309073e8eb49",
+          "proposal_d24fa7f06cec4507d88d",
+          "proposal_8047fc832a0de1d100f7",
+          "proposal_9f63bec7f439e0eb56b7",
+          "proposal_ac3868de6925de21ede6",
+          "proposal_f8529c30f5092bfb56e4",
+          "proposal_99d92c7ef9a08c52f83d",
+          "proposal_a07df5816b4fef6e581c"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_cfee80d2da7e1c1c5b0c",
+        "proposal_ebee6a6127bd9eeea625",
+        "proposal_5a0b4f995c534ae86d98",
+        "proposal_674dea739ee09b5db40c",
+        "proposal_bc0402554f797209adca",
+        "proposal_8ab412da6f851ad25907",
+        "proposal_b00c240ce5ed7810f994",
+        "proposal_8e89b99fffffab468af9",
+        "proposal_ff9eeebc4ca662b553e1",
+        "proposal_814462b3610c80f076bc",
+        "proposal_cf56459ec17130db5960",
+        "proposal_a0cf2ad2b0699d0c50e3",
+        "proposal_e08e6d30ffbb58f64a3d",
+        "proposal_8c0e5bb2a2c6c33dad63",
+        "proposal_4dd4da5cf91d7cfaac0e",
+        "proposal_ed570f0ebfd91ce08e3c",
+        "proposal_db97229e58efcdcd049f",
+        "proposal_1053735f9edd17778685",
+        "proposal_1b8b92a43320b975a8dc",
+        "proposal_f0dc8221c0e3c7a35488",
+        "proposal_8f875c9915603825145f",
+        "proposal_aab0a8e7f929e14a6877",
+        "proposal_c37ee6cf1c84a52b4ce8",
+        "proposal_b3d2bc04cd00537791aa",
+        "proposal_fdd0c6dc129880c1a488",
+        "proposal_84e00b4a96ba7d7ea24f",
+        "proposal_c1b9d46b2c6c5174dd66",
+        "proposal_c1d83890a0de45b7cdeb",
+        "proposal_58d532097c071cbaccbd",
+        "proposal_a893160d2dd516b6f7a9",
+        "proposal_0acac80821494f308869",
+        "proposal_6f64c1fb55272b638216",
+        "proposal_1c257f2761050eb71b01",
+        "proposal_9e152d5ff8f0a92ac34a",
+        "proposal_a885e86cf1f0de238d80",
+        "proposal_a417a2cd52dcfd1ee0a9",
+        "proposal_a9a0bb3444f25c286b05",
+        "proposal_f8f182b11a4672bd7747",
+        "proposal_af65bc8a08849a87c1b0",
+        "proposal_e592eb0ec9e2d67ffe39",
+        "proposal_672eb5482a2aa925a9d3",
+        "proposal_9f240b356a886f86d3a9",
+        "proposal_a897904cc3cc55acd54b",
+        "proposal_24527d529da5c7cb9075",
+        "proposal_fb36bebc991f7a5963b4",
+        "proposal_8fde0af95be79abd90f2",
+        "proposal_32fd864efe01682696c9",
+        "proposal_9c2b1e03e7ef3b7539a2",
+        "proposal_4cc8edc8a929ad4f28cf",
+        "proposal_a15dfd39625613eeaeb3",
+        "proposal_b2de060424ff98fc7b11",
+        "proposal_0791ca72e3e043405328",
+        "proposal_51e07bf5087fc99f683e",
+        "proposal_ae280c9e54b419129983",
+        "proposal_e274a7d9baecc7489181",
+        "proposal_e3b9601e5e4530e2f348",
+        "proposal_ffca71b1539f01f4d84a",
+        "proposal_662aaf0c50d78dc764b1",
+        "proposal_b10e846f175d5f513fcc",
+        "proposal_1ad9cb3e8e80463a0961",
+        "proposal_9e4449e4cb1256228e11",
+        "proposal_09d07d344f5f204f471a",
+        "proposal_95faa39af135163750e2",
+        "proposal_15af2d546dea02785cdb",
+        "proposal_e6363b33bea409a1b5bc",
+        "proposal_df7e5d9ca6599241d24c",
+        "proposal_97a322d39a39aa8cc568",
+        "proposal_2f0db6931c7ca1f0780d",
+        "proposal_914cd00a8784526790b4",
+        "proposal_1b3fbc3b2495e9d160e3",
+        "proposal_011d96faad60e855d59e",
+        "proposal_32fa4481309073e8eb49",
+        "proposal_d24fa7f06cec4507d88d",
+        "proposal_8047fc832a0de1d100f7",
+        "proposal_9f63bec7f439e0eb56b7",
+        "proposal_ac3868de6925de21ede6",
+        "proposal_f8529c30f5092bfb56e4",
+        "proposal_99d92c7ef9a08c52f83d",
+        "proposal_a07df5816b4fef6e581c"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-8a0d0164eb6a17bc6c8accf0",
+        "view-911dac67b50b2ab8370c1850",
+        "view-44c9d9eabea3df00fbd56d8c",
+        "view-27683350f711b119050af300",
+        "view-fbb25b29daa93ffef9f56a3d",
+        "view-6a64652f8c0ef650c277a29b",
+        "view-a2faf7f6e030d545590badd1"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4
+      },
+      "vista_views_used": 6,
+      "sources": [
+        {
+          "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+          "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+          "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+          "width": 2382,
+          "height": 1684,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df"
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "object_classes": [
+          "door"
+        ],
+        "description": "door"
+      },
+      "coverage_plan": {
+        "plan_submitted": false,
+        "regions": [
+          {
+            "id": "sheet",
+            "name": "Host-defined whole-page scope",
+            "region": [
+              0,
+              0,
+              2382,
+              1684
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+        "scope_origin": "Host whole-page scope; no explicit model planning step"
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": false,
+      "regions": [
+        {
+          "id": "sheet",
+          "name": "Host-defined whole-page scope",
+          "region": [
+            0,
+            0,
+            2382,
+            1684
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+      "scope_origin": "Host whole-page scope; no explicit model planning step"
+    },
+    "evidence_views": {
+      "view-8a0d0164eb6a17bc6c8accf0": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 2382,
+        "height": 1684,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-8a0d0164eb6a17bc6c8accf0"
+      },
+      "view-911dac67b50b2ab8370c1850": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1150,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.35625,
+          "scale_y": 0.3565217391304348,
+          "origin_x": 650,
+          "origin_y": 340
+        },
+        "image_sha256": "4563e0f080bdeb2fb5b628481161ab04caac0273f38bbe2cf53d030d0f9fc5c0",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-911dac67b50b2ab8370c1850"
+      },
+      "view-44c9d9eabea3df00fbd56d8c": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1171,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.35,
+          "scale_y": 0.35012809564474806,
+          "origin_x": 1200,
+          "origin_y": 340
+        },
+        "image_sha256": "8f42740936c2f604fc7bf6f603da2df290a2ccab8417876feefa3bd4d0d1ccd9",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-44c9d9eabea3df00fbd56d8c"
+      },
+      "view-27683350f711b119050af300": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1138,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.36875,
+          "scale_y": 0.36906854130052724,
+          "origin_x": 650,
+          "origin_y": 700
+        },
+        "image_sha256": "4547fb172f9fc63f9b9c24a0817c59d920c6f82f20bee94947a4a6969eeab88a",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-27683350f711b119050af300"
+      },
+      "view-fbb25b29daa93ffef9f56a3d": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1158,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.3625,
+          "scale_y": 0.3626943005181347,
+          "origin_x": 1180,
+          "origin_y": 700
+        },
+        "image_sha256": "ca2038df43feadbf6daf9e3113bde2c608204be2a0fea2e93c7d2543c5382d98",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-fbb25b29daa93ffef9f56a3d"
+      },
+      "view-6a64652f8c0ef650c277a29b": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1488,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.26875,
+          "scale_y": 0.26881720430107525,
+          "origin_x": 960,
+          "origin_y": 560
+        },
+        "image_sha256": "29ddd1232e2840901d497be5fc6a6ec1620443142d11a08e3842a33a8c92d05e",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-6a64652f8c0ef650c277a29b"
+      },
+      "view-a2faf7f6e030d545590badd1": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "source_sha256": "a5bc9794296f8ea665a88198866f9314637c94b26214b6f9b8fd248268f1174e",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1131,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.48875,
+          "scale_y": 1.48894783377542,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "ac2940d375ce665d7c7c4d40322ae4d08ff8d2371e899e04e896429e58f77de8",
+        "pdf_page": 0,
+        "pdf_sha256": "1feb02757de177690332d96b89289dcb44debf2fc8c25ad29c3b683c6dbf10df",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-a2faf7f6e030d545590badd1"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 228.5774774630554,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-879fb85aa5fb3a8ba8a02ac5",
+        "target_classes": [
+          "door"
+        ],
+        "description": "door",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": false,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

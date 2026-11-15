@@ -1,0 +1,797 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "object_class": "bathing",
+        "object_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "count": 2,
+        "accepted_proposal_ids": [
+          "proposal_0554ced64a493571e1e1",
+          "proposal_41cad3a3024bbda08f3a"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 2,
+    "accepted_proposal_ids": [
+      "proposal_0554ced64a493571e1e1",
+      "proposal_41cad3a3024bbda08f3a"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_5b707016ba06431d2bb4",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          22.14375114440918,
+          14.131416320800781,
+          105.70362091064453,
+          53.54595184326172
+        ],
+        "view_box_xyxy": [
+          267.1437511444092,
+          39.13141632080078,
+          350.70362091064453,
+          78.54595184326172
+        ],
+        "native_box_xyxy": [
+          267.1437511444092,
+          39.13141632080078,
+          350.70362091064453,
+          78.54595184326172
+        ],
+        "confidence": 0.39326852560043335,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_49fab27863ea07042f74",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          82.0,
+          171.0,
+          312.0,
+          815.0
+        ],
+        "view_box_xyxy": [
+          255.66,
+          54.925,
+          285.56,
+          167.625
+        ],
+        "native_box_xyxy": [
+          255.66,
+          54.925,
+          285.56,
+          167.625
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_41cad3a3024bbda08f3a",
+        "label": "shower",
+        "raw_box_xyxy": [
+          285.0,
+          275.0,
+          835.0,
+          815.0
+        ],
+        "view_box_xyxy": [
+          267.1,
+          136.5,
+          300.1,
+          168.9
+        ],
+        "native_box_xyxy": [
+          267.1,
+          136.5,
+          300.1,
+          168.9
+        ],
+        "confidence": 0.45,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_1b77a7fcb6372532105c",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          18.039112091064453,
+          0.15896379947662354,
+          24.27846336364746,
+          13.029879570007324
+        ],
+        "view_box_xyxy": [
+          268.03911209106445,
+          120.15896379947662,
+          274.27846336364746,
+          133.02987957000732
+        ],
+        "native_box_xyxy": [
+          268.03911209106445,
+          120.15896379947662,
+          274.27846336364746,
+          133.02987957000732
+        ],
+        "confidence": 0.5404388308525085,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_c1a166866e099c8d10e3",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          28.188833236694336,
+          0.0,
+          46.457916259765625,
+          11.23843002319336
+        ],
+        "view_box_xyxy": [
+          278.18883323669434,
+          120.0,
+          296.4579162597656,
+          131.23843002319336
+        ],
+        "native_box_xyxy": [
+          278.18883323669434,
+          120.0,
+          296.4579162597656,
+          131.23843002319336
+        ],
+        "confidence": 0.4668455719947815,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": true,
+        "requires_wider_inspection": true,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_d4eca47953bdc6070c18",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          26.307249069213867,
+          0.03298938274383545,
+          47.99571228027344,
+          11.669748306274414
+        ],
+        "view_box_xyxy": [
+          276.30724906921387,
+          120.03298938274384,
+          297.99571228027344,
+          131.6697483062744
+        ],
+        "native_box_xyxy": [
+          276.30724906921387,
+          120.03298938274384,
+          297.99571228027344,
+          131.6697483062744
+        ],
+        "confidence": 0.3090237081050873,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_fc99c6ee81d6bf52a9dc",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          27.317020416259766,
+          0.0388026237487793,
+          48.08258056640625,
+          12.44674301147461
+        ],
+        "view_box_xyxy": [
+          277.31702041625977,
+          120.03880262374878,
+          298.08258056640625,
+          132.4467430114746
+        ],
+        "native_box_xyxy": [
+          277.31702041625977,
+          120.03880262374878,
+          298.08258056640625,
+          132.4467430114746
+        ],
+        "confidence": 0.25982561707496643,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_4dd33a7d90654831c950",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          286.0,
+          274.0,
+          833.0,
+          810.0
+        ],
+        "view_box_xyxy": [
+          267.16,
+          136.44,
+          299.98,
+          168.6
+        ],
+        "native_box_xyxy": [
+          267.16,
+          136.44,
+          299.98,
+          168.6
+        ],
+        "confidence": 0.3,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_cf7f804845c29140c2a5",
+        "label": "shower",
+        "raw_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "view_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "native_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "confidence": 0.7310585379600525,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_63ca28c5b3333b5db028",
+        "label": "shower",
+        "raw_box_xyxy": [
+          351.0,
+          80.0,
+          463.0,
+          163.0
+        ],
+        "view_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.88,
+          79.218
+        ],
+        "native_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.88,
+          79.218
+        ],
+        "confidence": 0.75,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_0554ced64a493571e1e1",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "view_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "native_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "confidence": 0.8933094143867493,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_324402cfe7a215c9b6e5",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          351.0,
+          80.0,
+          463.0,
+          164.0
+        ],
+        "view_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.88,
+          79.704
+        ],
+        "native_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.88,
+          79.704
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "One bathtub and one separately drawn shower are present in the bathroom; duplicate and mislabeled proposals were rejected."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          245,
+          25,
+          375,
+          200
+        ],
+        "view_id": "view-1d2d16e462947314219887be",
+        "proposal_ids": [
+          "proposal_5b707016ba06431d2bb4",
+          "proposal_49fab27863ea07042f74"
+        ]
+      },
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          250,
+          120,
+          310,
+          180
+        ],
+        "view_id": "view-1d2d16e462947314219887be",
+        "proposal_ids": [
+          "proposal_41cad3a3024bbda08f3a",
+          "proposal_1b77a7fcb6372532105c",
+          "proposal_c1a166866e099c8d10e3",
+          "proposal_d4eca47953bdc6070c18",
+          "proposal_fc99c6ee81d6bf52a9dc",
+          "proposal_4dd33a7d90654831c950"
+        ]
+      },
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          760,
+          486
+        ],
+        "view_id": "view-1d2d16e462947314219887be",
+        "proposal_ids": [
+          "proposal_cf7f804845c29140c2a5",
+          "proposal_63ca28c5b3333b5db028",
+          "proposal_0554ced64a493571e1e1",
+          "proposal_324402cfe7a215c9b6e5"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_5b707016ba06431d2bb4",
+        "proposal_49fab27863ea07042f74",
+        "proposal_41cad3a3024bbda08f3a",
+        "proposal_1b77a7fcb6372532105c",
+        "proposal_c1a166866e099c8d10e3",
+        "proposal_d4eca47953bdc6070c18",
+        "proposal_fc99c6ee81d6bf52a9dc",
+        "proposal_4dd33a7d90654831c950",
+        "proposal_cf7f804845c29140c2a5",
+        "proposal_63ca28c5b3333b5db028",
+        "proposal_0554ced64a493571e1e1",
+        "proposal_324402cfe7a215c9b6e5"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-1d2d16e462947314219887be",
+        "view-9883f7c43a454afa9c1c2919",
+        "view-c2fb901e52e6d2eabc882754"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 0,
+        "read_pdf_text": 4
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-372fa21c800cac6f15ead6a5",
+          "source_id": "page-372fa21c800cac6f15ead6a5",
+          "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+          "width": 760,
+          "height": 486,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "object_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "description": "bathing"
+      },
+      "coverage_plan": {
+        "plan_submitted": false,
+        "regions": [
+          {
+            "id": "sheet",
+            "name": "Host-defined whole-page scope",
+            "region": [
+              0,
+              0,
+              760,
+              486
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+        "scope_origin": "Host whole-page scope; no explicit model planning step"
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": false,
+      "regions": [
+        {
+          "id": "sheet",
+          "name": "Host-defined whole-page scope",
+          "region": [
+            0,
+            0,
+            760,
+            486
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+      "scope_origin": "Host whole-page scope; no explicit model planning step"
+    },
+    "evidence_views": {
+      "view-1d2d16e462947314219887be": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 760,
+        "height": 486,
+        "original_width": 760,
+        "original_height": 486,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be"
+      },
+      "view-9883f7c43a454afa9c1c2919": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1188,
+        "height": 1600,
+        "original_width": 760,
+        "original_height": 486,
+        "transform": {
+          "scale_x": 0.10942760942760943,
+          "scale_y": 0.109375,
+          "origin_x": 245,
+          "origin_y": 25
+        },
+        "image_sha256": "01f9d0b796fb3b58cc456b6ba471a443eaa609cce549f428f0cab683644f66e0",
+        "view_id": "view-9883f7c43a454afa9c1c2919"
+      },
+      "view-c2fb901e52e6d2eabc882754": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1023,
+        "original_width": 760,
+        "original_height": 486,
+        "transform": {
+          "scale_x": 0.475,
+          "scale_y": 0.4750733137829912,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "ec8ceb6f1ea7e1ae3d8c00f6f175915b5acbd3955680e5adfe731b7baaf504ba",
+        "view_id": "view-c2fb901e52e6d2eabc882754"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 231.32055419590324,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "description": "bathing",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": false,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

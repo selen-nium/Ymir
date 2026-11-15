@@ -1,0 +1,3407 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "text",
+        "value": "Smiley West (terraced houses) \u2014 Grundriss: EG",
+        "unit": null,
+        "evidence_ids": [
+          "text-40029ac170331bcf2baf95e5"
+        ],
+        "description": "Sheet title confirms the supplied page is the EG (ground floor) plan of the Smiley West terraced houses, matching the IFC storey named 'EG' used for the quantity.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      },
+      {
+        "kind": "text",
+        "value": "Ma\u00dfstab 1:100 \u00b7 Schnitth\u00f6he 1.20 m \u00fcber Geschossebene \u00b7 Aus IFC erzeugt (AC-20-Smiley-West-10-Bldg.ifc, IfcOpenShell IfcConvert 0.9.0)",
+        "unit": null,
+        "evidence_ids": [
+          "text-1936e76ac55ad8f51c5b629c"
+        ],
+        "description": "States the sheet is generated from the IFC model; being a 1.20 m horizontal section at 1:100 the drawing cannot itself establish net slab volumes, so the total is taken from the IFC measurement only.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "Coverage gap resolved: exactly one complete measurement is selected for the requested total \u2014 IfcSlab net_geometry volume on storey EG (GlobalId 2aIWPvOfn1XvF_7jNsKTBw), 104.63001763356789 m\u00b3 (\u2248104.63 m\u00b3).",
+      "Completeness: model_inventory reports 40 IfcSlab elements on EG and the measurement reports measured_elements 40 of expected 40 with complete=true and no failures, so this is a total, not a partial element sum.",
+      "Basis is computed IFC net solid geometry with represented openings subtracted, not the plan image, not a printed area, and not an image-inferred thickness.",
+      "An author-reported BaseQuantities NetVolume sum agreed with the geometric total, but it is a separate method and is intentionally excluded from the selected measurement_ids; it appears only as corroboration.",
+      "Scope: only the single supplied page (page-931df9023ee710e64a4d5a52) and the registered source ifc-26734e67bdc0fd2ab30cb560 were used; no other storeys or sheets were inspected.",
+      "No object detectors or room polygons were needed, since the question is an IFC volume quantity rather than a plan-image count or room set."
+    ],
+    "text_associations": [
+      {
+        "text_id": "text-5ecd618528f251d6bdf62cf1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-65285ef2bc6acb2a604c6380",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-c476ea10f9ebed7cd44682e6",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-e6113adaa928dc3447ad564a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-40855b498c73861a4010ef51",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-5a20961fc574b8e9bcc29966",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-e35b28aecc000e7804e094cc",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-f86402749994d4205d009150",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-af2ef753bee47dd73298d7ba",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-fd457f0b5e10fc9750fdf6b3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-05e3f6f80f7f9809d6499765",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-7c521d11c5d9cb84512fd46a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-dfd359aab67b9235fef6856a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-026ff9aaf13b1978d18e0844",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-8bcb37d94e39bd445f2c6011",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-e69de1bf76cd83172779b2e9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-32d887d794e363f48e21a14e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-3f71a297e53028756f955ee3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-ebb4aacbc3192a09b117e6c4",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-1b68fd98d038b39d8c62e3de",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-530e84c5b207af20fee6dedc",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-b4fd49bb2f7b8a81da4d67f3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-fccdd24d365aeb74da589f0c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-d99a6e9e6d2fa8e0e00f14e7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-facafb3cc313bc19e9f70f83",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-7bcea354518a4a173c4ad391",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-2bc017c8cf8d0646cb7b3222",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-ff09466ff1dae1647d9b72dd",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-6c9cfaa6b130345fd8cd2c31",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-7430c564f60c15f3fc9902e1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-f1bdbb466bfd19d147c3bad0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-bbe9c1ebbd2b1982fc6f03b3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-e5b9cc8d41992bb6b55862ac",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-00978a855f5ed11756d26f56",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-81aafb55409e848a092defc7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-5eaa72341d0563667f2d6ae2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-a5aab340d7c49bf56142e7cd",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-d5780678ec3e6ff226ec907c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-182b7972cca231c82fbd6755",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-11dc7704f2dfb98f30e22720",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-c00f68f4133e2dd459c76483",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-9ffdcf88b8f933799fb6827f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-77ea950d53995abe4b8689db",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-83a290ab0ff66e136ce9216d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-91ea76e9f44d8d1fa095fe3f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-91c75733265ed8c6f958bbed",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-82c328cf35a9368be06c19bd",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-594ef0eb9ae9f3ceddd5cd81",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-d15ee841485373d66a505675",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-5d33abe31e8af2245c56dac2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-ce43717070eeef802b44de67",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-f22150ea182936758f9024b0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-b6606614c158bce9ae88357f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-27909a6702839b3cfcb28757",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-c90cfb5a7c8c87b287310a0e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-7951ec0a83c4579046e09d01",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-dafd191986629103260b11c6",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-d89c315d085abc004ff4ebc3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-046e00babb49903a5a38370e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-6675eec6ca331b5c1709a212",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-40029ac170331bcf2baf95e5",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-1936e76ac55ad8f51c5b629c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-4f9144619233b39475401750",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-35031a8d22e8a2fa8a88267f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      },
+      {
+        "text_id": "text-d39e2c66e229a9082ac270b2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-931df9023ee710e64a4d5a52"
+      }
+    ],
+    "text_evidence": [
+      {
+        "id": "text-5ecd618528f251d6bdf62cf1",
+        "text": "WC-05-1",
+        "box": [
+          1997.5748291015625,
+          493.7952880859375,
+          2042.9290771484375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1997.5748291015625,
+          493.7952880859375,
+          2042.9290771484375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-65285ef2bc6acb2a604c6380",
+        "text": "05.1.2",
+        "box": [
+          2004.4913330078125,
+          505.1339111328125,
+          2036.0125732421875,
+          520.713134765625
+        ],
+        "raw_box": [
+          2004.4913330078125,
+          505.1339111328125,
+          2036.0125732421875,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-c476ea10f9ebed7cd44682e6",
+        "text": "WC-03-1",
+        "box": [
+          1146.6142578125,
+          493.7952880859375,
+          1191.968505859375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1146.6142578125,
+          493.7952880859375,
+          1191.968505859375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-e6113adaa928dc3447ad564a",
+        "text": "03.1.2",
+        "box": [
+          1153.53076171875,
+          505.1339111328125,
+          1185.052001953125,
+          520.713134765625
+        ],
+        "raw_box": [
+          1153.53076171875,
+          505.1339111328125,
+          1185.052001953125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-40855b498c73861a4010ef51",
+        "text": "FLUR-02-2",
+        "box": [
+          581.8109741210938,
+          493.7952880859375,
+          637.8803100585938,
+          509.3744812011719
+        ],
+        "raw_box": [
+          581.8109741210938,
+          493.7952880859375,
+          637.8803100585938,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-5a20961fc574b8e9bcc29966",
+        "text": "02.1.3",
+        "box": [
+          594.0850219726562,
+          505.1339111328125,
+          625.6063232421875,
+          520.713134765625
+        ],
+        "raw_box": [
+          594.0850219726562,
+          505.1339111328125,
+          625.6063232421875,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-e35b28aecc000e7804e094cc",
+        "text": "FLUR-05-2",
+        "box": [
+          1858.3089599609375,
+          493.7952880859375,
+          1914.3778076171875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1858.3089599609375,
+          493.7952880859375,
+          1914.3778076171875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-f86402749994d4205d009150",
+        "text": "05.1.3",
+        "box": [
+          1870.5828857421875,
+          505.1339111328125,
+          1902.1038818359375,
+          520.713134765625
+        ],
+        "raw_box": [
+          1870.5828857421875,
+          505.1339111328125,
+          1902.1038818359375,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-af2ef753bee47dd73298d7ba",
+        "text": "FLUR-04-2",
+        "box": [
+          1432.8284912109375,
+          493.7952880859375,
+          1488.8974609375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1432.8284912109375,
+          493.7952880859375,
+          1488.8974609375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-fd457f0b5e10fc9750fdf6b3",
+        "text": "04.1.3",
+        "box": [
+          1445.1024169921875,
+          505.1339111328125,
+          1476.62353515625,
+          520.713134765625
+        ],
+        "raw_box": [
+          1445.1024169921875,
+          505.1339111328125,
+          1476.62353515625,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-05e3f6f80f7f9809d6499765",
+        "text": "WC-04-1",
+        "box": [
+          1572.0946044921875,
+          493.7952880859375,
+          1617.44873046875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1572.0946044921875,
+          493.7952880859375,
+          1617.44873046875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-7c521d11c5d9cb84512fd46a",
+        "text": "04.1.2",
+        "box": [
+          1579.01123046875,
+          505.1339111328125,
+          1610.5323486328125,
+          520.713134765625
+        ],
+        "raw_box": [
+          1579.01123046875,
+          505.1339111328125,
+          1610.5323486328125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-dfd359aab67b9235fef6856a",
+        "text": "Flur-03-2",
+        "box": [
+          1012.3880004882812,
+          493.7952880859375,
+          1058.3773193359375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          1012.3880004882812,
+          493.7952880859375,
+          1058.3773193359375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-026ff9aaf13b1978d18e0844",
+        "text": "03.1.3",
+        "box": [
+          1019.6220092773438,
+          505.1339111328125,
+          1051.143310546875,
+          520.713134765625
+        ],
+        "raw_box": [
+          1019.6220092773438,
+          505.1339111328125,
+          1051.143310546875,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-8bcb37d94e39bd445f2c6011",
+        "text": "Flur-01-2",
+        "box": [
+          161.42735290527344,
+          493.7952880859375,
+          207.41665649414062,
+          509.3744812011719
+        ],
+        "raw_box": [
+          161.42735290527344,
+          493.7952880859375,
+          207.41665649414062,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-e69de1bf76cd83172779b2e9",
+        "text": "01.1.3",
+        "box": [
+          168.66139221191406,
+          505.1339111328125,
+          200.1826171875,
+          520.713134765625
+        ],
+        "raw_box": [
+          168.66139221191406,
+          505.1339111328125,
+          200.1826171875,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-32d887d794e363f48e21a14e",
+        "text": "WOHNEN / KOCHEN-05-1",
+        "box": [
+          1916.6685791015625,
+          304.270751953125,
+          2052.742919921875,
+          319.8499450683594
+        ],
+        "raw_box": [
+          1916.6685791015625,
+          304.270751953125,
+          2052.742919921875,
+          319.8499450683594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-3f71a297e53028756f955ee3",
+        "text": "05.1.1",
+        "box": [
+          1968.9449462890625,
+          315.609375,
+          2000.4661865234375,
+          331.1885681152344
+        ],
+        "raw_box": [
+          1968.9449462890625,
+          315.609375,
+          2000.4661865234375,
+          331.1885681152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-ebb4aacbc3192a09b117e6c4",
+        "text": "WOHNEN / KOCHEN-02-1",
+        "box": [
+          640.1707153320312,
+          304.270751953125,
+          776.2450561523438,
+          319.8499450683594
+        ],
+        "raw_box": [
+          640.1707153320312,
+          304.270751953125,
+          776.2450561523438,
+          319.8499450683594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-1b68fd98d038b39d8c62e3de",
+        "text": "02.1.1",
+        "box": [
+          692.447265625,
+          315.609375,
+          723.9685668945312,
+          331.1885681152344
+        ],
+        "raw_box": [
+          692.447265625,
+          315.609375,
+          723.9685668945312,
+          331.1885681152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-530e84c5b207af20fee6dedc",
+        "text": "WC-01-1",
+        "box": [
+          295.653564453125,
+          493.7952880859375,
+          341.00787353515625,
+          509.3744812011719
+        ],
+        "raw_box": [
+          295.653564453125,
+          493.7952880859375,
+          341.00787353515625,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-b4fd49bb2f7b8a81da4d67f3",
+        "text": "01.1.2",
+        "box": [
+          302.57012939453125,
+          505.1339111328125,
+          334.09136962890625,
+          520.713134765625
+        ],
+        "raw_box": [
+          302.57012939453125,
+          505.1339111328125,
+          334.09136962890625,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-fccdd24d365aeb74da589f0c",
+        "text": "WOHNEN / KOCHEN-04-1",
+        "box": [
+          1491.18798828125,
+          304.3275146484375,
+          1627.262451171875,
+          319.9067077636719
+        ],
+        "raw_box": [
+          1491.18798828125,
+          304.3275146484375,
+          1627.262451171875,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-d99a6e9e6d2fa8e0e00f14e7",
+        "text": "04.1.1",
+        "box": [
+          1543.464599609375,
+          315.6661376953125,
+          1574.98583984375,
+          331.2453308105469
+        ],
+        "raw_box": [
+          1543.464599609375,
+          315.6661376953125,
+          1574.98583984375,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-facafb3cc313bc19e9f70f83",
+        "text": "WOHNEN / KOCHEN-03-1",
+        "box": [
+          1065.707763671875,
+          304.3275146484375,
+          1201.7821044921875,
+          319.9067077636719
+        ],
+        "raw_box": [
+          1065.707763671875,
+          304.3275146484375,
+          1201.7821044921875,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-7bcea354518a4a173c4ad391",
+        "text": "03.1.1",
+        "box": [
+          1117.984375,
+          315.6661376953125,
+          1149.5054931640625,
+          331.2453308105469
+        ],
+        "raw_box": [
+          1117.984375,
+          315.6661376953125,
+          1149.5054931640625,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-2bc017c8cf8d0646cb7b3222",
+        "text": "WOHNEN / KOCHEN-01-1",
+        "box": [
+          214.7470245361328,
+          304.3275146484375,
+          350.82135009765625,
+          319.9067077636719
+        ],
+        "raw_box": [
+          214.7470245361328,
+          304.3275146484375,
+          350.82135009765625,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-ff09466ff1dae1647d9b72dd",
+        "text": "01.1.1",
+        "box": [
+          267.0235595703125,
+          315.6661376953125,
+          298.54486083984375,
+          331.2453308105469
+        ],
+        "raw_box": [
+          267.0235595703125,
+          315.6661376953125,
+          298.54486083984375,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-6c9cfaa6b130345fd8cd2c31",
+        "text": "WC-02-1",
+        "box": [
+          721.1339111328125,
+          493.7952880859375,
+          766.4882202148438,
+          509.3744812011719
+        ],
+        "raw_box": [
+          721.1339111328125,
+          493.7952880859375,
+          766.4882202148438,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-7430c564f60c15f3fc9902e1",
+        "text": "02.1.2",
+        "box": [
+          728.0504150390625,
+          505.1339111328125,
+          759.5717163085938,
+          520.713134765625
+        ],
+        "raw_box": [
+          728.0504150390625,
+          505.1339111328125,
+          759.5717163085938,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-f1bdbb466bfd19d147c3bad0",
+        "text": "WC-10-1",
+        "box": [
+          4124.9765625,
+          493.7952880859375,
+          4170.3310546875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          4124.9765625,
+          493.7952880859375,
+          4170.3310546875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-bbe9c1ebbd2b1982fc6f03b3",
+        "text": "10.1.2",
+        "box": [
+          4131.89306640625,
+          505.1339111328125,
+          4163.41455078125,
+          520.713134765625
+        ],
+        "raw_box": [
+          4131.89306640625,
+          505.1339111328125,
+          4163.41455078125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-e5b9cc8d41992bb6b55862ac",
+        "text": "WC-08-1",
+        "box": [
+          3274.015869140625,
+          493.7952880859375,
+          3319.3701171875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          3274.015869140625,
+          493.7952880859375,
+          3319.3701171875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-00978a855f5ed11756d26f56",
+        "text": "08.1.2",
+        "box": [
+          3280.932373046875,
+          505.1339111328125,
+          3312.453857421875,
+          520.713134765625
+        ],
+        "raw_box": [
+          3280.932373046875,
+          505.1339111328125,
+          3312.453857421875,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-81aafb55409e848a092defc7",
+        "text": "FLUR-07-2",
+        "box": [
+          2709.212646484375,
+          493.7952880859375,
+          2765.28173828125,
+          509.3744812011719
+        ],
+        "raw_box": [
+          2709.212646484375,
+          493.7952880859375,
+          2765.28173828125,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-5eaa72341d0563667f2d6ae2",
+        "text": "07.1.3",
+        "box": [
+          2721.486328125,
+          505.1339111328125,
+          2753.0078125,
+          520.713134765625
+        ],
+        "raw_box": [
+          2721.486328125,
+          505.1339111328125,
+          2753.0078125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-a5aab340d7c49bf56142e7cd",
+        "text": "FLUR-10-2",
+        "box": [
+          3985.710693359375,
+          493.7952880859375,
+          4041.779541015625,
+          509.3744812011719
+        ],
+        "raw_box": [
+          3985.710693359375,
+          493.7952880859375,
+          4041.779541015625,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-d5780678ec3e6ff226ec907c",
+        "text": "10.1.3",
+        "box": [
+          3997.984130859375,
+          505.1339111328125,
+          4029.505615234375,
+          520.713134765625
+        ],
+        "raw_box": [
+          3997.984130859375,
+          505.1339111328125,
+          4029.505615234375,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-182b7972cca231c82fbd6755",
+        "text": "FLUR-10-2",
+        "box": [
+          3560.22998046875,
+          493.7952880859375,
+          3616.299072265625,
+          509.3744812011719
+        ],
+        "raw_box": [
+          3560.22998046875,
+          493.7952880859375,
+          3616.299072265625,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-11dc7704f2dfb98f30e22720",
+        "text": "10.1.3",
+        "box": [
+          3572.50390625,
+          505.1339111328125,
+          3604.025390625,
+          520.713134765625
+        ],
+        "raw_box": [
+          3572.50390625,
+          505.1339111328125,
+          3604.025390625,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-c00f68f4133e2dd459c76483",
+        "text": "WC-09-1",
+        "box": [
+          3699.49609375,
+          493.7952880859375,
+          3744.850341796875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          3699.49609375,
+          493.7952880859375,
+          3744.850341796875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-9ffdcf88b8f933799fb6827f",
+        "text": "09.1.2",
+        "box": [
+          3706.41259765625,
+          505.1339111328125,
+          3737.93408203125,
+          520.713134765625
+        ],
+        "raw_box": [
+          3706.41259765625,
+          505.1339111328125,
+          3737.93408203125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-77ea950d53995abe4b8689db",
+        "text": "Flur-08-2",
+        "box": [
+          3139.78955078125,
+          493.7952880859375,
+          3185.77880859375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          3139.78955078125,
+          493.7952880859375,
+          3185.77880859375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-83a290ab0ff66e136ce9216d",
+        "text": "08.1.3",
+        "box": [
+          3147.023681640625,
+          505.1339111328125,
+          3178.545166015625,
+          520.713134765625
+        ],
+        "raw_box": [
+          3147.023681640625,
+          505.1339111328125,
+          3178.545166015625,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-91ea76e9f44d8d1fa095fe3f",
+        "text": "Flur-06-2",
+        "box": [
+          2288.8291015625,
+          493.7952880859375,
+          2334.81787109375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          2288.8291015625,
+          493.7952880859375,
+          2334.81787109375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-91c75733265ed8c6f958bbed",
+        "text": "06.1.3",
+        "box": [
+          2296.06298828125,
+          505.1339111328125,
+          2327.584228515625,
+          520.713134765625
+        ],
+        "raw_box": [
+          2296.06298828125,
+          505.1339111328125,
+          2327.584228515625,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-82c328cf35a9368be06c19bd",
+        "text": "WOHNEN / KOCHEN-5-1",
+        "box": [
+          4047.222412109375,
+          304.270751953125,
+          4176.9921875,
+          319.8499450683594
+        ],
+        "raw_box": [
+          4047.222412109375,
+          304.270751953125,
+          4176.9921875,
+          319.8499450683594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-594ef0eb9ae9f3ceddd5cd81",
+        "text": "5.1.1",
+        "box": [
+          4099.49853515625,
+          315.609375,
+          4124.7158203125,
+          331.1885681152344
+        ],
+        "raw_box": [
+          4099.49853515625,
+          315.609375,
+          4124.7158203125,
+          331.1885681152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-d15ee841485373d66a505675",
+        "text": "WOHNEN / KOCHEN-07-1",
+        "box": [
+          2767.572509765625,
+          304.270751953125,
+          2903.646484375,
+          319.8499450683594
+        ],
+        "raw_box": [
+          2767.572509765625,
+          304.270751953125,
+          2903.646484375,
+          319.8499450683594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-5d33abe31e8af2245c56dac2",
+        "text": "067.1.1",
+        "box": [
+          2816.69677734375,
+          315.609375,
+          2854.5224609375,
+          331.1885681152344
+        ],
+        "raw_box": [
+          2816.69677734375,
+          315.609375,
+          2854.5224609375,
+          331.1885681152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-ce43717070eeef802b44de67",
+        "text": "WC-06-1",
+        "box": [
+          2423.054931640625,
+          493.7952880859375,
+          2468.4091796875,
+          509.3744812011719
+        ],
+        "raw_box": [
+          2423.054931640625,
+          493.7952880859375,
+          2468.4091796875,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-f22150ea182936758f9024b0",
+        "text": "06.1.2",
+        "box": [
+          2429.9716796875,
+          505.1339111328125,
+          2461.49267578125,
+          520.713134765625
+        ],
+        "raw_box": [
+          2429.9716796875,
+          505.1339111328125,
+          2461.49267578125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-b6606614c158bce9ae88357f",
+        "text": "WOHNEN / KOCHEN-09-1",
+        "box": [
+          3618.589599609375,
+          304.3275146484375,
+          3754.663818359375,
+          319.9067077636719
+        ],
+        "raw_box": [
+          3618.589599609375,
+          304.3275146484375,
+          3754.663818359375,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-27909a6702839b3cfcb28757",
+        "text": "09.1.1",
+        "box": [
+          3670.865966796875,
+          315.6661376953125,
+          3702.387451171875,
+          331.2453308105469
+        ],
+        "raw_box": [
+          3670.865966796875,
+          315.6661376953125,
+          3702.387451171875,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-c90cfb5a7c8c87b287310a0e",
+        "text": "WOHNEN / KOCHEN-08-1",
+        "box": [
+          3193.052734375,
+          304.3275146484375,
+          3329.126708984375,
+          319.9067077636719
+        ],
+        "raw_box": [
+          3193.052734375,
+          304.3275146484375,
+          3329.126708984375,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-7951ec0a83c4579046e09d01",
+        "text": "08.1.1",
+        "box": [
+          3245.328857421875,
+          315.6661376953125,
+          3276.8505859375,
+          331.2453308105469
+        ],
+        "raw_box": [
+          3245.328857421875,
+          315.6661376953125,
+          3276.8505859375,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-dafd191986629103260b11c6",
+        "text": "WOHNEN / KOCHEN-06-1",
+        "box": [
+          2342.091796875,
+          304.3275146484375,
+          2478.166259765625,
+          319.9067077636719
+        ],
+        "raw_box": [
+          2342.091796875,
+          304.3275146484375,
+          2478.166259765625,
+          319.9067077636719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-d89c315d085abc004ff4ebc3",
+        "text": "06.1.1",
+        "box": [
+          2394.368408203125,
+          315.6661376953125,
+          2425.8896484375,
+          331.2453308105469
+        ],
+        "raw_box": [
+          2394.368408203125,
+          315.6661376953125,
+          2425.8896484375,
+          331.2453308105469
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-046e00babb49903a5a38370e",
+        "text": "WC-07-1",
+        "box": [
+          2848.535400390625,
+          493.7952880859375,
+          2893.8896484375,
+          509.3744812011719
+        ],
+        "raw_box": [
+          2848.535400390625,
+          493.7952880859375,
+          2893.8896484375,
+          509.3744812011719
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-6675eec6ca331b5c1709a212",
+        "text": "07.1.2",
+        "box": [
+          2855.45166015625,
+          505.1339111328125,
+          2886.97314453125,
+          520.713134765625
+        ],
+        "raw_box": [
+          2855.45166015625,
+          505.1339111328125,
+          2886.97314453125,
+          520.713134765625
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-40029ac170331bcf2baf95e5",
+        "text": "Smiley West (terraced houses) \u2014 Grundriss: EG",
+        "box": [
+          34.0157470703125,
+          665.1210327148438,
+          554.479248046875,
+          696.3475341796875
+        ],
+        "raw_box": [
+          34.0157470703125,
+          665.1210327148438,
+          554.479248046875,
+          696.3475341796875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-1936e76ac55ad8f51c5b629c",
+        "text": "Ma\u00dfstab 1:100 \u00b7 Schnitth\u00f6he 1.20 m \u00fcber Geschossebene \u00b7 Aus IFC erzeugt (AC-20-Smiley-West-10-Bldg.ifc, IfcOpenShell IfcConvert 0.9.0)",
+        "box": [
+          34.0157470703125,
+          708.6896362304688,
+          953.1974487304688,
+          728.9425659179688
+        ],
+        "raw_box": [
+          34.0157470703125,
+          708.6896362304688,
+          953.1974487304688,
+          728.9425659179688
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-4f9144619233b39475401750",
+        "text": "\u00a9 Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples \u00b7 LicenseRef-KIT-unrestricted",
+        "box": [
+          34.0157470703125,
+          739.5589599609375,
+          1063.5361328125,
+          755.13818359375
+        ],
+        "raw_box": [
+          34.0157470703125,
+          739.5589599609375,
+          1063.5361328125,
+          755.13818359375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-35031a8d22e8a2fa8a88267f",
+        "text": "0",
+        "box": [
+          4073.886962890625,
+          616.4502563476562,
+          4080.821533203125,
+          633.58740234375
+        ],
+        "raw_box": [
+          4073.886962890625,
+          616.4502563476562,
+          4080.821533203125,
+          633.58740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      },
+      {
+        "id": "text-d39e2c66e229a9082ac270b2",
+        "text": "5 m",
+        "box": [
+          4350.42333984375,
+          616.4502563476562,
+          4371.21484375,
+          633.58740234375
+        ],
+        "raw_box": [
+          4350.42333984375,
+          616.4502563476562,
+          4371.21484375,
+          633.58740234375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      }
+    ],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_volume",
+        "arguments": {
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+          "element_type": "IfcSlab",
+          "method": "net_geometry"
+        },
+        "result": {
+          "status": "available",
+          "kind": "volume",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+          "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+          "storey_name": "EG",
+          "element_type": "IfcSlab",
+          "method": "net_geometry",
+          "quantity_basis": "computed_geometry",
+          "unit": "m3",
+          "value": 104.63001763356789,
+          "partial_value": 104.63001763356789,
+          "expected_elements": 40,
+          "measured_elements": 40,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "04ZFWWRab21xHi0aVt9nwF",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "0Eih2J3xn6Bv7Qeo9iRSGt",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "0EwxF4nBz6rQtu719baEc0",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+            },
+            {
+              "element_id": "0GJvSj0jnCaefe7DGyDSfw",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+            },
+            {
+              "element_id": "0HvxAVJj1FhBcl$zq4a623",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "0Kiyh1LsHEmReQaFcBwFew",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "0XjBEMX$v2ZAebz1DZa19E",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "0bAnlxgnn7$QfrkDN0StNG",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "0ffWphY4n0ygnxYnVxzZyY",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "0jtwrgS_v8tBez$ygcBSCe",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "0m0KqUhmvAkhKTqnLWckSD",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "0ocgy14eb81xftNXL79upm",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "0zzT6GPozFewRsfhaQb1yq",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "13gl_N7wT0EeW7BqhvNZK6",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "1CQ2RBMBL5_hxIUaOqz2$k",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "1DgRq2uHj0tw7CL6H2nqlL",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "1I0Sj0K1v549rPkKPuCzAy",
+              "value_si": 8.771444949616326,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "a15240d0905d92929cd281206dbed66a6fc5a1f2f85f81fa673ebfaf25231c4e"
+            },
+            {
+              "element_id": "1MJxgvzSjFo8MN2zaZkxgY",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "1PluCqsrDCkhAcCadMoap2",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "1k2K6_J6L73hIYVxvCswuU",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "1x7$gzvVf5Z8aqgznLIOfe",
+              "value_si": 0.5535932393948108,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+            },
+            {
+              "element_id": "22gZP6rxP7RPw4OE82$8xv",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "244ue3rtD9UQz5nr1r8tUH",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+            },
+            {
+              "element_id": "2GlvzXHc9FQuvZMq6ig4MR",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8be19fa62049a11eccaf69594ace2e8cb31ccc4fc14c695b7810a43e28b19618"
+            },
+            {
+              "element_id": "2PrcZqKtbFu9TRbDwNopFW",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "2R1qYwa$zC9f7Ycv2g988Q",
+              "value_si": 8.771445,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "ed7c9c4d2687ccdbf244a915cdb4e698de66728069c21f1b597be6f749720ac0"
+            },
+            {
+              "element_id": "2mW5yxQM9DsOIDhgEWN_Kf",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "2wAXUuqiH0JPiAvmXQ2z1M",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "2wMaYuAFHCVufF32G$ci5V",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "2xKIMEAX90f9Xae_W1$7LA",
+              "value_si": 0.5568,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+            },
+            {
+              "element_id": "30ZXiOcMb5genQip_0pTMX",
+              "value_si": 8.771445,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "5afa3201053f966fd9696b82338f67c752cd0bbd262b618b5f5e1278c02f7307"
+            },
+            {
+              "element_id": "33PetR4nX5RP61eoxdbs5T",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "34a7ezr_X8M9v$Ux70lj48",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+            },
+            {
+              "element_id": "3L3ZHD9W11ce0IBV1YEols",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "3P3dCSfcT519WqbVi1yNgJ",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "3ciEcCQNX55vZIyp7aJqx_",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "3u$LTT4IP8HhVPN6af4IEW",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8be19fa62049a11eccaf69594ace2e8cb31ccc4fc14c695b7810a43e28b19618"
+            },
+            {
+              "element_id": "3uQXfLRwD39hn$ztGVdzE5",
+              "value_si": 8.708355,
+              "vertices": 16,
+              "triangles": 32,
+              "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+            },
+            {
+              "element_id": "3vdsoOLm125vvtS4nROY5J",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            },
+            {
+              "element_id": "3w69W2OpL8wA_o8w6J_nNJ",
+              "value_si": 0.6253265290003467,
+              "vertices": 8,
+              "triangles": 12,
+              "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": true,
+          "length_basis": null,
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-4ba425bf3c79bfb5ac70ac4bcfb0f59ca4e5295fcb4b9de4e84c3b11f216b50a"
+        }
+      },
+      {
+        "tool": "measure_volume",
+        "arguments": {
+          "element_type": "IfcSlab",
+          "method": "source_quantities",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "storey_id": "2aIWPvOfn1XvF_7jNsKTBw"
+        },
+        "result": {
+          "status": "available",
+          "kind": "volume",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+          "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+          "storey_name": "EG",
+          "element_type": "IfcSlab",
+          "method": "source_quantities",
+          "quantity_basis": "source_reported",
+          "unit": "m3",
+          "value": 104.63001764101999,
+          "partial_value": 104.63001764101999,
+          "expected_elements": 40,
+          "measured_elements": 40,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "04ZFWWRab21xHi0aVt9nwF",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 32369,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0Eih2J3xn6Bv7Qeo9iRSGt",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 32275,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0EwxF4nBz6rQtu719baEc0",
+              "value_si": 8.708355,
+              "quantity_entity_id": 59877,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0GJvSj0jnCaefe7DGyDSfw",
+              "value_si": 8.708355,
+              "quantity_entity_id": 60009,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0HvxAVJj1FhBcl$zq4a623",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 33087,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0Kiyh1LsHEmReQaFcBwFew",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 60234,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0XjBEMX$v2ZAebz1DZa19E",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 61480,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0bAnlxgnn7$QfrkDN0StNG",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 32458,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0ffWphY4n0ygnxYnVxzZyY",
+              "value_si": 0.5568,
+              "quantity_entity_id": 32731,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0jtwrgS_v8tBez$ygcBSCe",
+              "value_si": 0.5568,
+              "quantity_entity_id": 32820,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0m0KqUhmvAkhKTqnLWckSD",
+              "value_si": 0.5568,
+              "quantity_entity_id": 32909,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0ocgy14eb81xftNXL79upm",
+              "value_si": 0.5568,
+              "quantity_entity_id": 32553,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "0zzT6GPozFewRsfhaQb1yq",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 32998,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "13gl_N7wT0EeW7BqhvNZK6",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 61035,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1CQ2RBMBL5_hxIUaOqz2$k",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 60946,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1DgRq2uHj0tw7CL6H2nqlL",
+              "value_si": 0.5568,
+              "quantity_entity_id": 60857,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1I0Sj0K1v549rPkKPuCzAy",
+              "value_si": 8.77144494962,
+              "quantity_entity_id": 60145,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.77144494962,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1MJxgvzSjFo8MN2zaZkxgY",
+              "value_si": 0.5568,
+              "quantity_entity_id": 32642,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1PluCqsrDCkhAcCadMoap2",
+              "value_si": 0.5568,
+              "quantity_entity_id": 60768,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1k2K6_J6L73hIYVxvCswuU",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 60412,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "1x7$gzvVf5Z8aqgznLIOfe",
+              "value_si": 0.553593239397,
+              "quantity_entity_id": 60323,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.553593239397,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "22gZP6rxP7RPw4OE82$8xv",
+              "value_si": 0.5568,
+              "quantity_entity_id": 60590,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "244ue3rtD9UQz5nr1r8tUH",
+              "value_si": 8.708355,
+              "quantity_entity_id": 32040,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2GlvzXHc9FQuvZMq6ig4MR",
+              "value_si": 8.708355,
+              "quantity_entity_id": 31776,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2PrcZqKtbFu9TRbDwNopFW",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 61124,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2R1qYwa$zC9f7Ycv2g988Q",
+              "value_si": 8.771445,
+              "quantity_entity_id": 32176,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.771445,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2mW5yxQM9DsOIDhgEWN_Kf",
+              "value_si": 0.5568,
+              "quantity_entity_id": 60679,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2wAXUuqiH0JPiAvmXQ2z1M",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 33565,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2wMaYuAFHCVufF32G$ci5V",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 61391,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "2xKIMEAX90f9Xae_W1$7LA",
+              "value_si": 0.5568,
+              "quantity_entity_id": 60501,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.5568,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "30ZXiOcMb5genQip_0pTMX",
+              "value_si": 8.771445,
+              "quantity_entity_id": 31639,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.771445,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "33PetR4nX5RP61eoxdbs5T",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 33476,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "34a7ezr_X8M9v$Ux70lj48",
+              "value_si": 8.708355,
+              "quantity_entity_id": 31908,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3L3ZHD9W11ce0IBV1YEols",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 33298,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3P3dCSfcT519WqbVi1yNgJ",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 61213,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3ciEcCQNX55vZIyp7aJqx_",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 33387,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3u$LTT4IP8HhVPN6af4IEW",
+              "value_si": 8.708355,
+              "quantity_entity_id": 59745,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3uQXfLRwD39hn$ztGVdzE5",
+              "value_si": 8.708355,
+              "quantity_entity_id": 59609,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 8.708355,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3vdsoOLm125vvtS4nROY5J",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 33204,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            },
+            {
+              "element_id": "3w69W2OpL8wA_o8w6J_nNJ",
+              "value_si": 0.625326529743,
+              "quantity_entity_id": 61302,
+              "quantity_set": "BaseQuantities",
+              "field": "NetVolume",
+              "raw_value": 0.625326529743,
+              "unit": "#15=IfcSIUnit(*,.VOLUMEUNIT.,$,.CUBIC_METRE.)"
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": false,
+          "length_basis": null,
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-864f6d6d73efbe62b4326f86c6371336a77c959b62d667777651096122c4e23e"
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-dc13bc99346fab9f4281e312"
+      ],
+      "calibration_ids": [],
+      "text_ids": [
+        "text-5ecd618528f251d6bdf62cf1",
+        "text-65285ef2bc6acb2a604c6380",
+        "text-c476ea10f9ebed7cd44682e6",
+        "text-e6113adaa928dc3447ad564a",
+        "text-40855b498c73861a4010ef51",
+        "text-5a20961fc574b8e9bcc29966",
+        "text-e35b28aecc000e7804e094cc",
+        "text-f86402749994d4205d009150",
+        "text-af2ef753bee47dd73298d7ba",
+        "text-fd457f0b5e10fc9750fdf6b3",
+        "text-05e3f6f80f7f9809d6499765",
+        "text-7c521d11c5d9cb84512fd46a",
+        "text-dfd359aab67b9235fef6856a",
+        "text-026ff9aaf13b1978d18e0844",
+        "text-8bcb37d94e39bd445f2c6011",
+        "text-e69de1bf76cd83172779b2e9",
+        "text-32d887d794e363f48e21a14e",
+        "text-3f71a297e53028756f955ee3",
+        "text-ebb4aacbc3192a09b117e6c4",
+        "text-1b68fd98d038b39d8c62e3de",
+        "text-530e84c5b207af20fee6dedc",
+        "text-b4fd49bb2f7b8a81da4d67f3",
+        "text-fccdd24d365aeb74da589f0c",
+        "text-d99a6e9e6d2fa8e0e00f14e7",
+        "text-facafb3cc313bc19e9f70f83",
+        "text-7bcea354518a4a173c4ad391",
+        "text-2bc017c8cf8d0646cb7b3222",
+        "text-ff09466ff1dae1647d9b72dd",
+        "text-6c9cfaa6b130345fd8cd2c31",
+        "text-7430c564f60c15f3fc9902e1",
+        "text-f1bdbb466bfd19d147c3bad0",
+        "text-bbe9c1ebbd2b1982fc6f03b3",
+        "text-e5b9cc8d41992bb6b55862ac",
+        "text-00978a855f5ed11756d26f56",
+        "text-81aafb55409e848a092defc7",
+        "text-5eaa72341d0563667f2d6ae2",
+        "text-a5aab340d7c49bf56142e7cd",
+        "text-d5780678ec3e6ff226ec907c",
+        "text-182b7972cca231c82fbd6755",
+        "text-11dc7704f2dfb98f30e22720",
+        "text-c00f68f4133e2dd459c76483",
+        "text-9ffdcf88b8f933799fb6827f",
+        "text-77ea950d53995abe4b8689db",
+        "text-83a290ab0ff66e136ce9216d",
+        "text-91ea76e9f44d8d1fa095fe3f",
+        "text-91c75733265ed8c6f958bbed",
+        "text-82c328cf35a9368be06c19bd",
+        "text-594ef0eb9ae9f3ceddd5cd81",
+        "text-d15ee841485373d66a505675",
+        "text-5d33abe31e8af2245c56dac2",
+        "text-ce43717070eeef802b44de67",
+        "text-f22150ea182936758f9024b0",
+        "text-b6606614c158bce9ae88357f",
+        "text-27909a6702839b3cfcb28757",
+        "text-c90cfb5a7c8c87b287310a0e",
+        "text-7951ec0a83c4579046e09d01",
+        "text-dafd191986629103260b11c6",
+        "text-d89c315d085abc004ff4ebc3",
+        "text-046e00babb49903a5a38370e",
+        "text-6675eec6ca331b5c1709a212",
+        "text-40029ac170331bcf2baf95e5",
+        "text-1936e76ac55ad8f51c5b629c",
+        "text-4f9144619233b39475401750",
+        "text-35031a8d22e8a2fa8a88267f",
+        "text-d39e2c66e229a9082ac270b2"
+      ],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 2,
+        "read_pdf_text": 3,
+        "model_inventory": 3,
+        "measure_length": 4,
+        "measure_volume": 2
+      },
+      "vista_views_used": 0,
+      "sources": [
+        {
+          "page_id": "page-931df9023ee710e64a4d5a52",
+          "source_id": "page-931df9023ee710e64a4d5a52",
+          "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+          "width": 4395,
+          "height": 802,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2"
+        }
+      ],
+      "quantity_measurement_ids": [
+        "quantity-4ba425bf3c79bfb5ac70ac4bcfb0f59ca4e5295fcb4b9de4e84c3b11f216b50a",
+        "quantity-864f6d6d73efbe62b4326f86c6371336a77c959b62d667777651096122c4e23e"
+      ]
+    },
+    "selected_measurements": [
+      {
+        "status": "available",
+        "kind": "volume",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+        "storey_name": "EG",
+        "element_type": "IfcSlab",
+        "method": "net_geometry",
+        "quantity_basis": "computed_geometry",
+        "unit": "m3",
+        "value": 104.63001763356789,
+        "partial_value": 104.63001763356789,
+        "expected_elements": 40,
+        "measured_elements": 40,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "04ZFWWRab21xHi0aVt9nwF",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "0Eih2J3xn6Bv7Qeo9iRSGt",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "0EwxF4nBz6rQtu719baEc0",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+          },
+          {
+            "element_id": "0GJvSj0jnCaefe7DGyDSfw",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+          },
+          {
+            "element_id": "0HvxAVJj1FhBcl$zq4a623",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "0Kiyh1LsHEmReQaFcBwFew",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "0XjBEMX$v2ZAebz1DZa19E",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "0bAnlxgnn7$QfrkDN0StNG",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "0ffWphY4n0ygnxYnVxzZyY",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "0jtwrgS_v8tBez$ygcBSCe",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "0m0KqUhmvAkhKTqnLWckSD",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "0ocgy14eb81xftNXL79upm",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "0zzT6GPozFewRsfhaQb1yq",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "13gl_N7wT0EeW7BqhvNZK6",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "1CQ2RBMBL5_hxIUaOqz2$k",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "1DgRq2uHj0tw7CL6H2nqlL",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "1I0Sj0K1v549rPkKPuCzAy",
+            "value_si": 8.771444949616326,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "a15240d0905d92929cd281206dbed66a6fc5a1f2f85f81fa673ebfaf25231c4e"
+          },
+          {
+            "element_id": "1MJxgvzSjFo8MN2zaZkxgY",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "1PluCqsrDCkhAcCadMoap2",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "1k2K6_J6L73hIYVxvCswuU",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "1x7$gzvVf5Z8aqgznLIOfe",
+            "value_si": 0.5535932393948108,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "b29bbe76565a7a230c7da9cc2cb1acb056094596835b139d90e21e5a5b28ac0a"
+          },
+          {
+            "element_id": "22gZP6rxP7RPw4OE82$8xv",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "244ue3rtD9UQz5nr1r8tUH",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+          },
+          {
+            "element_id": "2GlvzXHc9FQuvZMq6ig4MR",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8be19fa62049a11eccaf69594ace2e8cb31ccc4fc14c695b7810a43e28b19618"
+          },
+          {
+            "element_id": "2PrcZqKtbFu9TRbDwNopFW",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "2R1qYwa$zC9f7Ycv2g988Q",
+            "value_si": 8.771445,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "ed7c9c4d2687ccdbf244a915cdb4e698de66728069c21f1b597be6f749720ac0"
+          },
+          {
+            "element_id": "2mW5yxQM9DsOIDhgEWN_Kf",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "2wAXUuqiH0JPiAvmXQ2z1M",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "2wMaYuAFHCVufF32G$ci5V",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "2xKIMEAX90f9Xae_W1$7LA",
+            "value_si": 0.5568,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "0a7410adc48c9c2d717378e3f27512b060e917676f5e3a4e51c669748590124e"
+          },
+          {
+            "element_id": "30ZXiOcMb5genQip_0pTMX",
+            "value_si": 8.771445,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "5afa3201053f966fd9696b82338f67c752cd0bbd262b618b5f5e1278c02f7307"
+          },
+          {
+            "element_id": "33PetR4nX5RP61eoxdbs5T",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "34a7ezr_X8M9v$Ux70lj48",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+          },
+          {
+            "element_id": "3L3ZHD9W11ce0IBV1YEols",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "3P3dCSfcT519WqbVi1yNgJ",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "3ciEcCQNX55vZIyp7aJqx_",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "3u$LTT4IP8HhVPN6af4IEW",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8be19fa62049a11eccaf69594ace2e8cb31ccc4fc14c695b7810a43e28b19618"
+          },
+          {
+            "element_id": "3uQXfLRwD39hn$ztGVdzE5",
+            "value_si": 8.708355,
+            "vertices": 16,
+            "triangles": 32,
+            "mesh_sha256": "8dd508e4d5fbe32342edd6816b6650c5ce51606a78f89df7249d8e573109cf9d"
+          },
+          {
+            "element_id": "3vdsoOLm125vvtS4nROY5J",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          },
+          {
+            "element_id": "3w69W2OpL8wA_o8w6J_nNJ",
+            "value_si": 0.6253265290003467,
+            "vertices": 8,
+            "triangles": 12,
+            "mesh_sha256": "1ea16c9ecf6bfde408c6e50390f8122fa918b8888bb9951899029199b914aeb3"
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": true,
+        "length_basis": null,
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-4ba425bf3c79bfb5ac70ac4bcfb0f59ca4e5295fcb4b9de4e84c3b11f216b50a"
+      }
+    ],
+    "measurement_ids": [
+      "quantity-4ba425bf3c79bfb5ac70ac4bcfb0f59ca4e5295fcb4b9de4e84c3b11f216b50a"
+    ],
+    "quantity_values": [
+      {
+        "value": 104.63001763356789,
+        "unit": "m3",
+        "kind": "volume",
+        "method": "net_geometry",
+        "quantity_basis": "computed_geometry",
+        "measurement_id": "quantity-4ba425bf3c79bfb5ac70ac4bcfb0f59ca4e5295fcb4b9de4e84c3b11f216b50a",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "2aIWPvOfn1XvF_7jNsKTBw",
+        "element_type": "IfcSlab"
+      }
+    ],
+    "evidence_views": {
+      "view-dc13bc99346fab9f4281e312": {
+        "page_id": "page-931df9023ee710e64a4d5a52",
+        "source_id": "page-931df9023ee710e64a4d5a52",
+        "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4395,
+        "height": 802,
+        "original_width": 4395,
+        "original_height": 802,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+        "pdf_page": 0,
+        "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-dc13bc99346fab9f4281e312"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 50.981057772412896,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  },
+  "cleanup_errors": []
+}

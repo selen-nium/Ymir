@@ -1,0 +1,621 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "object_class": "sink",
+        "object_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "count": 2,
+        "accepted_proposal_ids": [
+          "proposal_d6a06f948a3b5fcdbc31",
+          "proposal_3bca0cf209e599b821e3"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 2,
+    "accepted_proposal_ids": [
+      "proposal_d6a06f948a3b5fcdbc31",
+      "proposal_3bca0cf209e599b821e3"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_d6a06f948a3b5fcdbc31",
+        "label": "sink",
+        "raw_box_xyxy": [
+          342.5771179199219,
+          342.1548767089844,
+          364.3838806152344,
+          357.626953125
+        ],
+        "view_box_xyxy": [
+          342.5771179199219,
+          342.1548767089844,
+          364.3838806152344,
+          357.626953125
+        ],
+        "native_box_xyxy": [
+          342.5771179199219,
+          342.1548767089844,
+          364.3838806152344,
+          357.626953125
+        ],
+        "confidence": 0.8031737804412842,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_3bca0cf209e599b821e3",
+        "label": "sink",
+        "raw_box_xyxy": [
+          79.92555236816406,
+          212.66481018066406,
+          95.17314147949219,
+          224.6973419189453
+        ],
+        "view_box_xyxy": [
+          79.92555236816406,
+          212.66481018066406,
+          95.17314147949219,
+          224.6973419189453
+        ],
+        "native_box_xyxy": [
+          79.92555236816406,
+          212.66481018066406,
+          95.17314147949219,
+          224.6973419189453
+        ],
+        "confidence": 0.7106282711029053,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_d47c63a5d2b3279a516a",
+        "label": "sink",
+        "raw_box_xyxy": [
+          54.02210235595703,
+          341.5167236328125,
+          75.4110336303711,
+          355.7781982421875
+        ],
+        "view_box_xyxy": [
+          54.02210235595703,
+          341.5167236328125,
+          75.4110336303711,
+          355.7781982421875
+        ],
+        "native_box_xyxy": [
+          54.02210235595703,
+          341.5167236328125,
+          75.4110336303711,
+          355.7781982421875
+        ],
+        "confidence": 0.272024542093277,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_e0b495fd57b2d632fb66",
+        "label": "sink",
+        "raw_box_xyxy": [
+          127.00267791748047,
+          59.3070182800293,
+          145.15487670898438,
+          68.70735168457031
+        ],
+        "view_box_xyxy": [
+          505.00267791748047,
+          124.3070182800293,
+          523.1548767089844,
+          133.7073516845703
+        ],
+        "native_box_xyxy": [
+          505.00267791748047,
+          124.3070182800293,
+          523.1548767089844,
+          133.7073516845703
+        ],
+        "confidence": 0.41727152466773987,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_79c362614223b039360c",
+        "label": "sink",
+        "raw_box_xyxy": [
+          94.2673568725586,
+          175.9866943359375,
+          112.49755859375,
+          187.46580505371094
+        ],
+        "view_box_xyxy": [
+          472.2673568725586,
+          240.9866943359375,
+          490.49755859375,
+          252.46580505371094
+        ],
+        "native_box_xyxy": [
+          472.2673568725586,
+          240.9866943359375,
+          490.49755859375,
+          252.46580505371094
+        ],
+        "confidence": 0.40827676653862,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_ccfc49e392c994e57c37",
+        "label": "sink",
+        "raw_box_xyxy": [
+          71.28919982910156,
+          157.0082244873047,
+          89.80101776123047,
+          165.421875
+        ],
+        "view_box_xyxy": [
+          449.28919982910156,
+          222.0082244873047,
+          467.80101776123047,
+          230.421875
+        ],
+        "native_box_xyxy": [
+          449.28919982910156,
+          222.0082244873047,
+          467.80101776123047,
+          230.421875
+        ],
+        "confidence": 0.3007456064224243,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      },
+      {
+        "id": "proposal_01f89ea74c7d253cb451",
+        "label": "sink",
+        "raw_box_xyxy": [
+          94.59469604492188,
+          235.28567504882812,
+          113.39823150634766,
+          252.01121520996094
+        ],
+        "view_box_xyxy": [
+          472.5946960449219,
+          300.2856750488281,
+          491.39823150634766,
+          317.01121520996094
+        ],
+        "native_box_xyxy": [
+          472.5946960449219,
+          300.2856750488281,
+          491.39823150634766,
+          317.01121520996094
+        ],
+        "confidence": 0.29665425419807434,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "page": 0,
+        "query_class": "sink",
+        "requested_class": "sink",
+        "target_classes": [
+          "sink"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "2 total: one kitchen sink unit (double-bowl counted once) and one bathroom wash basin."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "target_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          540,
+          442
+        ],
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "proposal_ids": [
+          "proposal_d6a06f948a3b5fcdbc31",
+          "proposal_3bca0cf209e599b821e3",
+          "proposal_d47c63a5d2b3279a516a"
+        ]
+      },
+      {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "target_classes": [
+          "sink"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          378,
+          65,
+          540,
+          366
+        ],
+        "view_id": "view-040cf530b9db3fd7c0e53f63",
+        "proposal_ids": [
+          "proposal_e0b495fd57b2d632fb66",
+          "proposal_79c362614223b039360c",
+          "proposal_ccfc49e392c994e57c37",
+          "proposal_01f89ea74c7d253cb451"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_d6a06f948a3b5fcdbc31",
+        "proposal_3bca0cf209e599b821e3",
+        "proposal_d47c63a5d2b3279a516a",
+        "proposal_e0b495fd57b2d632fb66",
+        "proposal_79c362614223b039360c",
+        "proposal_ccfc49e392c994e57c37",
+        "proposal_01f89ea74c7d253cb451"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-040cf530b9db3fd7c0e53f63",
+        "view-6900abc1e99422a147d15ece",
+        "view-53cbc9b9bd276fef47c5c016",
+        "view-8128d1fb7781f8995cb77db1",
+        "view-e0af16884ef04c14190783ce",
+        "view-ab84dfc63add27180ebc0f5d"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4,
+        "coverage_plan": 1
+      },
+      "vista_views_used": 5,
+      "sources": [
+        {
+          "page_id": "page-7da6346157b626d7754fa52f",
+          "source_id": "page-7da6346157b626d7754fa52f",
+          "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+          "width": 540,
+          "height": 442,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "object_classes": [
+          "sink"
+        ],
+        "description": "sink"
+      },
+      "coverage_plan": {
+        "plan_submitted": true,
+        "regions": [
+          {
+            "id": "whole",
+            "name": "Entire floor plan and page margins",
+            "region": [
+              0,
+              0,
+              540,
+              442
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": true,
+      "regions": [
+        {
+          "id": "whole",
+          "name": "Entire floor plan and page margins",
+          "region": [
+            0,
+            0,
+            540,
+            442
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+    },
+    "evidence_views": {
+      "view-040cf530b9db3fd7c0e53f63": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 540,
+        "height": 442,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "view_id": "view-040cf530b9db3fd7c0e53f63"
+      },
+      "view-6900abc1e99422a147d15ece": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1309,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 0.3375,
+          "scale_y": 0.33766233766233766,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "0ec096e9c6d32ec980623af4f57fcae1e4629085280090ae63f96f90bc9d88b1",
+        "view_id": "view-6900abc1e99422a147d15ece"
+      },
+      "view-53cbc9b9bd276fef47c5c016": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 977,
+        "height": 1600,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 0.11258955987717502,
+          "scale_y": 0.1125,
+          "origin_x": 39,
+          "origin_y": 185
+        },
+        "image_sha256": "3162f6b804f620a794935707f0fab36e6079ad4308c15a7e8ce3193d000757e6",
+        "view_id": "view-53cbc9b9bd276fef47c5c016"
+      },
+      "view-8128d1fb7781f8995cb77db1": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1591,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 0.11375,
+          "scale_y": 0.11376492771841609,
+          "origin_x": 317,
+          "origin_y": 184
+        },
+        "image_sha256": "782f927124025b98370d587c4c30200bb95a462a5b98146d62c3b50fad0af328",
+        "view_id": "view-8128d1fb7781f8995cb77db1"
+      },
+      "view-e0af16884ef04c14190783ce": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 910,
+        "height": 1600,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 0.17692307692307693,
+          "scale_y": 0.176875,
+          "origin_x": 379,
+          "origin_y": 80
+        },
+        "image_sha256": "686f49df645584714874061fe9eb8cfb85ec8ff237b558105976f5e762f17b88",
+        "view_id": "view-e0af16884ef04c14190783ce"
+      },
+      "view-ab84dfc63add27180ebc0f5d": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "source_id": "page-7da6346157b626d7754fa52f",
+        "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1127,
+        "original_width": 540,
+        "original_height": 442,
+        "transform": {
+          "scale_x": 0.0275,
+          "scale_y": 0.027506654835847383,
+          "origin_x": 330,
+          "origin_y": 331
+        },
+        "image_sha256": "f9899b3ad8bc649055c5d65bfcf86a9d8975f75de1d2a7cd764f2116384f2f94",
+        "view_id": "view-ab84dfc63add27180ebc0f5d"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 192.62257484765723,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-7da6346157b626d7754fa52f",
+        "target_classes": [
+          "sink"
+        ],
+        "description": "sink",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": true,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

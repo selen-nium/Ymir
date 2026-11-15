@@ -1,0 +1,402 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "object_class": "toilet_bowl",
+        "object_classes": [
+          "toilet_bowl"
+        ],
+        "backend": "dfine_argon",
+        "count": 1,
+        "accepted_proposal_ids": [
+          "proposal_24402de71430b3130b48"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 1,
+    "accepted_proposal_ids": [
+      "proposal_24402de71430b3130b48"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_17294d94528eb88d3a35",
+        "label": "toilet_bowl",
+        "raw_box_xyxy": [
+          403.0,
+          483.0,
+          671.0,
+          665.0
+        ],
+        "view_box_xyxy": [
+          294.48,
+          74.865,
+          337.36,
+          103.075
+        ],
+        "native_box_xyxy": [
+          294.48,
+          74.865,
+          337.36,
+          103.075
+        ],
+        "confidence": 0.98,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "page": 0,
+        "query_class": "toilet_bowl",
+        "requested_class": "wc",
+        "target_classes": [
+          "toilet_bowl"
+        ]
+      },
+      {
+        "id": "proposal_24402de71430b3130b48",
+        "label": "toilet_bowl",
+        "raw_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "view_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "native_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "confidence": 0.7799928784370422,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "page": 0,
+        "query_class": "toilet_bowl",
+        "requested_class": "wc",
+        "target_classes": [
+          "toilet_bowl"
+        ]
+      },
+      {
+        "id": "proposal_baa67ab1e835c3bcdd3f",
+        "label": "toilet_bowl",
+        "raw_box_xyxy": [
+          322.0,
+          93.0,
+          368.0,
+          128.0
+        ],
+        "view_box_xyxy": [
+          294.952,
+          74.49300000000001,
+          337.088,
+          102.528
+        ],
+        "native_box_xyxy": [
+          294.952,
+          74.49300000000001,
+          337.088,
+          102.528
+        ],
+        "confidence": 0.98,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "page": 0,
+        "query_class": "toilet_bowl",
+        "requested_class": "wc",
+        "target_classes": [
+          "toilet_bowl"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "Whole-page inspection and detection coverage are complete.",
+      "All three detector proposals refer to the same WC in the upper bathroom; duplicate IDs were rejected.",
+      "No additional toilet bowls were found elsewhere on the floor plan."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "target_classes": [
+          "toilet_bowl"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          230,
+          0,
+          390,
+          155
+        ],
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "proposal_ids": [
+          "proposal_17294d94528eb88d3a35"
+        ]
+      },
+      {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "target_classes": [
+          "toilet_bowl"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          916,
+          801
+        ],
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "proposal_ids": [
+          "proposal_24402de71430b3130b48",
+          "proposal_baa67ab1e835c3bcdd3f"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_17294d94528eb88d3a35",
+        "proposal_24402de71430b3130b48",
+        "proposal_baa67ab1e835c3bcdd3f"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-525ec4d4d44a127f4964b9f1",
+        "view-697c428c1a368acf96de9ba8",
+        "view-d11c6004de37d4b24d1c228b"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-512518600124f1ea283f41b4",
+          "source_id": "page-512518600124f1ea283f41b4",
+          "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+          "width": 916,
+          "height": 801,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "object_classes": [
+          "toilet_bowl"
+        ],
+        "description": "wc"
+      },
+      "coverage_plan": {
+        "plan_submitted": false,
+        "regions": [
+          {
+            "id": "sheet",
+            "name": "Host-defined whole-page scope",
+            "region": [
+              0,
+              0,
+              916,
+              801
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+        "scope_origin": "Host whole-page scope; no explicit model planning step"
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": false,
+      "regions": [
+        {
+          "id": "sheet",
+          "name": "Host-defined whole-page scope",
+          "region": [
+            0,
+            0,
+            916,
+            801
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+      "scope_origin": "Host whole-page scope; no explicit model planning step"
+    },
+    "evidence_views": {
+      "view-525ec4d4d44a127f4964b9f1": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 916,
+        "height": 801,
+        "original_width": 916,
+        "original_height": 801,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1"
+      },
+      "view-697c428c1a368acf96de9ba8": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1600,
+        "original_width": 916,
+        "original_height": 801,
+        "transform": {
+          "scale_x": 0.1,
+          "scale_y": 0.1,
+          "origin_x": 230,
+          "origin_y": 0
+        },
+        "image_sha256": "50b29f4a8c9a4181a0c109a8b7314d2949fe0961b3ca51965e63e921abd02913",
+        "view_id": "view-697c428c1a368acf96de9ba8"
+      },
+      "view-d11c6004de37d4b24d1c228b": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1399,
+        "original_width": 916,
+        "original_height": 801,
+        "transform": {
+          "scale_x": 0.5725,
+          "scale_y": 0.5725518227305219,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "fd9ba0fd81b216b1caf8e943baec443980ebdb943ba7063bcb45a03e655b4fb5",
+        "view_id": "view-d11c6004de37d4b24d1c228b"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 65.33715649833903,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "target_classes": [
+          "toilet_bowl"
+        ],
+        "description": "wc",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": false,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

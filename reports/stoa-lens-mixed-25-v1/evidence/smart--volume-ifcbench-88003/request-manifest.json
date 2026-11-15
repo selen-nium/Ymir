@@ -1,0 +1,50 @@
+{
+  "case_id": "volume-ifcbench-88003",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the total net volume of all slabs on 'EG', in m\u00b3?",
+  "sources": [
+    {
+      "page_id": "page-931df9023ee710e64a4d5a52",
+      "source_id": "page-931df9023ee710e64a4d5a52",
+      "source_sha256": "b97e4a502d7ece80c021ff26508973183c43159843dba08588277cf074f4cf74",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-smiley-west_ac-20-smiley-west-10-bldg_plan-02-eg.render.png",
+      "width": 4395,
+      "height": 802,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-smiley-west_ac-20-smiley-west-10-bldg_plan-02-eg.pdf",
+      "pdf_sha256": "d2afb2c463367d81041e06fa571b126138490381633f6f85370eb2c4d75329f2",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "c56d242d51f4d4ac6bde33b95e275661bed067d833b7474cf93b1ee802f3f82b",
+  "evaluation_mode": "computed_geometry"
+}

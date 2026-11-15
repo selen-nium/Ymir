@@ -1,0 +1,443 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [
+      {
+        "room_id": "room-3.05",
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "candidate_id": "r2s-d1a45846fb27b23ced817198",
+        "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+        "label": "Wohnen/Essen",
+        "identifier": "3.05",
+        "types": [
+          "living room",
+          "dining room"
+        ],
+        "basis": "visually inferred",
+        "text_ids": [],
+        "polygon": [
+          [
+            1986.328125,
+            1077.530864197531
+          ],
+          [
+            1986.328125,
+            1159.835390946502
+          ],
+          [
+            1982.2265625,
+            1159.835390946502
+          ],
+          [
+            1978.125,
+            1670.1234567901233
+          ],
+          [
+            2462.109375,
+            1670.1234567901233
+          ],
+          [
+            2466.2109375,
+            1073.4156378600824
+          ],
+          [
+            1982.2265625,
+            1073.4156378600824
+          ]
+        ],
+        "holes": [],
+        "geometry_provenance": {
+          "backend": "raster2seq",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "view_id": "view-56773bba71fafed12329c042",
+          "prediction_key": "569131201ec14880ea88ad0a84dd46e97b94f2314a1aab99fc2d003d99faa81e",
+          "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+          "preprocessing": {
+            "original_width": 1600,
+            "original_height": 1523,
+            "resized_width": 256,
+            "resized_height": 243,
+            "left": 0,
+            "top": 6,
+            "model_size": 256
+          },
+          "view_transform": {
+            "scale_x": 0.65625,
+            "scale_y": 0.6565988181221274,
+            "origin_x": 1650,
+            "origin_y": 880
+          },
+          "coordinate_space": "original_full_page_pixels",
+          "page": 0
+        },
+        "quality_flags": [],
+        "measurement": {
+          "status": "available",
+          "candidate_id": "r2s-d1a45846fb27b23ced817198",
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "pixel_area": 288274.0162037036,
+          "area_m2": 20.858657060967207,
+          "estimate": true,
+          "limitations": [
+            "Raster quantization, minimum-region cutoff, and no hole prediction"
+          ]
+        },
+        "area_m2": 20.858657060967207,
+        "text_associations": []
+      }
+    ],
+    "room_count": 1,
+    "readings": [
+      {
+        "kind": "text",
+        "value": "Whg. A / Wohnen/Essen / 3.05",
+        "unit": null,
+        "evidence_ids": [
+          "view-56773bba71fafed12329c042"
+        ],
+        "description": "Room label and number read visually in an enlarged crop of the plan; no printed floor area accompanies room 3.05, so no separate printed-area reading exists.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      },
+      {
+        "kind": "other",
+        "value": "0\u20135 m graphic scale bar (Masstab 1:100)",
+        "unit": "m",
+        "evidence_ids": [
+          "view-1ab652379868dc01866791f7"
+        ],
+        "description": "Scale bar read directly as source-bound calibration: 0 m at page x\u22481230.5 to 5 m at page x\u22481818.3 gives 0.008506 m/px (\u2248117.6 px/m), consistent with 1:100 on an A3 sheet.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      },
+      {
+        "kind": "dimension",
+        "value": "4.15 \u00d7 5.08",
+        "unit": "m",
+        "evidence_ids": [
+          "view-56773bba71fafed12329c042"
+        ],
+        "description": "Clear internal extents of room 3.05 between wall faces (page px \u22481978\u20132466 horizontally, \u22481073\u20131670 vertically): width 4.152 m, depth 5.076 m when scaled by the printed 1:100 bar.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      },
+      {
+        "kind": "other",
+        "value": 20.86,
+        "unit": "m\u00b2",
+        "evidence_ids": [
+          "view-56773bba71fafed12329c042",
+          "view-a8743c22231aaddd52f44c13"
+        ],
+        "description": "Computed net floor area of room 3.05 from the selected room outline and the source-bound scale (288,274 px\u00b2 \u2192 20.86 m\u00b2); cross-check 4.15 \u00d7 5.08 = 21.1 m\u00b2.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "Calibration and geometry are recorded via cal-1e0fdcb171151f9816c39a3d and candidate r2s-d1a45846fb27b23ced817198; readings cite the registered page views only.",
+      "native_room_candidates returned 'unsupported_native_source' for page-4ac7ec74cdb49ee4e22dbdc4, so no independently registered Swiss native room geometry was usable; the area derives from the Raster2Seq outline plus the drawing's printed 1:100 scale bar.",
+      "Room 3.05 carries no printed area (m\u00b2) on this plan; only the computed geometric area is reported.",
+      "Independent visual check of the wall faces (\u22484.03 \u00d7 5.18 m \u2248 20.9 m\u00b2) agrees with the selected outline, giving roughly \u00b10.5 m\u00b2 stability.",
+      "Area is net clear geometry between wall faces; no deductions applied and no furniture symbols occur in this room.",
+      "Scope: single provided page (Grundriss 3. OG, Plan-Nr. 14965-39285, Massstab 1:100, Masse in Metern). No object counts were requested, hence no accepted proposals."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_room",
+        "arguments": {
+          "candidate_id": "r2s-d1a45846fb27b23ced817198",
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d"
+        },
+        "result": {
+          "status": "available",
+          "candidate_id": "r2s-d1a45846fb27b23ced817198",
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "pixel_area": 288274.0162037036,
+          "area_m2": 20.858657060967207,
+          "estimate": true,
+          "limitations": [
+            "Raster quantization, minimum-region cutoff, and no hole prediction"
+          ]
+        }
+      },
+      {
+        "tool": "measure_distance",
+        "arguments": {
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "p0": [
+            1978.1,
+            1400
+          ],
+          "p1": [
+            2466.2,
+            1400
+          ]
+        },
+        "result": {
+          "status": "available",
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "p0": [
+            1978.1,
+            1400
+          ],
+          "p1": [
+            2466.2,
+            1400
+          ],
+          "pixel_distance": 488.0999999999999,
+          "distance_m": 4.151922422592718,
+          "estimate": true,
+          "calibration_kind": "visible_length",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "page": 0
+        }
+      },
+      {
+        "tool": "measure_distance",
+        "arguments": {
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "p0": [
+            2200,
+            1073.4
+          ],
+          "p1": [
+            2200,
+            1670.1
+          ]
+        },
+        "result": {
+          "status": "available",
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "calibration_id": "cal-1e0fdcb171151f9816c39a3d",
+          "p0": [
+            2200,
+            1073.4
+          ],
+          "p1": [
+            2200,
+            1670.1
+          ],
+          "pixel_distance": 596.6999999999998,
+          "distance_m": 5.075706022456616,
+          "estimate": true,
+          "calibration_kind": "visible_length",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "page": 0
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [
+        "r2s-b08721bdca8b515578765890",
+        "r2s-6be93870663da8d5695f8e15",
+        "r2s-7492cd2b3e676a027dc056ab",
+        "r2s-7888210f779f7603cc0c8e22",
+        "r2s-3383ca26f9b5a11ab8afdebd",
+        "r2s-f31870e15b7b7dfca7952912",
+        "r2s-f6057faa96480c8e8ef10b79",
+        "r2s-91ddf93af23bfcd5b04dc039",
+        "r2s-fba95408eab33df74a8fc658",
+        "r2s-b1388f5e8bac89abc8a06a4f",
+        "r2s-fda540fd78e32e835038645d",
+        "r2s-3066248ef06aac36402da5a0",
+        "r2s-ce75028e14491b98dd21a6ff",
+        "r2s-2cea8379a747c20575e04ec5",
+        "r2s-f12cee7bf5e15be55737170d",
+        "r2s-d1a45846fb27b23ced817198",
+        "r2s-85fc9236af9b6ef03ce7dbc1",
+        "r2s-157eced87d6ef5bac9e3d392"
+      ],
+      "view_ids": [
+        "view-a8743c22231aaddd52f44c13",
+        "view-56773bba71fafed12329c042",
+        "view-1ab652379868dc01866791f7"
+      ],
+      "calibration_ids": [
+        "cal-1e0fdcb171151f9816c39a3d"
+      ],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 0,
+        "read_pdf_text": 3
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "width": 4961,
+          "height": 3508,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-a8743c22231aaddd52f44c13": {
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4961,
+        "height": 3508,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "view_id": "view-a8743c22231aaddd52f44c13"
+      },
+      "view-56773bba71fafed12329c042": {
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1523,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 0.65625,
+          "scale_y": 0.6565988181221274,
+          "origin_x": 1650,
+          "origin_y": 880
+        },
+        "image_sha256": "c5bb093d474e770e9d930274701205583ade45684fc93eb5799bea561e05a05a",
+        "view_id": "view-56773bba71fafed12329c042"
+      },
+      "view-1ab652379868dc01866791f7": {
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 444,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 0.5625,
+          "scale_y": 0.5630630630630631,
+          "origin_x": 1100,
+          "origin_y": 3150
+        },
+        "image_sha256": "3a9429a56bfd6e0d8c7b02ad670c77f5d6495eb49688af0cfd5849d706af559e",
+        "view_id": "view-1ab652379868dc01866791f7"
+      }
+    },
+    "calibrations": [
+      {
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "evidence_id": "length-evidence-b57daeb46d7708832449f627",
+        "evidence": {
+          "kind": "visible_scale_bar",
+          "p0": [
+            1230.5,
+            3238
+          ],
+          "p1": [
+            1818.3,
+            3238
+          ],
+          "length": 5,
+          "unit": "m",
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "page": 0,
+          "description": "0\u20135 m graphic scale bar (Masstab 1:100)",
+          "upstream_evidence_id": "view-1ab652379868dc01866791f7",
+          "reading_provenance": "model_read_visible_pixels"
+        },
+        "p0": [
+          1230.5,
+          3238
+        ],
+        "p1": [
+          1818.3,
+          3238
+        ],
+        "length": 5,
+        "unit": "m",
+        "kind": "visible_length",
+        "metres_per_pixel": 0.008506294658046955,
+        "calibration_id": "cal-1e0fdcb171151f9816c39a3d"
+      }
+    ],
+    "elapsed_seconds": 67.350344364997,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  },
+  "cleanup_errors": []
+}

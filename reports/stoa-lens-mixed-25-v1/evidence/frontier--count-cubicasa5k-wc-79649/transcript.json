@@ -1,0 +1,1775 @@
+{
+  "transcript": [
+    {
+      "response_index": 0,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_kmEsjinpLwXfRk7IhHfpv8Rg",
+            "function": {
+              "arguments": "{\"regions\":[{\"id\":\"whole_page\",\"name\":\"Entire floor plan and lower blank margin\",\"region\":[0,0,916,801]}]}",
+              "name": "coverage_plan"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_kmEsjinpLwXfRk7IhHfpv8Rg",
+      "tool": "coverage_plan",
+      "result": {
+        "status": "recorded",
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole_page",
+              "name": "Entire floor plan and lower blank margin",
+              "region": [
+                0,
+                0,
+                916,
+                801
+              ],
+              "inspection_fraction": 0.0,
+              "detection_fraction": 0.0,
+              "inspected": false,
+              "detected": false
+            }
+          ],
+          "all_inspected": false,
+          "all_detected": false,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 11,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 709.2,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 1,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_7OcW7Lh06RS74d5Qq5qMdla7",
+            "function": {
+              "arguments": "{\"region\":[0,0,916,801],\"reason\":\"Detect all toilet_bowl (WC) fixtures across the planned whole-page region; establish full-page detection coverage.\"}",
+              "name": "detect_objects"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_7OcW7Lh06RS74d5Qq5qMdla7",
+      "tool": "detect_objects",
+      "result": {
+        "status": "complete",
+        "proposals": [
+          {
+            "id": "proposal_24402de71430b3130b48",
+            "label": "toilet_bowl",
+            "raw_box_xyxy": [
+              293.7413635253906,
+              74.65414428710938,
+              337.10223388671875,
+              102.4819564819336
+            ],
+            "view_box_xyxy": [
+              293.7413635253906,
+              74.65414428710938,
+              337.10223388671875,
+              102.4819564819336
+            ],
+            "native_box_xyxy": [
+              293.7413635253906,
+              74.65414428710938,
+              337.10223388671875,
+              102.4819564819336
+            ],
+            "confidence": 0.7799928784370422,
+            "confidence_kind": "detector_score_uncalibrated",
+            "clipped": false,
+            "touches_crop_edge": false,
+            "requires_wider_inspection": false,
+            "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+            "view_id": "view-525ec4d4d44a127f4964b9f1",
+            "model": "d-fine-l-junction-ema",
+            "page_id": "page-512518600124f1ea283f41b4",
+            "source_id": "page-512518600124f1ea283f41b4",
+            "page": 0,
+            "query_class": "toilet_bowl",
+            "requested_class": "wc",
+            "target_classes": [
+              "toilet_bowl"
+            ]
+          },
+          {
+            "id": "proposal_23715412a6883992ce11",
+            "label": "toilet_bowl",
+            "raw_box_xyxy": [
+              321.0,
+              93.0,
+              368.0,
+              128.0
+            ],
+            "view_box_xyxy": [
+              294.036,
+              74.49300000000001,
+              337.088,
+              102.528
+            ],
+            "native_box_xyxy": [
+              294.036,
+              74.49300000000001,
+              337.088,
+              102.528
+            ],
+            "confidence": 0.98,
+            "confidence_kind": "vlm_self_reported_uncalibrated",
+            "clipped": false,
+            "touches_crop_edge": false,
+            "requires_wider_inspection": false,
+            "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+            "view_id": "view-525ec4d4d44a127f4964b9f1",
+            "model": "google/gemini-4-argon",
+            "page_id": "page-512518600124f1ea283f41b4",
+            "source_id": "page-512518600124f1ea283f41b4",
+            "page": 0,
+            "query_class": "toilet_bowl",
+            "requested_class": "wc",
+            "target_classes": [
+              "toilet_bowl"
+            ]
+          }
+        ],
+        "uncertainties": [],
+        "receipt": {
+          "calls": [
+            {
+              "model": "d-fine-l-junction-ema + google/gemini-4-argon",
+              "routing": {
+                "backend": "dfine_argon",
+                "requested_class": "toilet_bowl",
+                "canonical_class": "toilet_bowl",
+                "class_id": 4
+              },
+              "status": "complete",
+              "proposals": [
+                {
+                  "id": "proposal_24402de71430b3130b48",
+                  "label": "toilet_bowl",
+                  "raw_box_xyxy": [
+                    293.7413635253906,
+                    74.65414428710938,
+                    337.10223388671875,
+                    102.4819564819336
+                  ],
+                  "view_box_xyxy": [
+                    293.7413635253906,
+                    74.65414428710938,
+                    337.10223388671875,
+                    102.4819564819336
+                  ],
+                  "native_box_xyxy": [
+                    293.7413635253906,
+                    74.65414428710938,
+                    337.10223388671875,
+                    102.4819564819336
+                  ],
+                  "confidence": 0.7799928784370422,
+                  "confidence_kind": "detector_score_uncalibrated",
+                  "clipped": false,
+                  "touches_crop_edge": false,
+                  "requires_wider_inspection": false,
+                  "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                  "view_id": "view-525ec4d4d44a127f4964b9f1",
+                  "model": "d-fine-l-junction-ema"
+                },
+                {
+                  "id": "proposal_23715412a6883992ce11",
+                  "label": "toilet_bowl",
+                  "raw_box_xyxy": [
+                    321.0,
+                    93.0,
+                    368.0,
+                    128.0
+                  ],
+                  "view_box_xyxy": [
+                    294.036,
+                    74.49300000000001,
+                    337.088,
+                    102.528
+                  ],
+                  "native_box_xyxy": [
+                    294.036,
+                    74.49300000000001,
+                    337.088,
+                    102.528
+                  ],
+                  "confidence": 0.98,
+                  "confidence_kind": "vlm_self_reported_uncalibrated",
+                  "clipped": false,
+                  "touches_crop_edge": false,
+                  "requires_wider_inspection": false,
+                  "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                  "view_id": "view-525ec4d4d44a127f4964b9f1",
+                  "model": "google/gemini-4-argon"
+                }
+              ],
+              "uncertainties": [],
+              "receipt": {
+                "calls": [
+                  {
+                    "model": "d-fine-l-junction-ema",
+                    "status": "complete",
+                    "uncertainties": [],
+                    "proposals": [
+                      {
+                        "id": "proposal_24402de71430b3130b48",
+                        "label": "toilet_bowl",
+                        "raw_box_xyxy": [
+                          293.7413635253906,
+                          74.65414428710938,
+                          337.10223388671875,
+                          102.4819564819336
+                        ],
+                        "view_box_xyxy": [
+                          293.7413635253906,
+                          74.65414428710938,
+                          337.10223388671875,
+                          102.4819564819336
+                        ],
+                        "native_box_xyxy": [
+                          293.7413635253906,
+                          74.65414428710938,
+                          337.10223388671875,
+                          102.4819564819336
+                        ],
+                        "confidence": 0.7799928784370422,
+                        "confidence_kind": "detector_score_uncalibrated",
+                        "clipped": false,
+                        "touches_crop_edge": false,
+                        "requires_wider_inspection": false,
+                        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                        "view_id": "view-525ec4d4d44a127f4964b9f1",
+                        "model": "d-fine-l-junction-ema"
+                      }
+                    ],
+                    "routing": {
+                      "backend": "dfine",
+                      "requested_class": "toilet_bowl",
+                      "canonical_class": "toilet_bowl",
+                      "class_id": 4
+                    },
+                    "receipt": {
+                      "checkpoint_sha256": "0f76bfabb562647a98f34d5dd3dd0d240eb5ef5ff7c1072fe14a4c667147cb8d",
+                      "checkpoint_epoch_zero_based": 18,
+                      "weights": "EMA",
+                      "architecture": "D-FINE-L",
+                      "resolution": 960,
+                      "precision": "BF16",
+                      "model_state_loaded_strictly": true,
+                      "head_classes": [
+                        "door_single",
+                        "door_double",
+                        "door_sliding",
+                        "window",
+                        "toilet_bowl",
+                        "sink",
+                        "bathtub",
+                        "shower",
+                        "cooker_stove",
+                        "refrigerator",
+                        "washing_machine",
+                        "dishwasher",
+                        "door",
+                        "appliance"
+                      ],
+                      "all_heads_foreground": true,
+                      "upstream_commit": "956d1709314c2c6a4df6f34de232054578a7449f",
+                      "upstream_tree_sha256": "ae2fe7efd6339676228c148a333163c0c5a853bcb3136ef3aae73699f3fd4988",
+                      "gpu": "NVIDIA RTX A4500",
+                      "head_policy": {
+                        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+                        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+                        "heads": [
+                          "door_single",
+                          "door_double",
+                          "door_sliding",
+                          "window",
+                          "toilet_bowl",
+                          "sink",
+                          "bathtub",
+                          "shower",
+                          "cooker_stove",
+                          "refrigerator",
+                          "washing_machine",
+                          "dishwasher",
+                          "door",
+                          "appliance"
+                        ]
+                      },
+                      "threshold": 0.25,
+                      "coordinate_space": "crop pixels xyxy",
+                      "requested_class": "toilet_bowl",
+                      "all_class_predictions": [
+                        {
+                          "label": "door_single",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            734.1761474609375,
+                            143.33924865722656,
+                            857.649169921875,
+                            188.7831573486328
+                          ],
+                          "raw_bbox_2d": [
+                            734.1761474609375,
+                            143.33924865722656,
+                            857.649169921875,
+                            188.7831573486328
+                          ],
+                          "confidence": 0.6067315340042114,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            737.7242431640625,
+                            369.9280090332031,
+                            857.6707153320312,
+                            418.1697692871094
+                          ],
+                          "raw_bbox_2d": [
+                            737.7242431640625,
+                            369.9280090332031,
+                            857.6707153320312,
+                            418.1697692871094
+                          ],
+                          "confidence": 0.5770187377929688,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            317.7022399902344,
+                            519.0634765625,
+                            373.9770202636719,
+                            600.4871215820312
+                          ],
+                          "raw_bbox_2d": [
+                            317.7022399902344,
+                            519.0634765625,
+                            373.9770202636719,
+                            600.4871215820312
+                          ],
+                          "confidence": 0.3849121630191803,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 34,
+                          "bbox_2d": [
+                            204.1042022705078,
+                            118.1547622680664,
+                            254.66722106933594,
+                            162.3494873046875
+                          ],
+                          "raw_bbox_2d": [
+                            204.1042022705078,
+                            118.1547622680664,
+                            254.66722106933594,
+                            162.3494873046875
+                          ],
+                          "confidence": 0.29746994376182556,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 11,
+                          "bbox_2d": [
+                            204.44004821777344,
+                            182.42625427246094,
+                            255.7110137939453,
+                            233.0108642578125
+                          ],
+                          "raw_bbox_2d": [
+                            204.44004821777344,
+                            182.42625427246094,
+                            255.7110137939453,
+                            233.0108642578125
+                          ],
+                          "confidence": 0.2798284888267517,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_sliding",
+                          "query_id": 44,
+                          "bbox_2d": [
+                            243.2649383544922,
+                            122.17172241210938,
+                            254.81785583496094,
+                            234.46197509765625
+                          ],
+                          "raw_bbox_2d": [
+                            243.2649383544922,
+                            122.17172241210938,
+                            254.81785583496094,
+                            234.46197509765625
+                          ],
+                          "confidence": 0.2991051971912384,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_sliding",
+                          "query_id": 21,
+                          "bbox_2d": [
+                            244.994873046875,
+                            180.94911193847656,
+                            255.87661743164062,
+                            235.28335571289062
+                          ],
+                          "raw_bbox_2d": [
+                            244.994873046875,
+                            180.94911193847656,
+                            255.87661743164062,
+                            235.28335571289062
+                          ],
+                          "confidence": 0.2568320035934448,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 13,
+                          "bbox_2d": [
+                            36.35936737060547,
+                            408.9718017578125,
+                            55.15230941772461,
+                            538.184326171875
+                          ],
+                          "raw_bbox_2d": [
+                            36.35936737060547,
+                            408.9718017578125,
+                            55.15230941772461,
+                            538.184326171875
+                          ],
+                          "confidence": 0.8255897164344788,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 5,
+                          "bbox_2d": [
+                            34.20787811279297,
+                            208.52169799804688,
+                            51.697608947753906,
+                            339.2730712890625
+                          ],
+                          "raw_bbox_2d": [
+                            34.20787811279297,
+                            208.52169799804688,
+                            51.697608947753906,
+                            339.2730712890625
+                          ],
+                          "confidence": 0.793105959892273,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 7,
+                          "bbox_2d": [
+                            776.2833251953125,
+                            223.14923095703125,
+                            800.4526977539062,
+                            367.30999755859375
+                          ],
+                          "raw_bbox_2d": [
+                            776.2833251953125,
+                            223.14923095703125,
+                            800.4526977539062,
+                            367.30999755859375
+                          ],
+                          "confidence": 0.7065955400466919,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 6,
+                          "bbox_2d": [
+                            772.2781982421875,
+                            5.359796524047852,
+                            799.8231201171875,
+                            138.5946807861328
+                          ],
+                          "raw_bbox_2d": [
+                            772.2781982421875,
+                            5.359796524047852,
+                            799.8231201171875,
+                            138.5946807861328
+                          ],
+                          "confidence": 0.5457699298858643,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 8,
+                          "bbox_2d": [
+                            783.3099365234375,
+                            464.06048583984375,
+                            799.2887573242188,
+                            594.1382446289062
+                          ],
+                          "raw_bbox_2d": [
+                            783.3099365234375,
+                            464.06048583984375,
+                            799.2887573242188,
+                            594.1382446289062
+                          ],
+                          "confidence": 0.5360700488090515,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 24,
+                          "bbox_2d": [
+                            34.237125396728516,
+                            138.0823211669922,
+                            51.98184585571289,
+                            210.24745178222656
+                          ],
+                          "raw_bbox_2d": [
+                            34.237125396728516,
+                            138.0823211669922,
+                            51.98184585571289,
+                            210.24745178222656
+                          ],
+                          "confidence": 0.4139508903026581,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 60,
+                          "bbox_2d": [
+                            34.70100021362305,
+                            7.339067459106445,
+                            52.20259475708008,
+                            139.60951232910156
+                          ],
+                          "raw_bbox_2d": [
+                            34.70100021362305,
+                            7.339067459106445,
+                            52.20259475708008,
+                            139.60951232910156
+                          ],
+                          "confidence": 0.3486451208591461,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 83,
+                          "bbox_2d": [
+                            37.86954879760742,
+                            535.855224609375,
+                            56.158180236816406,
+                            588.3290405273438
+                          ],
+                          "raw_bbox_2d": [
+                            37.86954879760742,
+                            535.855224609375,
+                            56.158180236816406,
+                            588.3290405273438
+                          ],
+                          "confidence": 0.2934044599533081,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 25,
+                          "bbox_2d": [
+                            34.288578033447266,
+                            179.1931610107422,
+                            51.959571838378906,
+                            210.6359405517578
+                          ],
+                          "raw_bbox_2d": [
+                            34.288578033447266,
+                            179.1931610107422,
+                            51.959571838378906,
+                            210.6359405517578
+                          ],
+                          "confidence": 0.2901756167411804,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 99,
+                          "bbox_2d": [
+                            888.6593627929688,
+                            452.645263671875,
+                            907.4180908203125,
+                            595.6776733398438
+                          ],
+                          "raw_bbox_2d": [
+                            888.6593627929688,
+                            452.645263671875,
+                            907.4180908203125,
+                            595.6776733398438
+                          ],
+                          "confidence": 0.28776782751083374,
+                          "clipped": false
+                        },
+                        {
+                          "label": "toilet_bowl",
+                          "query_id": 0,
+                          "bbox_2d": [
+                            293.7413635253906,
+                            74.65414428710938,
+                            337.10223388671875,
+                            102.4819564819336
+                          ],
+                          "raw_bbox_2d": [
+                            293.7413635253906,
+                            74.65414428710938,
+                            337.10223388671875,
+                            102.4819564819336
+                          ],
+                          "confidence": 0.7799928784370422,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 4,
+                          "bbox_2d": [
+                            293.5268249511719,
+                            35.47479248046875,
+                            315.6592102050781,
+                            66.39836883544922
+                          ],
+                          "raw_bbox_2d": [
+                            293.5268249511719,
+                            35.47479248046875,
+                            315.6592102050781,
+                            66.39836883544922
+                          ],
+                          "confidence": 0.7956580519676208,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 26,
+                          "bbox_2d": [
+                            143.2434539794922,
+                            2.8989505767822266,
+                            183.94989013671875,
+                            23.23880386352539
+                          ],
+                          "raw_bbox_2d": [
+                            143.2434539794922,
+                            2.8989505767822266,
+                            183.94989013671875,
+                            23.23880386352539
+                          ],
+                          "confidence": 0.2950267493724823,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 9,
+                          "bbox_2d": [
+                            252.57492065429688,
+                            7.183826923370361,
+                            282.99169921875,
+                            31.431982040405273
+                          ],
+                          "raw_bbox_2d": [
+                            252.57492065429688,
+                            7.183826923370361,
+                            282.99169921875,
+                            31.431982040405273
+                          ],
+                          "confidence": 0.2658804655075073,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 258,
+                          "bbox_2d": [
+                            352.8289794921875,
+                            3.8601906299591064,
+                            390.6240234375,
+                            24.116899490356445
+                          ],
+                          "raw_bbox_2d": [
+                            352.8289794921875,
+                            3.8601906299591064,
+                            390.6240234375,
+                            24.116899490356445
+                          ],
+                          "confidence": 0.2538610100746155,
+                          "clipped": false
+                        },
+                        {
+                          "label": "shower",
+                          "query_id": 70,
+                          "bbox_2d": [
+                            246.1522979736328,
+                            58.715763092041016,
+                            258.9789733886719,
+                            79.80718231201172
+                          ],
+                          "raw_bbox_2d": [
+                            246.1522979736328,
+                            58.715763092041016,
+                            258.9789733886719,
+                            79.80718231201172
+                          ],
+                          "confidence": 0.3647775650024414,
+                          "clipped": false
+                        },
+                        {
+                          "label": "shower",
+                          "query_id": 225,
+                          "bbox_2d": [
+                            382.5506286621094,
+                            45.71395492553711,
+                            395.05865478515625,
+                            65.62694549560547
+                          ],
+                          "raw_bbox_2d": [
+                            382.5506286621094,
+                            45.71395492553711,
+                            395.05865478515625,
+                            65.62694549560547
+                          ],
+                          "confidence": 0.2613309323787689,
+                          "clipped": false
+                        },
+                        {
+                          "label": "cooker_stove",
+                          "query_id": 95,
+                          "bbox_2d": [
+                            209.22499084472656,
+                            2.5715386867523193,
+                            246.6562957763672,
+                            48.90986251831055
+                          ],
+                          "raw_bbox_2d": [
+                            209.22499084472656,
+                            2.5715386867523193,
+                            246.6562957763672,
+                            48.90986251831055
+                          ],
+                          "confidence": 0.2658804655075073,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            737.7242431640625,
+                            369.9280090332031,
+                            857.6707153320312,
+                            418.1697692871094
+                          ],
+                          "raw_bbox_2d": [
+                            737.7242431640625,
+                            369.9280090332031,
+                            857.6707153320312,
+                            418.1697692871094
+                          ],
+                          "confidence": 0.8019358515739441,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            734.1761474609375,
+                            143.33924865722656,
+                            857.649169921875,
+                            188.7831573486328
+                          ],
+                          "raw_bbox_2d": [
+                            734.1761474609375,
+                            143.33924865722656,
+                            857.649169921875,
+                            188.7831573486328
+                          ],
+                          "confidence": 0.7853085398674011,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            317.7022399902344,
+                            519.0634765625,
+                            373.9770202636719,
+                            600.4871215820312
+                          ],
+                          "raw_bbox_2d": [
+                            317.7022399902344,
+                            519.0634765625,
+                            373.9770202636719,
+                            600.4871215820312
+                          ],
+                          "confidence": 0.7520125508308411,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 11,
+                          "bbox_2d": [
+                            204.44004821777344,
+                            182.42625427246094,
+                            255.7110137939453,
+                            233.0108642578125
+                          ],
+                          "raw_bbox_2d": [
+                            204.44004821777344,
+                            182.42625427246094,
+                            255.7110137939453,
+                            233.0108642578125
+                          ],
+                          "confidence": 0.6076632142066956,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 34,
+                          "bbox_2d": [
+                            204.1042022705078,
+                            118.1547622680664,
+                            254.66722106933594,
+                            162.3494873046875
+                          ],
+                          "raw_bbox_2d": [
+                            204.1042022705078,
+                            118.1547622680664,
+                            254.66722106933594,
+                            162.3494873046875
+                          ],
+                          "confidence": 0.5058591365814209,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 14,
+                          "bbox_2d": [
+                            244.0749053955078,
+                            181.122314453125,
+                            305.5835266113281,
+                            233.45681762695312
+                          ],
+                          "raw_bbox_2d": [
+                            244.0749053955078,
+                            181.122314453125,
+                            305.5835266113281,
+                            233.45681762695312
+                          ],
+                          "confidence": 0.4134771525859833,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 64,
+                          "bbox_2d": [
+                            243.98463439941406,
+                            117.26576232910156,
+                            305.3850402832031,
+                            161.87586975097656
+                          ],
+                          "raw_bbox_2d": [
+                            243.98463439941406,
+                            117.26576232910156,
+                            305.3850402832031,
+                            161.87586975097656
+                          ],
+                          "confidence": 0.39094078540802,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 35,
+                          "bbox_2d": [
+                            805.7388916015625,
+                            146.0618133544922,
+                            878.2581176757812,
+                            208.7512969970703
+                          ],
+                          "raw_bbox_2d": [
+                            805.7388916015625,
+                            146.0618133544922,
+                            878.2581176757812,
+                            208.7512969970703
+                          ],
+                          "confidence": 0.3849121630191803,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 44,
+                          "bbox_2d": [
+                            243.2649383544922,
+                            122.17172241210938,
+                            254.81785583496094,
+                            234.46197509765625
+                          ],
+                          "raw_bbox_2d": [
+                            243.2649383544922,
+                            122.17172241210938,
+                            254.81785583496094,
+                            234.46197509765625
+                          ],
+                          "confidence": 0.36296918988227844,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 21,
+                          "bbox_2d": [
+                            244.994873046875,
+                            180.94911193847656,
+                            255.87661743164062,
+                            235.28335571289062
+                          ],
+                          "raw_bbox_2d": [
+                            244.994873046875,
+                            180.94911193847656,
+                            255.87661743164062,
+                            235.28335571289062
+                          ],
+                          "confidence": 0.3345894515514374,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 48,
+                          "bbox_2d": [
+                            242.46066284179688,
+                            117.60877227783203,
+                            254.75473022460938,
+                            163.7132110595703
+                          ],
+                          "raw_bbox_2d": [
+                            242.46066284179688,
+                            117.60877227783203,
+                            254.75473022460938,
+                            163.7132110595703
+                          ],
+                          "confidence": 0.30569732189178467,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 67,
+                          "bbox_2d": [
+                            246.7139129638672,
+                            248.18820190429688,
+                            293.21856689453125,
+                            327.2337646484375
+                          ],
+                          "raw_bbox_2d": [
+                            246.7139129638672,
+                            248.18820190429688,
+                            293.21856689453125,
+                            327.2337646484375
+                          ],
+                          "confidence": 0.28937169909477234,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 114,
+                          "bbox_2d": [
+                            244.09939575195312,
+                            119.07102966308594,
+                            306.2947082519531,
+                            233.1412353515625
+                          ],
+                          "raw_bbox_2d": [
+                            244.09939575195312,
+                            119.07102966308594,
+                            306.2947082519531,
+                            233.1412353515625
+                          ],
+                          "confidence": 0.270480215549469,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 295,
+                          "bbox_2d": [
+                            243.86508178710938,
+                            141.05029296875,
+                            255.30836486816406,
+                            233.994140625
+                          ],
+                          "raw_bbox_2d": [
+                            243.86508178710938,
+                            141.05029296875,
+                            255.30836486816406,
+                            233.994140625
+                          ],
+                          "confidence": 0.25534364581108093,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 258,
+                          "bbox_2d": [
+                            352.8289794921875,
+                            3.8601906299591064,
+                            390.6240234375,
+                            24.116899490356445
+                          ],
+                          "raw_bbox_2d": [
+                            352.8289794921875,
+                            3.8601906299591064,
+                            390.6240234375,
+                            24.116899490356445
+                          ],
+                          "confidence": 0.5068355202674866,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 174,
+                          "bbox_2d": [
+                            209.53591918945312,
+                            2.236583709716797,
+                            246.71861267089844,
+                            32.10541534423828
+                          ],
+                          "raw_bbox_2d": [
+                            209.53591918945312,
+                            2.236583709716797,
+                            246.71861267089844,
+                            32.10541534423828
+                          ],
+                          "confidence": 0.308190256357193,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 9,
+                          "bbox_2d": [
+                            252.57492065429688,
+                            7.183826923370361,
+                            282.99169921875,
+                            31.431982040405273
+                          ],
+                          "raw_bbox_2d": [
+                            252.57492065429688,
+                            7.183826923370361,
+                            282.99169921875,
+                            31.431982040405273
+                          ],
+                          "confidence": 0.2766905128955841,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 62,
+                          "bbox_2d": [
+                            209.63870239257812,
+                            2.218205451965332,
+                            246.35215759277344,
+                            25.032766342163086
+                          ],
+                          "raw_bbox_2d": [
+                            209.63870239257812,
+                            2.218205451965332,
+                            246.35215759277344,
+                            25.032766342163086
+                          ],
+                          "confidence": 0.2628418207168579,
+                          "clipped": false
+                        }
+                      ],
+                      "selection": "requested head only; no parent/child summation",
+                      "wall_seconds": 20.051936676260084,
+                      "worker_stderr": ""
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [
+                        {
+                          "label": "toilet_bowl",
+                          "bbox_2d": [
+                            293.7413635253906,
+                            74.65414428710938,
+                            337.10223388671875,
+                            102.4819564819336
+                          ],
+                          "confidence": 0.7799928784370422
+                        }
+                      ],
+                      "uncertainties": []
+                    },
+                    "rejected": [],
+                    "crop_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                    "region": [
+                      0,
+                      0,
+                      916,
+                      801
+                    ]
+                  },
+                  {
+                    "model": "google/gemini-4-argon",
+                    "status": "complete",
+                    "uncertainties": [],
+                    "proposals": [
+                      {
+                        "id": "proposal_23715412a6883992ce11",
+                        "label": "toilet_bowl",
+                        "raw_box_xyxy": [
+                          321.0,
+                          93.0,
+                          368.0,
+                          128.0
+                        ],
+                        "view_box_xyxy": [
+                          294.036,
+                          74.49300000000001,
+                          337.088,
+                          102.528
+                        ],
+                        "native_box_xyxy": [
+                          294.036,
+                          74.49300000000001,
+                          337.088,
+                          102.528
+                        ],
+                        "confidence": 0.98,
+                        "confidence_kind": "vlm_self_reported_uncalibrated",
+                        "clipped": false,
+                        "touches_crop_edge": false,
+                        "requires_wider_inspection": false,
+                        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                        "view_id": "view-525ec4d4d44a127f4964b9f1",
+                        "model": "google/gemini-4-argon"
+                      }
+                    ],
+                    "routing": {
+                      "backend": "gemini",
+                      "requested_class": "toilet_bowl",
+                      "canonical_class": "toilet_bowl",
+                      "class_id": null
+                    },
+                    "receipt": {
+                      "model": "google/gemini-4-argon",
+                      "reasoning": "high",
+                      "max_tokens": 65536,
+                      "usage": {
+                        "completion_tokens": 1115,
+                        "prompt_tokens": 1348,
+                        "total_tokens": 2463,
+                        "completion_tokens_details": {
+                          "audio_tokens": 0,
+                          "reasoning_tokens": 1054,
+                          "image_tokens": 0
+                        },
+                        "prompt_tokens_details": {
+                          "audio_tokens": 0,
+                          "cached_tokens": 0,
+                          "cache_write_tokens": 0,
+                          "video_tokens": 0
+                        },
+                        "cost": 0.013846,
+                        "is_byok": false,
+                        "cost_details": {
+                          "upstream_inference_cost": 0.013846,
+                          "upstream_inference_prompt_cost": 0.002696,
+                          "upstream_inference_completions_cost": 0.01115
+                        }
+                      },
+                      "cost_usd": 0.013846,
+                      "reservation_id": "lens-gemini-f3dbdb4d05dc53a9101a313c59724edd8ff6bae229bb65d50482ea3a596eea81",
+                      "reservation_usd": 3.1663910999999993,
+                      "generation_id": "gen-1794727580-6lT6KaJQKfQdL9yi9jgr",
+                      "provider": "google-vertex/global",
+                      "finish_reason": "stop",
+                      "text": "{\"status\": \"complete\", \"instances\": [{\"label\": \"toilet_bowl\", \"bbox_2d\": [321, 93, 368, 128], \"confidence\": 0.98}], \"uncertainties\": []}",
+                      "message": {
+                        "role": "assistant",
+                        "content": "{\"status\": \"complete\", \"instances\": [{\"label\": \"toilet_bowl\", \"bbox_2d\": [321, 93, 368, 128], \"confidence\": 0.98}], \"uncertainties\": []}",
+                        "reasoning": "**Processing Detected Objects**\n\nI'm currently structuring the output for the `toilet_bowl` class. My focus is on ensuring the JSON format is correct, with accurate `status`, `instances` including `label`, normalized `bbox_2d` coordinates from 0 to 100, and `confidence` values. I'm also integrating the `uncertainties` field as required.\n\n**Identifying Fixtures Within Rooms**\n\nI'm currently examining the image crop, specifically looking for `toilet_bowl` fixtures within identified bathroom spaces. My process involves carefully scanning designated areas, cross-referencing image coordinates with the floorplan layout, and verifying the presence and boundaries of the toilet bowl and its components.\n\n**Refining Toilet Coordinates**\n\nI'm focusing on precise bounding box refinement for the toilet. I've cross-referenced its pixel coordinates against the room layout and wall lines, adjusting the left, right, top, and bottom edges to accurately capture the bowl's extent within the image.\n\n",
+                        "reasoning_details": [
+                          {
+                            "type": "reasoning.textreasoning.textreasoning.textreasoning.encrypted",
+                            "text": "**Processing Detected Objects**\n\nI'm currently structuring the output for the `toilet_bowl` class. My focus is on ensuring the JSON format is correct, with accurate `status`, `instances` including `label`, normalized `bbox_2d` coordinates from 0 to 100, and `confidence` values. I'm also integrating the `uncertainties` field as required.\n\n**Identifying Fixtures Within Rooms**\n\nI'm currently examining the image crop, specifically looking for `toilet_bowl` fixtures within identified bathroom spaces. My process involves carefully scanning designated areas, cross-referencing image coordinates with the floorplan layout, and verifying the presence and boundaries of the toilet bowl and its components.\n\n**Refining Toilet Coordinates**\n\nI'm focusing on precise bounding box refinement for the toilet. I've cross-referenced its pixel coordinates against the room layout and wall lines, adjusting the left, right, top, and bottom edges to accurately capture the bowl's extent within the image.\n\n",
+                            "format": "google-gemini-v1google-gemini-v1google-gemini-v1google-gemini-v1",
+                            "data": "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.eyJlbmRwb2ludF9zbHVnIjoiZ29vZ2xlL2dlbWluaS00LWFyZ29uLTIwMjYxMDEzfGdvb2dsZS12ZXJ0ZXgvZ2xvYmFsIn0"
+                          }
+                        ]
+                      }
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [
+                        {
+                          "label": "toilet_bowl",
+                          "bbox_2d": [
+                            321,
+                            93,
+                            368,
+                            128
+                          ],
+                          "confidence": 0.98
+                        }
+                      ],
+                      "uncertainties": []
+                    },
+                    "rejected": [],
+                    "crop_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+                    "region": [
+                      0,
+                      0,
+                      916,
+                      801
+                    ]
+                  }
+                ],
+                "failures": [],
+                "request_units": 2,
+                "same_region": [
+                  0,
+                  0,
+                  916,
+                  801
+                ],
+                "selection": "Orchestrator selects recorded IDs; no host union count or cross-model score ranking."
+              },
+              "region": [
+                0,
+                0,
+                916,
+                801
+              ],
+              "crop_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead"
+            }
+          ],
+          "routes": [
+            {
+              "backend": "dfine_argon",
+              "requested_class": "toilet_bowl",
+              "canonical_class": "toilet_bowl",
+              "class_id": 4
+            }
+          ]
+        },
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole_page",
+              "name": "Entire floor plan and lower blank margin",
+              "region": [
+                0,
+                0,
+                916,
+                801
+              ],
+              "inspection_fraction": 0.0,
+              "detection_fraction": 1.0,
+              "inspected": false,
+              "detected": true
+            }
+          ],
+          "all_inspected": false,
+          "all_detected": true,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 10,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 661.1,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 2,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_o6s6JgRR6ZofCrzC3hnWxxJE",
+            "function": {
+              "arguments": "{\"question\":\"Inspect the entire planned page for WC symbols and verify that the two detector proposals at approximately (294,75)-(337,103) represent the same single complete toilet bowl, not separate objects. Check the remaining page for additional WCs.\",\"views\":[{\"label\":\"Whole-page WC coverage and duplicate resolution\",\"turn\":0,\"region\":{\"x\":0,\"y\":0,\"width\":916,\"height\":801}}]}",
+              "name": "inspect"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_o6s6JgRR6ZofCrzC3hnWxxJE",
+      "tool": "inspect",
+      "result": {
+        "ok": true,
+        "metadata": {
+          "visual_kind": "inspection",
+          "current_state_unchanged": true,
+          "view_count": 1,
+          "views": [
+            {
+              "index": 1,
+              "turn": 0,
+              "frame": 0,
+              "available_frames": 1,
+              "available_frame_range": [
+                0,
+                0
+              ],
+              "region": {
+                "x": 0,
+                "y": 0,
+                "width": 916,
+                "height": 801
+              },
+              "image_size": {
+                "width": 1600,
+                "height": 1399
+              }
+            }
+          ]
+        },
+        "registered_views": [
+          {
+            "page_id": "page-512518600124f1ea283f41b4",
+            "source_id": "page-512518600124f1ea283f41b4",
+            "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+            "page": 0,
+            "vista_turn": 0,
+            "width": 1600,
+            "height": 1399,
+            "original_width": 916,
+            "original_height": 801,
+            "transform": {
+              "scale_x": 0.5725,
+              "scale_y": 0.5725518227305219,
+              "origin_x": 0,
+              "origin_y": 0
+            },
+            "image_sha256": "fd9ba0fd81b216b1caf8e943baec443980ebdb943ba7063bcb45a03e655b4fb5",
+            "view_id": "view-d11c6004de37d4b24d1c228b"
+          }
+        ],
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole_page",
+              "name": "Entire floor plan and lower blank margin",
+              "region": [
+                0,
+                0,
+                916,
+                801
+              ],
+              "inspection_fraction": 1.0,
+              "detection_fraction": 1.0,
+              "inspected": true,
+              "detected": true
+            }
+          ],
+          "all_inspected": true,
+          "all_detected": true,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 9,
+          "tools_per_response": 3,
+          "vista_views_remaining": 19,
+          "remaining_tools": {
+            "detect_objects": 10,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 657.3,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 3,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "{\n  \"status\": \"answered\",\n  \"accepted_proposal_ids\": [\"proposal_24402de71430b3130b48\"],\n  \"readings\": [\n    {\n      \"kind\": \"count\",\n      \"value\": 1,\n      \"unit\": \"toilet bowls\",\n      \"evidence_ids\": [\"proposal_24402de71430b3130b48\"],\n      \"description\": \"One WC is drawn on the floor plan.\"\n    }\n  ],\n  \"notes\": [\n    \"Whole-page coverage completed. The second detector proposal identifies the same WC and was excluded as a duplicate.\"\n  ]\n}"
+      }
+    },
+    {
+      "validation_error": "Reading cites unregistered evidence"
+    },
+    {
+      "response_index": 4,
+      "final_phase": true,
+      "response": {
+        "role": "assistant",
+        "content": "{\n  \"status\": \"answered\",\n  \"accepted_proposal_ids\": [\"proposal_24402de71430b3130b48\"],\n  \"notes\": [\n    \"1 toilet bowl is drawn on the floor plan.\",\n    \"Whole-page coverage is complete. The other proposal represents the same toilet and was excluded as a duplicate.\"\n  ]\n}",
+        "reasoning_details": [
+          {
+            "type": "reasoning.encrypted",
+            "data": "gAAAAABq-V7A_0xVIR2okLwzZ1zGA_EgPyxy7_DlbAnuBAGEl_ddQlbaoZ9Ctp-IYEkF6ZciHnozAGPm_H2IJ4FRWFZHo8EtGJqmlP9t3Zm9UgtaxQxVYBZ-7yBM-_xZQsNFtsnKDfFcFcVSchY3_3rXIILZByUwvT-nuLiMOxMfGRUq-w2D7WhA7sYfVMlXnLMT7ENCjLIB1W1nyeGwxEBi-SwSIUFP8i0gbBJObgH4PBb6VpRPY9J2F9BMX-Z5TMEUXNwZ_1zisJ2lZVVAXYRiesUZx9V9YOSy8Q6NsH63OxjXrE4xbHycSAfzJKxA2YiUtrnEyZo24Ys4mV41ucQ6KXpVHA5GwM_1udKWSLu2jbKI5cdkgVGvAYYw1w2LcwimFEqFrcbwJteYF7XdpwQolCAifYxaJhiJy9bt1vhG6CzdgdQ5o4EHc2ZQiImf_Sr6-XubK5ZndLP66f1YcjF8FipKiD16TxJsilXGrj5axtb1_abQXwVeLiyXZ4LriLFHEetp9tVAmgzBwBQbU9sPP7IHWq0AG2C_aJo86trlz71MSOcaH5R8wL_fFpe9264LnwacfhwWOV9UrQ_muFgfe-Ukfk5nVwPdDV_0ukQNDImqVesHQVl5QLSpAucU5Q9I6FFXoaGTcHUO_elu8bWPoOQgU_t9_GTkX87hZNxHoF_kckI0V6cb5ayUScsxAow0u-gw6uH8ZTt0Sq4jL0Qf03ry3oOGo4G_NM0lijRfv4pC2Sph-znh0aTZ5DxqsMlMAkW3tb5bzKUjR_QPKk0jHqhbF6wZz2sYCKicttjMubLk2yC6IqX8qsOcfFvPylIzGaOFDz2niK_OVzxHP4_1S2Br5fMuioK42VgwaW0sOpJSmrPkHbRDgIB4ZK-gtoPApeyD-1Thjf4TtQTP6GhJkRFbLXJje5nelVvaXPrFD2BtLXT1wUoxOd56Y4aE35CJplvBGHHQmfJJh8olMmuI_PUpoOqj0c8BEomGO2xc66AE1JwaAe3eNqpMMNwgT8QcJj-QIPN4TzkpmZZrMbHFdl7x1W4ZB2ONExJ6aRcVI11DXDsi8dgOjYpRsyBdXyoBfuTUoDKeYG0htfhctLipXIC8s4xv4tlvLkva-QGNyT-E5wdf09oOC5dy5ueYNdxyuq8iR3CdwHAXBq_SyhRLkHbA2reRPVjK_NbJsjDK4_LO7ee_hy1qS9F3_rkptgfCvhWq81CD6NONTa1dzTM89MXC1iD3ySkosPsOxjadbfjYxhiEWG7e_9PHuX6MpOYanOQc1uu9Zhpsb5hhfb20w4Ia2qfCtb3F5-b0BjoNLdmONJaceLrqTqZ1bqDscqaezgZmYGzt-XfIW_v3TZBjXKZEXw9FDYA6WOcbCxKix6dIJoOjzawZwx0L0JRNJBG8ta7nfFrCZSlVbnuppBnRyZ8xN9ZDn5YSxbyPQ1w-KGLrx472W5r6uhJtrw_RkavpSwxNRDFExjXb2pZlSwv1DjJqaFCnUBtmPAg8HI5KBAz4CTHCh_nbdOBZrkFTTORSd1HPGL-seYjUqeALXIaMWdXBllHxnBd6b9oHXe7AEBNLsiRLxXAYENYoY-C4QLJ3hkslJw1A0Q4O1o-JNE_dEbpxlAvMiMkH_-YnelujetenSvQBTGusGuKoC9V6iB1AxiN92zFfCQ01P41i3ABiPH_Pfu0GVPNzEuPu20TkMGzyQTxtctNASeL2zbfKjXn6_QGCVBrL0J3f9OykU-Vw8jqPnWJ-qzADIKgwIRwFE4yc72YIWHSrLhv0_27LXVXF4nWp0ylDxNvGm16jg4EIB2a3eX4_t9XHNI6Wcj-hxhwvDSPGmxEGmz8AI_IBXLE08hoG7EWiEdC0IL457jq0hFlgQzWGqS6Hh-eR0xCbMr8ckHJjiLY_2PlOdgjme4ZNdILvqrrBB3VfwczxNxODr2AtqxGHbhvV7iFaff1W4MA9QHWBV1nnssyiN52bwXf7fHQ2CKkEFTOSAN9dLAvr8LEvJDfuAjm9yncTJrUdHldYpkhSsxMwoU62QG5n0fTl7F_eUU9Lhef6MfPxbynHNyI_nrEXHnn-L4otKGPgbSRzL2owcEzqa7an1fJc9kQcvg5E-MuAIyKY5vzAZBhmd9TIO_aoWZUD0uGEh3ZKYKJEqte9NPkSFjYKVzw11hTGF5jqzmHq31FF5-KK6uEUzZwmuvBkyNbcWghSe-T0KNMCNMsrZyoeeCJ0WEkQLE0ekLox2KuLas-wFYACrDP_FosZESi7Rw2mKStmFhFi30UB1lbGtimXLV0n5DU_KHxosVzWx8-kQKnUUaB2gut2aVEmASopRUCnv_k9CcAF-wfc1RLgycoWAtVq-s6I2Owz1GqAlx4U_Y2YBvm7iiPtYv8h9ns8fBAXrl0PgWLiCY4yb4EpY2Uqlqt8Pwk-8THLm-w_1iTVjNOkkxcSdVQmgVWOhUB4nqk7X4EdbYSAOFsOOG4fTF-hPb7fV_StOIOJCI9sVcPJ7tgilWF--xrXOyr_kG--UxbYxGrowZjjHvP9lgkcm2q21K5f828ArZ3aEITKWli2RqfsJCV9mjrjFFD3DXb1Cahc3r7gdCKbyhqWV_snV0ON12s-JD_yzr-Jal4PGWFGXSddXhWgXv-SWkbyJQq06ukrOpv33xviDct7qaFLtHg8lHTkAOpNnulC09ZS6cs4Ao77EkyiIqzB0gVVJnFDMueCWGH70fDSfgDfoIWIQ61KNuTS6KCYIJIMLDc1UuVpQRoqbX8JoFBx_MCvNoTEC_UhIRr0pz3YoZj7ogqFNahyM8JJ_N3nqLiLo6NjmY7qdnxdTtKI9bF9bABihgZbxbBXeufLOXFiQk2xqlAb8S_n23jFlehBYP5gHOHskLQZ-sJYBkUk6KS-0onWz-T4GgYsSV9It9o3qwLk3ieQthqEHLTjal0i4A969jdP2wIAEbuYCUuPW1Y4_5Tb_KJB5N0RIVDrcFqrKcWlZEXShSMtX-vaxN9_pKzQEUSGFnOYAz_a4bRWdbS8jkZaggdpNhYR_uRJjb6c1ozjT23uKiDWGWMQA_ofdYuH1A8-lJA_9b2642kldV-ifaAM1U4eU8FnCS0wPg9BsaAFlac6vH0x16aYqIGiyNa3phGWvpXgKaE_c2d8NEhKuLb4xVHh8tIzcgydci-o6dJ_ZkDaea96_kTp3APgTckZxNWtggJz9pXFrHk4TUVbQoSq03axksqWBZD9Ze8TBXvIrGBdVfy8cWRWpgCB6xfPrOhNibJYZ4OK0zJKMd386pERis1cLXcm1YouZ6rcM4GDF0SqMnBpIn7FKYFapUyfWvs3QMeUY_0hWElnH1niyxgHTvK-YJCVvy6ezA06yHZK3swiFnx1iNJHlQSqQPLRAcoou6LlSog8yinVADGqdh2nWJtYXS7oS1qHFJYWQ-IUq30LDARgDbZrDzCCpXywyuTECU6ghCE3wtMs0O0S7Tg-tXCPAHmgUcH2WrL6k5NOVHTGL6CLl1H1-KsfcKz_t3R93czpYDjRGp0WvSC3CQfsEabwfpwgC6bCS7x-uIp7TT2YcLzJwtXPqWFeRCAcFoMxx9Tv7j9G1SLCjCoAjynSFT2W7YpxdNvijMUjBb_i9rQzwsu0NwIKdTIJd809K1RpGGzAcgnCCnAR3INxk9PVs0_fKLMYN6vWs1X7mR_VJALTnqxVEsZMGTGHkC2R16vMRt1L.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LjEtc29sLTIwMjYwOTI5fG9wZW5haSJ9",
+            "format": "openai-responses-v1",
+            "id": "rs_0d0d47021f68e18e016af95ec00e3887d1a3b3ab439be77d68"
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "object_class": "toilet_bowl",
+        "object_classes": [
+          "toilet_bowl"
+        ],
+        "backend": "dfine_argon",
+        "count": 1,
+        "accepted_proposal_ids": [
+          "proposal_24402de71430b3130b48"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 1,
+    "accepted_proposal_ids": [
+      "proposal_24402de71430b3130b48"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_24402de71430b3130b48",
+        "label": "toilet_bowl",
+        "raw_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "view_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "native_box_xyxy": [
+          293.7413635253906,
+          74.65414428710938,
+          337.10223388671875,
+          102.4819564819336
+        ],
+        "confidence": 0.7799928784370422,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "page": 0,
+        "query_class": "toilet_bowl",
+        "requested_class": "wc",
+        "target_classes": [
+          "toilet_bowl"
+        ]
+      },
+      {
+        "id": "proposal_23715412a6883992ce11",
+        "label": "toilet_bowl",
+        "raw_box_xyxy": [
+          321.0,
+          93.0,
+          368.0,
+          128.0
+        ],
+        "view_box_xyxy": [
+          294.036,
+          74.49300000000001,
+          337.088,
+          102.528
+        ],
+        "native_box_xyxy": [
+          294.036,
+          74.49300000000001,
+          337.088,
+          102.528
+        ],
+        "confidence": 0.98,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "page": 0,
+        "query_class": "toilet_bowl",
+        "requested_class": "wc",
+        "target_classes": [
+          "toilet_bowl"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "1 toilet bowl is drawn on the floor plan.",
+      "Whole-page coverage is complete. The other proposal represents the same toilet and was excluded as a duplicate."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "target_classes": [
+          "toilet_bowl"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          916,
+          801
+        ],
+        "view_id": "view-525ec4d4d44a127f4964b9f1",
+        "proposal_ids": [
+          "proposal_24402de71430b3130b48",
+          "proposal_23715412a6883992ce11"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_24402de71430b3130b48",
+        "proposal_23715412a6883992ce11"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-525ec4d4d44a127f4964b9f1",
+        "view-d11c6004de37d4b24d1c228b"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 10,
+        "read_pdf_text": 4,
+        "coverage_plan": 1
+      },
+      "vista_views_used": 1,
+      "sources": [
+        {
+          "page_id": "page-512518600124f1ea283f41b4",
+          "source_id": "page-512518600124f1ea283f41b4",
+          "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+          "width": 916,
+          "height": 801,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "object_classes": [
+          "toilet_bowl"
+        ],
+        "description": "wc"
+      },
+      "coverage_plan": {
+        "plan_submitted": true,
+        "regions": [
+          {
+            "id": "whole_page",
+            "name": "Entire floor plan and lower blank margin",
+            "region": [
+              0,
+              0,
+              916,
+              801
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": true,
+      "regions": [
+        {
+          "id": "whole_page",
+          "name": "Entire floor plan and lower blank margin",
+          "region": [
+            0,
+            0,
+            916,
+            801
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+    },
+    "evidence_views": {
+      "view-525ec4d4d44a127f4964b9f1": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 916,
+        "height": 801,
+        "original_width": 916,
+        "original_height": 801,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "view_id": "view-525ec4d4d44a127f4964b9f1"
+      },
+      "view-d11c6004de37d4b24d1c228b": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "source_id": "page-512518600124f1ea283f41b4",
+        "source_sha256": "c1cbae32be1191a7581ffeb8cab1126b17c73b2c83d00f74ab80749b82b64ead",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1399,
+        "original_width": 916,
+        "original_height": 801,
+        "transform": {
+          "scale_x": 0.5725,
+          "scale_y": 0.5725518227305219,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "fd9ba0fd81b216b1caf8e943baec443980ebdb943ba7063bcb45a03e655b4fb5",
+        "view_id": "view-d11c6004de37d4b24d1c228b"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 74.58979823021218,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-512518600124f1ea283f41b4",
+        "target_classes": [
+          "toilet_bowl"
+        ],
+        "description": "wc",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": true,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  }
+}
