@@ -189,17 +189,30 @@ class DocumentStore:
         d=self.get(ident);original=self.original(ident)
         run=self.root/ident/('prepare-'+secrets.token_hex(8));run.mkdir(parents=True)
         rows=[];limitations=list(d['limitations'])
+        vector_geometry={}
         if d['format'] in ('svg','ifc','dxf'):
             if selection.pages:raise ValueError('Use room or storey selection for native geometry.')
-            if d['format']=='ifc' and d['selectors'] and not selection.options.storey_id:raise ValueError('Select an IFC storey.')
-            if d['format'] in ('svg','dxf') and not selection.options.element_ids:raise ValueError('Select source entities representing rooms.')
-            from stoa_native_geometry import prepare
-            receipt=prepare(original,run/'native',options=selection.options.model_dump(mode='json'),project_identity=d['project_identity'],dataset=d['dataset'],exposure=d['exposure'])
-            extraction=receipt['extraction']
-            limitations += extraction['quality_flags']+[r['reason'] for r in extraction['rejections']]
-            if not receipt['source']:return {'sheets':[],'status':'unavailable','limitations':limitations}
-            source=receipt['source'];image=Path(source['path'])
-            rows=[{'image':str(image),'width':source['width'],'height':source['height'],'source_page':1,'native_source':source}]
+            picked=selection.options.storey_id if d['format']=='ifc' else selection.options.element_ids
+            if not picked:
+                # Nothing picked by hand: build the 3D model from the file itself (build/vector_source.py).
+                from .build import vector_source
+                from .build.floorplan.converter import RESEARCH_SRC
+                image=run/'page-1.png'
+                try:vector=vector_source.render(original,d['format'],image,RESEARCH_SRC)
+                except Exception as exc:
+                    # No building could be drawn from the file: ask for the hand selection, as before.
+                    raise ValueError('Select an IFC storey.' if d['format']=='ifc' else 'Select source entities representing rooms.') from exc
+                vector_geometry[str(image)]=vector.pop('geometry',None)
+                with Image.open(image) as im:w,h=im.size
+                rows=[{'image':str(image),'width':w,'height':h,'source_page':1,'vector_source':vector}]
+            else:
+                from stoa_native_geometry import prepare
+                receipt=prepare(original,run/'native',options=selection.options.model_dump(mode='json'),project_identity=d['project_identity'],dataset=d['dataset'],exposure=d['exposure'])
+                extraction=receipt['extraction']
+                limitations += extraction['quality_flags']+[r['reason'] for r in extraction['rejections']]
+                if not receipt['source']:return {'sheets':[],'status':'unavailable','limitations':limitations}
+                source=receipt['source'];image=Path(source['path'])
+                rows=[{'image':str(image),'width':source['width'],'height':source['height'],'source_page':1,'native_source':source}]
         else:
             chosen=selection.pages or [p['number'] for p in d['pages']]
             if len(chosen)!=len(set(chosen)) or any(p not in range(1,d['page_count']+1) for p in chosen):raise ValueError('Select unique page numbers within the document.')
@@ -239,6 +252,9 @@ class DocumentStore:
                 document_id=ident,source_page=row['source_page'],document_page_count=d['page_count'],rendering_scope=row.get('native_source',{}).get('rendering_scope'),limitations=limitations)
             if row.get('image_registration'):payload['source']['image_registration']=row['image_registration']
             payload['lens_source']=row
+            vector=row.get('vector_source')
+            if vector and vector.get('m_per_px'):
+                payload['scale']={'m_per_px':vector['m_per_px'],'source':'file_units','confidence':0.95,'text':vector.get('scale_source')}
             if not row.get('native_source') and payload['scale'].get('source')=='estimate':
                 # A printed scale bar beats the size guess. Read on the full page; never from paper size alone.
                 from .build import ocr
@@ -253,7 +269,24 @@ class DocumentStore:
                                           'text':' '.join(found['labels'])+(' '+found['unit'] if found['unit'] not in ''.join(found['labels']) else ''),
                                           'replaced_estimate_m_per_px':payload['scale']['m_per_px']}
             drawing_id=self.drawings.save(payload,trace,raw,'png')
-            if not row.get('native_source'):
+            if vector and vector.get('rendered_from')=='ifc':
+                # The building is already in the IFC: show its own walls and openings, keep the IFC and a GLB.
+                import shutil
+                out=self.drawings.model_dir(drawing_id);out.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(original,out/'model.ifc')
+                record={'method':'IFC plan section','status':'built','m_per_px':round(vector['m_per_px'],6),'scale_source':vector['scale_source'],
+                        'counts':vector['counts'],'storey_level_m':vector['storey_level_m'],'files':['model.ifc']}
+                try:
+                    import sys
+                    if str(RESEARCH_SRC) not in sys.path:sys.path.insert(0,str(RESEARCH_SRC))
+                    from stoa_bim import writers
+                    writers.ifc_to_glb(out/'model.ifc',out/'model.glb')
+                    if (out/'model.glb').is_file():record['files'].append('model.glb')
+                except Exception as exc:record['glb']='failed: '+type(exc).__name__
+                geometry=vector_geometry.get(row['image'])
+                record['shown_in_app']={'wall_outlines':len(geometry['wall_blocks']),'openings':len(geometry['openings'])}
+                self.drawings.set_model_files(drawing_id,record,geometry)
+            elif not row.get('native_source'):
                 # The converter's own building model (IFC, GLB, DXF, SVG, PDF) from the full-resolution page.
                 from .build.floorplan.model_files import convert
                 sx=row['width']/normalized['width'];sy=row['height']/normalized['height']
