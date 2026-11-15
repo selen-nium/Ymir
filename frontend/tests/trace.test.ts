@@ -115,3 +115,10 @@ test('a failed detection retains the selected detector and requested class',()=>
   expect(nodes(output)[0]).toMatchObject({tool:'D-FINE-L',detail:'d-fine-l-junction-ema'});
   expect(output.at(-1)).toMatchObject({state:'failed',summary:'door · DetectionError'});
 });
+
+
+test.each(['coverage_plan','execution_plan'])('%s receipts identify the explicit planning step',name=>{
+  const sequence=createLensTraceSequence();
+  const out=sequence.apply({type:'progress',activity:{operation:'tool',phase:'started',tool:name,call_id:'plan'}});
+  expect(nodes(out)[0]).toMatchObject({tool:'Planning'});
+});

@@ -65,7 +65,7 @@ export function createLensTraceSequence(){
           const kind=str(route.requested_class)||str(route.canonical_class)||toolKinds.get(id)||'';
           if(kind)toolKinds.set(id,kind);
           const detector=backend==='dfine'?'D-FINE-L':backend==='argon'?'Argon':backend==='kimi'?'Kimi':model;
-          const events=node(id,title(name),name==='detect_objects'?(detector||nodes.get(id)?.tool||'Detector'):name==='inspect' || name==='read_pixels'?'VISTA':name==='read_pdf_text'?'Native PDF':name==='predict_room_polygons'?'Raster2Seq':'Geometry',model||nodes.get(id)?.detail);
+          const events=node(id,title(name),name==='detect_objects'?(detector||nodes.get(id)?.tool||'Detector'):name==='inspect' || name==='read_pixels'?'VISTA':name==='read_pdf_text'?'Native PDF':name==='predict_room_polygons'?'Raster2Seq':name==='coverage_plan' || name==='execution_plan'?'Planning':'Geometry',model||nodes.get(id)?.detail);
           const summary=[kind,str(result.error_type)||str(result.status)].filter(Boolean).join(' · ') || (a.phase==='started'?'Running':'Complete');
           return [...events,...status(id,a.phase==='started'?'running':result.error_type?'failed':'done',summary)];
         }
