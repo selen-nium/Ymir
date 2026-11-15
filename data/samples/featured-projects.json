@@ -1,0 +1,475 @@
+[
+  {
+    "id": "junction-ac20",
+    "title": "AC20 institute building",
+    "source": {
+      "dataset": "Junction · IFC-Bench",
+      "file": "ifc_bench/ac20_arc.ifc",
+      "licence": "LicenseRef-KIT-unrestricted",
+      "credit": "Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples",
+      "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/ac20",
+      "sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c"
+    },
+    "thumbnail": "api/drawings/junction-ac20-l1/image",
+    "levels": [
+      {
+        "id": "L0",
+        "name": "Keller",
+        "z_m": -3.0,
+        "height_m": 3.0
+      },
+      {
+        "id": "L1",
+        "name": "Erdgeschoss",
+        "z_m": 0.0,
+        "height_m": 3.0
+      },
+      {
+        "id": "L2",
+        "name": "1. Obergeschoss",
+        "z_m": 3.0,
+        "height_m": 3.0
+      },
+      {
+        "id": "L3",
+        "name": "2. Obergeschoss",
+        "z_m": 6.0,
+        "height_m": 3.0
+      },
+      {
+        "id": "L4",
+        "name": "Dachgeschoss",
+        "z_m": 9.0,
+        "height_m": 3.0
+      }
+    ],
+    "sheets": [
+      {
+        "drawing_id": "junction-ac20-l1",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L1",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-ac20-l0",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L0",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-ac20-l2",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L2",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-ac20-l3",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L3",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-ac20-l4",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L4",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "junction-duplex",
+    "title": "Duplex apartments",
+    "source": {
+      "dataset": "Junction · IFC-Bench",
+      "file": "ifc_bench/duplex_arc.ifc",
+      "licence": "CC-BY-ND-3.0",
+      "credit": "BSI (2020) \"Duplex Apartment Test Files,\" buildingSMART International, https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%202.3.0.1%20(IFC%202x3)/Duplex%20Apartment",
+      "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/duplex",
+      "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656"
+    },
+    "thumbnail": "api/drawings/junction-duplex-l1/image",
+    "levels": [
+      {
+        "id": "L0",
+        "name": "T/FDN",
+        "z_m": -1.25,
+        "height_m": 1.25
+      },
+      {
+        "id": "L1",
+        "name": "Level 1",
+        "z_m": 0.0,
+        "height_m": 3.100000000000378
+      },
+      {
+        "id": "L2",
+        "name": "Level 2",
+        "z_m": 3.100000000000378,
+        "height_m": 2.899999999999622
+      },
+      {
+        "id": "L3",
+        "name": "Roof",
+        "z_m": 6.0,
+        "height_m": 3.0
+      }
+    ],
+    "sheets": [
+      {
+        "drawing_id": "junction-duplex-l1",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L1",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-duplex-l0",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L0",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-duplex-l2",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L2",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-duplex-l3",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L3",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "junction-digitalhub",
+    "title": "DigitalHub office building",
+    "source": {
+      "dataset": "Junction · IFC Models",
+      "file": "ifc_models/rwth-digitalhub_digitalhub-fm-arc-v2.ifc",
+      "licence": "MIT",
+      "credit": "Copyright (c) 2020 RWTH Aachen University - E3D Institute of Energy Efficiency and Sustainable Building (MIT License)",
+      "url": "https://github.com/RWTH-E3D/DigitalHub/tree/master/Version_2",
+      "sha256": "19d7d02d53c2b88e86890ee236297b12bbb0f7748030cd32ff6a22762e9966bb"
+    },
+    "thumbnail": "api/drawings/junction-digitalhub-l1/image",
+    "levels": [
+      {
+        "id": "L0",
+        "name": "B01_OKRD",
+        "z_m": -3.37,
+        "height_m": 3.22
+      },
+      {
+        "id": "L1",
+        "name": "E00_OKRD",
+        "z_m": -0.15,
+        "height_m": 3.9
+      },
+      {
+        "id": "L2",
+        "name": "E01_OKRD",
+        "z_m": 3.75,
+        "height_m": 3.0
+      }
+    ],
+    "sheets": [
+      {
+        "drawing_id": "junction-digitalhub-l1",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L1",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-digitalhub-l0",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L0",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "junction-digitalhub-l2",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L2",
+              "transform": [
+                0.041666666666666664,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "junction-sports-complex",
+    "title": "Xcel Sports Complex",
+    "source": {
+      "dataset": "Junction · Opening Design",
+      "credit": "OpeningDesign · Xcel Sports Complex project team",
+      "licence": "CC-BY-SA-4.0",
+      "file": "junction-dataset/data/opening_design/Sports_Complex/Transfer/_Archive/20160210 -Addendum 1/20160210 - XSC - Addendum 1.pdf"
+    },
+    "thumbnail": "api/drawings/sports-a-101-a/image",
+    "levels": [
+      {
+        "id": "L0",
+        "name": "First floor",
+        "z_m": 0,
+        "height_m": 3
+      }
+    ],
+    "sheets": [
+      {
+        "drawing_id": "sports-a-101-a",
+        "views": [
+          {
+            "kind": "floor_plan",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "plan",
+              "level": "L0",
+              "transform": [
+                0.007274140143990294,
+                0,
+                0,
+                0
+              ],
+              "by": "model"
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "sports-a-101",
+        "views": [
+          {
+            "kind": "detail",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "attached",
+              "level": null
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "sports-a-101-b",
+        "views": [
+          {
+            "kind": "detail",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "attached",
+              "level": null
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "sports-a-701",
+        "views": [
+          {
+            "kind": "detail",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "attached",
+              "level": null
+            }
+          }
+        ]
+      },
+      {
+        "drawing_id": "sports-a-801",
+        "views": [
+          {
+            "kind": "schedule",
+            "kindSure": true,
+            "discipline": "architecture",
+            "placement": {
+              "type": "attached",
+              "level": null
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

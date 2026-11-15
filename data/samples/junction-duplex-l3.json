@@ -1,0 +1,213 @@
+{
+  "id": "junction-duplex-l3",
+  "title": "Roof",
+  "kind": "floor_plan",
+  "sheet_number": "A-004",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/duplex_arc.ifc",
+    "licence": "CC-BY-ND-3.0",
+    "credit": "BSI (2020) \"Duplex Apartment Test Files,\" buildingSMART International, https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%202.3.0.1%20(IFC%202x3)/Duplex%20Apartment",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/duplex",
+    "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656",
+    "kind": "Rendered from IFC",
+    "storey": "Roof",
+    "document_id": "doc-junction-duplex",
+    "prepared": true,
+    "model_units_to_metres": 1.0,
+    "preparation": "Cached IFC geometry",
+    "limitations": [
+      "Plan image rendered from the preserved IFC model."
+    ]
+  },
+  "image": {
+    "url": "junction-duplex-l3.png",
+    "size": [
+      319,
+      734
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.041666666666666664,
+    "source": "model",
+    "text": "1:100"
+  },
+  "default_height_m": 3.0,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0,
+        0,
+        319,
+        734
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        260.0,
+        163.2
+      ],
+      "b": [
+        260.0,
+        580.4
+      ],
+      "thickness_px": 10.0,
+      "ifc": "0jf0rYHfX3RAB3bSIRjmpw"
+    },
+    {
+      "id": "w2",
+      "a": [
+        53.8,
+        158.2
+      ],
+      "b": [
+        265.0,
+        158.2
+      ],
+      "thickness_px": 10.0,
+      "ifc": "0jf0rYHfX3RAB3bSIRjmmy"
+    },
+    {
+      "id": "w3",
+      "a": [
+        53.8,
+        575.4
+      ],
+      "b": [
+        255.0,
+        575.4
+      ],
+      "thickness_px": 10.0,
+      "ifc": "0jf0rYHfX3RAB3bSIRjmoa"
+    },
+    {
+      "id": "w4",
+      "a": [
+        58.8,
+        570.4
+      ],
+      "b": [
+        58.8,
+        163.2
+      ],
+      "thickness_px": 10.0,
+      "ifc": "0jf0rYHfX3RAB3bSIRjmr1"
+    }
+  ],
+  "openings": [],
+  "rooms": [
+    {
+      "id": "space-1",
+      "polygon": [
+        [
+          255.0,
+          163.2
+        ],
+        [
+          255.0,
+          203.9
+        ],
+        [
+          255.0,
+          570.4
+        ],
+        [
+          235.9,
+          570.4
+        ],
+        [
+          63.8,
+          570.4
+        ],
+        [
+          63.8,
+          529.7
+        ],
+        [
+          63.8,
+          163.2
+        ],
+        [
+          82.9,
+          163.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Roof",
+      "label_box": [
+        146.4,
+        353.8,
+        174.4,
+        363.8
+      ],
+      "printed_area_m2": 135.15,
+      "number": "R301",
+      "ifc": "0pNy6pOyf7JPmXRLgxs3sW"
+    }
+  ],
+  "symbols": [],
+  "texts": [
+    {
+      "id": "t1",
+      "text": "Roof",
+      "box": [
+        146.4,
+        353.8,
+        174.4,
+        363.8
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t2",
+      "text": "135.15 m²",
+      "box": [
+        133.4,
+        371.8,
+        185.4,
+        378.8
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t3",
+      "text": "A-004  Roof",
+      "box": [
+        9,
+        695,
+        79,
+        705
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t4",
+      "text": "Duplex apartments · IFC model",
+      "box": [
+        9,
+        712,
+        165,
+        722
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "lens_source": {
+    "document_id": "doc-junction-duplex",
+    "source_sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656",
+    "project_identity": "junction-duplex",
+    "dataset": "Junction · IFC-Bench",
+    "exposure": "prepared_showcase; not a holdout",
+    "source_page": 1,
+    "width": 319,
+    "height": 734,
+    "ifc_storey_id": "1xS3BCk291UvhgP2dvNtSE",
+    "image": "junction-duplex-l3.png",
+    "image_sha256": "b3cd504274ff12678eddc8cf13ff48b93208c371e3106b0bff668a7c0e2e4841"
+  }
+}

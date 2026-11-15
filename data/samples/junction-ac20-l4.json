@@ -1,0 +1,577 @@
+{
+  "id": "junction-ac20-l4",
+  "title": "Dachgeschoss",
+  "kind": "floor_plan",
+  "sheet_number": "A-005",
+  "source": {
+    "dataset": "Junction · IFC-Bench",
+    "file": "ifc_bench/ac20_arc.ifc",
+    "licence": "LicenseRef-KIT-unrestricted",
+    "credit": "Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples",
+    "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/ac20",
+    "sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c",
+    "kind": "Rendered from IFC",
+    "storey": "Dachgeschoss",
+    "document_id": "doc-junction-ac20",
+    "prepared": true,
+    "model_units_to_metres": 1.0,
+    "preparation": "Cached IFC geometry",
+    "limitations": [
+      "Plan image rendered from the preserved IFC model."
+    ]
+  },
+  "image": {
+    "url": "junction-ac20-l4.png",
+    "size": [
+      1152,
+      552
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.041666666666666664,
+    "source": "model",
+    "text": "1:100"
+  },
+  "default_height_m": 3.0,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0,
+        0,
+        1152,
+        552
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        507.6,
+        400.8
+      ],
+      "b": [
+        507.6,
+        127.2
+      ],
+      "thickness_px": 7.2,
+      "ifc": "1u4dzm1Ej6VxuWWX2hSHEy"
+    },
+    {
+      "id": "w2",
+      "a": [
+        72.0,
+        123.6
+      ],
+      "b": [
+        511.2,
+        123.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "12gYtU2FL0SvTEriHSUNbg"
+    },
+    {
+      "id": "w3",
+      "a": [
+        640.8,
+        123.6
+      ],
+      "b": [
+        1080.0,
+        123.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3hmLvediX7gRVGzmAdPrx3"
+    },
+    {
+      "id": "w4",
+      "a": [
+        644.4,
+        400.8
+      ],
+      "b": [
+        644.4,
+        127.2
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3hyPFx8vT6mvi6nf7P7n2u"
+    },
+    {
+      "id": "w5",
+      "a": [
+        644.4,
+        127.2
+      ],
+      "b": [
+        644.4,
+        72.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0CfDD9v019POgJaaj_XgfQ"
+    },
+    {
+      "id": "w6",
+      "a": [
+        1080.0,
+        404.4
+      ],
+      "b": [
+        72.0,
+        404.4
+      ],
+      "thickness_px": 7.2,
+      "ifc": "2OU4curhvDMPArGs3c5lc0"
+    },
+    {
+      "id": "w7",
+      "a": [
+        504.0,
+        75.6
+      ],
+      "b": [
+        648.0,
+        75.6
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0bg0AtKu104BS2oVEJMTxV"
+    },
+    {
+      "id": "w8",
+      "a": [
+        1076.4,
+        120.0
+      ],
+      "b": [
+        1076.4,
+        408.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "3xKoz5lYr2kBHotkF1f8iz"
+    },
+    {
+      "id": "w9",
+      "a": [
+        75.6,
+        408.0
+      ],
+      "b": [
+        75.6,
+        120.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "0cxniC0UzD0wuIz01g7Uyw"
+    },
+    {
+      "id": "w10",
+      "a": [
+        507.6,
+        127.2
+      ],
+      "b": [
+        507.6,
+        72.0
+      ],
+      "thickness_px": 7.2,
+      "ifc": "05pt4VPQf37w1V18yX4Rbi"
+    }
+  ],
+  "openings": [],
+  "rooms": [
+    {
+      "id": "space-1",
+      "polygon": [
+        [
+          640.8,
+          83.3
+        ],
+        [
+          640.8,
+          89.1
+        ],
+        [
+          640.8,
+          94.1
+        ],
+        [
+          640.8,
+          379.6
+        ],
+        [
+          640.8,
+          385.9
+        ],
+        [
+          640.8,
+          390.9
+        ],
+        [
+          640.8,
+          396.7
+        ],
+        [
+          640.8,
+          400.8
+        ],
+        [
+          611.6,
+          400.8
+        ],
+        [
+          511.2,
+          400.8
+        ],
+        [
+          511.2,
+          396.7
+        ],
+        [
+          511.2,
+          390.9
+        ],
+        [
+          511.2,
+          385.9
+        ],
+        [
+          511.2,
+          379.6
+        ],
+        [
+          511.2,
+          94.1
+        ],
+        [
+          511.2,
+          89.1
+        ],
+        [
+          511.2,
+          83.3
+        ],
+        [
+          511.2,
+          79.2
+        ],
+        [
+          540.4,
+          79.2
+        ],
+        [
+          640.8,
+          79.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Flur 3.OG Treppe",
+      "label_box": [
+        526.0,
+        223.9,
+        627.0,
+        236.9
+      ],
+      "printed_area_m2": 72.36,
+      "number": "401",
+      "ifc": "2_rG4oliv3CxmStpGPieup"
+    },
+    {
+      "id": "space-2",
+      "polygon": [
+        [
+          1072.8,
+          400.8
+        ],
+        [
+          753.4,
+          400.8
+        ],
+        [
+          648.0,
+          400.8
+        ],
+        [
+          648.0,
+          393.8
+        ],
+        [
+          648.0,
+          386.4
+        ],
+        [
+          648.0,
+          380.2
+        ],
+        [
+          648.0,
+          371.3
+        ],
+        [
+          648.0,
+          147.8
+        ],
+        [
+          648.0,
+          141.6
+        ],
+        [
+          648.0,
+          134.2
+        ],
+        [
+          648.0,
+          127.2
+        ],
+        [
+          967.4,
+          127.2
+        ],
+        [
+          1072.8,
+          127.2
+        ],
+        [
+          1072.8,
+          134.2
+        ],
+        [
+          1072.8,
+          141.6
+        ],
+        [
+          1072.8,
+          147.8
+        ],
+        [
+          1072.8,
+          371.3
+        ],
+        [
+          1072.8,
+          380.2
+        ],
+        [
+          1072.8,
+          386.4
+        ],
+        [
+          1072.8,
+          393.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Dachboden-1",
+      "label_box": [
+        820.4,
+        246.5,
+        900.4,
+        256.5
+      ],
+      "printed_area_m2": 201.78,
+      "number": "402",
+      "ifc": "0jbV$RErb7o9P7rp7ALEd$"
+    },
+    {
+      "id": "space-3",
+      "polygon": [
+        [
+          398.6,
+          127.2
+        ],
+        [
+          504.0,
+          127.2
+        ],
+        [
+          504.0,
+          134.2
+        ],
+        [
+          504.0,
+          141.6
+        ],
+        [
+          504.0,
+          147.8
+        ],
+        [
+          504.0,
+          371.3
+        ],
+        [
+          504.0,
+          380.2
+        ],
+        [
+          504.0,
+          386.4
+        ],
+        [
+          504.0,
+          393.8
+        ],
+        [
+          504.0,
+          400.8
+        ],
+        [
+          184.6,
+          400.8
+        ],
+        [
+          79.2,
+          400.8
+        ],
+        [
+          79.2,
+          393.8
+        ],
+        [
+          79.2,
+          386.4
+        ],
+        [
+          79.2,
+          380.2
+        ],
+        [
+          79.2,
+          371.3
+        ],
+        [
+          79.2,
+          147.8
+        ],
+        [
+          79.2,
+          141.6
+        ],
+        [
+          79.2,
+          134.2
+        ],
+        [
+          79.2,
+          127.2
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Dachboden-2",
+      "label_box": [
+        251.6,
+        246.5,
+        331.6,
+        256.5
+      ],
+      "printed_area_m2": 201.78,
+      "number": "403",
+      "ifc": "3txvJd9V1BPhyU$48F$mnF"
+    }
+  ],
+  "symbols": [],
+  "texts": [
+    {
+      "id": "t1",
+      "text": "Flur 3.OG Treppe",
+      "box": [
+        526.0,
+        223.9,
+        627.0,
+        236.9
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t2",
+      "text": "72.36 m²",
+      "box": [
+        553.0,
+        241.9,
+        599.0,
+        248.9
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t3",
+      "text": "Dachboden-1",
+      "box": [
+        820.4,
+        246.5,
+        900.4,
+        256.5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t4",
+      "text": "201.78 m²",
+      "box": [
+        834.4,
+        264.5,
+        886.4,
+        271.5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t5",
+      "text": "Dachboden-2",
+      "box": [
+        251.6,
+        246.5,
+        331.6,
+        256.5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t6",
+      "text": "201.78 m²",
+      "box": [
+        265.6,
+        264.5,
+        317.6,
+        271.5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t7",
+      "text": "A-005  Dachgeschoss",
+      "box": [
+        842,
+        513,
+        971,
+        526
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t8",
+      "text": "AC20 institute building · IFC model",
+      "box": [
+        842,
+        530,
+        1016,
+        540
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "lens_source": {
+    "document_id": "doc-junction-ac20",
+    "source_sha256": "cfb2124497b25d9a72101075e84be0feb44ff669cb1bd3251be11efebeea945c",
+    "project_identity": "junction-ac20",
+    "dataset": "Junction · IFC-Bench",
+    "exposure": "prepared_showcase; not a holdout",
+    "source_page": 1,
+    "width": 1152,
+    "height": 552,
+    "ifc_storey_id": "3P_7taSfTB1uu5RSuYEGO1",
+    "image": "junction-ac20-l4.png",
+    "image_sha256": "a1fb179f6641cc51114aac05681e461b51b687f54254d3acb08889bfaa5c70a1"
+  }
+}

@@ -27,7 +27,17 @@ class DrawingStore:
         raise KeyError(drawing_id)
 
     def raw(self, drawing_id: str) -> dict:
-        return json.loads((self._folder(drawing_id) / f"{drawing_id}.json").read_text())
+        folder=self._folder(drawing_id)
+        d=json.loads((folder / f"{drawing_id}.json").read_text())
+        if folder==self.samples:
+            source=d.get('lens_source',{})
+            for key in ('image','pdf'):
+                if source.get(key) and not Path(source[key]).is_absolute():source[key]=str((self.samples/source[key]).resolve())
+        return d
+
+    def catalog(self) -> dict | None:
+        path=self.samples/'featured-catalog.json'
+        return json.loads(path.read_text()) if path.is_file() else None
 
     def image_path(self, drawing_id: str) -> Path:
         d = self.raw(drawing_id)
@@ -36,6 +46,7 @@ class DrawingStore:
     def payload(self, drawing_id: str) -> dict:
         """The payload as the frontend gets it: image served by the API."""
         d = self.raw(drawing_id)
+        d.pop("lens_source", None)
         d["image"] = {**d["image"], "url": f"api/drawings/{drawing_id}/image"}
         return d
 
@@ -46,7 +57,9 @@ class DrawingStore:
     def library(self) -> list[dict]:
         ids = []
         manifest = self.samples / "library.json"
-        if manifest.is_file():
+        if self.catalog():
+            ids += self.catalog()['drawings']
+        elif manifest.is_file():
             ids += [e["id"] for e in json.loads(manifest.read_text())]
         if self.uploads.is_dir():
             uploads = sorted(self.uploads.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
@@ -55,17 +68,19 @@ class DrawingStore:
         for i in ids:
             d = self.raw(i)
             out.append({"id": i, "title": d["title"], "thumbnail": f"api/drawings/{i}/image",
-                        "source": {k: d["source"].get(k) for k in ("dataset", "kind")}})
+                        "source": {k: d["source"].get(k) for k in ("dataset", "kind", "credit", "licence")}})
         return out
 
     def _projects(self) -> list[dict]:
         manifest = self.samples / "projects.json"
-        return json.loads(manifest.read_text()) if manifest.is_file() else []
+        legacy=json.loads(manifest.read_text()) if manifest.is_file() else []
+        featured=self.samples/'featured-projects.json'
+        return legacy+(json.loads(featured.read_text()) if featured.is_file() else [])
 
     def projects(self) -> list[dict]:
         """Sample projects: buildings made of several sheets (see scripts/build_ifc_project.py)."""
         return [{"id": p["id"], "title": p["title"], "thumbnail": p.get("thumbnail"), "sheets": len(p["sheets"]),
-                 "source": {k: p.get("source", {}).get(k) for k in ("dataset", "credit")}} for p in self._projects()]
+                 "source": {k: p.get("source", {}).get(k) for k in ("dataset", "credit", "licence", "url")}} for p in self._projects() if not self.catalog() or p['id'] in self.catalog()['projects']]
 
     def project(self, project_id: str) -> dict:
         p = next((p for p in self._projects() if p["id"] == project_id), None)

@@ -1,0 +1,111 @@
+# Vercel, Modal and Verda
+
+The Next.js frontend runs on Vercel. A single CPU API container on Modal owns
+SQLite, the durable inference queue and source artifacts. D-FINE-L and Raster2Seq
+run as private Modal GPU functions. DeepSeek and Kimi stay on Verda. Browser code
+contains only the API origin; provider credentials stay in the backend secret.
+
+## Models
+
+Install `modal==1.6.4` and authenticate with your own Modal profile. Prepare assets
+from the existing local asset workspace once:
+
+```sh
+python scripts/prepare_modal_assets.py --source ../stoa
+python -m modal run deploy/modal_models.py --output var/modal-smoke.json
+```
+
+The upload preserves checkpoint hashes, source code and licences. It omits datasets,
+reference annotations and credentials. It refuses to overwrite an existing bundle.
+The smoke check performs actual batch-one inference on the cached CubiCasa source,
+using no annotations. D-FINE loads its pinned epoch-18 EMA strictly and runs BF16 on
+an A10G. Raster2Seq uses isolated Python 3.10, Torch 2.3.1/CUDA 11.8 and compiled
+CUDA operators; EMA coverage must have no missing or unexpected learned weights.
+Both functions have zero automatic retries, one maximum container, 180-second
+execution and startup limits, and a two-second idle window. Raster compilation
+has a separate 600-second limit. GPU containers scale to zero.
+
+Publish a compact successful receipt with
+`python scripts/publish_modal_readiness.py var/modal-smoke.json` before API deployment.
+The tested Raster2Seq environment uses Python 3.10; keep Modal pinned to 1.6.4
+until its Python environment and custom operators have been upgraded and retested. Model changes require a new smoke receipt. The CPU adapter refuses
+an unverified checkpoint and records the model proof in each job manifest.
+
+## API and state
+
+Create the backend-only Modal secret `ymir-verda` with `VERDA_INFERENCE_API_KEY`,
+`VERDA_CLIENT_ID` and `VERDA_CLIENT_SECRET`. Do not put these in Vercel variables.
+Obtain secrets through your existing secret manager or Modal dashboard, never Git.
+
+The existing local US$25 ledger must move with the jobs, uploads and reviews. Finish
+or cancel pending jobs and stop the local API before the one-time cutover:
+
+```sh
+python scripts/upload_modal_state.py --state var
+YMIR_CORS_ORIGINS=https://your-project.vercel.app python -m modal deploy deploy/modal_app.py
+```
+
+The importer refuses an active worker or existing remote files. The hosted API
+refuses to start without the existing ledger. Do not run local and hosted writers
+against divergent copies of that ledger. Historical conversations keep their job
+references because the migration retains IDs and artifacts.
+
+The API keeps one CPU container warm so jobs continue after every browser
+connection closes. This incurs idle CPU/memory cost; GPU workers remain independent.
+All mutations commit the data volume, including source intake failures. Job status,
+progress, reservations and settlements commit at operation boundaries. Interrupted
+jobs stay stopped, and unknown billing retains its reservation. Fresh Verda pricing
+is checked before dispatch. Each private GPU call holds $0.25 in the same budget;
+actual Modal billing must be reconciled separately. It is never reported as an
+LLM token charge or guessed from inference duration.
+
+The API remains reachable without a login, as in the local app. The shared ledger
+bounds paid inference. Keep access within the intended workspace until access
+controls are configured for a broader launch.
+
+## Frontend
+
+Import this repository into Vercel with **Root Directory `frontend`**. The checked-in
+`frontend/vercel.json` selects Next.js and the production build. Set
+`NEXT_PUBLIC_YMIR_API_BASE=https://your-workspace--ymir-web.modal.run` at build time.
+The build rejects a missing or non-HTTPS production origin. Set the matching
+`YMIR_CORS_ORIGINS` on Modal; optionally allow your specific Vercel preview URL
+pattern with `YMIR_CORS_ORIGIN_REGEX`.
+
+Uploads, images and reconnectable NDJSON job streams go directly from the browser
+to Modal. This avoids passing drawing files through Vercel Functions, whose payload
+limit is 4.5 MB ([Vercel limits](https://vercel.com/docs/functions/limitations)).
+Local development continues to use Next's `/api` proxy via `YMIR_API_BASE`.
+Changing a `NEXT_PUBLIC_` variable requires rebuilding the frontend.
+
+The manual GitHub Actions deployment deploys private GPU functions first, then the
+API. It expects the preprovisioned model volume, state volume, smoke receipt and
+Verda secret; it never uploads weights or resets the ledger automatically.
+
+## Validation performed
+
+On 15 November 2026, both private functions passed real inference on Modal A10
+GPUs and were deployed as `ymir-models`. The pinned detector loaded strictly; the
+room model reported full EMA coverage and both compiled operator hashes. The
+local adapter called both deployed functions, validated the returned proofs, and
+served a repeated room request from its cache. A CPU container also reached both
+private functions using Modal's ambient identity, without provider keys in the
+browser.
+
+The CPU API image passed its default Ask factory check with an injected language
+model, native SVG subprocess extraction, SQLite job deduplication, five durable
+checkpoints and an independent container reading seven persisted events. An
+uncalibrated SVG correctly remained `needs_review`. The fixture made no paid
+language-model calls. Receipt publishing uses an exclusive claim and atomic
+rename because Modal volumes do not support hard links.
+
+The production frontend passed a direct cross-origin 6,056,544-byte PNG upload,
+source-image loading, NDJSON streaming, reload/reconnect and edited-label
+persistence. Failed compiler, Python compatibility and API packaging checks remain
+in local `var/` logs; they were corrected before the successful checks. No historical
+study reports or ledgers were changed. The $3 validation reservation and $0.50 of
+adapter reservations remain held in the original ledger pending authoritative Modal
+billing; these are reservations, not claims about actual spend.
+
+The private GPU deployment is live. The workspace and frontend remain local;
+public API cutover and Vercel publication use the setup above and the same state.

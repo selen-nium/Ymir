@@ -1,0 +1,8 @@
+{
+  "dataset": "Junction · IFC-Bench",
+  "file": "ifc_bench/duplex_arc.ifc",
+  "licence": "CC-BY-ND-3.0",
+  "credit": "BSI (2020) \"Duplex Apartment Test Files,\" buildingSMART International, https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%202.3.0.1%20(IFC%202x3)/Duplex%20Apartment",
+  "url": "https://huggingface.co/datasets/sylvainhellin/ifc-bench/tree/main/projects/duplex",
+  "sha256": "707a032566dee8e969a44d95509be46d646440e2443624709f8d3ae2b45f4656"
+}

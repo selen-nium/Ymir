@@ -1,0 +1,19 @@
+{
+  "model": "sol",
+  "status": "completed",
+  "output": {
+    "status": "answered",
+    "answer": "Room 4.21 (Reduit) has a net floor area of approximately 4.90 m².",
+    "value": 4.9,
+    "unit": "m2",
+    "candidate_id": "native-24ce6536deb63b0802e49c06",
+    "calibration_id": "native-cal-c7114d1c869c155818fe",
+    "printed_area_m2": null,
+    "calibration_evidence": "Native DXF metre units and PDF registration verified against the visible 5 m scale bar; scale is 0.0084666675 m/pixel.",
+    "boundary_evidence": "Inspected overlay matches Reduit 4.21 and its interior wall faces, excluding surrounding walls and adjacent spaces. Door graphics do not subtract floor area.",
+    "uncertainties": []
+  },
+  "selection": null,
+  "source_sha256": "f0caa64939caceab07ac9f19adbc6bcb0113973730cfd428e7df8006594b98e7",
+  "trajectory_sha256": "f00fa14acbb599b23e14c2e8c523f785710f4d85a84f547e15383cf428bd8045"
+}

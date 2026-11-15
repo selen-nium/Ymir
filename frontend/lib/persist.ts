@@ -3,6 +3,7 @@
 // blocked (private windows, previews) and the app still works without it.
 import { BASE_LEVEL, placementFor, type Level, type Overlay, type Project } from './project';
 import type { Answer, Drawing, TraceEvent } from './types';
+import type {ReviewRecord} from './session';
 
 export interface KeyValueStorage {
   getItem(key: string): string | null;
@@ -55,7 +56,15 @@ export const MAX_THREAD = 30;
 export interface StoredEntry {
   q: string;
   sheet: string;
-  answer: Answer;
+  answer?: Answer;
+  modelAnswer?: Answer;
+  records?: ReviewRecord[];
+  record?: ReviewRecord;
+  id?: string;
+  job_id?: string;
+  request_id?: string;
+  sheets?: string[];
+  status?: 'pending' | 'review' | 'done';
   events: TraceEvent[];
   at: number;
 }
@@ -66,8 +75,8 @@ export function loadThread(pid: string, storage = browserStorage()): StoredEntry
 }
 /** Keeps what re-showing an answer needs: the question, the sheet it was asked on, the answer and its trace. */
 export function saveThread(pid: string, entries: Partial<StoredEntry>[], storage = browserStorage()): boolean {
-  const kept = entries.filter((e) => e.answer).slice(-MAX_THREAD)
-    .map(({ q, sheet, answer, events, at }) => ({ q, sheet, answer, events: events ?? [], at: at ?? Date.now() }));
+  const kept = entries.filter((e) => e.answer || e.job_id || e.request_id).slice(-MAX_THREAD)
+    .map(({ q, sheet, sheets, answer, modelAnswer, records, record, events, at, id, job_id, request_id, status }) => ({ q, sheet, sheets, answer, modelAnswer, records, record, events: events ?? [], at: at ?? Date.now(), id, job_id, request_id, status }));
   return write(storage, threadKey(pid), kept);
 }
 export function threadSummary(pid: string, storage = browserStorage()) {

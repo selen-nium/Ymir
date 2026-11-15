@@ -1,0 +1,1650 @@
+{
+  "id": "junction-digitalhub-l0",
+  "title": "B01_OKRD",
+  "kind": "floor_plan",
+  "sheet_number": "A-001",
+  "source": {
+    "dataset": "Junction · IFC Models",
+    "file": "ifc_models/rwth-digitalhub_digitalhub-fm-arc-v2.ifc",
+    "licence": "MIT",
+    "credit": "Copyright (c) 2020 RWTH Aachen University - E3D Institute of Energy Efficiency and Sustainable Building (MIT License)",
+    "url": "https://github.com/RWTH-E3D/DigitalHub/tree/master/Version_2",
+    "sha256": "19d7d02d53c2b88e86890ee236297b12bbb0f7748030cd32ff6a22762e9966bb",
+    "kind": "Rendered from IFC",
+    "storey": "B01_OKRD",
+    "document_id": "doc-junction-digitalhub",
+    "prepared": true,
+    "model_units_to_metres": 1.0,
+    "preparation": "Cached IFC geometry",
+    "limitations": [
+      "Plan image rendered from the preserved IFC model."
+    ]
+  },
+  "image": {
+    "url": "junction-digitalhub-l0.png",
+    "size": [
+      3919,
+      1621
+    ]
+  },
+  "scale": {
+    "m_per_px": 0.041666666666666664,
+    "source": "model",
+    "text": "1:100"
+  },
+  "default_height_m": 3.22,
+  "plans": [
+    {
+      "id": "p1",
+      "box": [
+        0,
+        0,
+        3919,
+        1621
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "w1",
+      "a": [
+        823.4,
+        571.3
+      ],
+      "b": [
+        1993.4,
+        571.3
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LJODRGPbDdfXHXShFLBoR"
+    },
+    {
+      "id": "w2",
+      "a": [
+        988.4,
+        501.7
+      ],
+      "b": [
+        988.4,
+        407.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LJODRGPbDdfXHXShFL894"
+    },
+    {
+      "id": "w3",
+      "a": [
+        819.8,
+        702.7
+      ],
+      "b": [
+        819.8,
+        400.3
+      ],
+      "thickness_px": 7.2,
+      "ifc": "23Np8uMAvEN9H6Ds49debS"
+    },
+    {
+      "id": "w4",
+      "a": [
+        809.0,
+        612.1
+      ],
+      "b": [
+        809.0,
+        595.3
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0qHt$K$J1CDgKrHmzIgbH7"
+    },
+    {
+      "id": "w5",
+      "a": [
+        816.2,
+        712.3
+      ],
+      "b": [
+        2000.6,
+        712.3
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0CWDnGbzX4Sf1BesL9Tj9B"
+    },
+    {
+      "id": "w6",
+      "a": [
+        1156.4,
+        501.7
+      ],
+      "b": [
+        1156.4,
+        407.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LJODRGPbDdfXHXShFL88B"
+    },
+    {
+      "id": "w7",
+      "a": [
+        806.6,
+        592.9
+      ],
+      "b": [
+        816.2,
+        592.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0qHt$K$J1CDgKrHmzIgbHZ"
+    },
+    {
+      "id": "w8",
+      "a": [
+        823.4,
+        504.1
+      ],
+      "b": [
+        1993.4,
+        504.1
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LJODRGPbDdfXHXShFLBq$"
+    },
+    {
+      "id": "w9",
+      "a": [
+        1923.8,
+        602.5
+      ],
+      "b": [
+        1923.8,
+        702.7
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LF03GdXv2GhSTK1xTZzX0"
+    },
+    {
+      "id": "w10",
+      "a": [
+        1492.4,
+        501.7
+      ],
+      "b": [
+        1492.4,
+        407.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LJODRGPbDdfXHXShFL8Bf"
+    },
+    {
+      "id": "w11",
+      "a": [
+        823.4,
+        403.9
+      ],
+      "b": [
+        2000.6,
+        403.9
+      ],
+      "thickness_px": 7.2,
+      "ifc": "23Np8uMAvEN9H6Ds49dea4"
+    },
+    {
+      "id": "w12",
+      "a": [
+        1828.4,
+        573.7
+      ],
+      "b": [
+        1828.4,
+        602.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LF03GdXv2GhSTK1xTZzX2"
+    },
+    {
+      "id": "w13",
+      "a": [
+        1660.4,
+        501.7
+      ],
+      "b": [
+        1660.4,
+        407.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LJODRGPbDdfXHXShFL8Af"
+    },
+    {
+      "id": "w14",
+      "a": [
+        893.0,
+        702.7
+      ],
+      "b": [
+        893.0,
+        602.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0YVU7tDBX86u6UVVsSmdwK"
+    },
+    {
+      "id": "w15",
+      "a": [
+        1997.0,
+        702.7
+      ],
+      "b": [
+        1997.0,
+        407.5
+      ],
+      "thickness_px": 7.2,
+      "ifc": "23Np8uMAvEN9H6Ds49deZx"
+    },
+    {
+      "id": "w16",
+      "a": [
+        813.8,
+        395.5
+      ],
+      "b": [
+        813.8,
+        714.7
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0CWDnGbzX4Sf1BesL9Tj2L"
+    },
+    {
+      "id": "w17",
+      "a": [
+        1921.4,
+        604.9
+      ],
+      "b": [
+        1825.4,
+        604.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LF03GdXv2GhSTK1xTZzX3"
+    },
+    {
+      "id": "w18",
+      "a": [
+        1828.4,
+        501.7
+      ],
+      "b": [
+        1828.4,
+        407.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "3LJODRGPbDdfXHXShFL8AW"
+    },
+    {
+      "id": "w19",
+      "a": [
+        988.4,
+        573.7
+      ],
+      "b": [
+        988.4,
+        602.5
+      ],
+      "thickness_px": 6.0,
+      "ifc": "0YVU7tDBX86u6UVVsSmdwI"
+    },
+    {
+      "id": "w20",
+      "a": [
+        649.4,
+        879.1
+      ],
+      "b": [
+        2172.2,
+        879.1
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3POx7FYsP3ahzOj_4LrJA4"
+    },
+    {
+      "id": "w21",
+      "a": [
+        1871.0,
+        669.1
+      ],
+      "b": [
+        1871.0,
+        607.3
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LF03GdXv2GhSTK1xTZzXC"
+    },
+    {
+      "id": "w22",
+      "a": [
+        895.4,
+        604.9
+      ],
+      "b": [
+        991.4,
+        604.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0YVU7tDBX86u6UVVsSmdwJ"
+    },
+    {
+      "id": "w23",
+      "a": [
+        921.2,
+        568.9
+      ],
+      "b": [
+        921.2,
+        504.1
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LJODRGPbDdfXHXShFL8Z_"
+    },
+    {
+      "id": "w24",
+      "a": [
+        2169.8,
+        876.7
+      ],
+      "b": [
+        2169.8,
+        395.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3POx7FYsP3ahzOj_4LrJBW"
+    },
+    {
+      "id": "w25",
+      "a": [
+        804.2,
+        616.9
+      ],
+      "b": [
+        804.2,
+        590.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0qHt$K$J1CDgKrHmzIgb9L"
+    },
+    {
+      "id": "w26",
+      "a": [
+        1868.6,
+        671.5
+      ],
+      "b": [
+        1921.4,
+        671.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LF03GdXv2GhSTK1xTZzXD"
+    },
+    {
+      "id": "w27",
+      "a": [
+        945.8,
+        669.1
+      ],
+      "b": [
+        945.8,
+        607.3
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0YVU7tDBX86u6UVVsSmdwG"
+    },
+    {
+      "id": "w28",
+      "a": [
+        647.0,
+        395.5
+      ],
+      "b": [
+        647.0,
+        881.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3POx7FYsP3ahzOj_4LrJ9X"
+    },
+    {
+      "id": "w29",
+      "a": [
+        816.2,
+        397.9
+      ],
+      "b": [
+        2000.6,
+        397.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0CWDnGbzX4Sf1BesL9TjCD"
+    },
+    {
+      "id": "w30",
+      "a": [
+        895.4,
+        671.5
+      ],
+      "b": [
+        948.2,
+        671.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0YVU7tDBX86u6UVVsSmdwH"
+    },
+    {
+      "id": "w31",
+      "a": [
+        2003.0,
+        397.9
+      ],
+      "b": [
+        2167.4,
+        397.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1hZK0DPVLAZv0RcYBdvncq"
+    },
+    {
+      "id": "w32",
+      "a": [
+        1895.6,
+        568.9
+      ],
+      "b": [
+        1895.6,
+        506.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "3LJODRGPbDdfXHXShFL8bG"
+    },
+    {
+      "id": "w33",
+      "a": [
+        2003.0,
+        714.7
+      ],
+      "b": [
+        2003.0,
+        395.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0CWDnGbzX4Sf1BesL9TjFo"
+    },
+    {
+      "id": "w34",
+      "a": [
+        649.4,
+        397.9
+      ],
+      "b": [
+        811.4,
+        397.9
+      ],
+      "thickness_px": 4.8,
+      "ifc": "1hZK0DPVLAZv0RcYBdvnyA"
+    },
+    {
+      "id": "w35",
+      "a": [
+        806.6,
+        614.5
+      ],
+      "b": [
+        816.2,
+        614.5
+      ],
+      "thickness_px": 4.8,
+      "ifc": "0qHt$K$J1CDgKrHmzIgblS"
+    },
+    {
+      "id": "w36",
+      "a": [
+        816.2,
+        706.3
+      ],
+      "b": [
+        2000.6,
+        706.3
+      ],
+      "thickness_px": 7.2,
+      "ifc": "23Np8uMAvEN9H6Ds49djm8"
+    }
+  ],
+  "openings": [],
+  "rooms": [
+    {
+      "id": "space-1",
+      "polygon": [
+        [
+          823.4,
+          573.7
+        ],
+        [
+          833.2,
+          573.7
+        ],
+        [
+          921.2,
+          573.7
+        ],
+        [
+          927.6,
+          573.7
+        ],
+        [
+          985.4,
+          573.7
+        ],
+        [
+          985.4,
+          576.6
+        ],
+        [
+          985.4,
+          602.5
+        ],
+        [
+          981.4,
+          602.5
+        ],
+        [
+          945.8,
+          602.5
+        ],
+        [
+          940.3,
+          602.5
+        ],
+        [
+          890.6,
+          602.5
+        ],
+        [
+          890.6,
+          603.0
+        ],
+        [
+          890.6,
+          603.7
+        ],
+        [
+          890.6,
+          665.8
+        ],
+        [
+          890.6,
+          671.5
+        ],
+        [
+          890.6,
+          674.6
+        ],
+        [
+          890.6,
+          702.7
+        ],
+        [
+          830.1,
+          702.7
+        ],
+        [
+          823.4,
+          702.7
+        ],
+        [
+          823.4,
+          693.2
+        ],
+        [
+          823.4,
+          577.1
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Treppenhaus West - UG",
+      "label_box": [
+        786.0,
+        621.7,
+        927.0,
+        634.7
+      ],
+      "printed_area_m2": 19.79,
+      "number": "0-12",
+      "ifc": "1aFRCtje92oh3_jKdNxTMP"
+    },
+    {
+      "id": "space-2",
+      "polygon": [
+        [
+          1831.4,
+          407.5
+        ],
+        [
+          1847.6,
+          407.5
+        ],
+        [
+          1993.4,
+          407.5
+        ],
+        [
+          1993.4,
+          416.9
+        ],
+        [
+          1993.4,
+          501.7
+        ],
+        [
+          1983.6,
+          501.7
+        ],
+        [
+          1895.6,
+          501.7
+        ],
+        [
+          1889.2,
+          501.7
+        ],
+        [
+          1831.4,
+          501.7
+        ],
+        [
+          1831.4,
+          492.3
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Lager2",
+      "label_box": [
+        1891.4,
+        442.6,
+        1933.4,
+        454.6
+      ],
+      "printed_area_m2": 26.49,
+      "number": "0-8",
+      "ifc": "1aFRCtje92oh3_jKdNxTM0"
+    },
+    {
+      "id": "space-3",
+      "polygon": [
+        [
+          1921.4,
+          702.7
+        ],
+        [
+          1818.8,
+          702.7
+        ],
+        [
+          895.4,
+          702.7
+        ],
+        [
+          895.4,
+          699.8
+        ],
+        [
+          895.4,
+          673.9
+        ],
+        [
+          900.7,
+          673.9
+        ],
+        [
+          948.2,
+          673.9
+        ],
+        [
+          948.2,
+          667.3
+        ],
+        [
+          948.2,
+          607.3
+        ],
+        [
+          952.5,
+          607.3
+        ],
+        [
+          991.4,
+          607.3
+        ],
+        [
+          991.4,
+          604.0
+        ],
+        [
+          991.4,
+          573.7
+        ],
+        [
+          1742.0,
+          573.7
+        ],
+        [
+          1825.4,
+          573.7
+        ],
+        [
+          1825.4,
+          577.1
+        ],
+        [
+          1825.4,
+          607.3
+        ],
+        [
+          1829.7,
+          607.3
+        ],
+        [
+          1868.6,
+          607.3
+        ],
+        [
+          1868.6,
+          614.0
+        ],
+        [
+          1868.6,
+          673.9
+        ],
+        [
+          1873.9,
+          673.9
+        ],
+        [
+          1921.4,
+          673.9
+        ],
+        [
+          1921.4,
+          676.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "RLT-Raum",
+      "label_box": [
+        1379.4,
+        628.6,
+        1438.4,
+        637.6
+      ],
+      "printed_area_m2": 206.37,
+      "number": "0-10",
+      "ifc": "1aFRCtje92oh3_jKdNxTMQ"
+    },
+    {
+      "id": "space-4",
+      "polygon": [
+        [
+          1663.4,
+          407.5
+        ],
+        [
+          1679.6,
+          407.5
+        ],
+        [
+          1825.4,
+          407.5
+        ],
+        [
+          1825.4,
+          416.9
+        ],
+        [
+          1825.4,
+          501.7
+        ],
+        [
+          1809.2,
+          501.7
+        ],
+        [
+          1663.4,
+          501.7
+        ],
+        [
+          1663.4,
+          492.3
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Lager 1",
+      "label_box": [
+        1721.4,
+        442.6,
+        1766.4,
+        454.6
+      ],
+      "printed_area_m2": 26.49,
+      "number": "0-7",
+      "ifc": "1aFRCtje92oh3_jKdNxTM1"
+    },
+    {
+      "id": "space-5",
+      "polygon": [
+        [
+          1993.4,
+          577.1
+        ],
+        [
+          1993.4,
+          693.2
+        ],
+        [
+          1993.4,
+          702.7
+        ],
+        [
+          1986.7,
+          702.7
+        ],
+        [
+          1926.2,
+          702.7
+        ],
+        [
+          1926.2,
+          674.6
+        ],
+        [
+          1926.2,
+          671.5
+        ],
+        [
+          1926.2,
+          665.8
+        ],
+        [
+          1926.2,
+          603.7
+        ],
+        [
+          1926.2,
+          603.0
+        ],
+        [
+          1926.2,
+          602.5
+        ],
+        [
+          1920.7,
+          602.5
+        ],
+        [
+          1871.0,
+          602.5
+        ],
+        [
+          1867.0,
+          602.5
+        ],
+        [
+          1831.4,
+          602.5
+        ],
+        [
+          1831.4,
+          599.6
+        ],
+        [
+          1831.4,
+          573.7
+        ],
+        [
+          1837.8,
+          573.7
+        ],
+        [
+          1895.6,
+          573.7
+        ],
+        [
+          1905.4,
+          573.7
+        ],
+        [
+          1993.4,
+          573.7
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Treppenhaus Ost - UG",
+      "label_box": [
+        1893.8,
+        621.7,
+        2025.8,
+        634.7
+      ],
+      "printed_area_m2": 19.79,
+      "number": "0-11",
+      "ifc": "1aFRCtje92oh3_jKdNxTMR"
+    },
+    {
+      "id": "space-6",
+      "polygon": [
+        [
+          823.4,
+          568.9
+        ],
+        [
+          823.4,
+          562.7
+        ],
+        [
+          823.4,
+          506.5
+        ],
+        [
+          832.9,
+          506.5
+        ],
+        [
+          918.8,
+          506.5
+        ],
+        [
+          918.8,
+          512.8
+        ],
+        [
+          918.8,
+          568.9
+        ],
+        [
+          909.3,
+          568.9
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Putzmittel",
+      "label_box": [
+        841.1,
+        524.7,
+        902.1,
+        534.7
+      ],
+      "printed_area_m2": 10.34,
+      "number": "0-2",
+      "ifc": "1aFRCtje92oh3_jKdNxTM2"
+    },
+    {
+      "id": "space-7",
+      "polygon": [
+        [
+          823.4,
+          501.7
+        ],
+        [
+          823.4,
+          495.2
+        ],
+        [
+          823.4,
+          407.5
+        ],
+        [
+          834.6,
+          407.5
+        ],
+        [
+          985.4,
+          407.5
+        ],
+        [
+          985.4,
+          414.0
+        ],
+        [
+          985.4,
+          501.7
+        ],
+        [
+          981.0,
+          501.7
+        ],
+        [
+          921.2,
+          501.7
+        ],
+        [
+          914.5,
+          501.7
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Hausanschluss",
+      "label_box": [
+        859.4,
+        441.6,
+        948.4,
+        451.6
+      ],
+      "printed_area_m2": 26.49,
+      "number": "0-3",
+      "ifc": "1aFRCtje92oh3_jKdNxTMS"
+    },
+    {
+      "id": "space-8",
+      "polygon": [
+        [
+          1893.2,
+          568.9
+        ],
+        [
+          1886.7,
+          568.9
+        ],
+        [
+          1828.4,
+          568.9
+        ],
+        [
+          1744.4,
+          568.9
+        ],
+        [
+          988.4,
+          568.9
+        ],
+        [
+          981.9,
+          568.9
+        ],
+        [
+          923.6,
+          568.9
+        ],
+        [
+          923.6,
+          562.7
+        ],
+        [
+          923.6,
+          506.5
+        ],
+        [
+          930.1,
+          506.5
+        ],
+        [
+          988.4,
+          506.5
+        ],
+        [
+          1005.2,
+          506.5
+        ],
+        [
+          1156.4,
+          506.5
+        ],
+        [
+          1190.0,
+          506.5
+        ],
+        [
+          1492.4,
+          506.5
+        ],
+        [
+          1509.2,
+          506.5
+        ],
+        [
+          1660.4,
+          506.5
+        ],
+        [
+          1677.2,
+          506.5
+        ],
+        [
+          1828.4,
+          506.5
+        ],
+        [
+          1834.9,
+          506.5
+        ],
+        [
+          1893.2,
+          506.5
+        ],
+        [
+          1893.2,
+          512.8
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Flur - UG",
+      "label_box": [
+        1382.4,
+        524.7,
+        1435.4,
+        534.7
+      ],
+      "printed_area_m2": 105.04,
+      "number": "0-1",
+      "ifc": "1aFRCtje92oh3_jKdNxTM3"
+    },
+    {
+      "id": "space-9",
+      "polygon": [
+        [
+          991.4,
+          407.5
+        ],
+        [
+          1007.6,
+          407.5
+        ],
+        [
+          1153.4,
+          407.5
+        ],
+        [
+          1153.4,
+          416.9
+        ],
+        [
+          1153.4,
+          501.7
+        ],
+        [
+          1137.2,
+          501.7
+        ],
+        [
+          991.4,
+          501.7
+        ],
+        [
+          991.4,
+          492.3
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Wasser-/Gasverteilung",
+      "label_box": [
+        1005.4,
+        441.6,
+        1140.4,
+        454.6
+      ],
+      "printed_area_m2": 26.49,
+      "number": "0-4",
+      "ifc": "1aFRCtje92oh3_jKdNxTMT"
+    },
+    {
+      "id": "space-10",
+      "polygon": [
+        [
+          1993.4,
+          506.5
+        ],
+        [
+          1993.4,
+          512.8
+        ],
+        [
+          1993.4,
+          568.9
+        ],
+        [
+          1983.9,
+          568.9
+        ],
+        [
+          1898.0,
+          568.9
+        ],
+        [
+          1898.0,
+          562.7
+        ],
+        [
+          1898.0,
+          506.5
+        ],
+        [
+          1907.5,
+          506.5
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "BMZ",
+      "label_box": [
+        1932.7,
+        525.7,
+        1959.7,
+        534.7
+      ],
+      "printed_area_m2": 10.34,
+      "number": "0-9",
+      "ifc": "1aFRCtje92oh3_jKdNxTM4"
+    },
+    {
+      "id": "space-11",
+      "polygon": [
+        [
+          1159.4,
+          407.5
+        ],
+        [
+          1192.4,
+          407.5
+        ],
+        [
+          1489.4,
+          407.5
+        ],
+        [
+          1489.4,
+          416.9
+        ],
+        [
+          1489.4,
+          501.7
+        ],
+        [
+          1456.4,
+          501.7
+        ],
+        [
+          1159.4,
+          501.7
+        ],
+        [
+          1159.4,
+          492.3
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "Heizzentrale",
+      "label_box": [
+        1286.4,
+        441.6,
+        1361.4,
+        451.6
+      ],
+      "printed_area_m2": 53.97,
+      "number": "0-5",
+      "ifc": "1aFRCtje92oh3_jKdNxTMU"
+    },
+    {
+      "id": "space-12",
+      "polygon": [
+        [
+          1495.4,
+          407.5
+        ],
+        [
+          1511.6,
+          407.5
+        ],
+        [
+          1657.4,
+          407.5
+        ],
+        [
+          1657.4,
+          416.9
+        ],
+        [
+          1657.4,
+          501.7
+        ],
+        [
+          1641.2,
+          501.7
+        ],
+        [
+          1495.4,
+          501.7
+        ],
+        [
+          1495.4,
+          492.3
+        ]
+      ],
+      "polygon_basis": "model",
+      "type": "room",
+      "label": "NSHV",
+      "label_box": [
+        1559.4,
+        442.6,
+        1594.4,
+        451.6
+      ],
+      "printed_area_m2": 26.49,
+      "number": "0-6",
+      "ifc": "1aFRCtje92oh3_jKdNxTMV"
+    }
+  ],
+  "symbols": [],
+  "texts": [
+    {
+      "id": "t1",
+      "text": "Treppenhaus West - UG",
+      "box": [
+        786.0,
+        621.7,
+        927.0,
+        634.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t2",
+      "text": "19.79 m²",
+      "box": [
+        834.0,
+        639.7,
+        880.0,
+        646.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t3",
+      "text": "Lager2",
+      "box": [
+        1891.4,
+        442.6,
+        1933.4,
+        454.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t4",
+      "text": "26.49 m²",
+      "box": [
+        1889.4,
+        459.6,
+        1935.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t5",
+      "text": "RLT-Raum",
+      "box": [
+        1379.4,
+        628.6,
+        1438.4,
+        637.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t6",
+      "text": "206.37 m²",
+      "box": [
+        1382.4,
+        645.6,
+        1434.4,
+        652.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t7",
+      "text": "Lager 1",
+      "box": [
+        1721.4,
+        442.6,
+        1766.4,
+        454.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t8",
+      "text": "26.49 m²",
+      "box": [
+        1721.4,
+        459.6,
+        1767.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t9",
+      "text": "Treppenhaus Ost - UG",
+      "box": [
+        1893.8,
+        621.7,
+        2025.8,
+        634.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t10",
+      "text": "19.79 m²",
+      "box": [
+        1936.8,
+        639.7,
+        1982.8,
+        646.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t11",
+      "text": "Putzmittel",
+      "box": [
+        841.1,
+        524.7,
+        902.1,
+        534.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t12",
+      "text": "10.34 m²",
+      "box": [
+        848.1,
+        542.7,
+        894.1,
+        549.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t13",
+      "text": "Hausanschluss",
+      "box": [
+        859.4,
+        441.6,
+        948.4,
+        451.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t14",
+      "text": "26.49 m²",
+      "box": [
+        881.4,
+        459.6,
+        927.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t15",
+      "text": "Flur - UG",
+      "box": [
+        1382.4,
+        524.7,
+        1435.4,
+        534.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t16",
+      "text": "105.04 m²",
+      "box": [
+        1382.4,
+        542.7,
+        1434.4,
+        549.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t17",
+      "text": "Wasser-/Gasverteilung",
+      "box": [
+        1005.4,
+        441.6,
+        1140.4,
+        454.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t18",
+      "text": "26.49 m²",
+      "box": [
+        1049.4,
+        459.6,
+        1095.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t19",
+      "text": "BMZ",
+      "box": [
+        1932.7,
+        525.7,
+        1959.7,
+        534.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t20",
+      "text": "10.34 m²",
+      "box": [
+        1922.7,
+        542.7,
+        1968.7,
+        549.7
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t21",
+      "text": "Heizzentrale",
+      "box": [
+        1286.4,
+        441.6,
+        1361.4,
+        451.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t22",
+      "text": "53.97 m²",
+      "box": [
+        1301.4,
+        459.6,
+        1347.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t23",
+      "text": "NSHV",
+      "box": [
+        1559.4,
+        442.6,
+        1594.4,
+        451.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t24",
+      "text": "26.49 m²",
+      "box": [
+        1553.4,
+        459.6,
+        1599.4,
+        466.6
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t25",
+      "text": "A-001  B01_OKRD",
+      "box": [
+        3609,
+        1583,
+        3716,
+        1595
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "t26",
+      "text": "DigitalHub office building · IFC model",
+      "box": [
+        3609,
+        1599,
+        3795,
+        1609
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "lens_source": {
+    "document_id": "doc-junction-digitalhub",
+    "source_sha256": "19d7d02d53c2b88e86890ee236297b12bbb0f7748030cd32ff6a22762e9966bb",
+    "project_identity": "junction-digitalhub",
+    "dataset": "Junction · IFC Models",
+    "exposure": "prepared_showcase; not a holdout",
+    "source_page": 1,
+    "width": 3919,
+    "height": 1621,
+    "ifc_storey_id": "1OVsTAdVr0zxMeLRn9FNo$",
+    "image": "junction-digitalhub-l0.png",
+    "image_sha256": "15547fe822c8b7e0d4ac5af200f2ad9dfeffb71fe55abab15adeccf8ebb88d84"
+  }
+}

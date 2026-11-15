@@ -1,0 +1,106 @@
+[
+  {
+    "type": "node",
+    "id": "read",
+    "name": "Read drawing",
+    "tool": "Pillow",
+    "parents": []
+  },
+  {
+    "type": "status",
+    "id": "read",
+    "state": "done",
+    "summary": "Prepared drawing · 1182×1315 px",
+    "ms": 313
+  },
+  {
+    "type": "node",
+    "id": "plan",
+    "name": "Find plan",
+    "tool": "OpenCV",
+    "parents": [
+      "read"
+    ]
+  },
+  {
+    "type": "status",
+    "id": "plan",
+    "state": "done",
+    "summary": "Plan region cropped",
+    "ms": 30
+  },
+  {
+    "type": "node",
+    "id": "walls",
+    "name": "Detect walls",
+    "tool": "WallNet",
+    "parents": [
+      "plan"
+    ]
+  },
+  {
+    "type": "status",
+    "id": "walls",
+    "state": "done",
+    "summary": "47 walls found",
+    "ms": 2770
+  },
+  {
+    "type": "node",
+    "id": "scale",
+    "name": "Read scale",
+    "tool": "Estimate",
+    "parents": [
+      "plan"
+    ]
+  },
+  {
+    "type": "status",
+    "id": "scale",
+    "state": "done",
+    "summary": "No scale printed: estimate",
+    "ms": 20
+  },
+  {
+    "type": "node",
+    "id": "rooms",
+    "name": "Find rooms",
+    "tool": "Shapely",
+    "parents": [
+      "walls"
+    ]
+  },
+  {
+    "type": "status",
+    "id": "rooms",
+    "state": "done",
+    "summary": "5 rooms",
+    "ms": 50
+  },
+  {
+    "type": "node",
+    "id": "prepared-59d59c9015",
+    "name": "Load prior room analysis",
+    "tool": "sol",
+    "parents": []
+  },
+  {
+    "type": "status",
+    "id": "prepared-59d59c9015",
+    "state": "done",
+    "summary": "Saved prediction and provenance retained"
+  },
+  {
+    "type": "node",
+    "id": "prepared-840480a7a8",
+    "name": "Read source text",
+    "tool": "Native PDF",
+    "parents": []
+  },
+  {
+    "type": "status",
+    "id": "prepared-840480a7a8",
+    "state": "done",
+    "summary": "62 text blocks"
+  }
+]

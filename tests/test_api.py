@@ -12,10 +12,12 @@ SAMPLES = Path(__file__).resolve().parents[1] / "data" / "samples"
 
 
 def ask(question, drawing="cubi", **context):
-    res = client.post("/api/ask", json={"drawing_id": drawing, "question": question, "context": context})
-    assert res.status_code == 200
-    assert res.headers["content-type"].startswith("application/x-ndjson")
-    return [json.loads(line) for line in res.text.splitlines() if line]
+    """Historical mock QA regression; production Ask is covered in test_lens_integration."""
+    import importlib
+    from ymir import qa
+    api_module=importlib.import_module('ymir.app')
+    ctx=qa.Context(api_module.store.raw(drawing),question,image_path=api_module.store.image_path(drawing),reviews=api_module.reviews, **context)
+    return list(qa.ask(ctx))
 
 
 def answer(events):
@@ -29,8 +31,8 @@ def last_status(events, node):
 
 def test_library_lists_samples_with_api_thumbnails():
     lib = client.get("/api/library").json()
-    assert [e["id"] for e in lib][:3] == ["swiss", "finna", "cubi"]
-    assert lib[2]["thumbnail"] == "api/drawings/cubi/image"
+    assert [e["id"] for e in lib][:2] == ["sample-cubicasa-2536", "sample-swiss-5733"]
+    assert lib[0]["thumbnail"] == "api/drawings/sample-cubicasa-2536/image"
 
 
 def test_drawing_payload_trace_and_image():
@@ -45,7 +47,7 @@ def test_drawing_payload_trace_and_image():
 @pytest.mark.parametrize("bad", ["nope", "..", "CUBI", "a" * 70])
 def test_unknown_or_malformed_drawing_ids_are_404(bad):
     assert client.get(f"/api/drawings/{bad}").status_code == 404
-    assert client.post("/api/ask", json={"drawing_id": bad, "question": "How many doors?"}).status_code == 404
+    assert client.post("/api/ask", json={"drawing_id": bad, "selected_drawing_ids":[bad],"question":"How many doors?","request_id":"invalid","project_id":"test","conversation_id":"test"}).status_code == 404
 
 
 def test_windows_answer_is_low_confidence_with_review_boxes():
@@ -168,7 +170,7 @@ def test_uploads_can_be_deleted_but_samples_cannot():
 
 def test_projects_list_and_payload():
     lib = client.get("/api/projects").json()
-    assert lib[0]["id"] == "ac20" and lib[0]["sheets"] == 5
+    assert {p["id"] for p in lib} == {"junction-ac20","junction-duplex","junction-digitalhub","junction-sports-complex"}
     p = client.get("/api/projects/ac20").json()
     levels = {lv["id"] for lv in p["levels"]}
     for sheet in p["sheets"]:

@@ -10,3 +10,8 @@ frontend/out/
 frontend/next-env.d.ts
 frontend/*.tsbuildinfo
 .vercel/
+
+.env*
+!.env.example
+*.egg-info/
+vendor/**/build/

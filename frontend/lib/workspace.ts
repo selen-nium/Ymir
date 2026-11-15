@@ -12,11 +12,13 @@ import {
   createLocalProject, getLocalProject, loadOverlay, loadThread, nextLevel, saveOverlay, saveThread, touchRecent,
 } from './persist';
 import { createSession, needsReview, type ReviewRecord, type Selection, type Snapshot } from './session';
+import {applyReviews, latestReviews, savedReview} from './answer-presentation';
+import {reviewedWindows} from './window-model';
 import { buildSteps } from './steps';
 import { toast } from './toast';
 import type { Plan } from './plan2d';
 import type { Trace } from './trace';
-import type { Answer, Drawing, Pt, TraceEvent } from './types';
+import type { Answer, CountReview, Drawing, Pt, TraceEvent, LensStatus } from './types';
 import type { CameraView, GhostShape, OtherSheet, SceneContext, Viewer } from './viewer3d';
 
 export type Tab = 'build' | 'ask';
@@ -31,10 +33,15 @@ export interface Placing {
 export interface Entry {
   id: string;
   q: string;
+  job_id?: string;
+  request_id?: string;
+  sheets?: string[];
   sheet: string;
   status: 'pending' | 'review' | 'done';
   stage?: string;
   answer?: Answer;
+  modelAnswer?: Answer;
+  records?: ReviewRecord[];
   events: TraceEvent[];
   at?: number;
   record?: ReviewRecord;
@@ -59,11 +66,14 @@ export interface WorkspaceState {
   busy: boolean;
   currentId: string | null;
   reviewingId: string | null;
+  savingReview: boolean;
   traceOpen: boolean;
   traceStatus: string;
   traceBusy: boolean;
   suggestions: string[];
   askDot: boolean;
+  selectedIds: string[];
+  lensStatus: LensStatus | null;
 }
 
 const IDLE_TRACE = 'Ask a question to see how it’s answered';
@@ -83,8 +93,8 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   const store = createStore<WorkspaceState>(() => ({
     status: 'loading', error: null, project: null, activeId: null, ghostSel: null, needsGhost: null,
     explode: false, isolate: false, hideGhosts: false, placing: null, tab: 'build', open: null, viewMode: 'both',
-    drawing: false, thread: [], busy: false, currentId: null, reviewingId: null,
-    traceOpen: true, traceStatus: IDLE_TRACE, traceBusy: false, suggestions: [], askDot: false,
+    drawing: false, thread: [], busy: false, currentId: null, reviewingId: null, savingReview:false,
+    traceOpen: true, traceStatus: IDLE_TRACE, traceBusy: false, suggestions: [], askDot: false, selectedIds: [], lensStatus: null,
   }));
   const get = store.getState, set = store.setState;
 
@@ -93,8 +103,10 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   let overlay: Overlay = {};
   const drawings = new Map<string, Drawing>();
   const snaps = new Map<string, Snapshot>();
+  const sheetReviews = new Map<string, ReviewRecord[]>();
   const v3: { plan?: Plan; viewer?: Viewer; basePlan?: Plan; trace?: Trace } = {};
   let cancelAsk: (() => void) | null = null;
+  let traceEntryId: string | null = null;
   let loadSeq = 0;
 
   /* ---------- Reading the project ---------- */
@@ -154,7 +166,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
       if (o.placement.type === 'plan') {
         const y = levelY(o.placement.level);
         others.push({ id: o.drawing_id, drawing: d, place: { type: 'plan', t: tOf(o)!, y }, walls: o.kind === 'floor_plan',
-          height: levelOf(o.placement.level)?.height_m ?? 3, faded: y > fadeY + 0.1 });
+          height: levelOf(o.placement.level)?.height_m ?? 3, faded: y > fadeY + 0.1, windows:reviewedWindows(sheetReviews.get(o.drawing_id) ?? [],o.drawing_id) });
       } else if (o.placement.type === 'elevation') {
         others.push({ id: o.drawing_id, drawing: d, place: { type: 'elevation', y: levelY(o.placement.level) },
           frame: elevationFrame(o.placement), active: o.drawing_id === id });
@@ -195,15 +207,32 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     cancelAsk?.(); cancelAsk = null;
     manifest = p;
     overlay = loadOverlay(p.id) ?? {};
-    drawings.clear(); snaps.clear();
+    drawings.clear(); snaps.clear();sheetReviews.clear();
     set({ status: 'loading', error: null, project: null, activeId: null, ghostSel: null, needsGhost: null, placing: null,
       busy: false, currentId: null, reviewingId: null, thread: [], suggestions: [] });
     const all = mergeOverlay(p, overlay);
-    await Promise.all(all.sheets.map((s) => api.loadDrawing(s.drawing_id).then((d) => { drawings.set(s.drawing_id, d); }, () => {})));
+    await Promise.all(all.sheets.map(async(s) => {
+      const [drawing,records]=await Promise.all([api.loadDrawing(s.drawing_id).catch(()=>null),api.loadReviews(s.drawing_id).catch(()=>[])]);
+      if(seq!==loadSeq)return;
+      if(drawing)drawings.set(s.drawing_id,drawing);
+      sheetReviews.set(s.drawing_id,records);
+    }));
     if (seq !== loadSeq) return;
     const project = merged();
     if (!project.sheets.length) { set({ status: 'error', error: 'This building has no drawings left.' }); return; }
-    const thread: Entry[] = loadThread(project.id).map((e) => ({ ...e, id: uid(), status: 'done' as const }));
+    const thread: Entry[] = loadThread(project.id).map((e) => ({ ...e, id: e.id ?? uid(), status: e.status ?? 'done' as const }));
+    const remote=await api.loadJobs(project.id).catch(()=>[]);
+    if(seq!==loadSeq)return;
+    for(const job of remote){
+      const found=thread.find(e=>e.job_id===job.id || e.request_id===job.request.request_id);
+      const terminal=['completed','failed','cancelled','interrupted'].includes(job.status);
+      const records=job.human_reviews ?? found?.records ?? [];
+      const patch={job_id:job.id,request_id:job.request.request_id,modelAnswer:job.answer ?? undefined,records,
+        record:records.at(-1) ?? found?.record,
+        answer:job.answer ? applyReviews(job.answer,records) : found?.answer,status:terminal?'done' as const:'pending' as const};
+      if(found)Object.assign(found,patch);
+      else thread.push({id:job.id,q:job.request.question,sheet:job.request.drawing_id,sheets:job.request.selected_drawing_ids,events:[],at:Date.parse(job.created_at),...patch});
+    }
     set({ project, thread, traceOpen: !!project.single, status: 'ready' });
     v3.viewer?.setKeepView(false);
     idleTrace();
@@ -212,6 +241,9 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     // the layout settles after the first paint; frame the building again, then keep the user's camera
     requestAnimationFrame(() => requestAnimationFrame(() => v3.viewer?.fit()));
     v3.viewer?.setKeepView(true);
+    void refreshLens();
+    const pending=thread.find(e=>e.status==='pending' && e.job_id);
+    if(pending)subscribeEntry(pending);
     const d = drawings.get(baseView(project)?.drawing_id ?? project.sheets[0].drawing_id);
     touchRecent({ id: project.single ? project.sheets[0].drawing_id : project.id, type: project.single ? 'drawing' : 'project', title: project.title, thumbnail: d?.image.url });
     // straight to Ask, unless the opening sheet still needs the user in Build (scale, walls, kind)
@@ -238,7 +270,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if (id === get().activeId) { refreshScene(fit); return; }
     const prev = get().activeId;
     if (prev && S.d) snaps.set(prev, session.snapshot()!);
-    set({ activeId: id, open: null });
+    set({ activeId: id, open: null, selectedIds: [id] });
     const snap = snaps.get(id);
     if (snap) session.restore(snap); else await session.open(id);
     refreshScene(fit);
@@ -255,10 +287,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   /* ---------- Session events: what changes when the active sheet's Build state does ---------- */
   session.subscribe((type) => {
     if (type === 'load') {
+      if(S.d)session.setVerifiedWindows(reviewedWindows(sheetReviews.get(S.d.id) ?? [],S.d.id));
       setDrawing(false);
       refreshSuggestions();
       const cur = currentEntry();
-      if (get().tab === 'ask' && cur?.answer && cur.sheet === get().activeId) session.setAnswer(cur.answer);
+      if (get().tab === 'ask' && cur?.answer && (cur.sheets ?? [cur.sheet]).includes(get().activeId ?? '')) session.setAnswer(cur.answer);
       syncFocus();
     }
     if (type === 'scale' || (type === 'walls' && isBase())) refreshScene();
@@ -381,7 +414,8 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   async function addSheet(file: File, ghost: Ghost | null) {
     toast('Reading the drawing…');
     try {
-      const entry = await api.uploadDrawing(file);
+      const entries = await api.uploadDrawings(file);
+      for (const entry of entries) {
       const d = await api.loadDrawing(entry.id);
       const kind = ghost?.want ?? guessKind(d.title, file.name).kind;
       const level = ghost?.level ?? (isPlaceable(kind) ? defaultLevel() : null);
@@ -391,6 +425,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
       await selectSheet(d.id);
       setTab('build');
       toast(`${d.title} added · check what it is`);
+      }
     } catch (e) {
       toast((e as Error).message || 'This drawing could not be read');
     }
@@ -431,11 +466,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   function updateEntry(id: string, patch: Partial<Entry>) {
     set({ thread: get().thread.map((e) => (e.id === id ? { ...e, ...patch } : e)) });
   }
-  const persistThread = () => saveThread(P()!.id, get().thread.filter((e) => e.status === 'done'));
+  const persistThread = () => saveThread(P()!.id, get().thread);
 
   async function idleTrace() {
     const events = await api.previewGraph();
-    if (!get().currentId && !get().busy) { v3.trace?.replay(events); set({ traceStatus: IDLE_TRACE, traceBusy: false }); }
+    if (!get().currentId && !get().busy) { v3.trace?.replay(events);traceEntryId=null; set({ traceStatus: IDLE_TRACE, traceBusy: false }); }
   }
   async function refreshSuggestions() {
     const id = get().activeId;
@@ -447,65 +482,70 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   }
   /** The missing sheet an unanswered question needs: on the base (ground) level unless the question names one. */
   function ghostForEntry(e: Entry) {
-    if (!e.answer || e.answer.status === 'answered' || !P()) return null;
+    if (!e.answer || e.answer.job_id || e.answer.status === 'answered' || !P()) return null;
     return ghostFor(P()!, e.answer, e.q, baseView(P()!)?.placement.level ?? viewOf(e.sheet)?.placement.level);
   }
 
-  function ask(question: string) {
-    const q = question.trim();
-    const { busy, activeId, needsGhost } = get();
-    if (!q || busy || !S.d || !activeId) return;
-    const entry: Entry = { id: uid(), q, sheet: activeId, status: 'pending', stage: 'Reading question', events: [] };
-    set({ busy: true, thread: [...get().thread, entry], traceOpen: true, needsGhost: null, traceStatus: 'Reading question', traceBusy: true });
-    if (get().tab !== 'ask') setTab('ask');
-    if (needsGhost) refreshScene();
-    session.setAnswer(null);
-    v3.trace?.reset();
-    const running = new Map<string, string>();
-    const project = P()!;
-    cancelAsk = api.ask({
-      drawing_id: S.d.id, question: q, ...(project.single ? {} : { project_id: project.id, sheet_id: activeId }),
-      context: { m_per_px: S.scale, scale_confirmed: S.scaleConfirmed, height_m: S.height, removed_walls: [...session.removed()],
-        added_walls: S.d.walls.filter((w) => w.user).map(({ id, a, b }) => ({ id, a, b })) },
-    }, (ev) => {
-      entry.events.push(ev);
-      v3.trace?.apply(ev);
-      if (ev.type === 'status') {
-        if (ev.state === 'running') running.set(ev.id, v3.trace?.name(ev.id) ?? ev.id); else running.delete(ev.id);
-        const names = [...running.values()];
-        if (names.length) {
-          const stage = names.length > 1 ? `${names.join(', ')} working` : `${names[0]} is working`;
-          updateEntry(entry.id, { stage });
-          set({ traceStatus: stage });
-        }
-      }
-      if (ev.type === 'answer') {
-        cancelAsk = null;
-        updateEntry(entry.id, { events: entry.events });
-        if (needsReview(ev.answer)) startReview(entry.id, ev.answer); else showAnswer(entry.id, ev.answer);
-      }
-    });
+  async function refreshLens() { const lensStatus=await api.lensStatus().catch(()=>null);set({lensStatus}); }
+  function handleEvent(entry: Entry, ev: TraceEvent) {
+    if(ev.seq && entry.events.some(e=>e.seq===ev.seq))return;
+    entry.events.push(ev);v3.trace?.apply(ev);
+    if(ev.type==='job'){
+      entry.job_id=ev.job_id;updateEntry(entry.id,{job_id:ev.job_id,stage:ev.status});persistThread();
+    }
+    if(ev.type==='connection'){
+      updateEntry(entry.id,{stage:ev.message+' · Reload or reconnect to continue watching.'});
+      set({traceStatus:'Connection interrupted · job retained',traceBusy:false});
+    }
+    if(ev.type==='status' && ev.state==='running'){
+      updateEntry(entry.id,{stage:ev.summary ?? ev.id});set({traceStatus:ev.summary ?? ev.id});
+    }
+    if(ev.type==='answer'){
+      cancelAsk=null;updateEntry(entry.id,{events:entry.events,modelAnswer:ev.answer});
+      if(needsReview(ev.answer))void startReview(entry.id,ev.answer);else showAnswer(entry.id,ev.answer);
+      void refreshLens();
+    }
   }
-  function showAnswer(id: string, answer: Answer) {
+  function subscribeEntry(entry: Entry) {
+    cancelAsk?.();set({busy:true,traceBusy:true});
+    v3.trace?.replay(entry.events);traceEntryId=entry.id;
+    cancelAsk=api.reconnectJob(entry.job_id!,ev=>handleEvent(entry,ev),Math.max(0,...entry.events.map(e=>e.seq ?? 0)));
+  }
+  function ask(question: string) {
+    const q=question.trim(), {busy,activeId,selectedIds}=get();
+    if(!q || busy || !S.d || !activeId)return;
+    const request_id=crypto.randomUUID();const sheets=selectedIds.length?selectedIds:[activeId];
+    const anchor=sheets.includes(activeId)?activeId:sheets[0];
+    const entry: Entry={id:request_id,request_id,q,sheet:anchor,sheets:[...sheets],status:'pending',stage:'Queued',events:[]};
+    const prior_job_ids=get().thread.filter(e=>e.answer && e.job_id).map(e=>e.job_id!).slice(-6);
+    set({busy:true,thread:[...get().thread,entry],traceOpen:true,needsGhost:null,traceStatus:'Queued',traceBusy:true});
+    persistThread();if(get().tab!=='ask')setTab('ask');session.setAnswer(null);v3.trace?.reset();traceEntryId=entry.id;
+    cancelAsk=api.ask({drawing_id:anchor,question:q,request_id,selected_drawing_ids:sheets,project_id:P()!.id,conversation_id:P()!.id,prior_job_ids,
+      context:{m_per_px:S.scale,scale_confirmed:S.scaleConfirmed,height_m:S.height,removed_walls:[...session.removed()],added_walls:S.d.walls.filter(w=>w.user).map(({id,a,b})=>({id,a,b}))}},ev=>handleEvent(entry,ev));
+  }
+  function showAnswer(id: string, answer: Answer, preserveView = false) {
     updateEntry(id, { status: 'done', answer, at: Date.now() });
     persistThread();
     const e = entryById(id)!, cites = answer.citations?.length ?? 0, g = ghostForEntry(e);
-    const abstained = answer.status !== 'answered';
-    set({ busy: false, traceBusy: false, traceStatus: abstained ? (g ? `Needs the ${g.noun} · abstained` : 'No evidence found · abstained')
-      : `${answer.checked ? 'Checked by you · ' : ''}Answered with ${cites} source${cites === 1 ? '' : 's'}` });
+    const abstained = answer.status !== 'answered' && answer.status !== 'needs_review';
+    set({ busy: false, traceBusy: false, traceStatus: answer.status==='needs_review' ? 'Evidence needs review' : abstained ? (g ? `Needs the ${g.noun} · abstained` : 'No evidence found · abstained')
+      : `Answered with ${cites} source${cites === 1 ? '' : 's'}` });
     if (abstained) {
       set({ currentId: null, needsGhost: P()!.single ? null : g?.id ?? null });
       session.setAnswer(null);
       refreshScene();
-    } else applyAnswer(id);
+    } else applyAnswer(id,preserveView);
+    const next=get().thread.find(e=>e.id!==id && e.status==='pending' && e.job_id);
+    if(next)subscribeEntry(next);
   }
-  async function applyAnswer(id: string) {
+  async function applyAnswer(id: string, preserveView = false) {
     const e = entryById(id);
     if (!e?.answer) return;
     set({ currentId: id });
-    if (e.sheet !== get().activeId) await selectSheet(e.sheet);
+    if (!preserveView && e.sheet !== get().activeId) await selectSheet(e.sheet);
     const a = e.answer;
     session.setAnswer(a);
+    if(preserveView)return;
     if (a.focus) {
       const [x0, y0, x1, y1] = a.focus;
       v3.plan?.fitBox([x0, y0, x1 - x0, y1 - y0], 0.9);
@@ -513,12 +553,28 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     } else { v3.plan?.fit(); v3.viewer?.fit(); }
   }
   /** Click on an earlier answer: show its evidence and its trace again. */
+  async function entryTrace(e: Entry): Promise<TraceEvent[]> {
+    if (!e.job_id || e.events.some(event=>event.type==='answer')) return e.events;
+    const recorded=await api.loadJobTrace(e.job_id).catch(()=>null);
+    if(!recorded)return e.events;
+    const local=e.events.filter(event=>!event.seq && (event.type==='node' || event.type==='status') && ['you','ans'].includes(event.id));
+    if(!local.length)for(const record of e.records ?? [])local.push(
+      {type:'node',id:'you',name:`Review ${record.class.replaceAll('_',' ')}`,tool:'You'},
+      {type:'node',id:'ans',name:'Answer',tool:'Cited',parents:['you']},
+      {type:'status',id:'you',state:'done',summary:'Saved labels restored'},
+      {type:'status',id:'ans',state:'done',summary:`${record.user_count} · human-verified`},
+    );
+    e.events=[...recorded,...local];updateEntry(e.id,{events:e.events});persistThread();
+    return e.events;
+  }
   async function revisit(id: string) {
     const e = entryById(id);
-    if (!e?.answer || e.answer.status !== 'answered') return;
+    if (!e?.answer || !['answered','needs_review'].includes(e.answer.status)) return;
+    const events=await entryTrace(e);
     if (get().currentId !== id || e.sheet !== get().activeId) {
       await applyAnswer(id);
-      v3.trace?.replay(e.events);
+      v3.trace?.replay(events);
+      traceEntryId=id;
       set({ traceStatus: 'Showing an earlier answer', traceBusy: false });
     }
   }
@@ -527,6 +583,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if (!e || !c) return;
     const sheet = c.sheet ?? e.sheet;
     if (sheet !== get().activeId) await selectSheet(sheet);
+    session.setAnswer(e.answer!);
     const b = session.citationBox(c);
     if (!b) return;
     v3.plan?.fitBox([b[0], b[1], b[2] - b[0], b[3] - b[1]], c.room_id && !c.box ? 0.6 : 3);
@@ -539,50 +596,70 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     evs.forEach((ev) => v3.trace?.apply(ev));
     updateEntry(id, { events: [...e.events, ...evs] });
   }
-  function startReview(id: string, answer: Answer) {
+  async function startReview(id: string, answer: Answer, group?: CountReview) {
+    const chosen=group ?? answer.review;if(!chosen)return;
+    if(get().reviewingId && get().reviewingId!==id)skipReview();
+    const sheet=chosen.sheet ?? entryById(id)!.sheet;
+    if(sheet!==get().activeId)await selectSheet(sheet);
+    answer={...answer,review:chosen};
     const e = entryById(id)!;
+    const events=await entryTrace(e);
+    if(traceEntryId!==id){v3.trace?.replay(events);traceEntryId=id;}
     updateEntry(id, { status: 'review', answer });
+    persistThread();
     set({ reviewingId: id, viewMode: get().viewMode === 'one-model' ? 'both' : get().viewMode });
-    session.startReview(answer, e.q);
+    session.startReview(answer, e.q, savedReview(e.records ?? (e.record?[e.record]:[]),chosen));
     v3.plan?.fit(); v3.viewer?.fit();
     const pct = Math.round((answer.confidence ?? 0) * 100);
     // The frontend owns this step, like Build's "You" steps: it goes between Verifier and Answer.
     traceEvents(id, [
       { type: 'node', id: 'you', name: 'Check boxes', tool: 'You', parents: ['ver'] },
       { type: 'node', id: 'ans', name: 'Answer', tool: 'Cited', parents: ['you'] },
-      { type: 'status', id: 'you', state: 'waiting', summary: `${pct}% sure · your turn` },
+      { type: 'status', id: 'you', state: 'waiting', summary: answer.job_id ? 'Check the boxes' : `${pct}% sure · your turn` },
       { type: 'status', id: 'ans', state: 'pending', summary: 'Waiting for you' },
     ]);
-    set({ traceStatus: 'Low confidence · check the boxes', traceBusy: false });
+    set({ busy: true, traceStatus: 'Check the boxes', traceBusy: false });
   }
-  function doneReview() {
+  async function doneReview() {
     const id = get().reviewingId;
-    if (!id) return;
-    set({ reviewingId: null });
+    if (!id || get().savingReview) return;
+    set({savingReview:true});
     setDrawing(false);
-    const res = session.finishReview();
-    if (!res) return;
+    const draft=session.state.review;
+    const res = session.finishReview(true);
+    if (!res) { set({savingReview:false}); return; }
     const parts = ([['removed', res.changes.removed], ['added', res.changes.added], ['resized', res.changes.resized]] as const).filter(([, n]) => n).map(([k, n]) => `${n} ${k}`);
-    updateEntry(id, { record: res.record });
+    let saved: ReviewRecord;
+    try { const response=await api.submitReview(res.record);saved=response.record ?? {...res.record,id:response.id}; }
+    catch (err) { session.state.review=draft;set({savingReview:false});session.showReview(false);session.showReview(true);toast(`${(err as Error).message || 'Labels could not be saved.'} Your edits are still here.`);return; }
+    const e=entryById(id)!;
+    const records=latestReviews([...(e.records ?? []),saved]);
+    updateEntry(id, { record: saved, records });
+    const sheet=saved.sheet_id ?? saved.drawing.id;
+    sheetReviews.set(sheet,[...(sheetReviews.get(sheet) ?? []),saved]);
+    session.setVerifiedWindows(reviewedWindows(sheetReviews.get(sheet)!,sheet));
+    session.endReview();
+    set({reviewingId:null,savingReview:false});
     traceEvents(id, [
       { type: 'status', id: 'you', state: 'done', summary: parts.join(' · ') || 'No changes' },
-      { type: 'status', id: 'ans', state: 'done', summary: `${res.answer.value} · checked` },
+      { type: 'status', id: 'ans', state: 'done', summary: `${res.record.user_count} · human-verified` },
     ]);
-    api.submitReview(res.record).catch(() => toast('Labels could not be saved'));
-    showAnswer(id, res.answer);
+    showAnswer(id, e.job_id ? applyReviews(e.modelAnswer ?? e.answer!,records) : res.answer,true);
   }
   function skipReview() {
+    if(get().savingReview)return;
     const id = get().reviewingId;
     if (!id) return;
     set({ reviewingId: null });
     setDrawing(false);
+    const draft = session.state.review;
     const answer = session.skipReview();
     if (!answer) return;
     traceEvents(id, [
       { type: 'status', id: 'you', state: 'skipped', summary: 'Skipped' },
-      { type: 'status', id: 'ans', state: 'done', summary: `${answer.value} · unchecked` },
+      { type: 'status', id: 'ans', state: 'done', summary: draft?.saved ? 'Saved labels kept' : `${answer.value ?? 'Evidence'} · unchecked` },
     ]);
-    showAnswer(id, answer);
+    showAnswer(id, draft?.saved ? {...answer,unchecked:false} : answer,true);
   }
 
   /* ---------- Tabs, tools, views ---------- */
@@ -593,7 +670,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if (tab === 'ask') {
       setDrawing(false);
       const cur = currentEntry();
-      if (cur?.answer && cur.sheet === get().activeId) session.setAnswer(cur.answer);
+      if (cur?.answer && (cur.sheets ?? [cur.sheet]).includes(get().activeId ?? '')) session.setAnswer(cur.answer);
     } else session.setAnswer(null);
     syncFocus();
   }
@@ -627,7 +704,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   function attachTrace(trace: Trace) {
     v3.trace = trace;
     const cur = currentEntry() ?? get().thread.find((e) => e.status !== 'done');
-    if (cur) trace.replay(cur.events); else idleTrace();
+    if (cur) {trace.replay(cur.events);traceEntryId=cur.id;} else idleTrace();
   }
   function detachTrace() { delete v3.trace; }
 
@@ -635,7 +712,15 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     init, selectSheet, selectGhost, setKind, setOpen, confirmScale, finishWalls,
     startPlacing, confirmPlacing, cancelPlacing, redoPlacing: () => { cancelPlacing(); startPlacing(); }, takeOut,
     addSheet, removeSheet, addLevel, toBuilding,
-    ask, revisit, focusCite, doneReview, skipReview,
+    ask, revisit, focusCite, doneReview, skipReview, refreshLens,
+    reviewCount: (id: string, group: CountReview) => { if(get().busy)return;const a=entryById(id)?.answer;if(a)void startReview(id,a,group); },
+    toggleScope: (id: string) => {
+      const ids=get().selectedIds;if(ids.length===1 && ids.includes(id))return;
+      if(ids.includes(id))set({selectedIds:ids.filter(x=>x!==id)});
+      else if(ids.length<3)set({selectedIds:[...ids,id]});
+    },
+    reconnect: (id: string) => { const e=entryById(id);if(e?.job_id)subscribeEntry(e); },
+    cancelJob: (id: string) => { const e=entryById(id);if(e?.job_id)void api.cancelJob(e.job_id).catch(()=>toast('Cancellation could not be sent. Reconnect and try again.')); },
     setTab, setDrawing, pick,
     setViewMode: (viewMode: ViewMode) => set({ viewMode }),
     toggleExplode: () => { set({ explode: !get().explode }); refreshScene(true); },

@@ -4,7 +4,7 @@ import { Icon } from '@/components/Icon';
 import { createTrace } from '@/lib/trace';
 import { useWorkspace, useWs } from './context';
 
-/** How the last question was answered: the agents and tools as a live flowchart. */
+/** How the last question was answered: model responses and tools in execution order. */
 export function TraceDock() {
   const ws = useWorkspace();
   const chartEl = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export function TraceDock() {
         <span className="status">{busy && <span className="spin" />}{status}</span>
         <button aria-label={open ? 'Collapse the trace' : 'Expand the trace'}><Icon name="chev" /></button>
       </header>
-      <div className="chartwrap"><div ref={chartEl} /></div>
+      <div className="chartwrap" tabIndex={0} role="region" aria-label="Execution trace; scroll to follow the steps"><div ref={chartEl} /></div>
     </section>
   );
 }

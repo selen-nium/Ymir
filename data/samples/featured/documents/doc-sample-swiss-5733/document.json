@@ -1,0 +1,24 @@
+{
+  "id": "doc-sample-swiss-5733",
+  "filename": "site584_bldg1298_floor5733.pdf",
+  "title": "swiss-site584-building1298",
+  "format": "pdf",
+  "sha256": "f0caa64939caceab07ac9f19adbc6bcb0113973730cfd428e7df8006594b98e7",
+  "project_identity": "swiss-site584-building1298",
+  "dataset": "Swiss Dwellings",
+  "exposure": "prepared_showcase; previously exposed diagnostic",
+  "pages": [
+    {
+      "number": 1,
+      "rotation": 0,
+      "size": [
+        1190.5511474609375,
+        841.8897705078125
+      ],
+      "native_text": true
+    }
+  ],
+  "page_count": 1,
+  "selectors": [],
+  "limitations": []
+}

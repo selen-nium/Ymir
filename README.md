@@ -6,6 +6,14 @@ your corrections are kept as training labels.
 
 Built for the Stoa challenge at Junction 2026.
 
+## Ask, review and sources
+
+This checkout connects Ask to Stoa Lens with a durable single-worker queue,
+explicit scope of up to three sheets, follow-ups, source-linked evidence and
+human review. PDF/image originals and native IFC/SVG geometry retain provenance.
+Local runs and deployment checks share the same durable US$25 ledger, with no automatic paid retries.
+See [local setup and integration contracts](docs/stoa-lens-local.md).
+
 ## Run it locally
 
 Needs Python 3.12, Node 20+ and [Git LFS](https://git-lfs.com) (for the wall-model weights). Two processes:
@@ -32,9 +40,9 @@ Single drawings open at `/drawing?id=cubi`: on the CubiCasa sample, *How many wi
 ```
 frontend/  (Next.js · Vercel)                        backend/ymir/  (FastAPI · Modal: deploy/modal_app.py)
   app/  /  /home  /building  /drawing  ──/api/*──▶     app.py        the API
-  components/workspace/  rail, views, Build, Ask        qa/           planner → route → tools → verifier, streamed
-  components/landing/  3D hero, architecture            models/       detectors (plug yours in here)
-  lib/workspace.ts  the page's state and actions        build/        image → walls, rooms, text, scale (uploads)
+  components/workspace/  rail, views, Build, Ask        lens_jobs.py  durable queue → Ask runtime → linked evidence
+  components/landing/  3D hero, architecture            documents.py  originals, pages and native geometry
+  lib/workspace.ts  the page's state and actions        build/        image → walls, rooms and estimated scale
   lib/session.ts  active sheet, box review              drawings.py   sample + uploaded drawings, projects
   lib/project.ts  sheets, placement, ghosts             reviews.py    corrected boxes → SQLite
   lib/plan2d.ts · viewer3d.ts · trace.ts  2D, 3D, trace
@@ -45,17 +53,17 @@ The 2D sheet, the three.js model and the trace are imperative renderers in `lib/
 and render everything else from the workspace store (zustand).
 
 - **Build:** `build/pipeline.py` turns a plan image into a drawing payload: WallNet walls (or OpenCV lines
-  without weights), RapidOCR labels, scale, rooms. Samples are prebuilt in `data/samples/`; uploads run it live.
-- **Ask:** `POST /api/ask` picks a route in `qa/routes.py` (symbol count, room area, room-type count, largest
-  room, room count, wall length, or abstain) and streams trace events while its tools run.
-- **Review:** a box-count answer under 0.8 confidence makes the frontend ask the user to check the model's
-  boxes (count/drop, resize, draw). The corrected record goes to `POST /api/reviews`. A small share of
-  confident answers (`YMIR_AUDIT_RATE`) is sent for a spot check too, so accuracy is also measured where the
-  model is sure.
-- **Confidence from reviews:** `calibration.py` turns reviews into the confidence of later answers. Each
-  review says whether the detector's counted boxes were exactly the ones the person kept, and a count's
-  confidence moves from the detector's own value toward how often people agreed with that detector on that
-  class. A drawing someone already checked is answered from their boxes.
+  without weights), estimated scale and rooms. Samples are prebuilt in `data/samples/`; uploads run it live.
+- **Ask:** `POST /api/ask` snapshots one to three selected sheets and records a durable job.
+  The source-controlled runtime in `vendor/stoa-runtime` calls DeepSeek and Kimi on Verda,
+  D-FINE for its trained classes, and native or Raster2Seq room tools. Counts use recorded
+  proposals. Measurements require source calibration.
+- **Review:** incomplete counts with proposals open the box editor. Completed counts can be
+  reviewed manually. Saved labels remain editable; each edit adds a server-attributed
+  revision. Verified windows animate into the walls. Their height remains an estimate.
+- **Evidence:** citations open the correct sheet and region. Placed sheets also project evidence
+  into the building. Original model answers remain intact beside human corrections; uncertain
+  answers carry `needs_review` rather than an invented confidence percentage.
 
 ## Projects: several sheets, one building
 
@@ -65,7 +73,7 @@ elevations stand on their side, schedules and details are linked but not placed.
 drawing opens as a one-sheet project, so unseen drawings work as before. Design:
 `docs/superpowers/specs/2026-11-14-multi-sheet-project-design.md`.
 
-- Sample projects live in `data/samples/projects.json`. `scripts/build_ifc_project.py` renders one from an IFC
+- Active sample visibility lives in `data/samples/featured-catalog.json`; legacy projects remain in `projects.json`. `scripts/build_ifc_project.py` renders one from an IFC
   model in the dataset (needs `ifcopenshell numpy pillow shapely`, outside the app's requirements).
 - Each sheet's view has a `kind` (`floor_plan`, `foundation_plan`, `plumbing_plan`, `elevation`, `schedule`, ...,
   see `frontend/lib/project.ts`) and a `placement` (`plan` with a px → metres `transform`, `elevation` with a
@@ -76,58 +84,15 @@ drawing opens as a one-sheet project, so unseen drawings work as before. Design:
   abstained answer may carry `needs: {kind, level}` so the frontend lights up the missing sheet's ghost (until it
   does, the frontend guesses from the question). `/api/ask` also receives `project_id` and `sheet_id`.
 
-## Add your model
+## Model runtime
 
-Detectors answer counting questions (doors, windows, toilets, sinks, ...). Anything that implements
-`ymir.models.base.Detector` can be plugged in:
+D-FINE-L uses the pinned fourteen-head Junction EMA checkpoint. Other object classes
+route to Kimi. Raster2Seq supplies room proposals; supported IFC/SVG sources use native
+geometry. Model identities, checkpoint hashes and extraction limits accompany each job.
+See [hosting](docs/hosting.md) for the separate GPU environments and verified deployment.
 
-```python
-# backend/ymir/models/yolo.py   (sketch: adapt to your model's output and class names)
-from pathlib import Path
-from ymir import settings
-from ymir.models.base import Detection, DetectorResult
-
-class YoloDetector:
-    name = "YOLO11s"                                   # shown on the trace's Detector node
-    version = "v1"                                     # bump when retrained: reviews calibrate one version
-    trained_on_reviews = False                         # True once trained on /api/reviews (see below)
-    classes = {"door", "window", "toilet_bowl", "sink", "bathtub", "shower"}
-    THRESHOLDS = {"door": 0.40, "window": 0.42}        # per-class count thresholds picked on validation
-
-    def __init__(self):
-        from ultralytics import YOLO
-        self.model = YOLO(settings.WEIGHTS_DIR / "counting-yolo11s.pt")
-
-    def supports(self, drawing: dict, cls: str) -> bool:
-        return drawing["source"].get("dataset") in {"CubiCasa5k", "Upload"}   # where it was trained / validated
-
-    def detect(self, image_path: Path, drawing: dict, classes: list[str]) -> DetectorResult:
-        r = self.model.predict(str(image_path), conf=0.1, verbose=False)[0]
-        dets = []
-        for i, (box, c, s) in enumerate(zip(r.boxes.xyxy.tolist(), r.boxes.cls.tolist(), r.boxes.conf.tolist())):
-            cls = r.names[int(c)]
-            if cls in classes:
-                dets.append(Detection(f"{cls[0]}{i + 1}", cls, tuple(box), float(s)))
-        return DetectorResult(dets, {c: self.THRESHOLDS.get(c, 0.5) for c in classes})
-        # pass confidence={cls: ...} once it is calibrated; until then a margin-based estimate is used
-```
-
-1. Put the weights in `weights/` (`*.pt`, `*.onnx`, `*.safetensors` go through Git LFS) and add your
-   package to `requirements.txt`.
-2. Register it, first one wins per class:
-   `YMIR_MODELS="ymir.models.yolo:YoloDetector,ymir.models.mock:MockDetector"`.
-3. Add a test next to `tests/test_models.py`.
-
-Boxes are in the drawing image's pixels (`drawing["image"]["size"]`; samples are cropped to the plan).
-Class names follow the stoahackjunction annotation schema. **Confidence** is the detector's confidence in the
-*count* (0–1); under 0.8 the user is asked to check the boxes, so a calibrated value matters.
-
-The answer's confidence is then adjusted by people's reviews of your detector: `(agreed + 10 × yours) /
-(reviews + 10)`, counting only reviews of the same `name` and `version` and class. When you train on the
-reviews, use only records with `"split": "train"` and set `trained_on_reviews = True`: confidence is then
-measured on the `holdout` drawings (one in five) you never saw.
-
-To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` and list it in `ROUTES`.
+The former `ymir.models` adapters and calibration helpers remain for historical records
+and tests. `YMIR_MODELS` does not replace the current Ask runtime.
 
 ## API
 
@@ -139,70 +104,53 @@ To add a new kind of question, write a `Route` in `backend/ymir/qa/routes.py` an
 | POST | `/api/drawings` | Upload a plan image (PNG/JPEG/WebP) and build it |
 | DELETE | `/api/drawings/{id}` | Delete an uploaded drawing (samples: 403); its reviews stay as labels |
 | GET | `/api/agents` | The agent graph shown before a question |
-| POST | `/api/ask` | `{drawing_id, question, context}` → NDJSON stream of `node` / `status` / `answer` events |
+| POST | `/api/ask` | Idempotent request → durable job and NDJSON progress/answer events |
+| GET | `/api/lens/status` | Readiness, remaining funds and held reservations |
+| GET | `/api/lens/jobs/{id}` · `/events` · `/artifacts` | Saved result, reconnectable events and allowlisted artifacts |
+| POST | `/api/lens/jobs/{id}/cancel` | Stop further dispatch after the current operation |
+| POST | `/api/documents` · `/api/documents/{id}/sheets` | Inventory an original, then prepare selected pages or native geometry |
 | POST / GET | `/api/reviews` | Store / list corrected boxes (`?drawing_id=`) |
 | GET | `/api/health` | Status and loaded models |
 
-`context` carries the user's Build decisions (`m_per_px`, `scale_confirmed`, `removed_walls`, `added_walls`),
-so answers use their scale and walls. A count answer adds `confidence`, `confidence_basis: {model, reviews,
-agreed}` and `review: {class, threshold, boxes: [{id, box, score}], audit?}` to the usual
-`value / unit / text / citations / highlight`; `audit: true` asks for a spot check of a confident answer. A
-count a person already checked comes back with `confidence: 1` and `source_review` instead of `review`.
+Ask requests include `request_id`, `drawing_id`, `selected_drawing_ids`, `project_id`,
+`conversation_id`, `prior_job_ids` and `question`. `context` retains Build edits; it does
+not calibrate Ask measurements. An initial job event provides the durable ID; sequenced
+progress and answer events can be replayed after reload. Reusing a request ID never
+starts a second inference job.
 
-Reviews are `drawing-qa-review-v1` records whose `objects` use the stoahackjunction annotation workbench fields
-(`id, class, bbox_xyxy, subtype, status, proposal_id`), so they can join its training data. `model` also holds
-the model's original `boxes` and `audit`; the server adds `model.detector` (which detector was checked) and
-`split` (`train` or `holdout`, fixed per drawing).
+Reviews retain the originating job, sheet and class. The server attributes each record;
+editing a saved review creates a revision and preserves the earlier record.
 
 ## Settings
 
 | Variable | Default | |
 | --- | --- | --- |
-| `YMIR_MODELS` | `ymir.models.mock:MockDetector` | Detectors to load, in priority order |
+| `YMIR_STOA_ROOT` | sibling Stoa checkout via local launcher | Existing model assets, provider metadata and backend credentials |
+| `YMIR_GPU_BACKEND` | local | Set `modal` for private GPU functions |
+| `YMIR_MODEL_READINESS` | none | Verified Modal smoke receipt for the hosted API |
+| `YMIR_MODELS` | `ymir.models.mock:MockDetector` | Legacy adapters; current Ask uses the runtime above |
 | `YMIR_DATA_DIR` | `var/` | Uploads and the review database (use a persistent disk when deployed) |
 | `YMIR_DB` | `$YMIR_DATA_DIR/ymir.db` | SQLite file for reviews |
 | `YMIR_WEIGHTS_DIR` | `weights/` | Model weights |
 | `YMIR_TRACE_PACE` | `0.25` | Seconds between trace steps so the diagram is readable; `0` for none |
 | `YMIR_MAX_UPLOAD_MB` | `15` | Upload limit |
-| `YMIR_AUDIT_RATE` | `0.05` | Share of confident count answers sent for a spot check |
-| `YMIR_CALIBRATION_PRIOR` | `10` | How many reviews the detector's own confidence is worth |
+| `YMIR_AUDIT_RATE` | `0.05` | Legacy review calibration only |
+| `YMIR_CALIBRATION_PRIOR` | `10` | Legacy review calibration only |
 | `YMIR_CORS_ORIGINS` / `YMIR_CORS_ORIGIN_REGEX` | none | Origins allowed to call the API directly (only needed with `NEXT_PUBLIC_YMIR_API_BASE`) |
-| `YMIR_API_BASE` (frontend) | `http://localhost:8000` | Where Next.js forwards `/api/*`; required on Vercel (the Modal URL) |
-| `NEXT_PUBLIC_YMIR_API_BASE` (frontend) | none | Have the browser call the API directly instead of through the forward |
+| `YMIR_API_BASE` (frontend) | `http://localhost:8000` | Local Next.js `/api/*` proxy target |
+| `NEXT_PUBLIC_YMIR_API_BASE` (frontend) | none | Browser API origin; required HTTPS Modal origin on Vercel |
 
 ## Deploy (frontend on Vercel, API on Modal)
 
-The browser only talks to the Vercel site; Next.js forwards `/api/*` to the API on Modal, so no CORS setup is
-needed. API first (to get its URL), then the frontend.
+The frontend calls the Modal API directly for uploads and durable job streams.
+D-FINE-L and Raster2Seq run in separate private GPU functions; DeepSeek and Kimi
+remain on Verda. The CPU API keeps one writer for jobs, reviews and the shared
+US$25 ledger. GPU workers scale to zero.
 
-**1. API on Modal**
-
-```sh
-pip install modal && modal setup            # once: log in
-git lfs pull                                # real weights (the deploy refuses LFS pointers)
-modal deploy deploy/modal_app.py
-```
-
-It prints `https://<workspace>--ymir-web.modal.run`; check `/api/health`. Or run **Actions → Deploy backend**
-after adding the `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` secrets. `deploy/modal_app.py` sets the container size
-(2 CPU, 4 GB), scale-to-zero after 5 minutes idle, and the `ymir-data` volume for uploads and `ymir.db`. GPU
-models: add `gpu="T4"` there and install CUDA torch.
-
-**2. Frontend on Vercel**
-
-Import the repo in Vercel → **Root Directory `frontend`** (Next.js is detected) → add the environment variable
-`YMIR_API_BASE` = the Modal URL → Deploy. The build fails without it. Every page is static, so Vercel serves it
-from its CDN; pushes to `main` redeploy, pull requests get preview URLs. CLI instead:
-`cd frontend && vercel link && vercel env add YMIR_API_BASE production && vercel deploy --prod`.
-
-If large uploads or streamed answers ever misbehave through the forward, set `NEXT_PUBLIC_YMIR_API_BASE` to the
-Modal URL instead (the browser then calls the API directly) and redeploy the API with
-`YMIR_CORS_ORIGINS=https://<your-domain>` and `YMIR_CORS_ORIGIN_REGEX='https://<project>-[a-z0-9-]+\.vercel\.app'`.
-
-**Day to day:** `modal app logs ymir` for logs; `modal volume get ymir-data ymir.db` to pull the reviews for
-retraining. The first request after idle waits for a cold start (torch loads); set `min_containers=1` in
-`deploy/modal_app.py` for a demo, then back to 0 to save credits. The API has no login: anyone with the
-URL can ask and upload.
+Follow [the hosting setup](docs/hosting.md) for model smoke checks, state cutover,
+backend secrets and deployment. Import `frontend` as the Vercel Root Directory and
+set `NEXT_PUBLIC_YMIR_API_BASE` to the HTTPS Modal API origin before building.
+Set the matching frontend origin in Modal's `YMIR_CORS_ORIGINS`.
 
 ## Tests
 
@@ -216,7 +164,15 @@ CI (`.github/workflows/ci.yml`) runs both on every push and pull request.
 
 ## Data
 
-`data/samples/` holds three prebuilt drawings from the Junction dataset: Swiss Dwellings (CC BY 4.0),
-CubiCasa5K (CC BY-NC-SA 4.0, non-commercial) and a 1921 drawing from the Finna archive. Rebuild them with
-`scripts/build_samples.py /path/to/junction-dataset-preview/data`. The CubiCasa window and door boxes in
-`models/mock.py` are hand-placed stand-ins until the trained detectors are plugged in.
+`data/samples/featured-catalog.json` selects the prepared examples shown on Home:
+CubiCasa apartment 2536 and a Swiss Dwellings floor previously inspected by Sol;
+AC20 and Duplex from Junction IFC-Bench; DigitalHub from IFC Models; and five
+Sports Complex sheets from Opening Design. Geometry and native text are cached,
+so opening a sample never starts a paid run. Prior model selections are labelled
+predictions and remain separate from reference annotations.
+
+The original Swiss, CubiCasa, Finna and AC20 sample IDs remain available for saved
+conversations, but the old examples are omitted from Home. Original source bytes,
+hashes, project identity, exposure notes and file credits accompany the new cache.
+Recreate it explicitly with `scripts/prepare_featured_samples.py /path/to/stoa`.
+See `docs/stoa-lens-local.md` and `vendor/stoa-runtime/README.md` for Ask setup.

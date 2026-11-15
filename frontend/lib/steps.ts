@@ -25,7 +25,12 @@ export function buildSteps({ session, view: v, isBase, hasBase, baseLabel, level
   // Steps the backend reported in its build trace (node + status events), drawn as they arrived.
   const backend = new Map<string, Step>();
   for (const e of S.build) {
-    if (e.type === 'node') backend.set(e.id, { id: `b-${e.id}`, name: e.name, tool: e.tool ?? '', state: 'wait', res: '' });
+    if (e.type === 'node') {
+      // Frozen samples keep their original traces; retired steps do not appear in today's Build panel.
+      if(e.id==='vision' || /claude/i.test(e.name+' '+(e.tool ?? '')) || (e.id==='text' && /rapidocr/i.test(e.tool ?? '')))continue;
+      const tool=/rapidocr/i.test(e.tool ?? '') ? (d.scale.source==='sheet_note'?'Source metadata':'Estimate') : e.tool ?? '';
+      backend.set(e.id, { id: `b-${e.id}`, name: e.name, tool, state: 'wait', res: '' });
+    }
     else if (e.type === 'status' && backend.has(e.id)) {
       const st = backend.get(e.id)!;
       st.state = ({ done: 'done', skipped: 'skip', failed: 'fail' } as const)[e.state as 'done'] ?? 'wait';
