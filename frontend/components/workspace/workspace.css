@@ -187,6 +187,9 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .ghostcard .btn { margin-top: 12px; }
 .vnote { position: absolute; left: 12px; top: 12px; z-index: 3; max-width: calc(100% - 24px); background: rgba(255, 255, 255, .94); border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px; font-size: 12.5px; color: var(--ink-2); pointer-events: none; }
 .vnote b { color: var(--ink); font-weight: 500; }
+/* How to move around the model; only where there is a mouse to do it with */
+.vhint { display: none; position: absolute; left: 12px; bottom: 10px; z-index: 2; font-size: 11.5px; color: var(--ink-3); pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .v.model .vhint { display: block; } }
 .vnote.place { border-color: var(--place); }
 .ws-status { grid-row: 2 / -1; grid-column: 1 / -1; z-index: 30; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); text-align: center; padding: 24px; }
 .ws-status h1 { margin: 0 0 8px; font-size: 22px; font-weight: 600; color: var(--ink); }
