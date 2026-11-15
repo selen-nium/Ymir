@@ -8,11 +8,11 @@ const box = (x: number, y: number, w: number, h: number, title: string, sub: str
   </g>
 );
 const TOOLS = [
-  ['VISTA', 'source images · crops'],
-  ['D-FINE-L / Kimi', 'Modal detector · Verda fallback'],
+  ['VISTA', 'source crops · pixel reads'],
+  ['D-FINE-L / Kimi', '14 classes on Modal GPU · others on Verda'],
   ['Native PDF text', 'positioned text · when available'],
-  ['Room outlines', 'native IFC/SVG · Raster2Seq on Modal'],
-  ['Measurements', 'source calibration'],
+  ['Room outlines', 'native IFC/SVG · Raster2Seq on Modal GPU'],
+  ['Measurements', 'source calibration · rooms, distances'],
 ];
 
 /** Import/Build and Lens use preserved sources, with separate model and QA outputs. */
@@ -20,7 +20,7 @@ export function ArchitectureDiagram() {
   return (
     <svg viewBox="0 0 1160 710" role="img" aria-labelledby="architecture-title architecture-description">
       <title id="architecture-title">Ymir architecture</title>
-      <desc id="architecture-description">The planned Vercel frontend calls a FastAPI backend on Modal. Import preserves originals and canonical sheets. Build uses WallNet or OpenCV to find walls for the model. Ask snapshots one to three sheets in a durable, single-worker queue. DeepSeek calls VISTA, D-FINE-L for trained object classes, Kimi for other classes, native PDF text, native or Raster2Seq room geometry, and calibrated measurement tools. The host validates proposal IDs and polygons, computes counts and measurements, and streams evidence or a needs_review result. SQLite retains jobs, events, reviews and the budget. Shapely supports polygon checks and area calculations.</desc>
+      <desc id="architecture-description">The Vercel frontend calls a FastAPI backend on a Modal CPU container. Import preserves originals and canonical sheets. Build clears text from a working copy, then uses the Stoa Lens converter to find walls, doors and windows for the model. Ask snapshots one to three sheets in a durable, single-worker queue. DeepSeek on Verda takes simple one-page counts through a compact counter and other questions through counter or room agents. It calls VISTA, D-FINE-L on a Modal GPU for its fourteen trained object classes, Kimi on Verda for other classes, native PDF text, native or Raster2Seq room geometry, and calibrated measurement tools. The host validates proposal IDs and polygons, computes counts and measurements, and streams evidence or a needs_review result. SQLite retains jobs, events, reviews and the budget. Shapely supports polygon checks and area calculations.</desc>
       <defs>
         <marker id="architecture-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b9b2a4" /></marker>
         <marker id="architecture-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb" /></marker>
@@ -28,7 +28,7 @@ export function ArchitectureDiagram() {
       <rect className={s.dgZone} x={10} y={20} width={216} height={644} rx={14} />
       <text className={s.dgZl} x={28} y={44}>NEXT.JS · VERCEL</text>
       <rect className={s.dgZone} x={256} y={20} width={894} height={644} rx={14} />
-      <text className={s.dgZl} x={274} y={44}>API · FASTAPI ON MODAL</text>
+      <text className={s.dgZl} x={274} y={44}>API · FASTAPI ON MODAL · MODELS ON MODAL GPU AND VERDA</text>
       {box(28, 70, 180, 64, 'Ymir app', 'Home · building · drawing', 'acc')}
       {box(28, 168, 180, 56, '2D sheet', 'source pixels · citations')}
       {box(28, 244, 180, 56, '3D view', 'placed sheets · evidence')}
@@ -37,14 +37,14 @@ export function ArchitectureDiagram() {
 
       <text className={s.dgZl} x={276} y={74}>IMPORT & BUILD</text>
       {box(276, 86, 220, 64, 'Import sources', 'PDF pages · images · IFC/SVG')}
-      {box(526, 86, 260, 64, 'Build model', 'WallNet / OpenCV · wall geometry')}
+      {box(526, 86, 260, 64, 'Build model', 'text cleanup · Stoa wall geometry')}
       {box(826, 86, 300, 64, 'Drawing store', 'originals · hashes · canonical sheets')}
       <path className={s.dgLine} d="M496 118h30M786 118h40" markerEnd="url(#architecture-arrow)" />
       <path className={s.dgLine} d="M976 150v30H386v44" markerEnd="url(#architecture-arrow)" />
 
       <text className={s.dgZl} x={276} y={210}>ASK · YMIR</text>
       {box(276, 224, 220, 64, 'Durable job queue', '1–3 sheets · source snapshot')}
-      {box(526, 224, 260, 64, 'DeepSeek on Verda', 'six prior turns · selected sources', 'blue')}
+      {box(526, 224, 260, 64, 'DeepSeek on Verda', 'compact counter · counter · rooms', 'blue')}
       {box(276, 330, 220, 64, 'SQLite', 'jobs · events · reviews · budget')}
       <text className={s.dgS} x={290} y={420}>One inference worker</text>
       <text className={s.dgS} x={290} y={440}>Reservations before paid calls</text>

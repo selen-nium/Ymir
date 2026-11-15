@@ -1,15 +1,18 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import s from './landing.module.css';
 
 interface HeroSheet { id: string; img: string; z: number; corner: [number, number]; size: [number, number]; walls: [number, number, number, number, number][] }
 interface HeroData { sheets: HeroSheet[]; ghost: { z: number; height: number }; room: { label: string; area: number; polygon: [number, number][] } }
 
 const GAP = 3.2; // extra space between levels: the building, exploded
+const IDLE_MS = 2500; // the idle sway resumes this long after the visitor lets go
 const ease = (t: number) => 1 - (1 - Math.min(1, Math.max(0, t))) ** 3;
 
-/** The sample building assembling itself: sheets drop into their levels, walls rise, the missing level is a ghost. */
+/** The sample building assembling itself: sheets drop into their levels, walls rise, the missing level is a ghost.
+ *  Drag to turn it; it sways on its own while left alone. */
 export function HeroScene() {
   const host = useRef<HTMLDivElement>(null), label = useRef<HTMLDivElement>(null);
 
@@ -31,7 +34,23 @@ export function HeroScene() {
     const disposables: { dispose(): void }[] = [];
     const keep = <T extends { dispose(): void }>(x: T) => { disposables.push(x); return x; };
 
-    let raf = 0, visible = true, start = 0, ready = false;
+    // drag to orbit; no zoom or pan, so the wheel and vertical swipes still scroll the page
+    const controls = keep(new OrbitControls(camera, renderer.domElement));
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableDamping = !still;
+    controls.dampingFactor = 0.1;
+    controls.rotateSpeed = 0.7;
+    controls.minPolarAngle = Math.PI * 0.12;
+    controls.maxPolarAngle = Math.PI * 0.47;
+    controls.cursorStyle = 'grab'; // grab, and grabbing while dragging
+    renderer.domElement.style.touchAction = 'pan-y';
+    let held = false, letGo = -Infinity;
+    controls.addEventListener('start', () => { held = true; });
+    controls.addEventListener('end', () => { held = false; letGo = performance.now(); });
+    controls.addEventListener('change', () => redraw());
+
+    let raf = 0, visible = true, start = 0, ready = false, sway = 0, last = 0;
     const levels: { group: THREE.Group; z: number; i: number; walls: THREE.Mesh[]; mat: THREE.MeshStandardMaterial }[] = [];
     let ghost: THREE.Group | null = null, pin: THREE.Group | null = null, center = new THREE.Vector3();
     const pinWorld = new THREE.Vector3();
@@ -66,7 +85,8 @@ export function HeroScene() {
         const tex = keep(loader.load(sh.img, redraw));
         tex.colorSpace = THREE.SRGBColorSpace;
         tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-        const mat = keep(new THREE.MeshStandardMaterial({ map: tex, transparent: true, opacity: 0, side: THREE.DoubleSide, roughness: 1 }));
+        // the sheet images are ink on transparent, so a floor reads as linework rather than a white slab
+        const mat = keep(new THREE.MeshStandardMaterial({ map: tex, transparent: true, opacity: 0, side: THREE.DoubleSide, roughness: 1, depthWrite: false }));
         const plane = new THREE.Mesh(keep(new THREE.PlaneGeometry(sh.size[0], sh.size[1])), mat);
         plane.rotation.x = -Math.PI / 2;
         plane.position.set(sh.corner[0] + sh.size[0] / 2, 0, sh.corner[1] + sh.size[1] / 2);
@@ -124,7 +144,8 @@ export function HeroScene() {
       const top = yOf(Math.max(...ys)) + 3;
       const R = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...zs) - Math.min(...zs)) / 2;
       camera.position.set(R * 1.75, top * 1.05 + R * 0.62, R * 2.4);
-      camera.lookAt(0, top * 0.4, 0);
+      controls.target.set(0, top * 0.4, 0);
+      controls.update();
       ready = true;
       start = performance.now() - (still ? 1e5 : 0);
       if (!raf) raf = requestAnimationFrame(frame);
@@ -153,10 +174,15 @@ export function HeroScene() {
           const r = el.getBoundingClientRect();
           tag.style.transform = `translate(${(pinWorld.x * 0.5 + 0.5) * r.width}px, ${(-pinWorld.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
         }
-        if (!still) pivot.rotation.y = 0.35 * Math.sin(t * 0.18) - 0.15;
+        // the sway's own clock stops while the visitor holds or just let go, so it resumes from where it paused
+        if (!still && !held && now - letGo > IDLE_MS) sway += Math.min(0.1, (now - last) / 1000);
+        pivot.rotation.y = 0.35 * Math.sin(sway * 0.18) - 0.15;
+        controls.update();
         renderer.render(scene, camera);
       }
-      if (!still || !ready) raf = requestAnimationFrame(frame);
+      last = now;
+      // a control 'change' during this frame may already have queued the next one
+      if ((!still || !ready) && !raf) raf = requestAnimationFrame(frame);
     }
 
     return () => {
