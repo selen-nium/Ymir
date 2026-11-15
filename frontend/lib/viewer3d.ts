@@ -66,6 +66,15 @@ export function createViewer(el: HTMLElement) {
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
   controls.maxPolarAngle = Math.PI * 0.48;
+  // Free movement around a large model: the wheel zooms towards the pointer and takes the orbit
+  // point with it; right-drag, Shift+drag, two fingers or the arrow keys slide it across the floor.
+  controls.zoomToCursor = true;
+  controls.screenSpacePanning = false;
+  controls.minDistance = 0.5;
+  controls.keyPanSpeed = 24;
+  renderer.domElement.tabIndex = 0;
+  renderer.domElement.setAttribute('aria-label', '3D model. Drag to turn, Shift+drag or arrow keys to move, scroll to zoom.');
+  controls.listenToKeyEvents(renderer.domElement);
   scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc9be, 2.0));
   const sun = new THREE.DirectionalLight(0xffffff, 1.7);
   sun.castShadow = true;
@@ -492,7 +501,21 @@ export function createViewer(el: HTMLElement) {
 
   const ease = (t: number) => 1 - (1 - t) ** 3;
   controls.addEventListener('change', invalidate);
-  controls.addEventListener('start', () => { touched = true; });
+  // The orbit point may leave the model by a quarter of its size, no further, so it can't get lost.
+  let panBox: THREE.Box3 | null = null;
+  controls.addEventListener('start', () => {
+    touched = true;
+    const b = bounds(), size = b.getSize(new THREE.Vector3());
+    panBox = b.isEmpty() ? null : b.expandByScalar(Math.max(size.x, size.z) * 0.25 + 2);
+  });
+  const shift = new THREE.Vector3();
+  function keepPivotNearModel() {
+    if (!panBox || camTarget.t < 1) return;
+    const t = controls.target;
+    shift.set(THREE.MathUtils.clamp(t.x, panBox.min.x, panBox.max.x) - t.x, 0, THREE.MathUtils.clamp(t.z, panBox.min.z, panBox.max.z) - t.z);
+    if (shift.lengthSq() === 0) return;
+    t.add(shift); camera.position.add(shift);
+  }
   renderer.setAnimationLoop(() => {
     const windowWalls=windows.frame();
     if(windowWalls.size){updateWindowWalls(windowWalls);dirty=true;}
@@ -513,6 +536,7 @@ export function createViewer(el: HTMLElement) {
       controls.target.lerpVectors(camTarget.fromLook, camTarget.look, k);
     }
     const moved = controls.update();
+    keepPivotNearModel();
     if (!(dirty || moved || liftAnim || camTarget.t < 1)) return;
     dirty = false;
     renderer.render(scene, camera);

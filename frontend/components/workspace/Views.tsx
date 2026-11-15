@@ -59,6 +59,7 @@ export function Views() {
         <div className="host" ref={modelEl} />
         <BaseSheet hostRef={baseEl} />
         <Note3D />
+        <div className="vhint">Drag to turn · Shift+drag or right-drag to move · scroll to zoom</div>
       </div>
       <div className="tip" ref={tipEl} hidden />
     </div>
