@@ -55,7 +55,9 @@ The 2D sheet, the three.js model and the trace are imperative renderers in `lib/
 and render everything else from the workspace store (zustand).
 
 - **Build:** `build/pipeline.py` turns a plan image into a drawing payload: WallNet walls (or OpenCV lines
-  without weights), estimated scale and rooms. Samples are prebuilt in `data/samples/`; uploads run it live.
+  without weights), estimated scale and rooms. Walls are detected on a cleaned copy (`floorplan/clean.py`):
+  glyph-sized text is removed, and the crop leaves out title blocks, legends and logos. The shown image keeps
+  its text. Samples are prebuilt in `data/samples/`; uploads run it live.
 - **Ask:** `POST /api/ask` snapshots one to three selected sheets and records a durable job.
   The source-controlled runtime in `vendor/stoa-runtime` calls DeepSeek and Kimi on Verda,
   D-FINE for its trained classes, and native or Raster2Seq room tools. Counts use recorded

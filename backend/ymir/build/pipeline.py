@@ -66,9 +66,10 @@ def auto_crop(png):
 
 def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind: str, file: str,
                   crop=None, scale_denominator: int | None = None, scale_text: str | None = None,
-                  read_text: bool = False, detector: str = "auto") -> Built:
+                  read_text: bool = False, detector: str = "auto", clean: bool = True) -> Built:
     """scale_denominator: 1:N sheet scale on an A3 page (else the scale is estimated from image size).
-    read_text: legacy offline text extraction, disabled for live imports."""
+    read_text: legacy offline text extraction, disabled for live imports.
+    clean: remove text and crop away title blocks and legends before detecting walls (floorplan/clean.py)."""
     import cv2
     import numpy as np
     from PIL import Image
@@ -79,12 +80,18 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
     from .floorplan.rooms import recover_rooms, split_rooms
     from .floorplan.vectorize import clean as vclean
 
+    from .floorplan.clean import clean_plan
+
     t_read = time.perf_counter()
     png, src = normalize(raw)
     W, H = src["width"], src["height"]
-    crop = tuple(int(round(v)) for v in (crop or auto_crop(png)))
     t_read = (time.perf_counter() - t_read) * 1000
-    walls, ext = propose(png, crop, detector=detector)
+    t_plan = time.perf_counter()
+    # Walls are detected on a copy without text; the payload image and text reading keep the original.
+    wall_png, cleaning = clean_plan(png) if clean else (png, None)
+    crop = tuple(int(round(v)) for v in (crop or (cleaning["drawing_box"] if cleaning else auto_crop(png))))
+    t_plan = (time.perf_counter() - t_plan) * 1000
+    walls, ext = propose(wall_png, crop, detector=detector)
     learned = ext["method"].startswith("learned")
     merged = walls if learned else vclean(walls)
     merged = [w for w in merged if math.dist(w["a"], w["b"]) >= 12]  # drop tiny fragments
@@ -171,7 +178,9 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
         out_rooms.append(o)
     payload = {
         "id": drawing_id, "title": title,
-        "source": {"file": file, "sha256": src["original_sha256"], "dataset": dataset, "kind": kind, "crop": list(crop)},
+        "source": {"file": file, "sha256": src["original_sha256"], "dataset": dataset, "kind": kind, "crop": list(crop),
+                   **({"wall_input": {"text_marks_removed": cleaning["text_marks_removed"],
+                                      "method": "glyph-sized ink removed; sheet lines ignored for the crop"}} if cleaning else {})},
         "image": {"url": f"{drawing_id}.{ext_name}", "size": [x1 - x0, y1 - y0]},
         "scale": scale, "default_height_m": 2.7,
         "plans": [{"id": "p1", "box": [0, 0, x1 - x0, y1 - y0]}],
@@ -183,7 +192,9 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
     }
     trace = _trace([
         ("read", "Read drawing", "Pillow", [], "done", f"{kind} · {x1 - x0}×{y1 - y0} px", t_read),
-        ("plan", "Find plan", "OpenCV", ["read"], "done", "Plan region cropped", 30),
+        ("plan", "Find plan", "OpenCV", ["read"], "done",
+         f"{cleaning['text_marks_removed']} text marks removed · plan cropped" if cleaning else "Plan region cropped",
+         t_plan if cleaning else 30),
         ("walls", "Detect walls", "WallNet" if learned else "OpenCV lines", ["plan"], "done", f"{len(out_walls)} walls found", ext["seconds"] * 1000),
         *([("text", "Read text", "Text extraction", ["plan"], "done", f"{len(labels)} labels", t_ocr)] if labels else []),
         ("scale", "Read scale", "Source metadata" if sheet else "Estimate", ["plan"], "done",
