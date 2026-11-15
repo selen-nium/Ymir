@@ -129,6 +129,38 @@ def drawing_box(clean_bgr: np.ndarray) -> tuple[int, int, int, int]:
     return (int(x0), int(y0), int(x1), int(y1))
 
 
+def is_line_drawing(gray: np.ndarray) -> bool:
+    """True when walls are drawn as thin lines (CubiCasa scans, CAD sheets) rather than filled.
+
+    Measured as the share of ink that survives a 7 px opening: about 0.65-0.7 for filled-wall plans
+    (Swiss Dwellings), 0.2 or less for line drawings."""
+    ink = (gray < INK).astype(np.uint8)
+    if not ink.any():
+        return False
+    k = 7 if max(gray.shape) >= 1000 else 5
+    solid = cv2.morphologyEx(ink, cv2.MORPH_OPEN, np.ones((k, k), np.uint8))
+    return solid.sum() / ink.sum() < 0.4
+
+
+def darken(bgr: np.ndarray) -> np.ndarray:
+    """For line drawings: raise the contrast so faint grey lines count as ink, then fill the narrow gap
+    between a wall's two face lines so a double-line wall reads as one solid band. Single lines
+    (furniture, dimensions) stay thin, and a thickness-based wall finder drops them."""
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    lo, hi = np.percentile(gray, 0.5), np.percentile(gray, 60)  # darkest ink to paper
+    level = np.clip((gray.astype(np.float32) - lo) / max(float(hi - lo), 1.0), 0, 1) ** 2  # gamma 2 darkens greys
+    out = (level * 255).astype(np.uint8)
+    band = max(4, glyph_limit(*gray.shape) // 2)  # widest gap filled between two face lines
+    ink = (out < INK).astype(np.uint8)
+    long_ = 3 * band
+    across = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (long_, 1)))
+    down = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (1, long_)))
+    filled = (cv2.morphologyEx(across, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (1, band + 1)))
+              | cv2.morphologyEx(down, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (band + 1, 1))))
+    out[filled.astype(bool)] = 0
+    return cv2.cvtColor(out, cv2.COLOR_GRAY2BGR)
+
+
 def clean_plan(png: bytes) -> tuple[bytes, dict]:
     """Text removed (PNG bytes, same size) and the drawing's box in that frame."""
     bgr = cv2.imdecode(np.frombuffer(png, np.uint8), cv2.IMREAD_COLOR)

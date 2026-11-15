@@ -17,11 +17,10 @@ See [local setup and integration contracts](docs/stoa-lens-local.md), the
 
 ## Run it locally
 
-Needs Python 3.12, Node 20+ and [Git LFS](https://git-lfs.com) (for the wall-model weights). Two processes:
-the API on :8000 and the Next.js frontend on :3000, which forwards `/api/*` to it.
+Needs Python 3.12 and Node 20+. Two processes: the API on :8000 and the Next.js frontend on :3000, which
+forwards `/api/*` to it. (Git LFS is only needed for the retired WallNet weights in `weights/`.)
 
 ```sh
-git lfs install && git lfs pull
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements-dev.txt
 #   or: python3.12 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
 PYTHONPATH=backend .venv/bin/uvicorn ymir.app:app --reload --port 8000
@@ -54,10 +53,14 @@ frontend/  (Next.js · Vercel)                        backend/ymir/  (FastAPI ·
 The 2D sheet, the three.js model and the trace are imperative renderers in `lib/`; React components mount them
 and render everything else from the workspace store (zustand).
 
-- **Build:** `build/pipeline.py` turns a plan image into a drawing payload: WallNet walls (or OpenCV lines
-  without weights), estimated scale and rooms. Walls are detected on a cleaned copy (`floorplan/clean.py`):
-  glyph-sized text is removed, and the crop leaves out title blocks, legends and logos. The shown image keeps
-  its text. Samples are prebuilt in `data/samples/`; uploads run it live.
+- **Build:** `build/pipeline.py` turns a plan image into a drawing payload: walls, doors and windows,
+  estimated scale and rooms. Walls come from the Stoa Lens PNG-to-IFC converter in `research/stoa-lens`
+  (`floorplan/converter.py`), run on a cleaned copy (`floorplan/clean.py`): glyph-sized text is removed, the
+  crop leaves out title blocks, legends and logos, and line drawings (CubiCasa scans, CAD sheets) are
+  darkened so double-line walls read as solid. Each wall's two faces are paired into one centreline at any
+  angle, and walls run through the doors and windows the converter finds. The shown image keeps its text.
+  WallNet is retired. Samples are prebuilt in `data/samples/` (`scripts/rebuild_sample_walls.py` rebuilds
+  their walls); uploads run it live.
 - **Ask:** `POST /api/ask` snapshots one to three selected sheets and records a durable job.
   The source-controlled runtime in `vendor/stoa-runtime` calls DeepSeek and Kimi on Verda,
   D-FINE for its trained classes, and native or Raster2Seq room tools. Counts use recorded

@@ -12,10 +12,6 @@ app=modal.App('ymir')
 data=modal.Volume.from_name('ymir-data',create_if_missing=False)
 requirements=[line.strip() for line in (ROOT/'requirements.txt').read_text().splitlines()
               if line.strip() and not line.lstrip().startswith(('#','-e ','torch'))] if modal.is_local() else []
-if modal.is_local():
-    weights=ROOT/'weights/wallnet.pt'
-    if not weights.is_file() or weights.stat().st_size<1_000_000:
-        raise RuntimeError('Run git lfs pull before deploying: WallNet weights are missing or still an LFS pointer.')
 receipt=ROOT/'deploy/model-readiness.json'
 if modal.is_local() and not receipt.is_file():
     raise RuntimeError('Run the Modal GPU smoke check and publish deploy/model-readiness.json first.')
@@ -27,9 +23,10 @@ image=(modal.Image.debian_slim(python_version='3.12').apt_install('libgl1','libg
                    ignore=['**/__pycache__/**','**/*.egg-info/**','**/build/**'])
     .uv_pip_install('/opt/ymir-runtime')
     .env({'PYTHONPATH':'/root/backend','YMIR_DATA_DIR':'/data','YMIR_STOA_ROOT':'/data/runtime',
-          'YMIR_WEIGHTS_DIR':'/root/weights','YMIR_GPU_BACKEND':'modal','YMIR_MODEL_READINESS':'/root/model-readiness.json'})
+          'YMIR_GPU_BACKEND':'modal','YMIR_MODEL_READINESS':'/root/model-readiness.json'})
     .add_local_file(receipt,'/root/model-readiness.json')
-    .add_local_dir(ROOT/'weights','/root/weights')
+    # Build's wall finder is the Stoa Lens converter (backend/ymir/build/floorplan/converter.py); WallNet is retired.
+    .add_local_dir(ROOT/'research/stoa-lens/src','/root/research/stoa-lens/src',ignore=['**/__pycache__/**'])
     .add_local_dir(ROOT/'data/samples','/root/data/samples')
     .add_local_dir(ROOT/'backend','/root/backend',ignore=['**/__pycache__/**']))
 

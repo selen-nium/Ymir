@@ -1,4 +1,4 @@
-"""Drawing → payload: read, crop, detect walls (WallNet or OpenCV lines), read text, set scale, find rooms.
+"""Drawing → payload: read, clean, crop, detect walls (Stoa Lens converter or OpenCV lines), read text, set scale, find rooms.
 
 Returns the drawing payload (frontend contract), the build trace (node/status events) and the cropped image.
 Used by uploads (POST /api/drawings) and scripts/build_samples.py.
@@ -91,17 +91,18 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
     wall_png, cleaning = clean_plan(png) if clean else (png, None)
     crop = tuple(int(round(v)) for v in (crop or (cleaning["drawing_box"] if cleaning else auto_crop(png))))
     t_plan = (time.perf_counter() - t_plan) * 1000
-    walls, ext = propose(wall_png, crop, detector=detector)
+    sheet = scale_denominator is not None
+    m_per_px = scale_denominator / 1000 / (W / 420.0) if sheet else (0.02 if W > 1500 else 0.03 if W > 600 else 0.04)
+    walls, ext = propose(wall_png, crop, detector=detector, m_per_px=m_per_px)
     learned = ext["method"].startswith("learned")
-    merged = walls if learned else vclean(walls)
+    # The converter's walls are already joined centrelines at any angle; the line cleanup is axis-only.
+    merged = walls if learned or ext.get("vectorized") else vclean(walls)
     merged = [w for w in merged if math.dist(w["a"], w["b"]) >= 12]  # drop tiny fragments
     x0, y0, x1, y1 = crop
     for i, w in enumerate(merged):
         w["id"] = f"w{i + 1}"
         w["status"] = "accepted"
 
-    sheet = scale_denominator is not None
-    m_per_px = scale_denominator / 1000 / (W / 420.0) if sheet else (0.02 if W > 1500 else 0.03 if W > 600 else 0.04)
     refs = [{"a": (x0 + 2, y0 + 2), "b": (x1 - 2, y0 + 2), "length_m": (x1 - x0 - 4) * m_per_px},
             {"a": (x0 + 2, y0 + 2), "b": (x0 + 2, y1 - 2), "length_m": (y1 - y0 - 4) * m_per_px}]
     plan = Plan(name=drawing_id, crop=crop, walls=merged, references=refs,
@@ -187,7 +188,10 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
         "walls": [{k: val for k, val in {"id": w["id"], "a": [round(c, 1) for c in w["a"]], "b": [round(c, 1) for c in w["b"]],
                                          "thickness_px": w.get("thickness_px"), "confidence": w.get("confidence")}.items()
                    if val is not None} for w in out_walls],
-        "openings": [], "rooms": out_rooms, "symbols": [],
+        "openings": [{"id": f"o{i + 1}", "kind": o["kind"],
+                      "box": [round(o["box"][0] - x0, 1), round(o["box"][1] - y0, 1), round(o["box"][2] - x0, 1), round(o["box"][3] - y0, 1)]}
+                     for i, o in enumerate(ext.get("openings", []))],
+        "rooms": out_rooms, "symbols": [],
         "texts": [{"id": f"t{i + 1}", "text": l["text"], "box": l["box"], "confidence": l["score"]} for i, l in enumerate(labels)],
     }
     trace = _trace([
@@ -195,7 +199,9 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
         ("plan", "Find plan", "OpenCV", ["read"], "done",
          f"{cleaning['text_marks_removed']} text marks removed · plan cropped" if cleaning else "Plan region cropped",
          t_plan if cleaning else 30),
-        ("walls", "Detect walls", "WallNet" if learned else "OpenCV lines", ["plan"], "done", f"{len(out_walls)} walls found", ext["seconds"] * 1000),
+        ("walls", "Detect walls", "WallNet" if learned else "Stoa wall model" if ext.get("vectorized") else "OpenCV lines", ["plan"], "done",
+         f"{len(out_walls)} walls found" + "".join(f" · {sum(o['kind'] == k for o in ext['openings'])} {k}s" for k in ("door", "window") if ext.get("openings"))
+         + (" · line drawing darkened" if ext.get("line_drawing") else ""), ext["seconds"] * 1000),
         *([("text", "Read text", "Text extraction", ["plan"], "done", f"{len(labels)} labels", t_ocr)] if labels else []),
         ("scale", "Read scale", "Source metadata" if sheet else "Estimate", ["plan"], "done",
          f"Read “{scale_text}”" if sheet and scale_text else "No scale printed: estimate", 20),

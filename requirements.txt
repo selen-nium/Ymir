@@ -8,6 +8,8 @@ numpy>=1.26
 opencv-python-headless>=4.10
 pillow>=10.4
 shapely>=2.0
+# Stoa Lens converter's wall finder (research/stoa-lens)
+scipy>=1.13
 torch>=2.3
 torchvision>=0.18
 
