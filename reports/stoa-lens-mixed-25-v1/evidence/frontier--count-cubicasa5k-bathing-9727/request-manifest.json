@@ -1,0 +1,39 @@
+{
+  "case_id": "count-cubicasa5k-bathing-9727",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "How many showers and bathtubs are drawn on this floor plan in total?",
+  "sources": [
+    {
+      "page_id": "page-372fa21c800cac6f15ead6a5",
+      "source_id": "page-372fa21c800cac6f15ead6a5",
+      "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/cubicasa5k/high_quality-13290.png",
+      "width": 760,
+      "height": 486,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "object_count"
+}

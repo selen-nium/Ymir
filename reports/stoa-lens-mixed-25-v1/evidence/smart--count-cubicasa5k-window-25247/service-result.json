@@ -1,0 +1,1982 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "object_class": "window",
+        "object_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "count": 6,
+        "accepted_proposal_ids": [
+          "proposal_ba1c001dd34f723d4842",
+          "proposal_fcaa6915d5b94d30771d",
+          "proposal_ef5b23c02e0e0e745099",
+          "proposal_bc6bd5077aea87fb3865",
+          "proposal_31fe3416331d7b2a555f",
+          "proposal_4fcfc9a02c198d4771a8"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 6,
+    "accepted_proposal_ids": [
+      "proposal_ba1c001dd34f723d4842",
+      "proposal_fcaa6915d5b94d30771d",
+      "proposal_ef5b23c02e0e0e745099",
+      "proposal_bc6bd5077aea87fb3865",
+      "proposal_31fe3416331d7b2a555f",
+      "proposal_4fcfc9a02c198d4771a8"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_ba1c001dd34f723d4842",
+        "label": "window",
+        "raw_box_xyxy": [
+          242.56883239746094,
+          324.34625244140625,
+          259.4201354980469,
+          493.7296142578125
+        ],
+        "view_box_xyxy": [
+          242.56883239746094,
+          324.34625244140625,
+          259.4201354980469,
+          493.7296142578125
+        ],
+        "native_box_xyxy": [
+          242.56883239746094,
+          324.34625244140625,
+          259.4201354980469,
+          493.7296142578125
+        ],
+        "confidence": 0.6876299977302551,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_411712613b0403d6b809",
+        "label": "window",
+        "raw_box_xyxy": [
+          1320.2777099609375,
+          244.79208374023438,
+          1339.1124267578125,
+          433.3969421386719
+        ],
+        "view_box_xyxy": [
+          1320.2777099609375,
+          244.79208374023438,
+          1339.1124267578125,
+          433.3969421386719
+        ],
+        "native_box_xyxy": [
+          1320.2777099609375,
+          244.79208374023438,
+          1339.1124267578125,
+          433.3969421386719
+        ],
+        "confidence": 0.6486889719963074,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_31fe3416331d7b2a555f",
+        "label": "window",
+        "raw_box_xyxy": [
+          1319.3167724609375,
+          684.3737182617188,
+          1339.7218017578125,
+          851.9693603515625
+        ],
+        "view_box_xyxy": [
+          1319.3167724609375,
+          684.3737182617188,
+          1339.7218017578125,
+          851.9693603515625
+        ],
+        "native_box_xyxy": [
+          1319.3167724609375,
+          684.3737182617188,
+          1339.7218017578125,
+          851.9693603515625
+        ],
+        "confidence": 0.637030839920044,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_3509b96d925b4e980fc5",
+        "label": "window",
+        "raw_box_xyxy": [
+          1362.497802734375,
+          570.7634887695312,
+          1477.3671875,
+          593.37939453125
+        ],
+        "view_box_xyxy": [
+          1362.497802734375,
+          570.7634887695312,
+          1477.3671875,
+          593.37939453125
+        ],
+        "native_box_xyxy": [
+          1362.497802734375,
+          570.7634887695312,
+          1477.3671875,
+          593.37939453125
+        ],
+        "confidence": 0.6297746300697327,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_ef5b23c02e0e0e745099",
+        "label": "window",
+        "raw_box_xyxy": [
+          1481.2816162109375,
+          237.22372436523438,
+          1500.419189453125,
+          569.2684326171875
+        ],
+        "view_box_xyxy": [
+          1481.2816162109375,
+          237.22372436523438,
+          1500.419189453125,
+          569.2684326171875
+        ],
+        "native_box_xyxy": [
+          1481.2816162109375,
+          237.22372436523438,
+          1500.419189453125,
+          569.2684326171875
+        ],
+        "confidence": 0.531209409236908,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_3bc904b34a8f88bcbaea",
+        "label": "window",
+        "raw_box_xyxy": [
+          233.30587768554688,
+          321.63330078125,
+          259.5559997558594,
+          364.2989196777344
+        ],
+        "view_box_xyxy": [
+          233.30587768554688,
+          321.63330078125,
+          259.5559997558594,
+          364.2989196777344
+        ],
+        "native_box_xyxy": [
+          233.30587768554688,
+          321.63330078125,
+          259.5559997558594,
+          364.2989196777344
+        ],
+        "confidence": 0.46101677417755127,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_4fcfc9a02c198d4771a8",
+        "label": "window",
+        "raw_box_xyxy": [
+          1318.1893310546875,
+          870.6896362304688,
+          1337.342041015625,
+          976.86279296875
+        ],
+        "view_box_xyxy": [
+          1318.1893310546875,
+          870.6896362304688,
+          1337.342041015625,
+          976.86279296875
+        ],
+        "native_box_xyxy": [
+          1318.1893310546875,
+          870.6896362304688,
+          1337.342041015625,
+          976.86279296875
+        ],
+        "confidence": 0.403566837310791,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_bb28d075b90e2bd94672",
+        "label": "window",
+        "raw_box_xyxy": [
+          1319.233154296875,
+          682.4437255859375,
+          1344.8922119140625,
+          719.3995361328125
+        ],
+        "view_box_xyxy": [
+          1319.233154296875,
+          682.4437255859375,
+          1344.8922119140625,
+          719.3995361328125
+        ],
+        "native_box_xyxy": [
+          1319.233154296875,
+          682.4437255859375,
+          1344.8922119140625,
+          719.3995361328125
+        ],
+        "confidence": 0.3602639436721802,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_884f7c97bd5e9dcec201",
+        "label": "window",
+        "raw_box_xyxy": [
+          1322.7662353515625,
+          19.436443328857422,
+          1340.5582275390625,
+          188.01808166503906
+        ],
+        "view_box_xyxy": [
+          1322.7662353515625,
+          19.436443328857422,
+          1340.5582275390625,
+          188.01808166503906
+        ],
+        "native_box_xyxy": [
+          1322.7662353515625,
+          19.436443328857422,
+          1340.5582275390625,
+          188.01808166503906
+        ],
+        "confidence": 0.3354596793651581,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_45d93acf819225ca9f9a",
+        "label": "window",
+        "raw_box_xyxy": [
+          233.0874481201172,
+          76.24543762207031,
+          260.33978271484375,
+          117.45428466796875
+        ],
+        "view_box_xyxy": [
+          233.0874481201172,
+          76.24543762207031,
+          260.33978271484375,
+          117.45428466796875
+        ],
+        "native_box_xyxy": [
+          233.0874481201172,
+          76.24543762207031,
+          260.33978271484375,
+          117.45428466796875
+        ],
+        "confidence": 0.33111974596977234,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_8559e2539e828da8ec11",
+        "label": "window",
+        "raw_box_xyxy": [
+          1359.30810546875,
+          979.7807006835938,
+          1475.2252197265625,
+          1001.893798828125
+        ],
+        "view_box_xyxy": [
+          1359.30810546875,
+          979.7807006835938,
+          1475.2252197265625,
+          1001.893798828125
+        ],
+        "native_box_xyxy": [
+          1359.30810546875,
+          979.7807006835938,
+          1475.2252197265625,
+          1001.893798828125
+        ],
+        "confidence": 0.3182732164859772,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_fcaa6915d5b94d30771d",
+        "label": "window",
+        "raw_box_xyxy": [
+          235.82516479492188,
+          514.30908203125,
+          258.8615417480469,
+          685.2855834960938
+        ],
+        "view_box_xyxy": [
+          235.82516479492188,
+          514.30908203125,
+          258.8615417480469,
+          685.2855834960938
+        ],
+        "native_box_xyxy": [
+          235.82516479492188,
+          514.30908203125,
+          258.8615417480469,
+          685.2855834960938
+        ],
+        "confidence": 0.30321571230888367,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_ca59c31165c3e402ab31",
+        "label": "window",
+        "raw_box_xyxy": [
+          1317.7650146484375,
+          944.3685302734375,
+          1337.13134765625,
+          977.8161010742188
+        ],
+        "view_box_xyxy": [
+          1317.7650146484375,
+          944.3685302734375,
+          1337.13134765625,
+          977.8161010742188
+        ],
+        "native_box_xyxy": [
+          1317.7650146484375,
+          944.3685302734375,
+          1337.13134765625,
+          977.8161010742188
+        ],
+        "confidence": 0.29421496391296387,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_bc6bd5077aea87fb3865",
+        "label": "window",
+        "raw_box_xyxy": [
+          1484.8758544921875,
+          0.7794591784477234,
+          1501.5321044921875,
+          165.16334533691406
+        ],
+        "view_box_xyxy": [
+          1484.8758544921875,
+          0.7794591784477234,
+          1501.5321044921875,
+          165.16334533691406
+        ],
+        "native_box_xyxy": [
+          1484.8758544921875,
+          0.7794591784477234,
+          1501.5321044921875,
+          165.16334533691406
+        ],
+        "confidence": 0.29098087549209595,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_dfad6b3d477253259fcb",
+        "label": "window",
+        "raw_box_xyxy": [
+          1319.301513671875,
+          680.5038452148438,
+          1349.33642578125,
+          719.2313842773438
+        ],
+        "view_box_xyxy": [
+          1319.301513671875,
+          680.5038452148438,
+          1349.33642578125,
+          719.2313842773438
+        ],
+        "native_box_xyxy": [
+          1319.301513671875,
+          680.5038452148438,
+          1349.33642578125,
+          719.2313842773438
+        ],
+        "confidence": 0.2735744118690491,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_725694774e1051a5da6d",
+        "label": "window",
+        "raw_box_xyxy": [
+          483.0,
+          143.0,
+          645.0,
+          154.0
+        ],
+        "view_box_xyxy": [
+          815.304,
+          152.43800000000002,
+          1088.76,
+          164.16400000000002
+        ],
+        "native_box_xyxy": [
+          815.304,
+          152.43800000000002,
+          1088.76,
+          164.16400000000002
+        ],
+        "confidence": 0.97,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_3b880ff6d4bc3c84336d",
+        "label": "window",
+        "raw_box_xyxy": [
+          302.0,
+          143.0,
+          465.0,
+          154.0
+        ],
+        "view_box_xyxy": [
+          509.776,
+          152.43800000000002,
+          784.92,
+          164.16400000000002
+        ],
+        "native_box_xyxy": [
+          509.776,
+          152.43800000000002,
+          784.92,
+          164.16400000000002
+        ],
+        "confidence": 0.97,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_8775c160765655cba6ef",
+        "label": "window",
+        "raw_box_xyxy": [
+          0.0,
+          143.0,
+          110.0,
+          155.0
+        ],
+        "view_box_xyxy": [
+          0.0,
+          152.43800000000002,
+          185.68,
+          165.23000000000002
+        ],
+        "native_box_xyxy": [
+          0.0,
+          152.43800000000002,
+          185.68,
+          165.23000000000002
+        ],
+        "confidence": 0.94,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": true,
+        "requires_wider_inspection": true,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_c694b80483be99fa08cd",
+        "label": "window",
+        "raw_box_xyxy": [
+          221.0,
+          781.0,
+          412.0,
+          793.0
+        ],
+        "view_box_xyxy": [
+          373.048,
+          832.546,
+          695.456,
+          845.3380000000001
+        ],
+        "native_box_xyxy": [
+          373.048,
+          832.546,
+          695.456,
+          845.3380000000001
+        ],
+        "confidence": 0.96,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_657d5d914fee06dce5cd",
+        "label": "window",
+        "raw_box_xyxy": [
+          18.0,
+          783.0,
+          199.0,
+          795.0
+        ],
+        "view_box_xyxy": [
+          30.384,
+          834.678,
+          335.912,
+          847.47
+        ],
+        "native_box_xyxy": [
+          30.384,
+          834.678,
+          335.912,
+          847.47
+        ],
+        "confidence": 0.95,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_560ed31a670ff9055840",
+        "label": "window",
+        "raw_box_xyxy": [
+          642.0,
+          781.0,
+          798.0,
+          793.0
+        ],
+        "view_box_xyxy": [
+          1083.696,
+          832.546,
+          1347.024,
+          845.3380000000001
+        ],
+        "native_box_xyxy": [
+          1083.696,
+          832.546,
+          1347.024,
+          845.3380000000001
+        ],
+        "confidence": 0.97,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_fffa4f6d7d43373b89bf",
+        "label": "window",
+        "raw_box_xyxy": [
+          809.0,
+          781.0,
+          917.0,
+          793.0
+        ],
+        "view_box_xyxy": [
+          1365.5919999999999,
+          832.546,
+          1547.896,
+          845.3380000000001
+        ],
+        "native_box_xyxy": [
+          1365.5919999999999,
+          832.546,
+          1547.896,
+          845.3380000000001
+        ],
+        "confidence": 0.96,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_70b6c1197a41606c77a6",
+        "label": "window",
+        "raw_box_xyxy": [
+          715.0,
+          0.0,
+          862.0,
+          1000.0
+        ],
+        "view_box_xyxy": [
+          563.2,
+          750.0,
+          633.76,
+          815.0
+        ],
+        "native_box_xyxy": [
+          563.2,
+          750.0,
+          633.76,
+          815.0
+        ],
+        "confidence": 0.65,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": true,
+        "requires_wider_inspection": true,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_332d30ab8af9bdc85484",
+        "label": "window",
+        "raw_box_xyxy": [
+          16.0,
+          0.0,
+          77.0,
+          1000.0
+        ],
+        "view_box_xyxy": [
+          227.68,
+          750.0,
+          256.96,
+          815.0
+        ],
+        "native_box_xyxy": [
+          227.68,
+          750.0,
+          256.96,
+          815.0
+        ],
+        "confidence": 0.25,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": true,
+        "requires_wider_inspection": true,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_f49a8d64451b13fb9256",
+        "label": "window",
+        "raw_box_xyxy": [
+          373.0605773925781,
+          23.164966583251953,
+          438.91998291015625,
+          30.871109008789062
+        ],
+        "view_box_xyxy": [
+          573.0605773925781,
+          183.16496658325195,
+          638.9199829101562,
+          190.87110900878906
+        ],
+        "native_box_xyxy": [
+          573.0605773925781,
+          183.16496658325195,
+          638.9199829101562,
+          190.87110900878906
+        ],
+        "confidence": 0.2538610100746155,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_515da3ab7ee9e3de1f2b",
+        "label": "window",
+        "raw_box_xyxy": [
+          60.010066986083984,
+          320.07666015625,
+          175.881103515625,
+          341.2626037597656
+        ],
+        "view_box_xyxy": [
+          1360.010066986084,
+          980.07666015625,
+          1475.881103515625,
+          1001.2626037597656
+        ],
+        "native_box_xyxy": [
+          1360.010066986084,
+          980.07666015625,
+          1475.881103515625,
+          1001.2626037597656
+        ],
+        "confidence": 0.7577943801879883,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_85b336a5e8fd78e00c0a",
+        "label": "window",
+        "raw_box_xyxy": [
+          18.790348052978516,
+          220.29306030273438,
+          36.243953704833984,
+          284.1905822753906
+        ],
+        "view_box_xyxy": [
+          1318.7903480529785,
+          880.2930603027344,
+          1336.243953704834,
+          944.1905822753906
+        ],
+        "native_box_xyxy": [
+          1318.7903480529785,
+          880.2930603027344,
+          1336.243953704834,
+          944.1905822753906
+        ],
+        "confidence": 0.7549149990081787,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_6e2938055f05ae99d8f4",
+        "label": "window",
+        "raw_box_xyxy": [
+          19.574626922607422,
+          119.26677703857422,
+          36.94032669067383,
+          187.1186065673828
+        ],
+        "view_box_xyxy": [
+          1319.5746269226074,
+          779.2667770385742,
+          1336.9403266906738,
+          847.1186065673828
+        ],
+        "native_box_xyxy": [
+          1319.5746269226074,
+          779.2667770385742,
+          1336.9403266906738,
+          847.1186065673828
+        ],
+        "confidence": 0.524394690990448,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_21f9c589d9d56a9e3250",
+        "label": "window",
+        "raw_box_xyxy": [
+          19.468721389770508,
+          61.03339385986328,
+          37.336036682128906,
+          114.5331802368164
+        ],
+        "view_box_xyxy": [
+          1319.4687213897705,
+          721.0333938598633,
+          1337.336036682129,
+          774.5331802368164
+        ],
+        "native_box_xyxy": [
+          1319.4687213897705,
+          721.0333938598633,
+          1337.336036682129,
+          774.5331802368164
+        ],
+        "confidence": 0.2751297354698181,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_b442e00f11a600899721",
+        "label": "window",
+        "raw_box_xyxy": [
+          85.0,
+          38.0,
+          173.0,
+          565.0
+        ],
+        "view_box_xyxy": [
+          1318.7,
+          673.11,
+          1338.06,
+          854.925
+        ],
+        "native_box_xyxy": [
+          1318.7,
+          673.11,
+          1338.06,
+          854.925
+        ],
+        "confidence": 0.94,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_f02900ad72a2271fcd8d",
+        "label": "window",
+        "raw_box_xyxy": [
+          78.0,
+          603.0,
+          170.0,
+          932.0
+        ],
+        "view_box_xyxy": [
+          1317.16,
+          868.035,
+          1337.4,
+          981.54
+        ],
+        "native_box_xyxy": [
+          1317.16,
+          868.035,
+          1337.4,
+          981.54
+        ],
+        "confidence": 0.94,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_b4cfcf0378044ecad68a",
+        "label": "window",
+        "raw_box_xyxy": [
+          30.635549545288086,
+          112.01327514648438,
+          44.38396072387695,
+          129.75672912597656
+        ],
+        "view_box_xyxy": [
+          245.6355495452881,
+          112.01327514648438,
+          259.38396072387695,
+          129.75672912597656
+        ],
+        "native_box_xyxy": [
+          245.6355495452881,
+          112.01327514648438,
+          259.38396072387695,
+          129.75672912597656
+        ],
+        "confidence": 0.46198752522468567,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_45d73e48dda72e7881a4",
+        "label": "window",
+        "raw_box_xyxy": [
+          30.62403678894043,
+          112.00777435302734,
+          44.45964050292969,
+          123.63712310791016
+        ],
+        "view_box_xyxy": [
+          245.62403678894043,
+          112.00777435302734,
+          259.4596405029297,
+          123.63712310791016
+        ],
+        "native_box_xyxy": [
+          245.62403678894043,
+          112.00777435302734,
+          259.4596405029297,
+          123.63712310791016
+        ],
+        "confidence": 0.2568320035934448,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      },
+      {
+        "id": "proposal_9531e33e8bf3eea59234",
+        "label": "window",
+        "raw_box_xyxy": [
+          400.0,
+          0.0,
+          656.0,
+          962.0
+        ],
+        "view_box_xyxy": [
+          243.0,
+          0.0,
+          260.92,
+          125.06
+        ],
+        "native_box_xyxy": [
+          243.0,
+          0.0,
+          260.92,
+          125.06
+        ],
+        "confidence": 0.92,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": true,
+        "requires_wider_inspection": true,
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "page": 0,
+        "query_class": "window",
+        "requested_class": "window",
+        "target_classes": [
+          "window"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "Six distinct window assemblies accepted after whole-page inspection and detection.",
+      "Duplicate pane fragments, clipped edge cases, interior partitions, and horizontal parapet/railing elements were excluded."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          1688,
+          1066
+        ],
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "proposal_ids": [
+          "proposal_ba1c001dd34f723d4842",
+          "proposal_411712613b0403d6b809",
+          "proposal_31fe3416331d7b2a555f",
+          "proposal_3509b96d925b4e980fc5",
+          "proposal_ef5b23c02e0e0e745099",
+          "proposal_3bc904b34a8f88bcbaea",
+          "proposal_4fcfc9a02c198d4771a8",
+          "proposal_bb28d075b90e2bd94672",
+          "proposal_884f7c97bd5e9dcec201",
+          "proposal_45d93acf819225ca9f9a",
+          "proposal_8559e2539e828da8ec11",
+          "proposal_fcaa6915d5b94d30771d",
+          "proposal_ca59c31165c3e402ab31",
+          "proposal_bc6bd5077aea87fb3865",
+          "proposal_dfad6b3d477253259fcb",
+          "proposal_725694774e1051a5da6d",
+          "proposal_3b880ff6d4bc3c84336d",
+          "proposal_8775c160765655cba6ef",
+          "proposal_c694b80483be99fa08cd",
+          "proposal_657d5d914fee06dce5cd",
+          "proposal_560ed31a670ff9055840",
+          "proposal_fffa4f6d7d43373b89bf"
+        ]
+      },
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          220,
+          750,
+          700,
+          815
+        ],
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "proposal_ids": [
+          "proposal_70b6c1197a41606c77a6",
+          "proposal_332d30ab8af9bdc85484"
+        ]
+      },
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          200,
+          160,
+          1360,
+          230
+        ],
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "proposal_ids": [
+          "proposal_f49a8d64451b13fb9256"
+        ]
+      },
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          1300,
+          660,
+          1520,
+          1005
+        ],
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "proposal_ids": [
+          "proposal_515da3ab7ee9e3de1f2b",
+          "proposal_85b336a5e8fd78e00c0a",
+          "proposal_6e2938055f05ae99d8f4",
+          "proposal_21f9c589d9d56a9e3250",
+          "proposal_b442e00f11a600899721",
+          "proposal_f02900ad72a2271fcd8d"
+        ]
+      },
+      {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          215,
+          0,
+          285,
+          130
+        ],
+        "view_id": "view-ff901700c39897b8781fe90a",
+        "proposal_ids": [
+          "proposal_b4cfcf0378044ecad68a",
+          "proposal_45d73e48dda72e7881a4",
+          "proposal_9531e33e8bf3eea59234"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_ba1c001dd34f723d4842",
+        "proposal_411712613b0403d6b809",
+        "proposal_31fe3416331d7b2a555f",
+        "proposal_3509b96d925b4e980fc5",
+        "proposal_ef5b23c02e0e0e745099",
+        "proposal_3bc904b34a8f88bcbaea",
+        "proposal_4fcfc9a02c198d4771a8",
+        "proposal_bb28d075b90e2bd94672",
+        "proposal_884f7c97bd5e9dcec201",
+        "proposal_45d93acf819225ca9f9a",
+        "proposal_8559e2539e828da8ec11",
+        "proposal_fcaa6915d5b94d30771d",
+        "proposal_ca59c31165c3e402ab31",
+        "proposal_bc6bd5077aea87fb3865",
+        "proposal_dfad6b3d477253259fcb",
+        "proposal_725694774e1051a5da6d",
+        "proposal_3b880ff6d4bc3c84336d",
+        "proposal_8775c160765655cba6ef",
+        "proposal_c694b80483be99fa08cd",
+        "proposal_657d5d914fee06dce5cd",
+        "proposal_560ed31a670ff9055840",
+        "proposal_fffa4f6d7d43373b89bf",
+        "proposal_70b6c1197a41606c77a6",
+        "proposal_332d30ab8af9bdc85484",
+        "proposal_f49a8d64451b13fb9256",
+        "proposal_515da3ab7ee9e3de1f2b",
+        "proposal_85b336a5e8fd78e00c0a",
+        "proposal_6e2938055f05ae99d8f4",
+        "proposal_21f9c589d9d56a9e3250",
+        "proposal_b442e00f11a600899721",
+        "proposal_f02900ad72a2271fcd8d",
+        "proposal_b4cfcf0378044ecad68a",
+        "proposal_45d73e48dda72e7881a4",
+        "proposal_9531e33e8bf3eea59234"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-ff901700c39897b8781fe90a",
+        "view-b236c494a73972e68bef8376",
+        "view-d93e2d195ce9d7805058018d",
+        "view-9af2b8072d9816d8a2d893f4",
+        "view-a09f6b97b05605674c0d6330",
+        "view-44ee31df2cf2baeb601c110b",
+        "view-37bb31adead9c7fa773209d1",
+        "view-02b8ec8d272dc69b9f33d32b",
+        "view-6310a25e40735b32d7cd885b",
+        "view-8526bb96b71d3c7d63d5a261",
+        "view-645762816995416e2651f058",
+        "view-9ef6c891ad54ef3a90b1a4d8",
+        "view-0002f6c77fe4ebc5a02485c8",
+        "view-43734a1f3d070f34a1b10324",
+        "view-ab79968c2c1908e07d269ef5",
+        "view-78d3061d09bd90af7ffba8dd",
+        "view-306a0dc2949f2a85a6621753"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 2,
+        "read_pdf_text": 4
+      },
+      "vista_views_used": 16,
+      "sources": [
+        {
+          "page_id": "page-23635ee4340e38706ebc75c0",
+          "source_id": "page-23635ee4340e38706ebc75c0",
+          "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+          "width": 1688,
+          "height": 1066,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "object_classes": [
+          "window"
+        ],
+        "description": "window"
+      },
+      "coverage_plan": {
+        "plan_submitted": false,
+        "regions": [
+          {
+            "id": "sheet",
+            "name": "Host-defined whole-page scope",
+            "region": [
+              0,
+              0,
+              1688,
+              1066
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+        "scope_origin": "Host whole-page scope; no explicit model planning step"
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": false,
+      "regions": [
+        {
+          "id": "sheet",
+          "name": "Host-defined whole-page scope",
+          "region": [
+            0,
+            0,
+            1688,
+            1066
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals.",
+      "scope_origin": "Host whole-page scope; no explicit model planning step"
+    },
+    "evidence_views": {
+      "view-ff901700c39897b8781fe90a": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1688,
+        "height": 1066,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "view_id": "view-ff901700c39897b8781fe90a"
+      },
+      "view-b236c494a73972e68bef8376": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 185,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.5945945945945946,
+          "scale_y": 0.59375,
+          "origin_x": 190,
+          "origin_y": 50
+        },
+        "image_sha256": "021ae1bf268173cf747c275656e300c6df224d1f59347ee5c4168aefe6a651a7",
+        "view_id": "view-b236c494a73972e68bef8376"
+      },
+      "view-d93e2d195ce9d7805058018d": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 388,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.6443298969072165,
+          "scale_y": 0.64375,
+          "origin_x": 1290,
+          "origin_y": 0
+        },
+        "image_sha256": "aa5d06001dc6ea64e9cfb56c6020f7bfa24770a747448795a532395890527a9e",
+        "view_id": "view-d93e2d195ce9d7805058018d"
+      },
+      "view-9af2b8072d9816d8a2d893f4": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 123,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 1.055,
+          "scale_y": 1.056910569105691,
+          "origin_x": 0,
+          "origin_y": 100
+        },
+        "image_sha256": "09df2b19ecad9b9dcac7927f8425945cdc7bf627f7490d31c7d2d268f9ade6d4",
+        "view_id": "view-9af2b8072d9816d8a2d893f4"
+      },
+      "view-a09f6b97b05605674c0d6330": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 221,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.29411764705882354,
+          "scale_y": 0.29375,
+          "origin_x": 220,
+          "origin_y": 260
+        },
+        "image_sha256": "7e19d21dae6055ef460fad75622a14cb47e22818a81129e8737b7b9db935e917",
+        "view_id": "view-a09f6b97b05605674c0d6330"
+      },
+      "view-44ee31df2cf2baeb601c110b": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 371,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.1752021563342318,
+          "scale_y": 0.175,
+          "origin_x": 220,
+          "origin_y": 480
+        },
+        "image_sha256": "5cf88a8097cc566caddc3529763f529e4cc42070d28b596d396339623ef8adf9",
+        "view_id": "view-44ee31df2cf2baeb601c110b"
+      },
+      "view-37bb31adead9c7fa773209d1": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 488,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.45081967213114754,
+          "scale_y": 0.45,
+          "origin_x": 1300,
+          "origin_y": 180
+        },
+        "image_sha256": "28a6d522243dac0c590e09d4b471fa3ed2114fec00714fb60e417bb7316d0b41",
+        "view_id": "view-37bb31adead9c7fa773209d1"
+      },
+      "view-02b8ec8d272dc69b9f33d32b": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 329,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.2127659574468085,
+          "scale_y": 0.2125,
+          "origin_x": 215,
+          "origin_y": 0
+        },
+        "image_sha256": "a67e64d46497fe30306074d94d1fdac7ecf59d4ec9c22f9f78aaee941ef3b724",
+        "view_id": "view-02b8ec8d272dc69b9f33d32b"
+      },
+      "view-6310a25e40735b32d7cd885b": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 593,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.38785834738617203,
+          "scale_y": 0.3875,
+          "origin_x": 1300,
+          "origin_y": 0
+        },
+        "image_sha256": "c2f224bcf730263b657766b065a58631a10cf0e1d4f3d471b5edc8eb074750b4",
+        "view_id": "view-6310a25e40735b32d7cd885b"
+      },
+      "view-8526bb96b71d3c7d63d5a261": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 855,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.26900584795321636,
+          "scale_y": 0.26875,
+          "origin_x": 1300,
+          "origin_y": 580
+        },
+        "image_sha256": "224496c3137d78198c76acc3c90d3dbbfb89c952a437bd5935b4f4b3427fddf9",
+        "view_id": "view-8526bb96b71d3c7d63d5a261"
+      },
+      "view-645762816995416e2651f058": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 320,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.40625,
+          "scale_y": 0.40625,
+          "origin_x": 200,
+          "origin_y": 720
+        },
+        "image_sha256": "2dc82c1f7787be7de622e714d12d36e0f8146f8ae7740327496b325431af9f39",
+        "view_id": "view-645762816995416e2651f058"
+      },
+      "view-9ef6c891ad54ef3a90b1a4d8": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 480,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.3125,
+          "scale_y": 0.3125,
+          "origin_x": 700,
+          "origin_y": 720
+        },
+        "image_sha256": "caea6ee51a39339e1ae2e516155c9fac5356a189c1ba359db31f2c110e8f12a4",
+        "view_id": "view-9ef6c891ad54ef3a90b1a4d8"
+      },
+      "view-0002f6c77fe4ebc5a02485c8": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 885,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.1875,
+          "scale_y": 0.18757062146892656,
+          "origin_x": 1250,
+          "origin_y": 900
+        },
+        "image_sha256": "74d404416783d655944e9474dfbbf605a5adb5f1526e66f265af9ac78b2c676c",
+        "view_id": "view-0002f6c77fe4ebc5a02485c8"
+      },
+      "view-43734a1f3d070f34a1b10324": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 720,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.125,
+          "scale_y": 0.125,
+          "origin_x": 1310,
+          "origin_y": 540
+        },
+        "image_sha256": "a57ec6728f28f0995ec54ad4d2e740cbcb8d2980b20e7882a469e6a2beef162e",
+        "view_id": "view-43734a1f3d070f34a1b10324"
+      },
+      "view-ab79968c2c1908e07d269ef5": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 389,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.23136246786632392,
+          "scale_y": 0.23125,
+          "origin_x": 1300,
+          "origin_y": 640
+        },
+        "image_sha256": "4d2ac673caecf1483e96267961c21d465d64040cdb90f40fc69602e2db492dd0",
+        "view_id": "view-ab79968c2c1908e07d269ef5"
+      },
+      "view-78d3061d09bd90af7ffba8dd": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 960,
+        "height": 1600,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 0.0625,
+          "scale_y": 0.0625,
+          "origin_x": 220,
+          "origin_y": 50
+        },
+        "image_sha256": "3f48be1039e7dfab2880c3b90a467615783d2b1e4fb122640b65529f85d592f1",
+        "view_id": "view-78d3061d09bd90af7ffba8dd"
+      },
+      "view-306a0dc2949f2a85a6621753": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "source_id": "page-23635ee4340e38706ebc75c0",
+        "source_sha256": "2e7d0a3352cfcae83b737cf5094b73eedf1e84dbbc2ed164796d176ea6f04d0c",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1010,
+        "original_width": 1688,
+        "original_height": 1066,
+        "transform": {
+          "scale_x": 1.055,
+          "scale_y": 1.0554455445544555,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "7face39deff09870c410397535e95a21bc3bcd78d8b601f4a8c44357891d6af0",
+        "view_id": "view-306a0dc2949f2a85a6621753"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 509.6958104958758,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-23635ee4340e38706ebc75c0",
+        "target_classes": [
+          "window"
+        ],
+        "description": "window",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": false,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

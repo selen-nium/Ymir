@@ -1,0 +1,3680 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "dimension",
+        "value": 434.909,
+        "unit": "m",
+        "evidence_ids": [
+          "text-9e2bf66df3d03a5e4515b371",
+          "text-f2c76653bd3b88cd28acf5d6"
+        ],
+        "description": "Total axis-geometry length of all IfcWall elements on storey 1.OG (GlobalId 0Lz7dRJK5CdfSh5PhR5gUV) of the registered IFC source: 70 of 70 expected walls measured, complete. The cited text IDs confirm this sheet is the 1.OG plan generated from the IFC.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "Storey GlobalId 0Lz7dRJK5CdfSh5PhR5gUV corresponds to '1.OG' in source ifc-26734e67bdc0fd2ab30cb560 (IFC4, project 'Smiley West', length unit metres; per model_inventory).",
+      "Length basis is explicit IFC axis polylines computed from native geometry (computed_geometry), not author-reported source quantities; opening subtraction is not applicable to wall axis length.",
+      "The plan image was used only as context; wall totals were not derived from the raster drawing."
+    ],
+    "text_associations": [
+      {
+        "text_id": "text-8ee18494e0ad0745af3157a1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-361f4ff3e2dc201b16a814c0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-7231ce9b2220ccce77cadbdf",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-67b407c1779e1d71387250d2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-ba3d3f64c57395ebd35468dc",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-b2ce9813a2db7a51aea523b1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-8518874d0c91b2dfb3735c32",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-62838a4d8c4a347727e7dcbc",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-1cc3a501174f4b87f611052d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-418e5c763a61924e224011d3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-da8aebc098b3fb568acdcce2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-fa841cee2ab007460790dc53",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-87ce033192e45e96e844ebf8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-29e3f107c6213f91873d4b2c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-e50bd37e1ff7065cbc50595d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-29ef131efb5ec9b260f2b758",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-d7eba23974bda10c2b74cfae",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-72a3ddd8acb5a5ecbd33b329",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-a5afc53cd6d3b53d3acfde8c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-3a25acdb228154835b562a53",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-8a723d0619c62e88381671c1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-0a6c9f7817fc83e54bc82c4f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-deffcf437174a416d74d675f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-f1fed78e3bd82cef3489376b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-12df5ce586f9c765dcfba513",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-8e56250e4c5764f64ca7c39a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-a0ca3e5518554e087919ccd0",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-86b6b290e27749b8b1d4949f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-161955283e9bef865dc6e4f9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-afa2c4efc68453659540b59d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-55a9c1120180d054c41ff1ce",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-12c0a55447507160f421077b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-4d745019624f35e74c0092a9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-6df3ec022e2bc5cd90c99ad9",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-e78ef65b5e8987f1867fdca2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-830914d542c0017020b42c6e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-7e67eb1044ed5ff2c769b7a6",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-71420242926f2661f4c5933a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-cac9e3af830f54be55397e74",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-bebdb180362fe1a581fa3dc7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-9931766037687de7bc4492bb",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-737f8f10ad80a351137c01c2",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-6cbc83edbaffb234cd9a3618",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-b785da779fce76636d559a20",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-737162a66986d3c2d1c0ed33",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-382ddc369c07236d5b254d01",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-bd2a9e843e7a5d6dccb75742",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-8e7a2492005220a76a626746",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-738975addb3ccc97e134b095",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-17fd72348caee94a4ef5d365",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-36982b12122c39cb17bf0e33",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-21eb984947e13defb7bdae89",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-dc5fcc0c8e036aa40bf143b5",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-1ac80ba125cfba6881030995",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-ba51b47e308392eea3aa339b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-bb01e58333f5ea47ab5d56f7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-e068c9d1ed17c334d486383e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-425876acd262eacf3973d61c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-99748d9ea757dc15e06e1f13",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-467170606cfe33306098587c",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-170d74d835b08c84bbd0dd03",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-7f63e26f2e843c9e6f82b098",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-93a4a57e9526162afa3dadc7",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-f6b5d8249811e942e4217c51",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-616f731264c9901e38ca3106",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-3addde5db070a5bb55c6c2a8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-f2a98e7a9d67006e09afa526",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-c85fb5a5b859dd86533562dd",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-1a1ca183c0c8fed73d27e08a",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-4428b471a21d7bfbb467eddf",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-1e386e859842c804401ca22f",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-ee8afe2d4f6d876715f6f23b",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-cc83023e3c35444879c34e35",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-8b19f391cda847288effff75",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-f2ca87008d5265a435eaeab3",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-1e538ab225471f1fd71d91e6",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-80f50ca4988cf20611b0f1fa",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-fc52f959d23ed53e93012222",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-5d6612396e09b46640ebc92e",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-a664443ca9dd06aeae4c4e26",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-9e2bf66df3d03a5e4515b371",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-f2c76653bd3b88cd28acf5d6",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-0511a3f885ee8247320aefe8",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-2ab73d27b701ec645a40089d",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      },
+      {
+        "text_id": "text-76146db51fd3f4fe88b78dc1",
+        "room_id": null,
+        "status": "unassociated",
+        "candidate_room_ids": [],
+        "page_id": "page-b9e28cdd488bd7457aaf7b64"
+      }
+    ],
+    "text_evidence": [
+      {
+        "id": "text-8ee18494e0ad0745af3157a1",
+        "text": "ZIMMER-3-1",
+        "box": [
+          999.5980834960938,
+          190.94163513183594,
+          1064.4775390625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          999.5980834960938,
+          190.94163513183594,
+          1064.4775390625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-361f4ff3e2dc201b16a814c0",
+        "text": "3.2.1",
+        "box": [
+          1019.4292602539062,
+          202.28025817871094,
+          1044.6463623046875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          1019.4292602539062,
+          202.28025817871094,
+          1044.6463623046875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-7231ce9b2220ccce77cadbdf",
+        "text": "ZIMMER-5-2",
+        "box": [
+          2053.91650390625,
+          190.94163513183594,
+          2118.79541015625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          2053.91650390625,
+          190.94163513183594,
+          2118.79541015625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-67b407c1779e1d71387250d2",
+        "text": "5.2.2",
+        "box": [
+          2073.747314453125,
+          202.28025817871094,
+          2098.96435546875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          2073.747314453125,
+          202.28025817871094,
+          2098.96435546875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-ba3d3f64c57395ebd35468dc",
+        "text": "ZIMMER-4-2",
+        "box": [
+          1628.43603515625,
+          190.94163513183594,
+          1693.31494140625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          1628.43603515625,
+          190.94163513183594,
+          1693.31494140625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-b2ce9813a2db7a51aea523b1",
+        "text": "4.2.2",
+        "box": [
+          1648.26708984375,
+          202.28025817871094,
+          1673.4840087890625,
+          217.85948181152344
+        ],
+        "raw_box": [
+          1648.26708984375,
+          202.28025817871094,
+          1673.4840087890625,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-8518874d0c91b2dfb3735c32",
+        "text": "BAD / WC-3-1",
+        "box": [
+          1031.164794921875,
+          380.409423828125,
+          1102.9832763671875,
+          395.9886169433594
+        ],
+        "raw_box": [
+          1031.164794921875,
+          380.409423828125,
+          1102.9832763671875,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-62838a4d8c4a347727e7dcbc",
+        "text": "3.2.3",
+        "box": [
+          1054.465576171875,
+          391.748046875,
+          1079.6824951171875,
+          407.3272399902344
+        ],
+        "raw_box": [
+          1054.465576171875,
+          391.748046875,
+          1079.6824951171875,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-1cc3a501174f4b87f611052d",
+        "text": "ZIMMER-5-1",
+        "box": [
+          1850.55908203125,
+          190.94163513183594,
+          1915.4381103515625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          1850.55908203125,
+          190.94163513183594,
+          1915.4381103515625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-418e5c763a61924e224011d3",
+        "text": "5.2.1",
+        "box": [
+          1870.3900146484375,
+          202.28025817871094,
+          1895.6070556640625,
+          217.85948181152344
+        ],
+        "raw_box": [
+          1870.3900146484375,
+          202.28025817871094,
+          1895.6070556640625,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-da8aebc098b3fb568acdcce2",
+        "text": "BAD / WC-4-1",
+        "box": [
+          1657.224609375,
+          380.409423828125,
+          1729.043212890625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          1657.224609375,
+          380.409423828125,
+          1729.043212890625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-fa841cee2ab007460790dc53",
+        "text": "4.2.3",
+        "box": [
+          1680.525390625,
+          391.748046875,
+          1705.7423095703125,
+          407.3272399902344
+        ],
+        "raw_box": [
+          1680.525390625,
+          391.748046875,
+          1705.7423095703125,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-87ce033192e45e96e844ebf8",
+        "text": "ZIMMER-4-1",
+        "box": [
+          1425.0784912109375,
+          190.94163513183594,
+          1489.95751953125,
+          206.52085876464844
+        ],
+        "raw_box": [
+          1425.0784912109375,
+          190.94163513183594,
+          1489.95751953125,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-29e3f107c6213f91873d4b2c",
+        "text": "4.2.1",
+        "box": [
+          1444.90966796875,
+          202.28025817871094,
+          1470.1265869140625,
+          217.85948181152344
+        ],
+        "raw_box": [
+          1444.90966796875,
+          202.28025817871094,
+          1470.1265869140625,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-e50bd37e1ff7065cbc50595d",
+        "text": "FLUR-3-3",
+        "box": [
+          1042.1915283203125,
+          380.409423828125,
+          1091.9564208984375,
+          395.9886169433594
+        ],
+        "raw_box": [
+          1042.1915283203125,
+          380.409423828125,
+          1091.9564208984375,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-29ef131efb5ec9b260f2b758",
+        "text": "3.2.4",
+        "box": [
+          1054.465576171875,
+          391.748046875,
+          1079.6824951171875,
+          407.3272399902344
+        ],
+        "raw_box": [
+          1054.465576171875,
+          391.748046875,
+          1079.6824951171875,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-d7eba23974bda10c2b74cfae",
+        "text": "ZIMMER-3-2",
+        "box": [
+          1202.9556884765625,
+          190.94163513183594,
+          1267.8350830078125,
+          206.52085876464844
+        ],
+        "raw_box": [
+          1202.9556884765625,
+          190.94163513183594,
+          1267.8350830078125,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-72a3ddd8acb5a5ecbd33b329",
+        "text": "3.2.2",
+        "box": [
+          1222.786865234375,
+          202.28025817871094,
+          1248.0037841796875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          1222.786865234375,
+          202.28025817871094,
+          1248.0037841796875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-a5afc53cd6d3b53d3acfde8c",
+        "text": "ZIMMER-2-1",
+        "box": [
+          574.1177978515625,
+          190.94163513183594,
+          638.9971923828125,
+          206.52085876464844
+        ],
+        "raw_box": [
+          574.1177978515625,
+          190.94163513183594,
+          638.9971923828125,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-3a25acdb228154835b562a53",
+        "text": "2.2.1",
+        "box": [
+          593.948974609375,
+          202.28025817871094,
+          619.1659545898438,
+          217.85948181152344
+        ],
+        "raw_box": [
+          593.948974609375,
+          202.28025817871094,
+          619.1659545898438,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-8a723d0619c62e88381671c1",
+        "text": "ZIMMER-1-2",
+        "box": [
+          351.99493408203125,
+          190.94163513183594,
+          416.87432861328125,
+          206.52085876464844
+        ],
+        "raw_box": [
+          351.99493408203125,
+          190.94163513183594,
+          416.87432861328125,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-0a6c9f7817fc83e54bc82c4f",
+        "text": "1.2.2",
+        "box": [
+          371.82611083984375,
+          202.28025817871094,
+          397.04315185546875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          371.82611083984375,
+          202.28025817871094,
+          397.04315185546875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-deffcf437174a416d74d675f",
+        "text": "BAD / WC-2-1",
+        "box": [
+          605.6844482421875,
+          380.409423828125,
+          677.5030517578125,
+          395.9886169433594
+        ],
+        "raw_box": [
+          605.6844482421875,
+          380.409423828125,
+          677.5030517578125,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-f1fed78e3bd82cef3489376b",
+        "text": "2.2.3",
+        "box": [
+          628.9852294921875,
+          391.748046875,
+          654.2022705078125,
+          407.3272399902344
+        ],
+        "raw_box": [
+          628.9852294921875,
+          391.748046875,
+          654.2022705078125,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-12df5ce586f9c765dcfba513",
+        "text": "ZIMMER-2-2",
+        "box": [
+          777.4752197265625,
+          190.94163513183594,
+          842.3546142578125,
+          206.52085876464844
+        ],
+        "raw_box": [
+          777.4752197265625,
+          190.94163513183594,
+          842.3546142578125,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-8e56250e4c5764f64ca7c39a",
+        "text": "2.2.2",
+        "box": [
+          797.3064575195312,
+          202.28025817871094,
+          822.5234375,
+          217.85948181152344
+        ],
+        "raw_box": [
+          797.3064575195312,
+          202.28025817871094,
+          822.5234375,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-a0ca3e5518554e087919ccd0",
+        "text": "FLUR-1-3",
+        "box": [
+          191.23085021972656,
+          380.409423828125,
+          240.99588012695312,
+          395.9886169433594
+        ],
+        "raw_box": [
+          191.23085021972656,
+          380.409423828125,
+          240.99588012695312,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-86b6b290e27749b8b1d4949f",
+        "text": "1.2.4",
+        "box": [
+          203.50486755371094,
+          391.748046875,
+          228.72186279296875,
+          407.3272399902344
+        ],
+        "raw_box": [
+          203.50486755371094,
+          391.748046875,
+          228.72186279296875,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-161955283e9bef865dc6e4f9",
+        "text": "BAD / WC-1-1",
+        "box": [
+          180.20408630371094,
+          380.409423828125,
+          252.02264404296875,
+          395.9886169433594
+        ],
+        "raw_box": [
+          180.20408630371094,
+          380.409423828125,
+          252.02264404296875,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-afa2c4efc68453659540b59d",
+        "text": "1.2.3",
+        "box": [
+          203.50486755371094,
+          391.748046875,
+          228.72186279296875,
+          407.3272399902344
+        ],
+        "raw_box": [
+          203.50486755371094,
+          391.748046875,
+          228.72186279296875,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-55a9c1120180d054c41ff1ce",
+        "text": "ZIMMER-1-1",
+        "box": [
+          148.63746643066406,
+          190.94163513183594,
+          213.51681518554688,
+          206.52085876464844
+        ],
+        "raw_box": [
+          148.63746643066406,
+          190.94163513183594,
+          213.51681518554688,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-12c0a55447507160f421077b",
+        "text": "1.2.1",
+        "box": [
+          168.46864318847656,
+          202.28025817871094,
+          193.68563842773438,
+          217.85948181152344
+        ],
+        "raw_box": [
+          168.46864318847656,
+          202.28025817871094,
+          193.68563842773438,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-4d745019624f35e74c0092a9",
+        "text": "BAD / WC-5-1",
+        "box": [
+          2082.704833984375,
+          380.409423828125,
+          2154.5234375,
+          395.9886169433594
+        ],
+        "raw_box": [
+          2082.704833984375,
+          380.409423828125,
+          2154.5234375,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-6df3ec022e2bc5cd90c99ad9",
+        "text": "5.2.3",
+        "box": [
+          2106.005615234375,
+          391.748046875,
+          2131.22265625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          2106.005615234375,
+          391.748046875,
+          2131.22265625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-e78ef65b5e8987f1867fdca2",
+        "text": "FLUR-4-3",
+        "box": [
+          1464.83740234375,
+          380.409423828125,
+          1514.6021728515625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          1464.83740234375,
+          380.409423828125,
+          1514.6021728515625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-830914d542c0017020b42c6e",
+        "text": "4.2.4",
+        "box": [
+          1477.111328125,
+          391.748046875,
+          1502.3282470703125,
+          407.3272399902344
+        ],
+        "raw_box": [
+          1477.111328125,
+          391.748046875,
+          1502.3282470703125,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-7e67eb1044ed5ff2c769b7a6",
+        "text": "FLUR-5-3",
+        "box": [
+          1890.3743896484375,
+          380.409423828125,
+          1940.1392822265625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          1890.3743896484375,
+          380.409423828125,
+          1940.1392822265625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-71420242926f2661f4c5933a",
+        "text": "5.2.4",
+        "box": [
+          1902.6483154296875,
+          391.748046875,
+          1927.8653564453125,
+          407.3272399902344
+        ],
+        "raw_box": [
+          1902.6483154296875,
+          391.748046875,
+          1927.8653564453125,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-cac9e3af830f54be55397e74",
+        "text": "FLUR-2-3",
+        "box": [
+          616.711181640625,
+          380.409423828125,
+          666.4761962890625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          616.711181640625,
+          380.409423828125,
+          666.4761962890625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-bebdb180362fe1a581fa3dc7",
+        "text": "2.2.4",
+        "box": [
+          628.9852294921875,
+          391.748046875,
+          654.2022705078125,
+          407.3272399902344
+        ],
+        "raw_box": [
+          628.9852294921875,
+          391.748046875,
+          654.2022705078125,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-9931766037687de7bc4492bb",
+        "text": "ZIMMER-3-1",
+        "box": [
+          3126.999755859375,
+          190.88487243652344,
+          3191.87939453125,
+          206.46409606933594
+        ],
+        "raw_box": [
+          3126.999755859375,
+          190.88487243652344,
+          3191.87939453125,
+          206.46409606933594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-737f8f10ad80a351137c01c2",
+        "text": "3.2.1",
+        "box": [
+          3146.83056640625,
+          202.22349548339844,
+          3172.0478515625,
+          217.80271911621094
+        ],
+        "raw_box": [
+          3146.83056640625,
+          202.22349548339844,
+          3172.0478515625,
+          217.80271911621094
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-6cbc83edbaffb234cd9a3618",
+        "text": "ZIMMER-5-2",
+        "box": [
+          4181.31787109375,
+          190.94163513183594,
+          4246.197265625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          4181.31787109375,
+          190.94163513183594,
+          4246.197265625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-b785da779fce76636d559a20",
+        "text": "5.2.2",
+        "box": [
+          4201.14892578125,
+          202.28025817871094,
+          4226.3662109375,
+          217.85948181152344
+        ],
+        "raw_box": [
+          4201.14892578125,
+          202.28025817871094,
+          4226.3662109375,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-737162a66986d3c2d1c0ed33",
+        "text": "ZIMMER-4-2",
+        "box": [
+          3755.837158203125,
+          190.88487243652344,
+          3820.716552734375,
+          206.46409606933594
+        ],
+        "raw_box": [
+          3755.837158203125,
+          190.88487243652344,
+          3820.716552734375,
+          206.46409606933594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-382ddc369c07236d5b254d01",
+        "text": "4.2.2",
+        "box": [
+          3775.668701171875,
+          202.22349548339844,
+          3800.885986328125,
+          217.80271911621094
+        ],
+        "raw_box": [
+          3775.668701171875,
+          202.22349548339844,
+          3800.885986328125,
+          217.80271911621094
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-bd2a9e843e7a5d6dccb75742",
+        "text": "BAD / WC-3-1",
+        "box": [
+          3158.56640625,
+          380.409423828125,
+          3230.385009765625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          3158.56640625,
+          380.409423828125,
+          3230.385009765625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-8e7a2492005220a76a626746",
+        "text": "3.2.3",
+        "box": [
+          3181.8671875,
+          391.748046875,
+          3207.08447265625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          3181.8671875,
+          391.748046875,
+          3207.08447265625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-738975addb3ccc97e134b095",
+        "text": "ZIMMER-5-1",
+        "box": [
+          3977.960205078125,
+          190.94163513183594,
+          4042.839599609375,
+          206.52085876464844
+        ],
+        "raw_box": [
+          3977.960205078125,
+          190.94163513183594,
+          4042.839599609375,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-17fd72348caee94a4ef5d365",
+        "text": "5.2.1",
+        "box": [
+          3997.791259765625,
+          202.28025817871094,
+          4023.008544921875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          3997.791259765625,
+          202.28025817871094,
+          4023.008544921875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-36982b12122c39cb17bf0e33",
+        "text": "BAD / WC-4-1",
+        "box": [
+          3584.04638671875,
+          380.409423828125,
+          3655.864990234375,
+          395.9886169433594
+        ],
+        "raw_box": [
+          3584.04638671875,
+          380.409423828125,
+          3655.864990234375,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-21eb984947e13defb7bdae89",
+        "text": "4.2.3",
+        "box": [
+          3607.346923828125,
+          391.748046875,
+          3632.564208984375,
+          407.3272399902344
+        ],
+        "raw_box": [
+          3607.346923828125,
+          391.748046875,
+          3632.564208984375,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-dc5fcc0c8e036aa40bf143b5",
+        "text": "ZIMMER-4-1",
+        "box": [
+          3552.479736328125,
+          190.88487243652344,
+          3617.359130859375,
+          206.46409606933594
+        ],
+        "raw_box": [
+          3552.479736328125,
+          190.88487243652344,
+          3617.359130859375,
+          206.46409606933594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-1ac80ba125cfba6881030995",
+        "text": "4.2.1",
+        "box": [
+          3572.31103515625,
+          202.22349548339844,
+          3597.5283203125,
+          217.80271911621094
+        ],
+        "raw_box": [
+          3572.31103515625,
+          202.22349548339844,
+          3597.5283203125,
+          217.80271911621094
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-ba51b47e308392eea3aa339b",
+        "text": "FLUR-3-3",
+        "box": [
+          3169.59326171875,
+          380.409423828125,
+          3219.35791015625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          3169.59326171875,
+          380.409423828125,
+          3219.35791015625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-bb01e58333f5ea47ab5d56f7",
+        "text": "3.2.4",
+        "box": [
+          3181.8671875,
+          391.748046875,
+          3207.08447265625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          3181.8671875,
+          391.748046875,
+          3207.08447265625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-e068c9d1ed17c334d486383e",
+        "text": "ZIMMER-3-2",
+        "box": [
+          3330.357177734375,
+          190.88487243652344,
+          3395.23681640625,
+          206.46409606933594
+        ],
+        "raw_box": [
+          3330.357177734375,
+          190.88487243652344,
+          3395.23681640625,
+          206.46409606933594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-425876acd262eacf3973d61c",
+        "text": "3.2.2",
+        "box": [
+          3350.18798828125,
+          202.22349548339844,
+          3375.4052734375,
+          217.80271911621094
+        ],
+        "raw_box": [
+          3350.18798828125,
+          202.22349548339844,
+          3375.4052734375,
+          217.80271911621094
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-99748d9ea757dc15e06e1f13",
+        "text": "ZIMMER-2-1",
+        "box": [
+          2701.519287109375,
+          190.94163513183594,
+          2766.398681640625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          2701.519287109375,
+          190.94163513183594,
+          2766.398681640625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-467170606cfe33306098587c",
+        "text": "2.2.1",
+        "box": [
+          2721.3505859375,
+          202.28025817871094,
+          2746.56787109375,
+          217.85948181152344
+        ],
+        "raw_box": [
+          2721.3505859375,
+          202.28025817871094,
+          2746.56787109375,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-170d74d835b08c84bbd0dd03",
+        "text": "ZIMMER-1-2",
+        "box": [
+          2479.396728515625,
+          190.94163513183594,
+          2544.275634765625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          2479.396728515625,
+          190.94163513183594,
+          2544.275634765625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-7f63e26f2e843c9e6f82b098",
+        "text": "1.2.2",
+        "box": [
+          2499.2275390625,
+          202.28025817871094,
+          2524.444580078125,
+          217.85948181152344
+        ],
+        "raw_box": [
+          2499.2275390625,
+          202.28025817871094,
+          2524.444580078125,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-93a4a57e9526162afa3dadc7",
+        "text": "BAD / WC-2-1",
+        "box": [
+          2733.085693359375,
+          380.409423828125,
+          2804.904541015625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          2733.085693359375,
+          380.409423828125,
+          2804.904541015625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-f6b5d8249811e942e4217c51",
+        "text": "2.2.3",
+        "box": [
+          2756.386474609375,
+          391.748046875,
+          2781.603759765625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          2756.386474609375,
+          391.748046875,
+          2781.603759765625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-616f731264c9901e38ca3106",
+        "text": "ZIMMER-2-2",
+        "box": [
+          2904.876708984375,
+          190.94163513183594,
+          2969.756103515625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          2904.876708984375,
+          190.94163513183594,
+          2969.756103515625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-3addde5db070a5bb55c6c2a8",
+        "text": "2.2.2",
+        "box": [
+          2924.7080078125,
+          202.28025817871094,
+          2949.92529296875,
+          217.85948181152344
+        ],
+        "raw_box": [
+          2924.7080078125,
+          202.28025817871094,
+          2949.92529296875,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-f2a98e7a9d67006e09afa526",
+        "text": "FLUR-1-3",
+        "box": [
+          2315.7978515625,
+          380.409423828125,
+          2365.5625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          2315.7978515625,
+          380.409423828125,
+          2365.5625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-c85fb5a5b859dd86533562dd",
+        "text": "1.2.4",
+        "box": [
+          2328.07177734375,
+          391.748046875,
+          2353.28857421875,
+          407.3272399902344
+        ],
+        "raw_box": [
+          2328.07177734375,
+          391.748046875,
+          2353.28857421875,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-1a1ca183c0c8fed73d27e08a",
+        "text": "BAD / WC-1-1",
+        "box": [
+          2508.18505859375,
+          380.409423828125,
+          2580.003662109375,
+          395.9886169433594
+        ],
+        "raw_box": [
+          2508.18505859375,
+          380.409423828125,
+          2580.003662109375,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-4428b471a21d7bfbb467eddf",
+        "text": "1.2.3",
+        "box": [
+          2531.48583984375,
+          391.748046875,
+          2556.702880859375,
+          407.3272399902344
+        ],
+        "raw_box": [
+          2531.48583984375,
+          391.748046875,
+          2556.702880859375,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-1e386e859842c804401ca22f",
+        "text": "ZIMMER-1-1",
+        "box": [
+          2276.039306640625,
+          190.94163513183594,
+          2340.918212890625,
+          206.52085876464844
+        ],
+        "raw_box": [
+          2276.039306640625,
+          190.94163513183594,
+          2340.918212890625,
+          206.52085876464844
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-ee8afe2d4f6d876715f6f23b",
+        "text": "1.2.1",
+        "box": [
+          2295.8701171875,
+          202.28025817871094,
+          2321.087158203125,
+          217.85948181152344
+        ],
+        "raw_box": [
+          2295.8701171875,
+          202.28025817871094,
+          2321.087158203125,
+          217.85948181152344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-cc83023e3c35444879c34e35",
+        "text": "BAD / WC-5-1",
+        "box": [
+          4009.583740234375,
+          380.409423828125,
+          4081.402099609375,
+          395.9886169433594
+        ],
+        "raw_box": [
+          4009.583740234375,
+          380.409423828125,
+          4081.402099609375,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-8b19f391cda847288effff75",
+        "text": "5.2.3",
+        "box": [
+          4032.884521484375,
+          391.748046875,
+          4058.101806640625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          4032.884521484375,
+          391.748046875,
+          4058.101806640625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-f2ca87008d5265a435eaeab3",
+        "text": "FLUR-4-3",
+        "box": [
+          3595.073486328125,
+          380.409423828125,
+          3644.838134765625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          3595.073486328125,
+          380.409423828125,
+          3644.838134765625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-1e538ab225471f1fd71d91e6",
+        "text": "4.2.4",
+        "box": [
+          3607.346923828125,
+          391.748046875,
+          3632.564208984375,
+          407.3272399902344
+        ],
+        "raw_box": [
+          3607.346923828125,
+          391.748046875,
+          3632.564208984375,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-80f50ca4988cf20611b0f1fa",
+        "text": "FLUR-5-3",
+        "box": [
+          4020.610595703125,
+          380.409423828125,
+          4070.375244140625,
+          395.9886169433594
+        ],
+        "raw_box": [
+          4020.610595703125,
+          380.409423828125,
+          4070.375244140625,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-fc52f959d23ed53e93012222",
+        "text": "5.2.4",
+        "box": [
+          4032.884521484375,
+          391.748046875,
+          4058.101806640625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          4032.884521484375,
+          391.748046875,
+          4058.101806640625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-5d6612396e09b46640ebc92e",
+        "text": "FLUR-2-3",
+        "box": [
+          2744.113037109375,
+          380.409423828125,
+          2793.877685546875,
+          395.9886169433594
+        ],
+        "raw_box": [
+          2744.113037109375,
+          380.409423828125,
+          2793.877685546875,
+          395.9886169433594
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-a664443ca9dd06aeae4c4e26",
+        "text": "2.2.4",
+        "box": [
+          2756.386474609375,
+          391.748046875,
+          2781.603759765625,
+          407.3272399902344
+        ],
+        "raw_box": [
+          2756.386474609375,
+          391.748046875,
+          2781.603759765625,
+          407.3272399902344
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-9e2bf66df3d03a5e4515b371",
+        "text": "Smiley West (terraced houses) \u2014 Grundriss: 1.OG",
+        "box": [
+          34.0157470703125,
+          551.7351684570312,
+          575.9092407226562,
+          582.961669921875
+        ],
+        "raw_box": [
+          34.0157470703125,
+          551.7351684570312,
+          575.9092407226562,
+          582.961669921875
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-f2c76653bd3b88cd28acf5d6",
+        "text": "Ma\u00dfstab 1:100 \u00b7 Schnitth\u00f6he 1.20 m \u00fcber Geschossebene \u00b7 Aus IFC erzeugt (AC-20-Smiley-West-10-Bldg.ifc, IfcOpenShell IfcConvert 0.9.0)",
+        "box": [
+          34.0157470703125,
+          595.3037719726562,
+          953.1974487304688,
+          615.5567016601562
+        ],
+        "raw_box": [
+          34.0157470703125,
+          595.3037719726562,
+          953.1974487304688,
+          615.5567016601562
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-0511a3f885ee8247320aefe8",
+        "text": "\u00a9 Institute for Automation and Applied Informatics (IAI) / Karlsruhe Institute of Technology (KIT) - KIT IFC Examples, https://www.ifcwiki.org/index.php?title=KIT_IFC_Examples \u00b7 LicenseRef-KIT-unrestricted",
+        "box": [
+          34.0157470703125,
+          626.173095703125,
+          1063.5361328125,
+          641.7523193359375
+        ],
+        "raw_box": [
+          34.0157470703125,
+          626.173095703125,
+          1063.5361328125,
+          641.7523193359375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-2ab73d27b701ec645a40089d",
+        "text": "0",
+        "box": [
+          4073.886962890625,
+          503.0644226074219,
+          4080.821533203125,
+          520.2015380859375
+        ],
+        "raw_box": [
+          4073.886962890625,
+          503.0644226074219,
+          4080.821533203125,
+          520.2015380859375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      },
+      {
+        "id": "text-76146db51fd3f4fe88b78dc1",
+        "text": "5 m",
+        "box": [
+          4350.42333984375,
+          503.0644226074219,
+          4371.21484375,
+          520.2015380859375
+        ],
+        "raw_box": [
+          4350.42333984375,
+          503.0644226074219,
+          4371.21484375,
+          520.2015380859375
+        ],
+        "page_clipped": false,
+        "source": "native_pdf",
+        "confidence": null,
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "page": 0,
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      }
+    ],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [
+      {
+        "tool": "measure_length",
+        "arguments": {
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "storey_id": "0Lz7dRJK5CdfSh5PhR5gUV",
+          "element_type": "IfcWall",
+          "method": "axis_geometry"
+        },
+        "result": {
+          "status": "available",
+          "kind": "length",
+          "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+          "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+          "storey_id": "0Lz7dRJK5CdfSh5PhR5gUV",
+          "storey_name": "1.OG",
+          "element_type": "IfcWall",
+          "method": "axis_geometry",
+          "quantity_basis": "computed_geometry",
+          "unit": "m",
+          "value": 434.90924077462,
+          "partial_value": 434.90924077462,
+          "expected_elements": 70,
+          "measured_elements": 70,
+          "complete": true,
+          "elements": [
+            {
+              "element_id": "00$xCwIL11lAUmAPM4gMxk",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "00edHZvET1HxjPJ3dhH$cb",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "038X7VYTD5K88Kl7kXysTv",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "05kC3tUxf2NgyluG2Lb30m",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "06$jwnwYzB2xtme_3oKazV",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0BuxB_Yoz2bxinyZI$3Ehs",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0Cxs2bbhv6hvfh7lFtjXXp",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "0Ed4ARU7P4KeU6kP1uIKBr",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "0K0_rBHwzFcvVm4TfkJFJZ",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "0NhIQKkNr2Vwp0sL8Gz6NX",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0OpziBxCT9Ig3F8ub8rphn",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "0S2gRn2gb1FQt9ZThjw2Ou",
+              "value_si": 7.525
+            },
+            {
+              "element_id": "0TQkmcTzL0ZfxeqP2F29Ye",
+              "value_si": 7.525
+            },
+            {
+              "element_id": "0q9XnEUyL4vQPpZsmw9U0v",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "0uW92y4cPDjvGXfUp703GD",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "111K32PabEKu1rIfxbAEPD",
+              "value_si": 7.49504774659
+            },
+            {
+              "element_id": "14Jy$ZQZ53Dv4umnjUkJjd",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "16_jQJDFf88RMg5oYNRe9p",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "16wg83TOb8I9EelKii4GcX",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "18mcpothr2ev3zg1HsROd1",
+              "value_si": 2.25978978325
+            },
+            {
+              "element_id": "1DCVq9KID6n9LSbfWl6b8A",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "1DKZbDYSTFHeY6CpzemJ7F",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1DNMBax5L7o8W2$sW2wjOV",
+              "value_si": 7.525
+            },
+            {
+              "element_id": "1I6XcdPmXEGxd5pxg7UtJJ",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1LaDLhlXT1SfpE6m4AGlnb",
+              "value_si": 7.47538414074
+            },
+            {
+              "element_id": "1NXOfLbKv4DQHZAEOh5SHt",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1RUVSCj1f6H9qaB6AH53tM",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "1S1kSdIYXFFANA4WKJkyBL",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "1XhM3y3MrB9Rc$U9NJXUMq",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1Y4NDO4Nj1Yfkl2FWdX4uH",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "1_gfrMctjDpuBuZmoBwxPb",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "1f514frcH9ivBcb5fpOqUM",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "1pe4n1m091h8oQmW8wrNba",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "2$tUAYl0jAUwvguhTmRqK0",
+              "value_si": 7.525
+            },
+            {
+              "element_id": "28FL$9lPz4681nWm6Cd0ur",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "29SV9RzXbBxei8G6PvbPsx",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2C4wIXsKn0kBLNQNhEkqHO",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2Erbqw4_r4fPhLsFYGy9XC",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2GFP_MQZf57gYvLYMxE8T_",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2Kx5Okz1T37ernt6HauxFt",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "2NGi5I7oj43xQrt7hK3ndQ",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2NZ0$F9pfD8AoczgJY3eKI",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2RAQWZ$0bB3gBeYSCNDQQH",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2THxrBQQb9pfKoB5YG_T_R",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2W4V$eQxX4hepPSBSawh9n",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2_$ZX3X6f3S81V7wMOO0o_",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2bGFZmGyf7awtvk0MxsCrc",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2elNtMVof84veuQ29fZHtN",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2gU84kgtv6sPOha3c5L0kK",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2h9VKTbEPDDB2babkYA51Z",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2hSdyvm3L94OkrReQmgjfk",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "2hlwI3EO5ENBN03FwfN2y4",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "2jYo1O0Kj4gP$WHLkmonPV",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "2s4148sIr0m91B5JLpVUam",
+              "value_si": 7.51443953754
+            },
+            {
+              "element_id": "2srX9qvCn8m9oOZOuYVae9",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "2svh3ow7D4QOeKNjgwQ9sE",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "3$hd_swpz1P8cbiX5X2iax",
+              "value_si": 4.75
+            },
+            {
+              "element_id": "38mJsG3b56cAa6Ei1gOnp0",
+              "value_si": 2.25978978325
+            },
+            {
+              "element_id": "3DFtCo2snBNfoePeIeQC3Q",
+              "value_si": 7.525
+            },
+            {
+              "element_id": "3EufY04sT8Sh8teqJHzag9",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3O3qG5KcT6sRjJWtGSNkUj",
+              "value_si": 7.01
+            },
+            {
+              "element_id": "3SS6$nhgL8Iv1KBJMCYSrW",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3V5nLgjnr67xm0jfu44RLr",
+              "value_si": 2.25978978325
+            },
+            {
+              "element_id": "3Y7nzG53nEb8vwBiygfw6u",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3dNEtYpyH0WPUKGdJjZqXi",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3nuqC4m5T94ujLO_vFz2hG",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3unKlhycr0rgAkzu_m1NqF",
+              "value_si": 2.26
+            },
+            {
+              "element_id": "3wFJKTD698YPFAruMsPCGu",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3xxvLKAp17IvSghhx1MSYJ",
+              "value_si": 7.475
+            },
+            {
+              "element_id": "3zv3iCozT5mxk3dVXXyK_i",
+              "value_si": 7.525
+            }
+          ],
+          "failures": [],
+          "opening_subtractions": false,
+          "length_basis": "explicit IFC axis polyline",
+          "native_geometry_repaired": false,
+          "measurement_id": "quantity-437c8dc5885b327bc8e7959525351fc450aeb200bc1453feee57c9d8851e7c8d"
+        }
+      }
+    ],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-be0fb671c4faef212a1f6be6"
+      ],
+      "calibration_ids": [],
+      "text_ids": [
+        "text-8ee18494e0ad0745af3157a1",
+        "text-361f4ff3e2dc201b16a814c0",
+        "text-7231ce9b2220ccce77cadbdf",
+        "text-67b407c1779e1d71387250d2",
+        "text-ba3d3f64c57395ebd35468dc",
+        "text-b2ce9813a2db7a51aea523b1",
+        "text-8518874d0c91b2dfb3735c32",
+        "text-62838a4d8c4a347727e7dcbc",
+        "text-1cc3a501174f4b87f611052d",
+        "text-418e5c763a61924e224011d3",
+        "text-da8aebc098b3fb568acdcce2",
+        "text-fa841cee2ab007460790dc53",
+        "text-87ce033192e45e96e844ebf8",
+        "text-29e3f107c6213f91873d4b2c",
+        "text-e50bd37e1ff7065cbc50595d",
+        "text-29ef131efb5ec9b260f2b758",
+        "text-d7eba23974bda10c2b74cfae",
+        "text-72a3ddd8acb5a5ecbd33b329",
+        "text-a5afc53cd6d3b53d3acfde8c",
+        "text-3a25acdb228154835b562a53",
+        "text-8a723d0619c62e88381671c1",
+        "text-0a6c9f7817fc83e54bc82c4f",
+        "text-deffcf437174a416d74d675f",
+        "text-f1fed78e3bd82cef3489376b",
+        "text-12df5ce586f9c765dcfba513",
+        "text-8e56250e4c5764f64ca7c39a",
+        "text-a0ca3e5518554e087919ccd0",
+        "text-86b6b290e27749b8b1d4949f",
+        "text-161955283e9bef865dc6e4f9",
+        "text-afa2c4efc68453659540b59d",
+        "text-55a9c1120180d054c41ff1ce",
+        "text-12c0a55447507160f421077b",
+        "text-4d745019624f35e74c0092a9",
+        "text-6df3ec022e2bc5cd90c99ad9",
+        "text-e78ef65b5e8987f1867fdca2",
+        "text-830914d542c0017020b42c6e",
+        "text-7e67eb1044ed5ff2c769b7a6",
+        "text-71420242926f2661f4c5933a",
+        "text-cac9e3af830f54be55397e74",
+        "text-bebdb180362fe1a581fa3dc7",
+        "text-9931766037687de7bc4492bb",
+        "text-737f8f10ad80a351137c01c2",
+        "text-6cbc83edbaffb234cd9a3618",
+        "text-b785da779fce76636d559a20",
+        "text-737162a66986d3c2d1c0ed33",
+        "text-382ddc369c07236d5b254d01",
+        "text-bd2a9e843e7a5d6dccb75742",
+        "text-8e7a2492005220a76a626746",
+        "text-738975addb3ccc97e134b095",
+        "text-17fd72348caee94a4ef5d365",
+        "text-36982b12122c39cb17bf0e33",
+        "text-21eb984947e13defb7bdae89",
+        "text-dc5fcc0c8e036aa40bf143b5",
+        "text-1ac80ba125cfba6881030995",
+        "text-ba51b47e308392eea3aa339b",
+        "text-bb01e58333f5ea47ab5d56f7",
+        "text-e068c9d1ed17c334d486383e",
+        "text-425876acd262eacf3973d61c",
+        "text-99748d9ea757dc15e06e1f13",
+        "text-467170606cfe33306098587c",
+        "text-170d74d835b08c84bbd0dd03",
+        "text-7f63e26f2e843c9e6f82b098",
+        "text-93a4a57e9526162afa3dadc7",
+        "text-f6b5d8249811e942e4217c51",
+        "text-616f731264c9901e38ca3106",
+        "text-3addde5db070a5bb55c6c2a8",
+        "text-f2a98e7a9d67006e09afa526",
+        "text-c85fb5a5b859dd86533562dd",
+        "text-1a1ca183c0c8fed73d27e08a",
+        "text-4428b471a21d7bfbb467eddf",
+        "text-1e386e859842c804401ca22f",
+        "text-ee8afe2d4f6d876715f6f23b",
+        "text-cc83023e3c35444879c34e35",
+        "text-8b19f391cda847288effff75",
+        "text-f2ca87008d5265a435eaeab3",
+        "text-1e538ab225471f1fd71d91e6",
+        "text-80f50ca4988cf20611b0f1fa",
+        "text-fc52f959d23ed53e93012222",
+        "text-5d6612396e09b46640ebc92e",
+        "text-a664443ca9dd06aeae4c4e26",
+        "text-9e2bf66df3d03a5e4515b371",
+        "text-f2c76653bd3b88cd28acf5d6",
+        "text-0511a3f885ee8247320aefe8",
+        "text-2ab73d27b701ec645a40089d",
+        "text-76146db51fd3f4fe88b78dc1"
+      ],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 2,
+        "read_pdf_text": 3,
+        "model_inventory": 3,
+        "measure_length": 3,
+        "measure_volume": 4
+      },
+      "vista_views_used": 0,
+      "sources": [
+        {
+          "page_id": "page-b9e28cdd488bd7457aaf7b64",
+          "source_id": "page-b9e28cdd488bd7457aaf7b64",
+          "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+          "width": 4395,
+          "height": 688,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37"
+        }
+      ],
+      "quantity_measurement_ids": [
+        "quantity-437c8dc5885b327bc8e7959525351fc450aeb200bc1453feee57c9d8851e7c8d"
+      ]
+    },
+    "selected_measurements": [
+      {
+        "status": "available",
+        "kind": "length",
+        "source_id": "ifc-26734e67bdc0fd2ab30cb560",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0Lz7dRJK5CdfSh5PhR5gUV",
+        "storey_name": "1.OG",
+        "element_type": "IfcWall",
+        "method": "axis_geometry",
+        "quantity_basis": "computed_geometry",
+        "unit": "m",
+        "value": 434.90924077462,
+        "partial_value": 434.90924077462,
+        "expected_elements": 70,
+        "measured_elements": 70,
+        "complete": true,
+        "elements": [
+          {
+            "element_id": "00$xCwIL11lAUmAPM4gMxk",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "00edHZvET1HxjPJ3dhH$cb",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "038X7VYTD5K88Kl7kXysTv",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "05kC3tUxf2NgyluG2Lb30m",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "06$jwnwYzB2xtme_3oKazV",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0BuxB_Yoz2bxinyZI$3Ehs",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0Cxs2bbhv6hvfh7lFtjXXp",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "0Ed4ARU7P4KeU6kP1uIKBr",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "0K0_rBHwzFcvVm4TfkJFJZ",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "0NhIQKkNr2Vwp0sL8Gz6NX",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0OpziBxCT9Ig3F8ub8rphn",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "0S2gRn2gb1FQt9ZThjw2Ou",
+            "value_si": 7.525
+          },
+          {
+            "element_id": "0TQkmcTzL0ZfxeqP2F29Ye",
+            "value_si": 7.525
+          },
+          {
+            "element_id": "0q9XnEUyL4vQPpZsmw9U0v",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "0uW92y4cPDjvGXfUp703GD",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "111K32PabEKu1rIfxbAEPD",
+            "value_si": 7.49504774659
+          },
+          {
+            "element_id": "14Jy$ZQZ53Dv4umnjUkJjd",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "16_jQJDFf88RMg5oYNRe9p",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "16wg83TOb8I9EelKii4GcX",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "18mcpothr2ev3zg1HsROd1",
+            "value_si": 2.25978978325
+          },
+          {
+            "element_id": "1DCVq9KID6n9LSbfWl6b8A",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "1DKZbDYSTFHeY6CpzemJ7F",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1DNMBax5L7o8W2$sW2wjOV",
+            "value_si": 7.525
+          },
+          {
+            "element_id": "1I6XcdPmXEGxd5pxg7UtJJ",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1LaDLhlXT1SfpE6m4AGlnb",
+            "value_si": 7.47538414074
+          },
+          {
+            "element_id": "1NXOfLbKv4DQHZAEOh5SHt",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1RUVSCj1f6H9qaB6AH53tM",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "1S1kSdIYXFFANA4WKJkyBL",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "1XhM3y3MrB9Rc$U9NJXUMq",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1Y4NDO4Nj1Yfkl2FWdX4uH",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "1_gfrMctjDpuBuZmoBwxPb",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "1f514frcH9ivBcb5fpOqUM",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "1pe4n1m091h8oQmW8wrNba",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "2$tUAYl0jAUwvguhTmRqK0",
+            "value_si": 7.525
+          },
+          {
+            "element_id": "28FL$9lPz4681nWm6Cd0ur",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "29SV9RzXbBxei8G6PvbPsx",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2C4wIXsKn0kBLNQNhEkqHO",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2Erbqw4_r4fPhLsFYGy9XC",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2GFP_MQZf57gYvLYMxE8T_",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2Kx5Okz1T37ernt6HauxFt",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "2NGi5I7oj43xQrt7hK3ndQ",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2NZ0$F9pfD8AoczgJY3eKI",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2RAQWZ$0bB3gBeYSCNDQQH",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2THxrBQQb9pfKoB5YG_T_R",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2W4V$eQxX4hepPSBSawh9n",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2_$ZX3X6f3S81V7wMOO0o_",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2bGFZmGyf7awtvk0MxsCrc",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2elNtMVof84veuQ29fZHtN",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2gU84kgtv6sPOha3c5L0kK",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2h9VKTbEPDDB2babkYA51Z",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2hSdyvm3L94OkrReQmgjfk",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "2hlwI3EO5ENBN03FwfN2y4",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "2jYo1O0Kj4gP$WHLkmonPV",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "2s4148sIr0m91B5JLpVUam",
+            "value_si": 7.51443953754
+          },
+          {
+            "element_id": "2srX9qvCn8m9oOZOuYVae9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "2svh3ow7D4QOeKNjgwQ9sE",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "3$hd_swpz1P8cbiX5X2iax",
+            "value_si": 4.75
+          },
+          {
+            "element_id": "38mJsG3b56cAa6Ei1gOnp0",
+            "value_si": 2.25978978325
+          },
+          {
+            "element_id": "3DFtCo2snBNfoePeIeQC3Q",
+            "value_si": 7.525
+          },
+          {
+            "element_id": "3EufY04sT8Sh8teqJHzag9",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3O3qG5KcT6sRjJWtGSNkUj",
+            "value_si": 7.01
+          },
+          {
+            "element_id": "3SS6$nhgL8Iv1KBJMCYSrW",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3V5nLgjnr67xm0jfu44RLr",
+            "value_si": 2.25978978325
+          },
+          {
+            "element_id": "3Y7nzG53nEb8vwBiygfw6u",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3dNEtYpyH0WPUKGdJjZqXi",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3nuqC4m5T94ujLO_vFz2hG",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3unKlhycr0rgAkzu_m1NqF",
+            "value_si": 2.26
+          },
+          {
+            "element_id": "3wFJKTD698YPFAruMsPCGu",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3xxvLKAp17IvSghhx1MSYJ",
+            "value_si": 7.475
+          },
+          {
+            "element_id": "3zv3iCozT5mxk3dVXXyK_i",
+            "value_si": 7.525
+          }
+        ],
+        "failures": [],
+        "opening_subtractions": false,
+        "length_basis": "explicit IFC axis polyline",
+        "native_geometry_repaired": false,
+        "measurement_id": "quantity-437c8dc5885b327bc8e7959525351fc450aeb200bc1453feee57c9d8851e7c8d"
+      }
+    ],
+    "measurement_ids": [
+      "quantity-437c8dc5885b327bc8e7959525351fc450aeb200bc1453feee57c9d8851e7c8d"
+    ],
+    "quantity_values": [
+      {
+        "value": 434.90924077462,
+        "unit": "m",
+        "kind": "length",
+        "method": "axis_geometry",
+        "quantity_basis": "computed_geometry",
+        "measurement_id": "quantity-437c8dc5885b327bc8e7959525351fc450aeb200bc1453feee57c9d8851e7c8d",
+        "source_sha256": "26734e67bdc0fd2ab30cb560bddc279a0a4f23eb4d28861509524e4bbe201c48",
+        "storey_id": "0Lz7dRJK5CdfSh5PhR5gUV",
+        "element_type": "IfcWall"
+      }
+    ],
+    "evidence_views": {
+      "view-be0fb671c4faef212a1f6be6": {
+        "page_id": "page-b9e28cdd488bd7457aaf7b64",
+        "source_id": "page-b9e28cdd488bd7457aaf7b64",
+        "source_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4395,
+        "height": 688,
+        "original_width": 4395,
+        "original_height": 688,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "477a4a35e6841c860097287155191f141b6f650af440c569fa8635dcdd031d43",
+        "pdf_page": 0,
+        "pdf_sha256": "f4fcb20dfe53c57fc796ae4e993aaed6253bbf3d56dd438975b1d98fcdd4cb37",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-be0fb671c4faef212a1f6be6"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 30.590942337177694,
+    "configuration": {
+      "orchestrator": "deepseek/deepseek-v4.1-flash-1017",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "smart",
+      "explicit_planning": false
+    },
+    "task_plan": null
+  },
+  "cleanup_errors": []
+}

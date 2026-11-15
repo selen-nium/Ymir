@@ -1,0 +1,1604 @@
+{
+  "transcript": [
+    {
+      "response_index": 0,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_bNK42q0B5IYSIUjU2yjoLirF",
+            "function": {
+              "arguments": "{\"steps\":[\"Retrieve the verified native candidate for exact room identifier 3.05 and positioned PDF text.\",\"Bind a visible length scale to native page coordinates, then compute the candidate\u2019s net area including represented holes.\",\"Return computed m\u00b2 with geometry/calibration evidence; report any printed area separately.\"]}",
+              "name": "task_plan"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_bNK42q0B5IYSIUjU2yjoLirF",
+      "tool": "task_plan",
+      "result": {
+        "status": "recorded",
+        "steps": [
+          "Retrieve the verified native candidate for exact room identifier 3.05 and positioned PDF text.",
+          "Bind a visible length scale to native page coordinates, then compute the candidate\u2019s net area including represented holes.",
+          "Return computed m\u00b2 with geometry/calibration evidence; report any printed area separately."
+        ],
+        "remaining_resources": {
+          "responses_remaining": 11,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 4,
+            "task_plan": 1
+          },
+          "tool_seconds_remaining": 714.8,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 1,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_oCrXRGp4zLbiW9w7bxGtIGjv",
+            "function": {
+              "arguments": "{\"page_id\":\"page-4ac7ec74cdb49ee4e22dbdc4\",\"room_identifier\":\"3.05\"}",
+              "name": "native_room_candidates"
+            },
+            "type": "function"
+          },
+          {
+            "id": "call_q6U4bSRoHNlkMfPlZJuL60Rq",
+            "function": {
+              "arguments": "{\"view_id\":\"view-a8743c22231aaddd52f44c13\"}",
+              "name": "read_pdf_text"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_oCrXRGp4zLbiW9w7bxGtIGjv",
+      "tool": "native_room_candidates",
+      "result": {
+        "status": "unavailable",
+        "candidates": [],
+        "quality_flags": [
+          "unsupported_native_source"
+        ],
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 4,
+            "task_plan": 1
+          },
+          "tool_seconds_remaining": 711.7,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "tool_call_id": "call_q6U4bSRoHNlkMfPlZJuL60Rq",
+      "tool": "read_pdf_text",
+      "result": {
+        "status": "native_text_unavailable",
+        "source": null,
+        "lines": [],
+        "total": 0,
+        "remaining": 0,
+        "next_cursor": null,
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 2,
+            "read_pdf_text": 3,
+            "task_plan": 1
+          },
+          "tool_seconds_remaining": 711.7,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 2,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "The native-room lookup reports this source as unsupported, and no native PDF text is available. I\u2019ll try the raster fallback and check the visible scale bar, but will flag any limits to verifying the room boundary.\n\n",
+        "reasoning_details": [
+          {
+            "type": "reasoning.encrypted",
+            "data": "gAAAAABq-WCu_hmfG-5R801EzcKfUKldWR2T_RVlcbfKDXyUnrGgjQ0mmdXTUGSkvcuEHAMXjstNlW4Q4nuCVfcP6-L_TawiZKFE3lKWGXiDpvKDwctFM8f3Kzk-vHjNWZeJpCdwTAA4U-a9bYzt5KC1Ca69fkNY0Kk59RJV0sM-OvzJW7xGnWBNMw3bkBOcOWZkBJPxVOV6N-O8bPKeO2I0fgCKuJZgqRu2Zn0ETaZCYkIiOvTLo6XDDX_gOM7wMkJJZK0iqhdLKJmDzBeac-ZtYTp6OP2JA43SZ-gDbf8vE11YX1iGSIEs90tAWmWfTY8v_UAqy5GAZRdxU3kp96m0MrzF-yyKEtKuEVaJ5AZNHi1yra0A4nfD5z5Iuz-PsSGV2L8sApoVPEjjAeZB7O6OAzdej4c-eYaGoeLyXpXEfSopyLfX6t09Kot7-oIP0pOclnJ7mimKEMs82zqfoR91rO4I5y_Ft3x7W_tbH-WebenDhxOfUH5mbjl2Yvb03aL5HU4dBXrBOq3C640AHzJXrivatqR4zjQKtR36MNHfwVCr3F2zHektFbbL6w-oxo6FyIERmJrr9bDAi9g-VI96n0zTPBdAkFL9mADHE1y-TJmNq9g7uPkIM69jbo7RhNYDrGzHXY5IdfqBLZmaqoY6Zz0sDVDg3DEuX8SfBQwVUbQyNCNgDPz5ib8gBXxJxGcyVUVz0LyI8H5WLwjcyVLxjx5NbXJF6onh2UYPl_WqN2BaSbfHSMubyPJXMfaJH8OuLHYQQdKc8In3_NUqzF8f4UytM-VC7USI1hLoyAgwjgc58VE81rZU2a5Yad2n97RllAWqK4kO6WriOLDE1lhya3q0yFnE5O95LKiImbQlCCxnCcF8P9wG8NlCed0yGhfyozSb0htW4a-ouRf9dSvi6VAVC4pXOFRmgau9Ar7mglSBTG8yCQotHkzSj-osAWOHv8U356TilzsBe-cM5tZd7BDGrttt4kO5pAD8iinLw4USM8UvL8QfDbfjEPqfHOXmZ41qJWRcAbbYdg04_eMIDTK7RmrnpuVgAk9CAr8niIKQ4q4_miNt0jLrcmh8jRTCO2vvQWIRVvzdIntloXBPblG8uOjtfwl_0x_QZjr5DZuJBqUL6JJKlvf6dV7zy1VpZdM7SgNW3bmYmaFSA7LE15HpzyuLyjatXBoHubm_kkBg7Id1kxe3NutM_dSvSPHPz10CSp2SsQSevlMOzwLTYJTPt7q_Bjfc3ymMWwxJSV9NQB1NZ4BNPOius-wNuQD8SmsjSMWvFzEAD56WdE0prjTWPqUCP5vyyLBz5O5clax3u3zz0_JReP5122EN3D_neQFbDCa3Tnj7lQnqcF4nQ9FmH9doszXqt8wuOm-Oqv3ywpn-hJjgt8iVkS5sZwcoNJK8XbWjyaYtq79ETlTgRzI8pO_0tuZGhRI46PTv0HR6akI-ErEOSo2cgJFcKy4kjpA0BLOIG8y-0z861jMr9kbj8pjo2Fc85wu2tVLydt-eiYKR_YvwHiZDlEGsJJJDg2PZ530h4VEL7yCGzz446TKw1SkrDtbbXfpm6HRPv-eUpWgm9BU7SI0Ndysq8CAvpw-_pZiu_Goq3Kqg4rkyzUL_EYOcSrewTWWXvjg7eIatQo70WNGWxG46hmH2dVXF9FiA2JZs4ezbT7046nWQfy8VXMS2Iie6PxqLem62lzfWw5Uy0i7cH4H5N-7nUHbM1JfQFq-uHbrw-WUvicDa192LQkCY7w1Slf4RLSxxwV66N3WcAbGamCKCDrxJWbN9rCytM9k2Kx2oPaLoIHFOUVwvHhVKLFKzDM2DBMaz_NvFc6XvBZ_M99h8n2bwUKJbhHn2qscC669gYZTIKhdii6-ub09YDn08roOtGkPUQYJcCZrRarLEAyVFTcOQnYqXBUnhAfRGwXCazv5NUDtZrDnUbDuRWSC7EcX1iLxTNk9y5BpL3wwyRVInGjBfz90aJCpwU2mIHUQF4Kdp4YkRciMczHs0bqpAi5BpO12Le3bNkudQYt8AF6luz3Bqvk3IkaYmjGVW-qGflQNt40N_4GbpeyGhRNF0X847TDABtamUMetf4zyIYC6Y3mw76Zzw17pWAVPeBCBPNSEvumSLAXS5c92L0rvHjlndjRfoS21G4L1dW1QB594fF-aS3_BgDV4gxk_Tc3dZbw6qRoMiWeDHlei2zgUFGkhxvAJyBXwRhRVfRThmks_r-ZODlWacwTVwAr8mgiHjKC3xFY5qgcUppZUpstSXRDELqrr_wsQdOS1UB5iorxsq9jp-aoSjfMf8jGx9kXeCHdefGtXPywQbIEz7uONAOGGbUrYojRLsTcmBRsMs4rLAAUzq3cZiGxaKTwmq8ksYLfDzZSbFre9rhH5itzrPFFJ3AdgtnhJVFQRZzifLOX3e8CDZLt-uHXkR6lhBVnzx35xezg06-xZRIT3lL-NEuRmtRLAQfsCC1XG4N-6gk4ybCu6VvocBT_S-hy0bgAL8_4nfF6hTLQJ-hX9cYcfbv4IaHyPjLKRdPzUuG3QtCLjy2-VhQNzjdVNYw4u8aAudhQCPNRw5zLqHAD7BZzxg4jtg4GlzgTmdxnTx1b9qpP3RdcpMxMa80RUVPLbWA7QIY799H4wfjt6-O0jffgOkd6EQ10KzFML2-p1gyUK1SS3qo7_jwa9zXXLM4F8CCRe1rgavPnq1SDoIlb_7nQSoynQ4hMvtzRaY4_MJiXS_5s9HcgYV6h_mr_oxBIDu0dTZLBJWCj6YdubTT5TUjDTZPrzamGYzY08Xk-rSTHvjR9f7GIr9ZW9XfVV9p9FJPVm-UTiEncMdXEgSiCnwJZW8RWIFJXJCIZWPmF-i7q1eAKvkxYc-gqcrPC6PHbFqGmCQVsW3-Er7gndaM2KXNkvxNwgzGrvmLcEgAmH6sOE7dsH5GqKeiYZnqFgcC9HpRB6bmo3SbCkx9bzmSPypI3sqpfjQO5OdIigxVIATfLybK5PhR7-FjWY5QATGuNmYARDQka3z9EROsKtJ0EDiWCwXm1YnlLWgsCEDu6VYHakcDQkxzkjcuQY7ySPgHAVatsJBJhu3dcyVVBiyit12vP3yRVvkQmEKmhN4asKn0smmVS1xdCEyuELZNkq_w5zlU8uHJOeYPkYip0fX_vN9GbwRdZLATPs2Hv8jnyBiqMvRqdjUUauHAIzpTRRZwMsFJ2_PikMVFYzpsz3S0JFLwtpXX0y9YvSRMjL3AyiqyBFqsJwwFyyzrs2OnwhO-yNJPwetKKMp0Slt9vdBLdSZQmSYSnHZQ5fOENAIpNKOCfDuESV-StmMmOImCMg6ndDWw-vBQj9B1s2pwCTwSnf7NIb2DDYOVP7_YsropS09tVzBrSBFMXOPJSD9Akfd59gfuXTnddhqAlX1rNRoQIFmb-GjRVl1D0OUxmTsMTz84qf3epno09yNfDjbDpdeTxCjHCcMO402mRcSSupOx5KYDnBqpF925a0fPaGlTrqPAHNRVSpAgJtk62YVqse6gp0Div1abiNVPG_tHZrzkQqkT_X0daYjvW90XTfqROJAmd5Ihs0vcr9Dgauy9PdCU9NGbvQ7k6_rV5zksMpoRWcKOSSiHq5H01LLQi9lyToGiuGEFp8Tj3sRtvBwt9PPEkSO8X308LNlpdzlJ58fmHbogFoZaDPojlDToePxZE0NLgCPlrtv8A1p_uP2AxSv4pPj70LvCREPRPbAS36rpCH5zgcoLUHa4xTeZKVBSXpHPOA0j9PFjf9hnoj1pVNST82z2NJpU9dUiJ91trdKyrs_nfUStj8fi5SYv8f7PZG-VzFcsJAQFOtsAPb-LbWH5ehlJpiDgyeBNPDLxiNwpL18SBE0wCRQj-eXxY_vna8TilxR7ZWy34kOX9tg9xMIO82Z-d0YXq509RKTcLarKp54mPSomue1eFYZHXLypECQ_9NMqowDr1yON0OED9Hwa3B1MTYWvAWoWgaq3xolP4w8Vy8mkG2-eLBAVMNLO-GGkp0YB4-UtuKzm_eZrkvIcKoCZ_C_twUrDDz7Cz-itib4C9CQT1_j12apaRoHrBUJe-xA0f2C39OFdpPptS1OFnR-KqYbErXCMTlBI4X4lv3iLEKiufyj2ZAEEf17CaYBlzu-A6ZjPF7jF74pY-Ocj9YCgOht3bnCOk-mby-w31oA5Llxj7txEZrOtKMIwT-GmMta8TJLI1d9oPlJjU75j9Jom2UomheZJN_-9rNzNWyLuId0T0kiouPbiUzmfpnZcdVm2e5anmclHQuLOlYEd8WRQSFOlBScc-390yriLDJodjt9BRzCmhaoUixx0ObN9YGzT4fzkxIsHu8CQjepzbpWAm-Sr75vH3hIevIGq9AANPT2T95ZPCSb4lBTftQ-yGkbiXlkllWZ4CA0hjxk7N-OVZFD3ps9_y-ckHd97V8gdVmkBD_dYOjJnxdr8jjUY1zx0ynhDLBXaAIKNf98TC8ZSU1pR0d7s97g630kW5cRzb4_SOBEe8RQhJwqTQOFLmlPsp06hb3lqnnhyH9EC6qJrWTe7EE9-Rq41-aVteSd6RzUxTm7N-ILRZruDKRMgUe4S2uCpqxwnxbPlRjmfexGFhP7ASshxQVrE-K0OjfFMzwTlYNjx8sSULbiX9t5QK9tTlAGxlghZV2jA7vHSXNF8IFdyzd1sfXztC9F47yXToDqMSn0ENadtrUCHPkVVaIpCtTNF3-XP77pcO5a9sBQ4Raj88nlCRH0XhcufmZImgXsuKvkVKKvN2F-NUc3WsxOG2yfMWCuiac1NjoABiOHh5xh6a1lTt2iThMgOSn08ntqhylizLL5JqdMykLQkP4=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LjEtc29sLTIwMjYwOTI5fG9wZW5haSJ9",
+            "format": "openai-responses-v1",
+            "id": "rs_04761aba1e5afee4016af960abacc087d1b64c74044b771cc5"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_NCOdd3mrgrq0FkF0us9Ric3o",
+            "function": {
+              "arguments": "{\"view_id\":\"view-a8743c22231aaddd52f44c13\"}",
+              "name": "predict_room_polygons"
+            },
+            "type": "function"
+          },
+          {
+            "id": "call_Y8nglYzmqqDiUEchAchg0pbw",
+            "function": {
+              "arguments": "{\"question\":\"Read the scale bar and its endpoints for source-bound length calibration; check the room 3.05 label and any printed area.\",\"views\":[{\"label\":\"Scale bar\",\"turn\":0,\"region\":{\"x\":1100,\"y\":4400,\"width\":900,\"height\":400}},{\"label\":\"Room 3.05\",\"turn\":0,\"region\":{\"x\":1920,\"y\":1480,\"width\":600,\"height\":1000}}]}",
+              "name": "inspect"
+            },
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "tool_call_id": "call_NCOdd3mrgrq0FkF0us9Ric3o",
+      "tool": "predict_room_polygons",
+      "result": {
+        "backend": "raster2seq",
+        "view_id": "view-a8743c22231aaddd52f44c13",
+        "candidates": [
+          {
+            "candidate_id": "r2s-b08721bdca8b515578765890",
+            "polygon": {
+              "exterior": [
+                [
+                  96.89453125,
+                  116.28729281767956
+                ],
+                [
+                  116.2734375,
+                  3372.3314917127072
+                ],
+                [
+                  4864.10546875,
+                  3411.0939226519336
+                ],
+                [
+                  4883.484375,
+                  910.9171270718232
+                ],
+                [
+                  4457.1484375,
+                  949.6795580110497
+                ],
+                [
+                  4457.1484375,
+                  2170.696132596685
+                ],
+                [
+                  833.29296875,
+                  2131.9337016574586
+                ],
+                [
+                  658.8828125,
+                  1007.8232044198895
+                ],
+                [
+                  4767.2109375,
+                  891.5359116022099
+                ],
+                [
+                  4864.10546875,
+                  116.28729281767956
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 0,
+            "semantic_label": "Outdoor",
+            "model_vertices": [
+              [
+                5,
+                43
+              ],
+              [
+                6,
+                211
+              ],
+              [
+                251,
+                213
+              ],
+              [
+                252,
+                84
+              ],
+              [
+                230,
+                86
+              ],
+              [
+                230,
+                149
+              ],
+              [
+                43,
+                147
+              ],
+              [
+                34,
+                89
+              ],
+              [
+                246,
+                83
+              ],
+              [
+                251,
+                43
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-6be93870663da8d5695f8e15",
+            "polygon": {
+              "exterior": [
+                [
+                  678.26171875,
+                  1065.9668508287293
+                ],
+                [
+                  658.8828125,
+                  1841.2154696132598
+                ],
+                [
+                  1182.11328125,
+                  1841.2154696132598
+                ],
+                [
+                  1201.4921875,
+                  1492.353591160221
+                ],
+                [
+                  1472.796875,
+                  1492.353591160221
+                ],
+                [
+                  1550.3125,
+                  1085.3480662983425
+                ],
+                [
+                  1569.69140625,
+                  1085.3480662983425
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 8,
+            "semantic_label": "Undefined",
+            "model_vertices": [
+              [
+                35,
+                92
+              ],
+              [
+                34,
+                132
+              ],
+              [
+                61,
+                132
+              ],
+              [
+                62,
+                114
+              ],
+              [
+                76,
+                114
+              ],
+              [
+                80,
+                93
+              ],
+              [
+                81,
+                93
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-7492cd2b3e676a027dc056ab",
+            "polygon": {
+              "exterior": [
+                [
+                  678.26171875,
+                  1860.596685082873
+                ],
+                [
+                  639.50390625,
+                  2190.0773480662983
+                ],
+                [
+                  2635.53125,
+                  2035.0276243093922
+                ],
+                [
+                  2616.15234375,
+                  1976.8839779005525
+                ],
+                [
+                  2499.87890625,
+                  1996.2651933701657
+                ],
+                [
+                  2073.54296875,
+                  1996.2651933701657
+                ],
+                [
+                  2015.40625,
+                  1841.2154696132598
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 8,
+            "semantic_label": "Undefined",
+            "model_vertices": [
+              [
+                35,
+                133
+              ],
+              [
+                33,
+                150
+              ],
+              [
+                136,
+                142
+              ],
+              [
+                135,
+                139
+              ],
+              [
+                129,
+                140
+              ],
+              [
+                107,
+                140
+              ],
+              [
+                104,
+                132
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-7888210f779f7603cc0c8e22",
+            "polygon": {
+              "exterior": [
+                [
+                  1201.4921875,
+                  1511.7348066298343
+                ],
+                [
+                  1182.11328125,
+                  1821.8342541436464
+                ],
+                [
+                  1763.48046875,
+                  1802.4530386740332
+                ],
+                [
+                  1763.48046875,
+                  1550.4972375690609
+                ],
+                [
+                  1763.48046875,
+                  1531.1160220994475
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 4,
+            "semantic_label": "Bath",
+            "model_vertices": [
+              [
+                62,
+                115
+              ],
+              [
+                61,
+                131
+              ],
+              [
+                91,
+                130
+              ],
+              [
+                91,
+                117
+              ],
+              [
+                91,
+                116
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-3383ca26f9b5a11ab8afdebd",
+            "polygon": {
+              "exterior": [
+                [
+                  1608.44921875,
+                  1085.3480662983425
+                ],
+                [
+                  1589.0703125,
+                  1492.353591160221
+                ],
+                [
+                  1821.6171875,
+                  1511.7348066298343
+                ],
+                [
+                  1996.02734375,
+                  1686.1657458563536
+                ],
+                [
+                  2461.12109375,
+                  1686.1657458563536
+                ],
+                [
+                  2480.5,
+                  1046.585635359116
+                ],
+                [
+                  2480.5,
+                  1046.585635359116
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 4,
+            "semantic_label": "Bath",
+            "model_vertices": [
+              [
+                83,
+                93
+              ],
+              [
+                82,
+                114
+              ],
+              [
+                94,
+                115
+              ],
+              [
+                103,
+                124
+              ],
+              [
+                127,
+                124
+              ],
+              [
+                128,
+                91
+              ],
+              [
+                128,
+                91
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-f31870e15b7b7dfca7952912",
+            "polygon": {
+              "exterior": [
+                [
+                  1996.02734375,
+                  1686.1657458563536
+                ],
+                [
+                  1996.02734375,
+                  1976.8839779005525
+                ],
+                [
+                  2461.12109375,
+                  1976.8839779005525
+                ],
+                [
+                  2480.5,
+                  1705.5469613259668
+                ],
+                [
+                  2499.87890625,
+                  1705.5469613259668
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 8,
+            "semantic_label": "Undefined",
+            "model_vertices": [
+              [
+                103,
+                124
+              ],
+              [
+                103,
+                139
+              ],
+              [
+                127,
+                139
+              ],
+              [
+                128,
+                125
+              ],
+              [
+                129,
+                125
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-f6057faa96480c8e8ef10b79",
+            "polygon": {
+              "exterior": [
+                [
+                  2499.87890625,
+                  1686.1657458563536
+                ],
+                [
+                  2499.87890625,
+                  1976.8839779005525
+                ],
+                [
+                  2984.3515625,
+                  1976.8839779005525
+                ],
+                [
+                  2984.3515625,
+                  1783.0718232044198
+                ],
+                [
+                  2984.3515625,
+                  1763.6906077348067
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 6,
+            "semantic_label": "Storage",
+            "model_vertices": [
+              [
+                129,
+                124
+              ],
+              [
+                129,
+                139
+              ],
+              [
+                154,
+                139
+              ],
+              [
+                154,
+                129
+              ],
+              [
+                154,
+                128
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-91ddf93af23bfcd5b04dc039",
+            "polygon": {
+              "exterior": [
+                [
+                  2499.87890625,
+                  1046.585635359116
+                ],
+                [
+                  2519.2578125,
+                  1686.1657458563536
+                ],
+                [
+                  3197.51953125,
+                  1666.7845303867402
+                ],
+                [
+                  3216.8984375,
+                  1453.5911602209944
+                ],
+                [
+                  3255.65625,
+                  1453.5911602209944
+                ],
+                [
+                  3371.9296875,
+                  1472.9723756906078
+                ],
+                [
+                  3391.30859375,
+                  1065.9668508287293
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 4,
+            "semantic_label": "Bath",
+            "model_vertices": [
+              [
+                129,
+                91
+              ],
+              [
+                130,
+                124
+              ],
+              [
+                165,
+                123
+              ],
+              [
+                166,
+                112
+              ],
+              [
+                168,
+                112
+              ],
+              [
+                174,
+                113
+              ],
+              [
+                175,
+                92
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-fba95408eab33df74a8fc658",
+            "polygon": {
+              "exterior": [
+                [
+                  2558.015625,
+                  1744.3093922651933
+                ],
+                [
+                  2519.2578125,
+                  1957.5027624309391
+                ],
+                [
+                  2984.3515625,
+                  1976.8839779005525
+                ],
+                [
+                  2964.97265625,
+                  1821.8342541436464
+                ],
+                [
+                  3081.24609375,
+                  1821.8342541436464
+                ],
+                [
+                  3139.3828125,
+                  1744.3093922651933
+                ],
+                [
+                  3139.3828125,
+                  1686.1657458563536
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 6,
+            "semantic_label": "Storage",
+            "model_vertices": [
+              [
+                132,
+                127
+              ],
+              [
+                130,
+                138
+              ],
+              [
+                154,
+                139
+              ],
+              [
+                153,
+                131
+              ],
+              [
+                159,
+                131
+              ],
+              [
+                162,
+                127
+              ],
+              [
+                162,
+                124
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-b1388f5e8bac89abc8a06a4f",
+            "polygon": {
+              "exterior": [
+                [
+                  3197.51953125,
+                  1589.2596685082874
+                ],
+                [
+                  3216.8984375,
+                  1802.4530386740332
+                ],
+                [
+                  3798.265625,
+                  1802.4530386740332
+                ],
+                [
+                  3778.88671875,
+                  1531.1160220994475
+                ],
+                [
+                  3778.88671875,
+                  1531.1160220994475
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 8,
+            "semantic_label": "Undefined",
+            "model_vertices": [
+              [
+                165,
+                119
+              ],
+              [
+                166,
+                130
+              ],
+              [
+                196,
+                130
+              ],
+              [
+                195,
+                116
+              ],
+              [
+                195,
+                116
+              ]
+            ],
+            "quality_flags": [],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          },
+          {
+            "candidate_id": "r2s-fda540fd78e32e835038645d",
+            "polygon": {
+              "exterior": [
+                [
+                  3430.06640625,
+                  1065.9668508287293
+                ],
+                [
+                  3430.06640625,
+                  1472.9723756906078
+                ],
+                [
+                  3778.88671875,
+                  1492.353591160221
+                ],
+                [
+                  3798.265625,
+                  1802.4530386740332
+                ],
+                [
+                  4302.1171875,
+                  1802.4530386740332
+                ],
+                [
+                  4302.1171875,
+                  1065.9668508287293
+                ],
+                [
+                  4302.1171875,
+                  1085.3480662983425
+                ]
+              ],
+              "holes": []
+            },
+            "semantic_class": 8,
+            "semantic_label": "Undefined",
+            "model_vertices": [
+              [
+                177,
+                92
+              ],
+              [
+                177,
+                113
+              ],
+              [
+                195,
+                114
+              ],
+              [
+                196,
+                130
+              ],
+              [
+                222,
+                130
+              ],
+              [
+                222,
+                92
+              ],
+              [
+                222,
+                93
+              ]
+            ],
+            "quality_flags": [
+              "invalid_topology"
+            ],
+            "provenance": {
+              "backend": "raster2seq",
+              "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+              "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+              "view_id": "view-a8743c22231aaddd52f44c13",
+              "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+              "model_identity": "6b9613bb744d3bea667f8a0ab0f9a3084705355308425a06355364ae4b09ee86",
+              "preprocessing": {
+                "original_width": 4961,
+                "original_height": 3508,
+                "resized_width": 256,
+                "resized_height": 181,
+                "left": 0,
+                "top": 37,
+                "model_size": 256
+              },
+              "view_transform": {
+                "scale_x": 1.0,
+                "scale_y": 1.0,
+                "origin_x": 0,
+                "origin_y": 0
+              },
+              "coordinate_space": "original_full_page_pixels",
+              "page": 0
+            },
+            "confidence": null
+          }
+        ],
+        "auxiliary_predictions": [
+          {
+            "model_vertices": [
+              [
+                32,
+                96
+              ],
+              [
+                33,
+                120
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                71,
+                132
+              ],
+              [
+                86,
+                133
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                82,
+                103
+              ],
+              [
+                81,
+                112
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                92,
+                118
+              ],
+              [
+                95,
+                124
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                106,
+                89
+              ],
+              [
+                125,
+                90
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                116,
+                138
+              ],
+              [
+                124,
+                140
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                129,
+                112
+              ],
+              [
+                129,
+                122
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                130,
+                90
+              ],
+              [
+                147,
+                89
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                133,
+                138
+              ],
+              [
+                146,
+                140
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                154,
+                124
+              ],
+              [
+                158,
+                132
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                170,
+                131
+              ],
+              [
+                187,
+                131
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                175,
+                103
+              ],
+              [
+                176,
+                112
+              ]
+            ],
+            "semantic_class": 10,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          },
+          {
+            "model_vertices": [
+              [
+                223,
+                112
+              ],
+              [
+                224,
+                127
+              ]
+            ],
+            "semantic_class": 9,
+            "quality_flags": [
+              "window_or_door_line"
+            ]
+          }
+        ],
+        "prediction_key": "906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5",
+        "cache_hit": false,
+        "preprocessing": {
+          "original_width": 4961,
+          "original_height": 3508,
+          "resized_width": 256,
+          "resized_height": 181,
+          "left": 0,
+          "top": 37,
+          "model_size": 256
+        },
+        "runtime_seconds": 1.1846812446601689,
+        "overlay": "study/jobs/frontier--area-swiss-site10346_bldg14965_floor39285/geometry/page-4ac7ec74cdb49ee4e22dbdc4/raster/906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5-overlay.png",
+        "overlays": [
+          "study/jobs/frontier--area-swiss-site10346_bldg14965_floor39285/geometry/page-4ac7ec74cdb49ee4e22dbdc4/raster/906182c4cf49f34e8a2f9fde82a30b9df282a829bf32774a70b99bafee958dd5-overlay.png"
+        ],
+        "limitations": "Official integer-pixel export and 100 model-pixel\u00b2 minimum limit precision and small-room recall; no holes predicted; no geometry repair.",
+        "remaining_resources": {
+          "responses_remaining": 9,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 1,
+            "read_pdf_text": 3,
+            "task_plan": 1
+          },
+          "tool_seconds_remaining": 696.8,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "tool_call_id": "call_Y8nglYzmqqDiUEchAchg0pbw",
+      "tool": "inspect",
+      "result": {
+        "ok": false,
+        "metadata": {
+          "error": "View 1: invalid region."
+        },
+        "remaining_resources": {
+          "responses_remaining": 9,
+          "tools_per_response": 3,
+          "vista_views_remaining": 18,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "predict_room_polygons": 1,
+            "read_pdf_text": 3,
+            "task_plan": 1
+          },
+          "tool_seconds_remaining": 696.7,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 3,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "{\n  \"status\": \"needs_review\",\n  \"accepted_proposal_ids\": [],\n  \"count_requests\": [],\n  \"rooms\": [],\n  \"readings\": [\n    {\n      \"kind\": \"text\",\n      \"value\": \"3.05 \u2014 Wohnen/Essen\",\n      \"unit\": null,\n      \"evidence_ids\": [\"view-a8743c22231aaddd52f44c13\"],\n      \"description\": \"Visually read room identifier and label. No printed area is visible for this room.\"\n    }\n  ],\n  \"notes\": [\n    \"A verified net floor area cannot be reported from the available evidence on the supplied page.\",\n    \"The exact native-room lookup for identifier 3.05 returned unsupported_native_source, despite the stated availability of registered Swiss native geometry.\",\n    \"The Raster2Seq fallback did not isolate room 3.05: its overlapping candidate includes adjacent kitchen and corridor space. It was rejected rather than repaired or used for measurement.\",\n    \"No area was computed. A verified native boundary for room 3.05 is needed before calculating its net area using source-bound scale.\"\n  ]\n}",
+        "reasoning_details": [
+          {
+            "type": "reasoning.encrypted",
+            "data": "gAAAAABq-WDBFFiTVWaNREyiDRblBpV88y_AKfkl1KpmpjI498Bf5L0u_SSwNmbNOJQIXds_JdTdGgDH5oKRQsrS0hNi7BUvJMelrfGHk2iaUSC8WF9rqOP6Ls9WeNp_fC-5JcsNtyIb5MgQDKKrUawFe7doB8lpEBhHllH8C6mkioyFCqAhtS_fAUAwtpDDIX8wuhVsJgPSWEsDXWyktpFwrnngLzjnadR7oZAlMO36SqkVvjCA-WEUR1okN9AeSBZGyMhtgsL1P9U-g5Ozzcvz6mJBamhAEyFhPWHkhKswm-xDbxP80iM9KzPdBP5svdNgyI_HtMsnEAA0-JD_zuDEH7spGctpAF0AE3EP2ItoUeyeT4U-Qp-rbAnTi-3P7h7l9vZ2j6gDmK8AL-WvYyBIrZARNhilIFlAI7P-Zk1lcdV8SFrtanDwT6bum2-A-FvsREL7rP7zn6njGe_o9Q-wYvYnYs0jTKCXuvF48l-1pTwWBgp5cKiDPRcMtBiKuN0y0jEHTTuK6_s5kMmJoxKnvYdvidk5TiYClhTxo3KoiTK5HSnNDjfhqJR87-s81ha4qlPc0PvtPNWluG2LODY-xYDbUaSeGZpFYDSrUzWAtV2BetWu-j6L6DoXPVuKKWumoRuuX0RvlhPVN2gLMGUVtIuPJ-05_v6eWq-aSQEyJ8dEnPGIp6zC5lq6FOG2zvYivxmhzS-b9QBF1Ye-AHqr9FRgsvEGqaZQYKNM-45jNv-hHDNsjcGxfTti_tnvMriYN7OKDgolvDc8Z-Hv9snMJ_WhoDkoJ0hHTCO4JnvK5wMCThEl1EYSNTilclqMMQVnNW_rLrn8F-U9lLQbgUV29dN0Tqu5cWiljem4yvs2xbWTQpERIR2dyMezQ_N7dRDEqjVkhK-RhubaYVXeOfZ7pik_AqzRwpfBpW2WvPaVQJ0ZqqpH9NlgVOZOlKgNPVrRVhONv0o_1K_u0VSC-YLhW-ob2s-fLcFXFBNye-Txh14UsFTKSYMuwPnScSbry01pDjo7HiU2L0Di1lnQizdbFfUQHqgJJtGk2TJdQ52qoTBlsPFhN8PQLSWb8GgJX-lsVNj8ScXTD42nQPySY2dMaplriSjjznnoYt7gzciDY3O7Irvf9C1xa2da7_dzijxrl2qUNHYbrlHruE-YpbG-FlmXAXWQSmZR3OWadgsN_Cc1DiBOh56J9nRJd4_JWcrH-ybjadc2c-N_V68VkqvDjeSlMoIX03RMguB-FJEtm4m4Uo6Dp0e7pEAXOA6dhzT1RpAVp79T2J0YyKA57OoZOgNSJGo7uB93DOPWrB_CE5Uhc0GMR9ENuXNZV7G5GcQzHQ4d1LEVkJ_Cu4cI8EykhZAJO4Z8-f6Rmg479dwI92hqWBX2Kc0lsLsP9i9sZeFQIVq9prdefJEhnK4l5BjeKozZkMni5EZra_vR64jmzP_FQQEvdmrniRfAzSZxj4GIwHCn_O6GBKpIwxsi918_r1w9098fOy-0z2Fr11Li7Wi46McDRrxFNGjrkCUYFQk9UsaukeJr20mLXtbospHzyvKHGCflhN6NPfM3rUru3L6t8oyxeJS5jBOQ6s03VB12Ujvs-Luia1FImFSgrG9RjrSJAgwhrrcT1vfBHkag-YAfV_eODTPODxn8O_PLA6afmT379FzXvcC4wlyC-ZGPfYVKpVCK9wus1DtdxG8OOo1tM_a7dYEOedT2Kt19MAs2QkHkEAO1swSZvHgs5uJ-Kan2YIZoUMV2mSzpUc_dWyI1N_wNB1DLGLfa0euHSkiKY_-3xiMKkyGU44d5gstDc6Ow8-hRHnzBbCugXP1H8l5foMGvRt2QOPrzYgme_8zwAgUaUIS6lfQMQTtm7-FFwQYxS7KpJrQhykJKjsuLYV1_c87gkWJGUxdgW182gNWuPJ9TSzR1eQ24B5cD0AI2IRJgZ9uXPU7As4sC_u-EzJ3w9I1WMLQYzdwSST1Mo8xhVzHRYTYHCK0B2aXTpkk0BgDCkQIMX6FIL0zxYKO44iQqBXFdB2lvjRVPPI87nkSuYi1PIBWTHvzMzwQGZCivHJ7CQH4JEgyKCC87OP2v5rnQ6uhSdX2vw93QNo37_-50rhLWZ4xmJv1qS8fzt_o2cLx7Fh1i_a-rnrQyeJHtWQ5-OE2Ginl9XliS26TlRaeZapV34EYM4o1DsitUVuFeRlcZwH5DBCiapXyeQHnw11OKaBrOtJ9eZ0fQchSz21vD8ELxfQB-CShGdFCGGgneRFNjE_4Jg7uV3CHy7KJ7Uu29AnWQkmDZbAN1tYkf3zGkVP7qXYaNxC42FMeSheIECcE37ClY2Uz2RMXCQTkrVRw2h4LoXm4PIU732OSt3ZV3SaFwqNYl0pN1_qNGUySYeBEne5PhHFpFjnAoYznSYSt3PwxTE4mO2zAA8GX-S_DgCX-AD-Rv3rfVJ1d5rHlJ-m6hGR_LWEukvwDHy8lN7mnTT6wJ1iqVFT5xJ9CSd2ua1d8BPPXlr7wELn5iV21-ElctC_nxCzCTxbSqN56NvgagzeX3k2BbAmm3OBPJFJV-odDtQFZzFrsw0qlFgejZsuAtQ1Q8C2-xF5WE2KujHgXnzHGE0WkNpJ-zsmqqC8R4pRXpkzii-e1w-CaW9nsIQ0eWwm52kJy4ICnVeeaVnKtay9dJnsD6viiZ_Ni-84eaXRXT5Ez0mIVBnUCX54EAtftLEGWO13B0msZ92CRRt31wkoQtcajcDxl3CZkK_LYVR-a3v2pz23ROiscwaB-hU7W2MGKFBDeA548zDcqaecdvmyFW_KhNHl4a0sgUU7PSOpyGdxfoyo11ePv1sch7Oeq_v3C9qJvmFkM8iE7CrJvvMQeAK0K-HS5Rr-AaUNU8hAuZk6LD01nvtybWTURGim7IMG8l7isE78n2iFaDdlNjZ_zdZaPs4xXevvx6iFUaNm4boKaU_OZt0y8zCWEKBsyKMBXhi90ldk5xvfg0RPq-6KfShq9vfw9AnHzeuSoFAjwhzCNaK7W23VjDwe6QzmMTW6QhvjpqB7hGV8hC7qB29HvnJnwKpfxjyPY4h8UaHobvCU9gOAq8aU7M3sNuXew7EPd7oATJqiWfNswO0vzAKYKP2AWM4_TcnzfDiJUyt7IT4HVSgX63oNPxcCRUrFxCDtjJpfKGgLz9l7MFJvAYbBdcIaziibrMx4UTzv5nMT-cDmZ6j7bUUGf9cvV6V0_tu1dPzPgMmDSTS7tTa1Izjw_ZevhX7H1jddZXTi4SR6xt258w6VAkCck_LbxxQlN40zhPELNBudCVxsrkfLa4UGLjN_RJz8PkNohOBDEDJZOFnKq1JQ__dMXb-ERysXPfdfV-GgYVbFXg-a9kxiD2ohxRuJ1d5BULcI3VngFaMr_W1QZtxjd3OcOTcZp_aNrgRqc4gu_VChHttLvsICl8Oci-96pvQuHX5-s0JslzCjcGzGUBv4TAKoC0jilYFNwoIGicmdB4THxmdmRuxoMUTXkXg_DH5ZHWFvblaWH68Px_y05Twj-l0r7kgS1d0b3MPzh76eyjyrFhP9STdKTgnFVWEHSnUE-QPut4-Mna52_H-s5vM8yuSgpv82RyKEQnxsc3_lbtQz0YLuv1ov3r9iiIt8pvAMaHvkECrSlcf-02lFcvBCBZGHQVA-uZr4KFdYNd8RYohRzxcInOwAcejufzPQOdBQ_fnqES-Qg7DtYHp6Ft_Wl3PjlCCEPbAMyNCpKS5r7HgXOvpnvHTaJ8glhfRFc-43T6_KmrP-Xmh5Sdl2TcrJZKwDhn7cD41HizhEb8iBPetY_Ogg0YGfGgtu573yCjBJ8bf-slFRiSGuRo-Uu9yIK7RO34Orv5ECMPrpDokVEEb6_9kW726vdA8glCWrcwkv5nsd0CuHBZ_D-pQgxyuU5TrKMqwnNh9NS5V8IUOPVa1rkvwwf3LsaBs4iZUhUzuezWQReOFSGzXIPPXDmh9u6m-LlFmzd5vvOGOLftXhcGPUgeKTAx1HZGPMdE1WTa2eUVm5DGJ_ob6PKGf-nzNeQRzJLVQHf3q325UHLuW64ARPzuJEC_aDHoNnbzBpF7H5CN5M334fteW09SUsApoHuPAqF6odk-6ROBYI1nRmBGFf7pqkpKVkL9pcX2XOJTWuXPsPVuW2P-OBkavlIqBFfzvLt0mXhGLkHSLg6gUeCrRcEfxl3SJ1Ue82zD4t7aYFBtz8ypMYZnEJsd7d1LU5Di0Qz8EIU9H9JOCRhEAmzTO5cvsYU6AgV9mulLjO4Kro5-I67QbgMqK8KQYfIg6FTHA8PqgBIqqCna4rIX-ZCUIXCiVORfp4UWb_f5GGh3OTrXHHgetkZlA1dFRClLlaGIErcBsiiouG1SdodtkHqgMXiv-kfqOn40a3UgzCYjv0NBe8gJWbbFTH2_fueG8mDUj8uERO9AnltaPH-edXYDNHrABDR2HssR5uI8LFTVeEsb9EpFi8hEjXgskGIMU7SmhrZgl5gIVfqkqi5NmaMyiiIAKug305KLaPUhaAc6ONlZz2NPwvmhO-qQEiAu718SZbe28WLIlb_W4FEd8JWG82Fb5G2zfvWSF7fM8hdcKhaGAbLdb4rguX-1fIYu3eAO3dtaB1zOjdStcIiEz9c37Ck7dgRTJeCOSLM10zTOYbtnKezV_qhCYeIqeTtKSWIPXJnj_X3Mwll937B_Lmr4sIipzmuUOU6QWGO_OOEE4k296Rz2U92yyVPPGaV3njicb1wP_uM90LsL_nfZPBqdkGVswmbILQaCjMyLiQMQYleKkPmeB6ETgaoy65e-AsWM-sASyNfRcR50co6lnzJ0JYhkxC5h9qt_sxgcsumhAhhdSRpi_jhv_8CC5-gZzSeWtGoT0vDmi8gS_el8l7TD_S5FsysAOlkH2kxJv5SRCyTtQU7pl6CWPjFz02MsagtZt6wsm7N19bjnxsYt626gOliwC5Bh0gN3QRbfhvmk9Tw9IVD4yC8ajyv-Je4CnihwzXaAqaDSKCxfc49P7Xl1ec_GwR5IhTbU2ajiGViBJU1A7_U5vYWzo1kjFxgTxNhkQuKPGp3xX8M8td-l_WbtmCinS_Wj6DFtqJGKGXLm05mH8oaJQKmXRV-OP5EGZwZuK5hONIERf-fypIt_qXn2yM99GNN34bds_gDeAxkZRz-uc-zzEK3fx-ub6_Pfh5xu2Q7iRXNiRTyh-iU7C4la0ApD7CxY2jdwYIOpGI64JKcVg5_ylK6Px6T5z3ipAzjtijD_OJOp2ZUg2FTvW2QveVh9LEOcSif_K-OyGmgtU64uvE9l8txX3kcy2RYGGg2Iist0ClYqRd9jGJiV1p6FH0r12cjG50jRWH1aDVMNKDSEsl0DWZuMX0M1RXGInEqEXvh2raYbefd9N-O2vxvBFip61nr7WbpYmVkhLM4YFewNfBopXsibFjXW8cAtj9Hid4keaDg9qaB7kt8FdvSMwdq0_lsOVvYIQks6F8J-cFi5P_DSJJHhNg0-Swmr-qDC8yoq371xVdBCqeI699bRMeg9SX5phmEotC_NsNbm7wPTn9xOTRswyFvhzWJvoiPsKaFdDt0qKy1sP6i81iQd1G0WJislt51DB0Cj06maHuurh_SEWY6tKkQKTk72MbAFAnvGJkNJs3pQOisINEBCB41mA5SkBZUyPTh-oQU0ZzLFpq5z7X-BqsaRV43ktltErJeOvouAnsE7gkwk2YFB5Ifoux-ZcHNQdxfLXrVfnkz6ZQAVB6nPBLYdWpb7u-1JwyjcJjnZOV57y7LxW7H7WJDoheY3t-9gDyeOEjomegU_ETM3bW35ZsFASAh7NPAkf_STk_vdpWYzdVQty3q0YlSa2xRIjiIXQFwt28oI7eoucH8NW_qRtQGO1qCmGrXQBaWXWcaMVPmojsOqL7_V-IkTVFxHxpzB2u3ywWMdYoc1zRS1zmExRZ8ImjYLiA3HPSf8KlzuZNwbHFbYJdibWB0VFK0SjdBWtTno3C1zosmw8sIUsIlPyqeHzg9BTCFDqjbI8O7mvkevGgBQkDcV5bHQXIE26e9n1xnh1qUXDHgJmS6TCKxCO71rmQHKayNI7et5YVCyIN63IyUKqibGY9gUcV2VpWhjntuxZN-NnbRdG1KxCCySn9fbRl9UnOyWXQbzwj74wrPnVqAoxoHgVfR4FwA6FVVaerzReyfh5k0AuLitvxKnhXJ-pGfegZFe5eb5sK7BweoDbg9_IxQk456Q7kGlUeMkirI3LX4JcfGFibWBLs_bgwie19NpHe_-6t7KkYnPgrUWzEN4bEnOPIpfYYqtk-_uLgracLD6xvD9cnWUic6LcN3U6ksL4X8-3l0EP-wGK3zojSCh9KI0wvwYwXxxsIi7Rg_HwzSg11umN93e28ZH8E7wVhBomCzPWv0_R-gvvWPnjZ4vblvJRkvkCuGjPxP_wkfNMDCLWQQENn0EG7FCs-iw6pwaANtKms91xAmz_RYoF70B2Z2wde_YgnjBmNCRzLRueJL900LkUUzXf8ck7KEyRLQ86nVx8IP4O-gWbaASQiMrHfqAbwUC3wuPTocA6jmzOaFWO6zJmbbngI_GpQGqUEbWDWqVHnr36HJybdqbdV7o1PbomffZQZQWxAh_yADL7VleSKMtTIUqJOPPhGewWHaJEbJ4j2WApAD8dppO9o4OQ6jQa2IFjLDOYFj_T6KdS9ZyEA5l67fO-pW02NRC8BEo7OxNpUecKMu6KglfYdvB2bxs77P2yp-2-H-1v8zEccfeYj7IsugAqgVHmqVwj4XpURbagg-OeQ-umf5fT5jCgaS8CVnurMlhZPeY5S11FXIQzy5QT8tGQqC8VFvvYYoB6pfsM1P1lH8xueVQB8K5yMoWscTvkqW6i8GwCSuWjupQ47Lrpv3neQxEYfIzvrlPZCb595JTMaK1r5ENj-haL7zS6Jes5c3DHaiRJYd0HLZtH1rtqSCXnuZlv9uDkXbS1eVVlya_4iu_Vsy9sogNMtfRvniuuvKs_PlV6gY8LD_OuJfImDQ4OzGnayTOB_nB27_3dbQIdcTJsOwTqDqY0XdFu_zU3WAcMoKhTsSosuJfgBUZbMb4w6dMMMoB_aSYWTwaQXHCoD7kO5GRhmlm9UvDq21FFQ0oyv24CN_zSGJxUsPrHeNng12kN4DCUwMburrXXxuEAztxzcU7vbmIxqP8TBoKoFq6qKkoMzvXZy5_XH3ISSWKNqrfuK9CBeqFACgTEur9Sa83x5nIatVZiPZ4zDCUh8V3_Z9TFmMhWXFnqx5Ym23lqZ8C_WdoNt6uCH8P_NEajuMYowmDCRA0bxDIv8ucocnWEG9QQP9GqbDR8J7V8Z2QKNbwQ7DIBGIThGO525rnoyrFgGdhoIH_Y4zpLaH_Ntn-cphyQBJcbomwOAc6NMRbXqHfE1zHthvxJD66bCyXVinVUmnbfpBDcXfRlZopy3xrVk6hwbTYnb89NXIrmJhOmxHkVW9qT5cvhWLiJwl7M6Ixx808UrNCodE0TTMaE06vuVLsOhiVmM9JWOn61S4mQNqjpMTJnbSq.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LjEtc29sLTIwMjYwOTI5fG9wZW5haSJ9",
+            "format": "openai-responses-v1",
+            "id": "rs_04761aba1e5afee4016af960bb489887d192f4f7fc97da7f47"
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "status": "needs_review",
+    "counts": [],
+    "count": null,
+    "accepted_proposal_ids": [],
+    "proposals": [],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [
+      {
+        "kind": "text",
+        "value": "3.05 \u2014 Wohnen/Essen",
+        "unit": null,
+        "evidence_ids": [
+          "view-a8743c22231aaddd52f44c13"
+        ],
+        "description": "Visually read room identifier and label. No printed area is visible for this room.",
+        "provenance": "model_reading",
+        "computed_geometry": false
+      }
+    ],
+    "notes": [
+      "A verified net floor area cannot be reported from the available evidence on the supplied page.",
+      "The exact native-room lookup for identifier 3.05 returned unsupported_native_source, despite the stated availability of registered Swiss native geometry.",
+      "The Raster2Seq fallback did not isolate room 3.05: its overlapping candidate includes adjacent kitchen and corridor space. It was rejected rather than repaired or used for measurement.",
+      "No area was computed. A verified native boundary for room 3.05 is needed before calculating its net area using source-bound scale."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [],
+      "candidate_ids": [
+        "r2s-b08721bdca8b515578765890",
+        "r2s-6be93870663da8d5695f8e15",
+        "r2s-7492cd2b3e676a027dc056ab",
+        "r2s-7888210f779f7603cc0c8e22",
+        "r2s-3383ca26f9b5a11ab8afdebd",
+        "r2s-f31870e15b7b7dfca7952912",
+        "r2s-f6057faa96480c8e8ef10b79",
+        "r2s-91ddf93af23bfcd5b04dc039",
+        "r2s-fba95408eab33df74a8fc658",
+        "r2s-b1388f5e8bac89abc8a06a4f",
+        "r2s-fda540fd78e32e835038645d"
+      ],
+      "view_ids": [
+        "view-a8743c22231aaddd52f44c13"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 12,
+        "predict_room_polygons": 1,
+        "read_pdf_text": 3,
+        "task_plan": 1
+      },
+      "vista_views_used": 2,
+      "sources": [
+        {
+          "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+          "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+          "width": 4961,
+          "height": 3508,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ]
+    },
+    "evidence_views": {
+      "view-a8743c22231aaddd52f44c13": {
+        "page_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_id": "page-4ac7ec74cdb49ee4e22dbdc4",
+        "source_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 4961,
+        "height": 3508,
+        "original_width": 4961,
+        "original_height": 3508,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "7694297fa71842e13229a1f88c940a626f0db4f9be4eb6463bcff4f85611c468",
+        "view_id": "view-a8743c22231aaddd52f44c13"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 35.58584760315716,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "route": "frontier",
+      "explicit_planning": true
+    },
+    "task_plan": [
+      "Retrieve the verified native candidate for exact room identifier 3.05 and positioned PDF text.",
+      "Bind a visible length scale to native page coordinates, then compute the candidate\u2019s net area including represented holes.",
+      "Return computed m\u00b2 with geometry/calibration evidence; report any printed area separately."
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "case_id": "count-swiss_dwellings-sink-102625",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "How many washbasins are drawn on this floor plan?",
+  "sources": [
+    {
+      "page_id": "page-753a73eaa2651c637667de2e",
+      "source_id": "page-753a73eaa2651c637667de2e",
+      "source_sha256": "2e98c89dfd7af364b355d802f034e8d8e6378a6f45f935ee23a1e9743ef7342e",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/swiss_dwellings/site3442_bldg5320_floor23645.render.png",
+      "width": 2382,
+      "height": 1684,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/swiss_dwellings/site3442_bldg5320_floor23645.pdf",
+      "pdf_sha256": "73839cef54fb7c67921c67856c003496a68f46051fad26328fa9afc198c16c84",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "object_count"
+}

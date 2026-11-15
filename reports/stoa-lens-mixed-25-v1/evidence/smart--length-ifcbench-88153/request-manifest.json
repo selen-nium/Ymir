@@ -1,0 +1,50 @@
+{
+  "case_id": "length-ifcbench-88153",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the total length of all walls on 'E00_OKRD', in metres?",
+  "sources": [
+    {
+      "page_id": "page-625b2eab8ba33fb4e8874a0a",
+      "source_id": "page-625b2eab8ba33fb4e8874a0a",
+      "source_sha256": "bf04515cf1ff0243ad0bfda54a05d37e3c7ebd9fe9ea468772f7aeed73be0e54",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/rwth-digitalhub_digitalhub-fm-arc-v2_plan-02-e00-okrd.render.png",
+      "width": 3751,
+      "height": 1479,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/rwth-digitalhub_digitalhub-fm-arc-v2_plan-02-e00-okrd.pdf",
+      "pdf_sha256": "be6430141eb783e1588437468c79d2af0269a60c4600103045cca0ce14d28c2d",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "c56d242d51f4d4ac6bde33b95e275661bed067d833b7474cf93b1ee802f3f82b",
+  "evaluation_mode": "computed_geometry"
+}

@@ -1,0 +1,50 @@
+{
+  "case_id": "count-swiss_dwellings-wc-99337",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "How many toilets (WC) are drawn on this floor plan?",
+  "sources": [
+    {
+      "page_id": "page-c48ad59540c912ede3046e1b",
+      "source_id": "page-c48ad59540c912ede3046e1b",
+      "source_sha256": "51142aac1254928bc092236d5353fe1fb1d8fd24119449f9125689065b44f61a",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/swiss_dwellings/site937_bldg1977_floor8710.render.png",
+      "width": 1684,
+      "height": 2382,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/swiss_dwellings/site937_bldg1977_floor8710.pdf",
+      "pdf_sha256": "3a8c12e6ef2868b9780dbe57fb2eba283e54b8033554b90d2738f99c72f855fe",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "object_count"
+}

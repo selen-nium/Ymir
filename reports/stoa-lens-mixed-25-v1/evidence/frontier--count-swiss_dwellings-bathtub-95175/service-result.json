@@ -1,0 +1,530 @@
+{
+  "status": "completed",
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "object_class": "bathtub",
+        "object_classes": [
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "count": 2,
+        "accepted_proposal_ids": [
+          "proposal_6f8edc7c374f22bef07d",
+          "proposal_6dc565ec2367af49999d"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 2,
+    "accepted_proposal_ids": [
+      "proposal_6f8edc7c374f22bef07d",
+      "proposal_6dc565ec2367af49999d"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_97d6ea1be0d009594ed3",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          1476.4444580078125,
+          559.7625122070312,
+          1514.952880859375,
+          638.405517578125
+        ],
+        "view_box_xyxy": [
+          1476.4444580078125,
+          559.7625122070312,
+          1514.952880859375,
+          638.405517578125
+        ],
+        "native_box_xyxy": [
+          1476.4444580078125,
+          559.7625122070312,
+          1514.952880859375,
+          638.405517578125
+        ],
+        "confidence": 0.42155182361602783,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "page": 0,
+        "query_class": "bathtub",
+        "requested_class": "bathtub",
+        "target_classes": [
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_6f8edc7c374f22bef07d",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          618.0,
+          401.0,
+          636.0,
+          463.0
+        ],
+        "view_box_xyxy": [
+          1472.076,
+          556.588,
+          1514.952,
+          642.644
+        ],
+        "native_box_xyxy": [
+          1472.076,
+          556.588,
+          1514.952,
+          642.644
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "page": 0,
+        "query_class": "bathtub",
+        "requested_class": "bathtub",
+        "target_classes": [
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_6dc565ec2367af49999d",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          618.0,
+          579.0,
+          636.0,
+          641.0
+        ],
+        "view_box_xyxy": [
+          1472.076,
+          803.6519999999999,
+          1514.952,
+          889.708
+        ],
+        "native_box_xyxy": [
+          1472.076,
+          803.6519999999999,
+          1514.952,
+          889.708
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "page": 0,
+        "query_class": "bathtub",
+        "requested_class": "bathtub",
+        "target_classes": [
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_609d9423f95d4953d44f",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          33.0,
+          483.0,
+          52.0,
+          560.0
+        ],
+        "view_box_xyxy": [
+          78.60600000000001,
+          1530.968,
+          123.864,
+          1553.76
+        ],
+        "native_box_xyxy": [
+          78.60600000000001,
+          1530.968,
+          123.864,
+          1553.76
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "page": 0,
+        "query_class": "bathtub",
+        "requested_class": "bathtub",
+        "target_classes": [
+          "bathtub"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "2 bathtubs: one in bathroom 2.07 and one in bathroom 2.10. Excluded the legend symbol and duplicate proposal."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "target_classes": [
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          2382,
+          1388
+        ],
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "proposal_ids": [
+          "proposal_97d6ea1be0d009594ed3",
+          "proposal_6f8edc7c374f22bef07d",
+          "proposal_6dc565ec2367af49999d"
+        ]
+      },
+      {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "target_classes": [
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          1388,
+          2382,
+          1684
+        ],
+        "view_id": "view-ed8c81da642fd3de8c6d34c6",
+        "proposal_ids": [
+          "proposal_609d9423f95d4953d44f"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_97d6ea1be0d009594ed3",
+        "proposal_6f8edc7c374f22bef07d",
+        "proposal_6dc565ec2367af49999d",
+        "proposal_609d9423f95d4953d44f"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-ed8c81da642fd3de8c6d34c6",
+        "view-dfdfa2a72441e918234d559e",
+        "view-0ac14bb6e1edf3f389596bef",
+        "view-9541910c3d5944fd223d9b35"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4,
+        "coverage_plan": 1
+      },
+      "vista_views_used": 3,
+      "sources": [
+        {
+          "page_id": "page-e52bb2f09f67081af45e5cd8",
+          "source_id": "page-e52bb2f09f67081af45e5cd8",
+          "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+          "width": 2382,
+          "height": 1684,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0,
+          "pdf_sha256": "ea7bde4f91a901a802e541aa4390e069a668867b28a1bcf1b2aa9af433410e47"
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "object_classes": [
+          "bathtub"
+        ],
+        "description": "bathtub"
+      },
+      "coverage_plan": {
+        "plan_submitted": true,
+        "regions": [
+          {
+            "id": "plan",
+            "name": "Floor plan and surrounding upper page",
+            "region": [
+              0,
+              0,
+              2382,
+              1388
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          },
+          {
+            "id": "footer",
+            "name": "Legend, scale, and title block",
+            "region": [
+              0,
+              1388,
+              2382,
+              1684
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": true,
+      "regions": [
+        {
+          "id": "plan",
+          "name": "Floor plan and surrounding upper page",
+          "region": [
+            0,
+            0,
+            2382,
+            1388
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        },
+        {
+          "id": "footer",
+          "name": "Legend, scale, and title block",
+          "region": [
+            0,
+            1388,
+            2382,
+            1684
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+    },
+    "evidence_views": {
+      "view-ed8c81da642fd3de8c6d34c6": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 2382,
+        "height": 1684,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "pdf_page": 0,
+        "pdf_sha256": "ea7bde4f91a901a802e541aa4390e069a668867b28a1bcf1b2aa9af433410e47",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-ed8c81da642fd3de8c6d34c6"
+      },
+      "view-dfdfa2a72441e918234d559e": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 932,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.48875,
+          "scale_y": 1.4892703862660943,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "d55a42353ae22571384f96b8b2ee69f7a86ef0f30e6c4ea9e10b562251cca4bb",
+        "pdf_page": 0,
+        "pdf_sha256": "ea7bde4f91a901a802e541aa4390e069a668867b28a1bcf1b2aa9af433410e47",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-dfdfa2a72441e918234d559e"
+      },
+      "view-0ac14bb6e1edf3f389596bef": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 198,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 1.48875,
+          "scale_y": 1.494949494949495,
+          "origin_x": 0,
+          "origin_y": 1388
+        },
+        "image_sha256": "bf10ab88b41731f065cd147f46cd6baa5124ffcd0d0dd4a4726c29aed961a2e3",
+        "pdf_page": 0,
+        "pdf_sha256": "ea7bde4f91a901a802e541aa4390e069a668867b28a1bcf1b2aa9af433410e47",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-0ac14bb6e1edf3f389596bef"
+      },
+      "view-9541910c3d5944fd223d9b35": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_id": "page-e52bb2f09f67081af45e5cd8",
+        "source_sha256": "25cf7a8339ef71f0237b6facd4b8cdaf882a6711ae2089704654ad4ab12f69ba",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1059,
+        "height": 1600,
+        "original_width": 2382,
+        "original_height": 1684,
+        "transform": {
+          "scale_x": 0.23135033050047216,
+          "scale_y": 0.23125,
+          "origin_x": 1310,
+          "origin_y": 540
+        },
+        "image_sha256": "0f5371f5bdf0e018171feaed30eccb9ac821e0d2a6d3f82de9bb39a732640936",
+        "pdf_page": 0,
+        "pdf_sha256": "ea7bde4f91a901a802e541aa4390e069a668867b28a1bcf1b2aa9af433410e47",
+        "pdf_to_page": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "view_id": "view-9541910c3d5944fd223d9b35"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 108.50191179616377,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-e52bb2f09f67081af45e5cd8",
+        "target_classes": [
+          "bathtub"
+        ],
+        "description": "bathtub",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": true,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  },
+  "cleanup_errors": []
+}

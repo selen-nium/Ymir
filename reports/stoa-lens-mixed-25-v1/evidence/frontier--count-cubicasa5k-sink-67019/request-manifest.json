@@ -1,0 +1,39 @@
+{
+  "case_id": "count-cubicasa5k-sink-67019",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "How many sinks and wash basins (kitchen and bathroom combined; a double-bowl sink counts as one) are drawn on this floor plan?",
+  "sources": [
+    {
+      "page_id": "page-7da6346157b626d7754fa52f",
+      "source_id": "page-7da6346157b626d7754fa52f",
+      "source_sha256": "dfb1135615dfaf8eb061d8221339206615274512edb50e9703edeab5d5d718e6",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/cubicasa5k/high_quality_architectural-5508.png",
+      "width": 540,
+      "height": 442,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "object_count"
+}

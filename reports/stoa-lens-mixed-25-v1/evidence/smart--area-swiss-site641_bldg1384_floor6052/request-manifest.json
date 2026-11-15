@@ -1,0 +1,39 @@
+{
+  "case_id": "area-swiss-site641_bldg1384_floor6052",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the net floor area of room 4.07 ('Pi\u00e8ce') in m\u00b2? Calculate from verified room geometry and scale. Keep any printed area as a separate reading.",
+  "sources": [
+    {
+      "page_id": "page-d9fbc74612f4e6e41a433ba1",
+      "source_id": "page-d9fbc74612f4e6e41a433ba1",
+      "source_sha256": "b8e6f8c9a89d911dff6405555d6dc30f9e29687a595608697187ec35b305c51c",
+      "path": "stoa-workspace/data/room-area-pilot/sources/site641_bldg1384_floor6052.png",
+      "width": 3508,
+      "height": 4961,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "computed_geometry"
+}

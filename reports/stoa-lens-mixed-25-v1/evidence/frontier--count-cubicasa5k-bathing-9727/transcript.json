@@ -1,0 +1,2402 @@
+{
+  "transcript": [
+    {
+      "response_index": 0,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_GtdZBzI5PjmDbOejsZT6YwGF",
+            "function": {
+              "arguments": "{\"regions\":[{\"id\":\"whole-page\",\"name\":\"Entire floor plan and page margins\",\"region\":[0,0,760,486]}]}",
+              "name": "coverage_plan"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_GtdZBzI5PjmDbOejsZT6YwGF",
+      "tool": "coverage_plan",
+      "result": {
+        "status": "recorded",
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole-page",
+              "name": "Entire floor plan and page margins",
+              "region": [
+                0,
+                0,
+                760,
+                486
+              ],
+              "inspection_fraction": 0.0,
+              "detection_fraction": 0.0,
+              "inspected": false,
+              "detected": false
+            }
+          ],
+          "all_inspected": false,
+          "all_detected": false,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 11,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 12,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 717.3,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 1,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_EVSNFoQPM8hPdmaWRE5XrYsJ",
+            "function": {
+              "arguments": "{\"region\":[0,0,760,486],\"reason\":\"Detect all showers and bathtubs on the entire floor plan for the bathing target group, returning proposal IDs to resolve objects and duplicates.\"}",
+              "name": "detect_objects"
+            },
+            "type": "function"
+          },
+          {
+            "id": "call_DInMagUKTXVA3HQyETCnnfi8",
+            "function": {
+              "arguments": "{\"question\":\"Inspect the whole page for all showers and bathtubs and locate any ambiguous symbols needing closer review.\",\"views\":[{\"label\":\"Whole-page bathing fixture inspection\",\"turn\":0,\"region\":{\"x\":0,\"y\":0,\"width\":760,\"height\":486}}]}",
+              "name": "inspect"
+            },
+            "type": "function"
+          }
+        ],
+        "content": ""
+      }
+    },
+    {
+      "tool_call_id": "call_EVSNFoQPM8hPdmaWRE5XrYsJ",
+      "tool": "detect_objects",
+      "result": {
+        "status": "complete",
+        "proposals": [
+          {
+            "id": "proposal_cf7f804845c29140c2a5",
+            "label": "shower",
+            "raw_box_xyxy": [
+              267.71038818359375,
+              49.540916442871094,
+              278.4603271484375,
+              67.69506072998047
+            ],
+            "view_box_xyxy": [
+              267.71038818359375,
+              49.540916442871094,
+              278.4603271484375,
+              67.69506072998047
+            ],
+            "native_box_xyxy": [
+              267.71038818359375,
+              49.540916442871094,
+              278.4603271484375,
+              67.69506072998047
+            ],
+            "confidence": 0.7310585379600525,
+            "confidence_kind": "detector_score_uncalibrated",
+            "clipped": false,
+            "touches_crop_edge": false,
+            "requires_wider_inspection": false,
+            "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+            "view_id": "view-1d2d16e462947314219887be",
+            "model": "d-fine-l-junction-ema",
+            "page_id": "page-372fa21c800cac6f15ead6a5",
+            "source_id": "page-372fa21c800cac6f15ead6a5",
+            "page": 0,
+            "query_class": "bathing",
+            "requested_class": "bathing",
+            "target_classes": [
+              "shower",
+              "bathtub"
+            ]
+          },
+          {
+            "id": "proposal_0554ced64a493571e1e1",
+            "label": "bathtub",
+            "raw_box_xyxy": [
+              267.1939697265625,
+              39.22907638549805,
+              351.56390380859375,
+              79.49034881591797
+            ],
+            "view_box_xyxy": [
+              267.1939697265625,
+              39.22907638549805,
+              351.56390380859375,
+              79.49034881591797
+            ],
+            "native_box_xyxy": [
+              267.1939697265625,
+              39.22907638549805,
+              351.56390380859375,
+              79.49034881591797
+            ],
+            "confidence": 0.8933094143867493,
+            "confidence_kind": "detector_score_uncalibrated",
+            "clipped": false,
+            "touches_crop_edge": false,
+            "requires_wider_inspection": false,
+            "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+            "view_id": "view-1d2d16e462947314219887be",
+            "model": "d-fine-l-junction-ema",
+            "page_id": "page-372fa21c800cac6f15ead6a5",
+            "source_id": "page-372fa21c800cac6f15ead6a5",
+            "page": 0,
+            "query_class": "bathing",
+            "requested_class": "bathing",
+            "target_classes": [
+              "shower",
+              "bathtub"
+            ]
+          },
+          {
+            "id": "proposal_66b0e6535d6b7f1fd3d1",
+            "label": "bathtub",
+            "raw_box_xyxy": [
+              351.0,
+              80.0,
+              462.0,
+              163.0
+            ],
+            "view_box_xyxy": [
+              266.76,
+              38.879999999999995,
+              351.12,
+              79.218
+            ],
+            "native_box_xyxy": [
+              266.76,
+              38.879999999999995,
+              351.12,
+              79.218
+            ],
+            "confidence": 0.99,
+            "confidence_kind": "vlm_self_reported_uncalibrated",
+            "clipped": false,
+            "touches_crop_edge": false,
+            "requires_wider_inspection": false,
+            "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+            "view_id": "view-1d2d16e462947314219887be",
+            "model": "google/gemini-4-argon",
+            "page_id": "page-372fa21c800cac6f15ead6a5",
+            "source_id": "page-372fa21c800cac6f15ead6a5",
+            "page": 0,
+            "query_class": "bathing",
+            "requested_class": "bathing",
+            "target_classes": [
+              "shower",
+              "bathtub"
+            ]
+          }
+        ],
+        "uncertainties": [
+          "A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower."
+        ],
+        "receipt": {
+          "calls": [
+            {
+              "model": "d-fine-l-junction-ema + google/gemini-4-argon",
+              "routing": {
+                "backend": "dfine_argon",
+                "requested_class": "shower",
+                "canonical_class": "shower",
+                "class_id": 7
+              },
+              "status": "complete",
+              "proposals": [
+                {
+                  "id": "proposal_cf7f804845c29140c2a5",
+                  "label": "shower",
+                  "raw_box_xyxy": [
+                    267.71038818359375,
+                    49.540916442871094,
+                    278.4603271484375,
+                    67.69506072998047
+                  ],
+                  "view_box_xyxy": [
+                    267.71038818359375,
+                    49.540916442871094,
+                    278.4603271484375,
+                    67.69506072998047
+                  ],
+                  "native_box_xyxy": [
+                    267.71038818359375,
+                    49.540916442871094,
+                    278.4603271484375,
+                    67.69506072998047
+                  ],
+                  "confidence": 0.7310585379600525,
+                  "confidence_kind": "detector_score_uncalibrated",
+                  "clipped": false,
+                  "touches_crop_edge": false,
+                  "requires_wider_inspection": false,
+                  "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                  "view_id": "view-1d2d16e462947314219887be",
+                  "model": "d-fine-l-junction-ema"
+                }
+              ],
+              "uncertainties": [
+                "A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower."
+              ],
+              "receipt": {
+                "calls": [
+                  {
+                    "model": "d-fine-l-junction-ema",
+                    "status": "complete",
+                    "uncertainties": [],
+                    "proposals": [
+                      {
+                        "id": "proposal_cf7f804845c29140c2a5",
+                        "label": "shower",
+                        "raw_box_xyxy": [
+                          267.71038818359375,
+                          49.540916442871094,
+                          278.4603271484375,
+                          67.69506072998047
+                        ],
+                        "view_box_xyxy": [
+                          267.71038818359375,
+                          49.540916442871094,
+                          278.4603271484375,
+                          67.69506072998047
+                        ],
+                        "native_box_xyxy": [
+                          267.71038818359375,
+                          49.540916442871094,
+                          278.4603271484375,
+                          67.69506072998047
+                        ],
+                        "confidence": 0.7310585379600525,
+                        "confidence_kind": "detector_score_uncalibrated",
+                        "clipped": false,
+                        "touches_crop_edge": false,
+                        "requires_wider_inspection": false,
+                        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                        "view_id": "view-1d2d16e462947314219887be",
+                        "model": "d-fine-l-junction-ema"
+                      }
+                    ],
+                    "routing": {
+                      "backend": "dfine",
+                      "requested_class": "shower",
+                      "canonical_class": "shower",
+                      "class_id": 7
+                    },
+                    "receipt": {
+                      "checkpoint_sha256": "0f76bfabb562647a98f34d5dd3dd0d240eb5ef5ff7c1072fe14a4c667147cb8d",
+                      "checkpoint_epoch_zero_based": 18,
+                      "weights": "EMA",
+                      "architecture": "D-FINE-L",
+                      "resolution": 960,
+                      "precision": "BF16",
+                      "model_state_loaded_strictly": true,
+                      "head_classes": [
+                        "door_single",
+                        "door_double",
+                        "door_sliding",
+                        "window",
+                        "toilet_bowl",
+                        "sink",
+                        "bathtub",
+                        "shower",
+                        "cooker_stove",
+                        "refrigerator",
+                        "washing_machine",
+                        "dishwasher",
+                        "door",
+                        "appliance"
+                      ],
+                      "all_heads_foreground": true,
+                      "upstream_commit": "956d1709314c2c6a4df6f34de232054578a7449f",
+                      "upstream_tree_sha256": "ae2fe7efd6339676228c148a333163c0c5a853bcb3136ef3aae73699f3fd4988",
+                      "gpu": "NVIDIA RTX A4500",
+                      "head_policy": {
+                        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+                        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+                        "heads": [
+                          "door_single",
+                          "door_double",
+                          "door_sliding",
+                          "window",
+                          "toilet_bowl",
+                          "sink",
+                          "bathtub",
+                          "shower",
+                          "cooker_stove",
+                          "refrigerator",
+                          "washing_machine",
+                          "dishwasher",
+                          "door",
+                          "appliance"
+                        ]
+                      },
+                      "threshold": 0.25,
+                      "coordinate_space": "crop pixels xyxy",
+                      "requested_class": "shower",
+                      "all_class_predictions": [
+                        {
+                          "label": "door_single",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "raw_bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "confidence": 0.896251380443573,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "raw_bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "confidence": 0.8902942538261414,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 0,
+                          "bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "raw_bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "confidence": 0.8615382313728333,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 4,
+                          "bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "raw_bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "confidence": 0.8479677438735962,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 6,
+                          "bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "raw_bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "confidence": 0.842863142490387,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "raw_bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "confidence": 0.8289388418197632,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 14,
+                          "bbox_2d": [
+                            55.93673324584961,
+                            247.90892028808594,
+                            68.1312255859375,
+                            351.57073974609375
+                          ],
+                          "raw_bbox_2d": [
+                            55.93673324584961,
+                            247.90892028808594,
+                            68.1312255859375,
+                            351.57073974609375
+                          ],
+                          "confidence": 0.9304582476615906,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 12,
+                          "bbox_2d": [
+                            55.421302795410156,
+                            112.96747589111328,
+                            67.65670776367188,
+                            210.94696044921875
+                          ],
+                          "raw_bbox_2d": [
+                            55.421302795410156,
+                            112.96747589111328,
+                            67.65670776367188,
+                            210.94696044921875
+                          ],
+                          "confidence": 0.9263036847114563,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 13,
+                          "bbox_2d": [
+                            606.358154296875,
+                            53.93219757080078,
+                            618.7316284179688,
+                            164.061279296875
+                          ],
+                          "raw_bbox_2d": [
+                            606.358154296875,
+                            53.93219757080078,
+                            618.7316284179688,
+                            164.061279296875
+                          ],
+                          "confidence": 0.9207897186279297,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 19,
+                          "bbox_2d": [
+                            716.71630859375,
+                            40.5058708190918,
+                            723.0843505859375,
+                            227.56216430664062
+                          ],
+                          "raw_bbox_2d": [
+                            716.71630859375,
+                            40.5058708190918,
+                            723.0843505859375,
+                            227.56216430664062
+                          ],
+                          "confidence": 0.4532618522644043,
+                          "clipped": false
+                        },
+                        {
+                          "label": "toilet_bowl",
+                          "query_id": 9,
+                          "bbox_2d": [
+                            267.05963134765625,
+                            113.73062133789062,
+                            300.07354736328125,
+                            134.46450805664062
+                          ],
+                          "raw_bbox_2d": [
+                            267.05963134765625,
+                            113.73062133789062,
+                            300.07354736328125,
+                            134.46450805664062
+                          ],
+                          "confidence": 0.8688268065452576,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 10,
+                          "bbox_2d": [
+                            222.63645935058594,
+                            73.53215026855469,
+                            246.7222137451172,
+                            107.36055755615234
+                          ],
+                          "raw_bbox_2d": [
+                            222.63645935058594,
+                            73.53215026855469,
+                            246.7222137451172,
+                            107.36055755615234
+                          ],
+                          "confidence": 0.9196425676345825,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 11,
+                          "bbox_2d": [
+                            268.9010009765625,
+                            85.52806091308594,
+                            286.71051025390625,
+                            108.99544525146484
+                          ],
+                          "raw_bbox_2d": [
+                            268.9010009765625,
+                            85.52806091308594,
+                            286.71051025390625,
+                            108.99544525146484
+                          ],
+                          "confidence": 0.8872045874595642,
+                          "clipped": false
+                        },
+                        {
+                          "label": "bathtub",
+                          "query_id": 75,
+                          "bbox_2d": [
+                            267.1939697265625,
+                            39.22907638549805,
+                            351.56390380859375,
+                            79.49034881591797
+                          ],
+                          "raw_bbox_2d": [
+                            267.1939697265625,
+                            39.22907638549805,
+                            351.56390380859375,
+                            79.49034881591797
+                          ],
+                          "confidence": 0.8933094143867493,
+                          "clipped": false
+                        },
+                        {
+                          "label": "shower",
+                          "query_id": 22,
+                          "bbox_2d": [
+                            267.71038818359375,
+                            49.540916442871094,
+                            278.4603271484375,
+                            67.69506072998047
+                          ],
+                          "raw_bbox_2d": [
+                            267.71038818359375,
+                            49.540916442871094,
+                            278.4603271484375,
+                            67.69506072998047
+                          ],
+                          "confidence": 0.7310585379600525,
+                          "clipped": false
+                        },
+                        {
+                          "label": "cooker_stove",
+                          "query_id": 8,
+                          "bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "raw_bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "confidence": 0.9284088015556335,
+                          "clipped": false
+                        },
+                        {
+                          "label": "refrigerator",
+                          "query_id": 7,
+                          "bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "raw_bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "washing_machine",
+                          "query_id": 18,
+                          "bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "raw_bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "confidence": 0.4073334038257599,
+                          "clipped": false
+                        },
+                        {
+                          "label": "dishwasher",
+                          "query_id": 16,
+                          "bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "raw_bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "confidence": 0.2759094536304474,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "raw_bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "confidence": 0.9539660811424255,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "raw_bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "confidence": 0.9518632292747498,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 0,
+                          "bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "raw_bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "confidence": 0.9489172697067261,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 6,
+                          "bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "raw_bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "confidence": 0.9433475732803345,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "raw_bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 4,
+                          "bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "raw_bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 7,
+                          "bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "raw_bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "confidence": 0.9458011984825134,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 8,
+                          "bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "raw_bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "confidence": 0.9304582476615906,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 18,
+                          "bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "raw_bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "confidence": 0.4073334038257599,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 16,
+                          "bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "raw_bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "confidence": 0.3821414113044739,
+                          "clipped": false
+                        }
+                      ],
+                      "selection": "requested head only; no parent/child summation",
+                      "wall_seconds": 22.974947369191796,
+                      "worker_stderr": ""
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [
+                        {
+                          "label": "shower",
+                          "bbox_2d": [
+                            267.71038818359375,
+                            49.540916442871094,
+                            278.4603271484375,
+                            67.69506072998047
+                          ],
+                          "confidence": 0.7310585379600525
+                        }
+                      ],
+                      "uncertainties": []
+                    },
+                    "rejected": [],
+                    "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                    "region": [
+                      0,
+                      0,
+                      760,
+                      486
+                    ]
+                  },
+                  {
+                    "model": "google/gemini-4-argon",
+                    "status": "complete",
+                    "uncertainties": [
+                      "A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower."
+                    ],
+                    "proposals": [],
+                    "routing": {
+                      "backend": "gemini",
+                      "requested_class": "shower",
+                      "canonical_class": "shower",
+                      "class_id": null
+                    },
+                    "receipt": {
+                      "model": "google/gemini-4-argon",
+                      "reasoning": "high",
+                      "max_tokens": 65536,
+                      "usage": {
+                        "completion_tokens": 1519,
+                        "prompt_tokens": 1330,
+                        "total_tokens": 2849,
+                        "completion_tokens_details": {
+                          "audio_tokens": 0,
+                          "reasoning_tokens": 1453,
+                          "image_tokens": 0
+                        },
+                        "prompt_tokens_details": {
+                          "audio_tokens": 0,
+                          "cached_tokens": 0,
+                          "cache_write_tokens": 0,
+                          "video_tokens": 0
+                        },
+                        "cost": 0.01785,
+                        "is_byok": false,
+                        "cost_details": {
+                          "upstream_inference_cost": 0.01785,
+                          "upstream_inference_prompt_cost": 0.00266,
+                          "upstream_inference_completions_cost": 0.01519
+                        }
+                      },
+                      "cost_usd": 0.01785,
+                      "reservation_id": "lens-gemini-2373c24fa553e95c13f39756492eee5ff50b49f8805b0f57e22d4eb128a9c09f",
+                      "reservation_usd": 3.1663910999999993,
+                      "generation_id": "gen-1794727648-Q8ul6iEWheItofpnLi84",
+                      "provider": "google-vertex/global",
+                      "finish_reason": "stop",
+                      "text": "{\"status\": \"complete\", \"instances\": [], \"uncertainties\": [\"A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower.\"]}",
+                      "message": {
+                        "role": "assistant",
+                        "content": "{\"status\": \"complete\", \"instances\": [], \"uncertainties\": [\"A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower.\"]}",
+                        "reasoning": "**Locating All Bathing Areas**\n\nI'm currently focused on pinpointing every shower and bathtub throughout the entire floor plan. My aim is to ensure comprehensive identification for the designated bathing areas.\n\n**Investigating Bathtub Classification**\n\nI'm reviewing the annotation guidelines regarding bathtubs within the designated bathing areas. My current thought is to include them, especially given the mention of a \"bathing target group,\" though I'm considering the confidence level for classification.\n\n**Classifying Shower and Bathtub**\n\nI'm grappling with how to classify instances of bathtubs within the dataset. My current thinking is that if the system requests both \"shower\" and \"bathtub\" explicitly, I should maintain them as separate classes, especially since I've identified a clear bathtub. I'm considering if a bathtub should be labeled \"shower\" or if it requires a distinct \"bathtub\" label to ensure accuracy.\n\n**Diverting Classification Strategy**\n\nI've realized my previous approach to classifying bathtubs separately from showers was flawed. Given the benchmark's architecture, where prompts request specific classes individually, I must label bathtubs as \"shower\" if that's the requested class, even if it results in a false positive according to standard evaluation metrics.\n\n**Reconfirming Shower Classification**\n\nI'm revisiting the instruction to only label \"shower\" for this specific query, even if a bathtub is present. My analysis confirms no standalone showers in the \"Pesuhuone\" area, only a bathtub.\n\n",
+                        "reasoning_details": [
+                          {
+                            "type": "reasoning.textreasoning.textreasoning.textreasoning.textreasoning.textreasoning.encrypted",
+                            "text": "**Locating All Bathing Areas**\n\nI'm currently focused on pinpointing every shower and bathtub throughout the entire floor plan. My aim is to ensure comprehensive identification for the designated bathing areas.\n\n**Investigating Bathtub Classification**\n\nI'm reviewing the annotation guidelines regarding bathtubs within the designated bathing areas. My current thought is to include them, especially given the mention of a \"bathing target group,\" though I'm considering the confidence level for classification.\n\n**Classifying Shower and Bathtub**\n\nI'm grappling with how to classify instances of bathtubs within the dataset. My current thinking is that if the system requests both \"shower\" and \"bathtub\" explicitly, I should maintain them as separate classes, especially since I've identified a clear bathtub. I'm considering if a bathtub should be labeled \"shower\" or if it requires a distinct \"bathtub\" label to ensure accuracy.\n\n**Diverting Classification Strategy**\n\nI've realized my previous approach to classifying bathtubs separately from showers was flawed. Given the benchmark's architecture, where prompts request specific classes individually, I must label bathtubs as \"shower\" if that's the requested class, even if it results in a false positive according to standard evaluation metrics.\n\n**Reconfirming Shower Classification**\n\nI'm revisiting the instruction to only label \"shower\" for this specific query, even if a bathtub is present. My analysis confirms no standalone showers in the \"Pesuhuone\" area, only a bathtub.\n\n",
+                            "format": "google-gemini-v1google-gemini-v1google-gemini-v1google-gemini-v1google-gemini-v1google-gemini-v1",
+                            "data": "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.eyJlbmRwb2ludF9zbHVnIjoiZ29vZ2xlL2dlbWluaS00LWFyZ29uLTIwMjYxMDEzfGdvb2dsZS12ZXJ0ZXgvZ2xvYmFsIn0"
+                          }
+                        ]
+                      }
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [],
+                      "uncertainties": [
+                        "A bathtub is visible in the bathroom (Pesuhuone) at [81, 351, 164, 463], excluded here as it belongs to the bathtub class rather than shower."
+                      ]
+                    },
+                    "rejected": [],
+                    "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                    "region": [
+                      0,
+                      0,
+                      760,
+                      486
+                    ]
+                  }
+                ],
+                "failures": [],
+                "request_units": 2,
+                "same_region": [
+                  0,
+                  0,
+                  760,
+                  486
+                ],
+                "selection": "Orchestrator selects recorded IDs; no host union count or cross-model score ranking."
+              },
+              "region": [
+                0,
+                0,
+                760,
+                486
+              ],
+              "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d"
+            },
+            {
+              "model": "d-fine-l-junction-ema + google/gemini-4-argon",
+              "routing": {
+                "backend": "dfine_argon",
+                "requested_class": "bathtub",
+                "canonical_class": "bathtub",
+                "class_id": 6
+              },
+              "status": "complete",
+              "proposals": [
+                {
+                  "id": "proposal_0554ced64a493571e1e1",
+                  "label": "bathtub",
+                  "raw_box_xyxy": [
+                    267.1939697265625,
+                    39.22907638549805,
+                    351.56390380859375,
+                    79.49034881591797
+                  ],
+                  "view_box_xyxy": [
+                    267.1939697265625,
+                    39.22907638549805,
+                    351.56390380859375,
+                    79.49034881591797
+                  ],
+                  "native_box_xyxy": [
+                    267.1939697265625,
+                    39.22907638549805,
+                    351.56390380859375,
+                    79.49034881591797
+                  ],
+                  "confidence": 0.8933094143867493,
+                  "confidence_kind": "detector_score_uncalibrated",
+                  "clipped": false,
+                  "touches_crop_edge": false,
+                  "requires_wider_inspection": false,
+                  "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                  "view_id": "view-1d2d16e462947314219887be",
+                  "model": "d-fine-l-junction-ema"
+                },
+                {
+                  "id": "proposal_66b0e6535d6b7f1fd3d1",
+                  "label": "bathtub",
+                  "raw_box_xyxy": [
+                    351.0,
+                    80.0,
+                    462.0,
+                    163.0
+                  ],
+                  "view_box_xyxy": [
+                    266.76,
+                    38.879999999999995,
+                    351.12,
+                    79.218
+                  ],
+                  "native_box_xyxy": [
+                    266.76,
+                    38.879999999999995,
+                    351.12,
+                    79.218
+                  ],
+                  "confidence": 0.99,
+                  "confidence_kind": "vlm_self_reported_uncalibrated",
+                  "clipped": false,
+                  "touches_crop_edge": false,
+                  "requires_wider_inspection": false,
+                  "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                  "view_id": "view-1d2d16e462947314219887be",
+                  "model": "google/gemini-4-argon"
+                }
+              ],
+              "uncertainties": [],
+              "receipt": {
+                "calls": [
+                  {
+                    "model": "d-fine-l-junction-ema",
+                    "status": "complete",
+                    "uncertainties": [],
+                    "proposals": [
+                      {
+                        "id": "proposal_0554ced64a493571e1e1",
+                        "label": "bathtub",
+                        "raw_box_xyxy": [
+                          267.1939697265625,
+                          39.22907638549805,
+                          351.56390380859375,
+                          79.49034881591797
+                        ],
+                        "view_box_xyxy": [
+                          267.1939697265625,
+                          39.22907638549805,
+                          351.56390380859375,
+                          79.49034881591797
+                        ],
+                        "native_box_xyxy": [
+                          267.1939697265625,
+                          39.22907638549805,
+                          351.56390380859375,
+                          79.49034881591797
+                        ],
+                        "confidence": 0.8933094143867493,
+                        "confidence_kind": "detector_score_uncalibrated",
+                        "clipped": false,
+                        "touches_crop_edge": false,
+                        "requires_wider_inspection": false,
+                        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                        "view_id": "view-1d2d16e462947314219887be",
+                        "model": "d-fine-l-junction-ema"
+                      }
+                    ],
+                    "routing": {
+                      "backend": "dfine",
+                      "requested_class": "bathtub",
+                      "canonical_class": "bathtub",
+                      "class_id": 6
+                    },
+                    "receipt": {
+                      "checkpoint_sha256": "0f76bfabb562647a98f34d5dd3dd0d240eb5ef5ff7c1072fe14a4c667147cb8d",
+                      "checkpoint_epoch_zero_based": 18,
+                      "weights": "EMA",
+                      "architecture": "D-FINE-L",
+                      "resolution": 960,
+                      "precision": "BF16",
+                      "model_state_loaded_strictly": true,
+                      "head_classes": [
+                        "door_single",
+                        "door_double",
+                        "door_sliding",
+                        "window",
+                        "toilet_bowl",
+                        "sink",
+                        "bathtub",
+                        "shower",
+                        "cooker_stove",
+                        "refrigerator",
+                        "washing_machine",
+                        "dishwasher",
+                        "door",
+                        "appliance"
+                      ],
+                      "all_heads_foreground": true,
+                      "upstream_commit": "956d1709314c2c6a4df6f34de232054578a7449f",
+                      "upstream_tree_sha256": "ae2fe7efd6339676228c148a333163c0c5a853bcb3136ef3aae73699f3fd4988",
+                      "gpu": "NVIDIA RTX A4500",
+                      "head_policy": {
+                        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+                        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+                        "heads": [
+                          "door_single",
+                          "door_double",
+                          "door_sliding",
+                          "window",
+                          "toilet_bowl",
+                          "sink",
+                          "bathtub",
+                          "shower",
+                          "cooker_stove",
+                          "refrigerator",
+                          "washing_machine",
+                          "dishwasher",
+                          "door",
+                          "appliance"
+                        ]
+                      },
+                      "threshold": 0.25,
+                      "coordinate_space": "crop pixels xyxy",
+                      "requested_class": "bathtub",
+                      "all_class_predictions": [
+                        {
+                          "label": "door_single",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "raw_bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "confidence": 0.896251380443573,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "raw_bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "confidence": 0.8902942538261414,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 0,
+                          "bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "raw_bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "confidence": 0.8615382313728333,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 4,
+                          "bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "raw_bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "confidence": 0.8479677438735962,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 6,
+                          "bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "raw_bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "confidence": 0.842863142490387,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door_single",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "raw_bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "confidence": 0.8289388418197632,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 14,
+                          "bbox_2d": [
+                            55.93673324584961,
+                            247.90892028808594,
+                            68.1312255859375,
+                            351.57073974609375
+                          ],
+                          "raw_bbox_2d": [
+                            55.93673324584961,
+                            247.90892028808594,
+                            68.1312255859375,
+                            351.57073974609375
+                          ],
+                          "confidence": 0.9304582476615906,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 12,
+                          "bbox_2d": [
+                            55.421302795410156,
+                            112.96747589111328,
+                            67.65670776367188,
+                            210.94696044921875
+                          ],
+                          "raw_bbox_2d": [
+                            55.421302795410156,
+                            112.96747589111328,
+                            67.65670776367188,
+                            210.94696044921875
+                          ],
+                          "confidence": 0.9263036847114563,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 13,
+                          "bbox_2d": [
+                            606.358154296875,
+                            53.93219757080078,
+                            618.7316284179688,
+                            164.061279296875
+                          ],
+                          "raw_bbox_2d": [
+                            606.358154296875,
+                            53.93219757080078,
+                            618.7316284179688,
+                            164.061279296875
+                          ],
+                          "confidence": 0.9207897186279297,
+                          "clipped": false
+                        },
+                        {
+                          "label": "window",
+                          "query_id": 19,
+                          "bbox_2d": [
+                            716.71630859375,
+                            40.5058708190918,
+                            723.0843505859375,
+                            227.56216430664062
+                          ],
+                          "raw_bbox_2d": [
+                            716.71630859375,
+                            40.5058708190918,
+                            723.0843505859375,
+                            227.56216430664062
+                          ],
+                          "confidence": 0.4532618522644043,
+                          "clipped": false
+                        },
+                        {
+                          "label": "toilet_bowl",
+                          "query_id": 9,
+                          "bbox_2d": [
+                            267.05963134765625,
+                            113.73062133789062,
+                            300.07354736328125,
+                            134.46450805664062
+                          ],
+                          "raw_bbox_2d": [
+                            267.05963134765625,
+                            113.73062133789062,
+                            300.07354736328125,
+                            134.46450805664062
+                          ],
+                          "confidence": 0.8688268065452576,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 10,
+                          "bbox_2d": [
+                            222.63645935058594,
+                            73.53215026855469,
+                            246.7222137451172,
+                            107.36055755615234
+                          ],
+                          "raw_bbox_2d": [
+                            222.63645935058594,
+                            73.53215026855469,
+                            246.7222137451172,
+                            107.36055755615234
+                          ],
+                          "confidence": 0.9196425676345825,
+                          "clipped": false
+                        },
+                        {
+                          "label": "sink",
+                          "query_id": 11,
+                          "bbox_2d": [
+                            268.9010009765625,
+                            85.52806091308594,
+                            286.71051025390625,
+                            108.99544525146484
+                          ],
+                          "raw_bbox_2d": [
+                            268.9010009765625,
+                            85.52806091308594,
+                            286.71051025390625,
+                            108.99544525146484
+                          ],
+                          "confidence": 0.8872045874595642,
+                          "clipped": false
+                        },
+                        {
+                          "label": "bathtub",
+                          "query_id": 75,
+                          "bbox_2d": [
+                            267.1939697265625,
+                            39.22907638549805,
+                            351.56390380859375,
+                            79.49034881591797
+                          ],
+                          "raw_bbox_2d": [
+                            267.1939697265625,
+                            39.22907638549805,
+                            351.56390380859375,
+                            79.49034881591797
+                          ],
+                          "confidence": 0.8933094143867493,
+                          "clipped": false
+                        },
+                        {
+                          "label": "shower",
+                          "query_id": 22,
+                          "bbox_2d": [
+                            267.71038818359375,
+                            49.540916442871094,
+                            278.4603271484375,
+                            67.69506072998047
+                          ],
+                          "raw_bbox_2d": [
+                            267.71038818359375,
+                            49.540916442871094,
+                            278.4603271484375,
+                            67.69506072998047
+                          ],
+                          "confidence": 0.7310585379600525,
+                          "clipped": false
+                        },
+                        {
+                          "label": "cooker_stove",
+                          "query_id": 8,
+                          "bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "raw_bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "confidence": 0.9284088015556335,
+                          "clipped": false
+                        },
+                        {
+                          "label": "refrigerator",
+                          "query_id": 7,
+                          "bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "raw_bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "washing_machine",
+                          "query_id": 18,
+                          "bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "raw_bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "confidence": 0.4073334038257599,
+                          "clipped": false
+                        },
+                        {
+                          "label": "dishwasher",
+                          "query_id": 16,
+                          "bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "raw_bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "confidence": 0.2759094536304474,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 2,
+                          "bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "raw_bbox_2d": [
+                            210.3269805908203,
+                            181.39817810058594,
+                            256.1140441894531,
+                            221.58551025390625
+                          ],
+                          "confidence": 0.9539660811424255,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 1,
+                          "bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "raw_bbox_2d": [
+                            351.3318786621094,
+                            179.2480010986328,
+                            397.2998962402344,
+                            219.74227905273438
+                          ],
+                          "confidence": 0.9518632292747498,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 0,
+                          "bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "raw_bbox_2d": [
+                            303.7423095703125,
+                            168.54884338378906,
+                            339.00067138671875,
+                            209.85121154785156
+                          ],
+                          "confidence": 0.9489172697067261,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 6,
+                          "bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "raw_bbox_2d": [
+                            210.43026733398438,
+                            338.5468444824219,
+                            256.7494812011719,
+                            377.3898620605469
+                          ],
+                          "confidence": 0.9433475732803345,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 3,
+                          "bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "raw_bbox_2d": [
+                            261.2165832519531,
+                            418.6242980957031,
+                            301.1077880859375,
+                            470.4250793457031
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "door",
+                          "query_id": 4,
+                          "bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "raw_bbox_2d": [
+                            606.5086059570312,
+                            165.2508544921875,
+                            659.3718872070312,
+                            205.5915985107422
+                          ],
+                          "confidence": 0.9425067901611328,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 7,
+                          "bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "raw_bbox_2d": [
+                            99.31504821777344,
+                            39.02824401855469,
+                            131.5811309814453,
+                            70.77946472167969
+                          ],
+                          "confidence": 0.9458011984825134,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 8,
+                          "bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "raw_bbox_2d": [
+                            218.99346923828125,
+                            123.28311920166016,
+                            249.73373413085938,
+                            154.30560302734375
+                          ],
+                          "confidence": 0.9304582476615906,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 18,
+                          "bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "raw_bbox_2d": [
+                            266.97479248046875,
+                            137.91583251953125,
+                            299.9027404785156,
+                            168.72323608398438
+                          ],
+                          "confidence": 0.4073334038257599,
+                          "clipped": false
+                        },
+                        {
+                          "label": "appliance",
+                          "query_id": 16,
+                          "bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "raw_bbox_2d": [
+                            177.09469604492188,
+                            38.98066329956055,
+                            209.1477508544922,
+                            70.97181701660156
+                          ],
+                          "confidence": 0.3821414113044739,
+                          "clipped": false
+                        }
+                      ],
+                      "selection": "requested head only; no parent/child summation",
+                      "wall_seconds": 42.127890469972044,
+                      "worker_stderr": ""
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [
+                        {
+                          "label": "bathtub",
+                          "bbox_2d": [
+                            267.1939697265625,
+                            39.22907638549805,
+                            351.56390380859375,
+                            79.49034881591797
+                          ],
+                          "confidence": 0.8933094143867493
+                        }
+                      ],
+                      "uncertainties": []
+                    },
+                    "rejected": [],
+                    "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                    "region": [
+                      0,
+                      0,
+                      760,
+                      486
+                    ]
+                  },
+                  {
+                    "model": "google/gemini-4-argon",
+                    "status": "complete",
+                    "uncertainties": [],
+                    "proposals": [
+                      {
+                        "id": "proposal_66b0e6535d6b7f1fd3d1",
+                        "label": "bathtub",
+                        "raw_box_xyxy": [
+                          351.0,
+                          80.0,
+                          462.0,
+                          163.0
+                        ],
+                        "view_box_xyxy": [
+                          266.76,
+                          38.879999999999995,
+                          351.12,
+                          79.218
+                        ],
+                        "native_box_xyxy": [
+                          266.76,
+                          38.879999999999995,
+                          351.12,
+                          79.218
+                        ],
+                        "confidence": 0.99,
+                        "confidence_kind": "vlm_self_reported_uncalibrated",
+                        "clipped": false,
+                        "touches_crop_edge": false,
+                        "requires_wider_inspection": false,
+                        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                        "view_id": "view-1d2d16e462947314219887be",
+                        "model": "google/gemini-4-argon"
+                      }
+                    ],
+                    "routing": {
+                      "backend": "gemini",
+                      "requested_class": "bathtub",
+                      "canonical_class": "bathtub",
+                      "class_id": null
+                    },
+                    "receipt": {
+                      "model": "google/gemini-4-argon",
+                      "reasoning": "high",
+                      "max_tokens": 65536,
+                      "usage": {
+                        "completion_tokens": 995,
+                        "prompt_tokens": 1330,
+                        "total_tokens": 2325,
+                        "completion_tokens_details": {
+                          "audio_tokens": 0,
+                          "reasoning_tokens": 936,
+                          "image_tokens": 0
+                        },
+                        "prompt_tokens_details": {
+                          "audio_tokens": 0,
+                          "cached_tokens": 0,
+                          "cache_write_tokens": 0,
+                          "video_tokens": 0
+                        },
+                        "cost": 0.01261,
+                        "is_byok": false,
+                        "cost_details": {
+                          "upstream_inference_cost": 0.01261,
+                          "upstream_inference_prompt_cost": 0.00266,
+                          "upstream_inference_completions_cost": 0.00995
+                        }
+                      },
+                      "cost_usd": 0.01261,
+                      "reservation_id": "lens-gemini-6b43e24b9680321bd85dd4d85f384863b69baf891b2b56cd53899a0d6d1b4a00",
+                      "reservation_usd": 3.1663910999999993,
+                      "generation_id": "gen-1794727717-0AK979cOdfl8TsKimqv4",
+                      "provider": "google-vertex/global",
+                      "finish_reason": "stop",
+                      "text": "{\"status\": \"complete\", \"instances\": [{\"label\": \"bathtub\", \"bbox_2d\": [351, 80, 462, 163], \"confidence\": 0.99}], \"uncertainties\": []}",
+                      "message": {
+                        "role": "assistant",
+                        "content": "{\"status\": \"complete\", \"instances\": [{\"label\": \"bathtub\", \"bbox_2d\": [351, 80, 462, 163], \"confidence\": 0.99}], \"uncertainties\": []}",
+                        "reasoning": "**Detecting Bath Tubs**\n\nI'm actively identifying and confirming instances of bathtubs. My focus is on precise recognition of this specific object class.\n\n**Refining Bathtub Coordinates**\n\nI've successfully isolated the bathtub within the bathroom area and am now meticulously refining its bounding box coordinates. My efforts are specifically targeted to ensure strict adherence to the requested `bathtub` label, excluding any other bathing fixtures.\n\n**Improving Tub Boundaries**\n\nI'm meticulously adjusting the bathtub's bounding box. My current focus is on incorporating the enclosure's edge lines to more accurately represent its spatial extent. I've also begun noting other fixtures in the vicinity.\n\n",
+                        "reasoning_details": [
+                          {
+                            "type": "reasoning.textreasoning.textreasoning.textreasoning.encrypted",
+                            "text": "**Detecting Bath Tubs**\n\nI'm actively identifying and confirming instances of bathtubs. My focus is on precise recognition of this specific object class.\n\n**Refining Bathtub Coordinates**\n\nI've successfully isolated the bathtub within the bathroom area and am now meticulously refining its bounding box coordinates. My efforts are specifically targeted to ensure strict adherence to the requested `bathtub` label, excluding any other bathing fixtures.\n\n**Improving Tub Boundaries**\n\nI'm meticulously adjusting the bathtub's bounding box. My current focus is on incorporating the enclosure's edge lines to more accurately represent its spatial extent. I've also begun noting other fixtures in the vicinity.\n\n",
+                            "format": "google-gemini-v1google-gemini-v1google-gemini-v1google-gemini-v1",
+                            "data": "AY89a1+0udPV2x++wj2nIh5gYymGWy+4gf5tUeKI/ftc1Y7j6NtwUmfNAayGZDwVJIwyqDFK3gEV/2sEZxh4HJQrnZs0SUjE9b92NIrEJ5wz2ecG6xWBdh9Y5ofvrWrC4MRju/rbquQtvEi4iiSQ3q4IxfKtaIMOKno9rDTrl8KeYUm7Gar2MTjXN76uIl5XBN5FQiFi090sbSczP14Ja6kWllVPYAj4CRn2/XV2nhpcAduD/aWr7yjd7IBbeFCAi4ALLadvk/7ZauWZP9KfHYJqUXyKiwciahF96IhG7L1ldpD0SPEJDsDEOrSIXy3umnPIggVyb2ic7QNFd3GcHuqVPhY5zIv4RRE3TF083azy/hKy4vPKdQxmWV1Tp1Em8ZJ7q+z14k/5kFKaH4H9mQ4YDNEULLwYQ5mQkFP8dEJpeXPdcdUPZ9i0xn6FmgUUPtrTsMBr0AWCqoZc4ve18N2jVH2O17t/T9lPWDlr65Pe2pbNyQwNQ2r3fxH89Onm/O3X4Zmz+BNc570gtfdDDPjp3QshYxB456JAh3pVlWPp/IICcsoPzWESgcR1kfIp6yKdyKKedjJJ0C/9rbBzDXMjPKHxOqzotHOf9lPnAZZ7P/KnAQuXc18ZVnmfUB2xZMbJspMVBSYPkDA/7Le4XnLHSAbbZmYbrSB87MggGb34m+pGQZH0VKdu76VkGOTszX0BFVxpnP85jjYXKdSxq5H8IMzjV8d5Xb5bpjIh8IY0u5MOCzH2MWXmoNxZA7a+9GTje4l33diSJIkcPl1dhpq4nV6VMe0bg9AMjpTRqOnr+c0g3ptE9+iGmEJq3r2N08PNP5EU62uIxk88PHz0j21lKgyn6PzNdqZyp2dR47Eps84UMTP7eHaPXGldbMvKXKf27BF6Nyi1o2beO3YWPaV1X0UUGTFM+j4hTjCQ1LVcdTmVvC7U4OOLxG5kQI4B1mIeGA0kREmYkSYBABWMckjVfk2mxmQYUoH/C/Shv2bwe4XNDcSVyT1vCoET43qTmCPnveAPOyeIwhIYJkCuhyiiqbd0fefkC23xkte+GnMSTk+nGSwQR480W9k/bsGtuyJXxHtu6BETT/j/MiVHR54oTWGImH2XFtb+cOBd+olgP5a1T9QPIycONnNIJu+dvCNhy2DXRUTEXWO1xnNPOsuFSQXnmIA/bodPvC15/E3qh466UH8J8ADvo440RXvZrXQQVWjaWIBKGQz1PO+3CbufZ+X1g+0ABPMTKR3sZCRatGzqtyT7Skfm5+Up0SwPrygNEYCLCIlQtcGSR8cIHpcIOyTW8qgokfduP1oTRqpUnx3eghFr+ZNvv7M8PsveLYue0ZPoavLvL4HEIjKorhnUGyiKaFTA7Kw6YMQsjqjgHG/mXMXW2wA5ENV8Qg/yYydFKLo50wR08ry1CdWjqYRLMe+Aiyp8AR0Dzm6XTJg1kgQdk+S5tSyMTeciUkx/C3B3nWrhf5Pv76d6KKgBmivn/dPI+i1v3uDv61fv8ubz5zfOjAHCi0HawgY2GsxWaMJpR5tp7wiRQrMihlW2tWDJHT9HJCFD92sB/i58mQk+MIA7sRjGjWFx/aZA0eJ4RsIB376vGEgHept3fMa1XClxAM/6tNEExkqp8wCyCMQq0jrKjLLDpIslrGj20xrVJp31Flw2COrJwYqNf1nRQi3lO6s33zWtW1uNUfY9d7rOeoRHTCRdy5Jt5pFVErJsgsi2xbDgOVlxYXIgndCzJDKvH16kHiioAGW8F+0t/mh654mjoJJuSIdFfN4hayZWFNn2SAgYpBiJLmZKvoX4HOqYb6cTBVAgBOEr6MLOjS3+v9beApwn+VMG2h/e1ToBihFXCLX9nZrxZ4nLvpEzrxdxUEMRLJ3ZSfKqLQWryujoxmHVdLE/gYhsnVJYXkT5lAqhquNqgU0ajerCrxyPscARJbWk4Is8PEJ4mOj91JfYpbpS0qlNMmZYK3RpCzUlsQM7vX6jC4/RoGwklw6UZ5SZLdTdU9sueTc2X6k+gBJgBNfiyuQDrotcSpTer/+UHcN5KRntpJvMEu5XvhCN5+eRfoLsPAZHGe/LXqiTs9f9LzLs58dvIvSgyRKE6aCndcbfxAMu/rYq0E4iQaApL13/LjqvPohMtg63Kz3AfMduLdtpcI4tQUSDaCcBBWSIclmFIuA5ifCkjgCFMmqLg2hoG+zbbmpylbyQhcN63qP9VHYJ8ky/i9vtXbCmhbciCz4RCsbWln5Mi8clR0QCB0qE8tNprQgd85oB1tFmIPHkVSEK/ShV/EKBY7GtKAjloUHejdkTIqt6pg0HMGdKOIdvmOVR7DAdx5WQuO1pfH2vWUxY0S2TrKKWW7Zn1pjsVM13ZOi7fW5h8qEdon7Y7m/IX6lsTRZG1pnIAOHBfgwO7YAj7lhBVrhSPPPMzRLvLDG1HsM/G9VhMevmRE6DXzZej2bBNo6DUHqHdWYsWhdJfkYfiskrJta4VnNLA/qNIqefk9G6t91lg4QBsBbtjylLU7hXfPNyDDLUMGnFsn4bfv8SWWcbJRfLOXQE68U5P5svh0z4ouv92DdlAwduioh1mAaTx9Oh7y1qkEFlGQHOhRCuE85yGjWbqnL7eLS1KKjIGOBfUMD5sD36MKYHF4AX+Dye0B5RgkVWl0OUKlukTkvCmkQp3TBm2OiwPlW9TuLH6OVGT2rn8d92l99UaUvr6N8A3Y0zvWwbM0KeHRXS1KDwXMoqAj8SN4U2cRzViWOi1ELHibSxzfsGTqAuXYV4VBC0zDCB5iIqaQ0OgR99r3PW/GUlg32eBWsUr9xnT/SXsDOBr97aJoPXAswNi+msz0g2UAg3G7OddAHx+jLFUYnNQbvWHVqsEIeGOGlf0Oi17F7GfXJTpT+bLXt/T3ytf7fdm4BgI+GbU8FD5Ies1H0ZrCRL7PJYU1GZkp/sguHnVKrOI8zWTBMXNDbyq3L6HN9IPHr5mNi+KlEkWlzsCVfOA3ST+IOHJ71RmKGlqiEmUYElRryLNNn8TW+4AYfGTcCRqef5oh+68lWhch5016vYFU9Ol6Ipr28ei1orrDHvb8ytyv64M+IIXUGfjp6ZtED6JkDkUb5ajn7qEeamTmeP5ls+c8p8YbWaGUPbhvGeKwajSgNHwQjAeJgTJKUF2zF3r+N8ACoqcdaSV6Mcrnr600sUodNP2vDcQlB7HWYeKauuOdXZAX0Z64Eee8dJdtXJ7Ik6a3RG7Xn6VGuPSRRyZ0jHAWUgY3xTh/jZBcFLTBdMyO5/TYJJ7ZrPThf8kqWkACfPMSMaKY9xKDhMwA/ubLscNj7WBCbS4ufG8D0qBVYKiCizxKKKa6b9laQlWbKDjPh+QR/TndNBlF2AA07N530WJDZ3Y0BD4m809vvwZwOyEQDVOUOwdEw1OIkDyuoImXXOip0UvVGDXnDNZGt0HH90nPG6qTHErNzmtjQQWVDJSiCaNpFLfOaS76qNfUfWYOHLYucfaNrQNasoQr17jz0cvfZ3F3tWmLD/R/e2s9nc0gCkSiiXbiDrbU/lO4h00JDiyIFoWhb/o4kD+K0vXjHtDXEi/Pd5zk90XPzK8RjLmdlW/xrfGa6OsnT76XKcK+tGOyCWBJFAUzgdIvsYYg1RgCjDindA2blc9bVVCcPFlFesrsmcCs1LNE14PKLQKSxwRqQuRAVsPkZOFRnelFR8sDWuvrQECjazmnybi0nw/AKkNaBKP1SbKqK/2CtZJj5Rk0udBvbvHowdCLxX8Gfo8xtkxNkGF20V8KHQPmURyWiaEX3Y7+YS3KUl8K8jTJWq4zfICbvmfQX9PcUJ3Oc9RO3S+UXe71F2RFrkKKPhR5MIyuhQxytbvQk+mc93zkTiJQPBSZQaPHZ0KnbeaDWPOG1sHqz2fYt9sHxpsbVi2kwAGV1/sp6CvoUj3rCJSN/9o4aC5NyqzEfamyLJ9KhHpQRqCAof8QMkoukYvVTR5PE7Rj3usZ8nV8PjE5bAsdel9fUreCFeApXtC6weQ6Z5ycBPQx5k/J90ed3AbTxx9vHbbkkcaICEw0dhv3bj8UiwEsDcSt7RZRuGR2jzgrlQM6IFmROUKbkpH6ALXel7FhSz3M5uNic/G5xylaKKsQMJxKYYW46uDDg7FnFa2EXU5b8AwbhL+lRaCIiM65W/GLQy/QzI6Wl7TTAuOWL94j/WIy1jAuyiifZlAgCwR+Uz1krYqGspfovUGIt1K7ZABL0adSzsyPHlPIdHRsIDrAO6UIEQ33OqXWKG1dll+t/CBvpg9ZD/iv6/0jJPW1WIO5pbc7HZTZlQs9atC2wNqAXQ0/Y9EZO6Lx3/FfC+TCtDsPc+qRU6MayHKExu/VmussOjv/zEqlEB4Mrl9sl/wZSPp8kMWjQ8w3iIp0gZVAJyJOg98/jiRw4lgWrV5kHxCjLm6UtGge241BeJAnJlOxW4HoRer+p+Hq1x9I4j8DmcEtZSdsKdheN9QEzu5s9W3NnDP+/UeO5u7KWx3z/X4MuERPVoSK09AJd/6wF+w2kp7k/LDccNjMso9PwRYEWUgb7qlsZyalRsVCQ2XLQCSm73RwTNN1A7+3jNaJGmu8HVThSfH0I7o+rcNRoBxH2+IIp2B1QK6Rwm7tAH6xfXpOxVFekhP7mM4p1N0aHCElyw0VhXeHxNhN1Bv8EooZsfHmUObs2z+L0CYXk78Go7B3LNVliwJ2AfwwFvV8qcxSJvKmzRHZ4NYNFLWGCi3oVfbAzfbMkoivPPG0iA4Q9+8KOszUYOvx3MQAvxeKK3jElRZKyuMTetHhK86gVD6OgGcdtp5dffzKdBunRP7CmC1YhY3kfdIPXgr0svsnW6DRB1nuZEZ8w0SX9a7woM5bDCqKZ6g3NVitMqvlHkZiAMBxd5M44KohVVW4+cPtRORMXgngduUv0bjeUkHe4q5L84nM+xjsAah370/l3O5y1ulZ1A7qviIl4u26kg2NGzjcbkgsgkjUYNY5HQwZ/IicQ=.eyJlbmRwb2ludF9zbHVnIjoiZ29vZ2xlL2dlbWluaS00LWFyZ29uLTIwMjYxMDEzfGdvb2dsZS12ZXJ0ZXgvZ2xvYmFsIn0"
+                          }
+                        ]
+                      }
+                    },
+                    "raw": {
+                      "status": "complete",
+                      "instances": [
+                        {
+                          "label": "bathtub",
+                          "bbox_2d": [
+                            351,
+                            80,
+                            462,
+                            163
+                          ],
+                          "confidence": 0.99
+                        }
+                      ],
+                      "uncertainties": []
+                    },
+                    "rejected": [],
+                    "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+                    "region": [
+                      0,
+                      0,
+                      760,
+                      486
+                    ]
+                  }
+                ],
+                "failures": [],
+                "request_units": 2,
+                "same_region": [
+                  0,
+                  0,
+                  760,
+                  486
+                ],
+                "selection": "Orchestrator selects recorded IDs; no host union count or cross-model score ranking."
+              },
+              "region": [
+                0,
+                0,
+                760,
+                486
+              ],
+              "crop_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d"
+            }
+          ],
+          "routes": [
+            {
+              "backend": "dfine_argon",
+              "requested_class": "shower",
+              "canonical_class": "shower",
+              "class_id": 7
+            },
+            {
+              "backend": "dfine_argon",
+              "requested_class": "bathtub",
+              "canonical_class": "bathtub",
+              "class_id": 6
+            }
+          ]
+        },
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole-page",
+              "name": "Entire floor plan and page margins",
+              "region": [
+                0,
+                0,
+                760,
+                486
+              ],
+              "inspection_fraction": 0.0,
+              "detection_fraction": 1.0,
+              "inspected": false,
+              "detected": true
+            }
+          ],
+          "all_inspected": false,
+          "all_detected": true,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 20,
+          "remaining_tools": {
+            "detect_objects": 8,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 603.2,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "tool_call_id": "call_DInMagUKTXVA3HQyETCnnfi8",
+      "tool": "inspect",
+      "result": {
+        "ok": true,
+        "metadata": {
+          "visual_kind": "inspection",
+          "current_state_unchanged": true,
+          "view_count": 1,
+          "views": [
+            {
+              "index": 1,
+              "turn": 0,
+              "frame": 0,
+              "available_frames": 1,
+              "available_frame_range": [
+                0,
+                0
+              ],
+              "region": {
+                "x": 0,
+                "y": 0,
+                "width": 760,
+                "height": 486
+              },
+              "image_size": {
+                "width": 1600,
+                "height": 1023
+              }
+            }
+          ]
+        },
+        "registered_views": [
+          {
+            "page_id": "page-372fa21c800cac6f15ead6a5",
+            "source_id": "page-372fa21c800cac6f15ead6a5",
+            "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+            "page": 0,
+            "vista_turn": 0,
+            "width": 1600,
+            "height": 1023,
+            "original_width": 760,
+            "original_height": 486,
+            "transform": {
+              "scale_x": 0.475,
+              "scale_y": 0.4750733137829912,
+              "origin_x": 0,
+              "origin_y": 0
+            },
+            "image_sha256": "ec8ceb6f1ea7e1ae3d8c00f6f175915b5acbd3955680e5adfe731b7baaf504ba",
+            "view_id": "view-c2fb901e52e6d2eabc882754"
+          }
+        ],
+        "coverage_plan": {
+          "plan_submitted": true,
+          "regions": [
+            {
+              "id": "whole-page",
+              "name": "Entire floor plan and page margins",
+              "region": [
+                0,
+                0,
+                760,
+                486
+              ],
+              "inspection_fraction": 1.0,
+              "detection_fraction": 1.0,
+              "inspected": true,
+              "detected": true
+            }
+          ],
+          "all_inspected": true,
+          "all_detected": true,
+          "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+        },
+        "remaining_resources": {
+          "responses_remaining": 10,
+          "tools_per_response": 3,
+          "vista_views_remaining": 19,
+          "remaining_tools": {
+            "detect_objects": 8,
+            "read_pdf_text": 4,
+            "coverage_plan": 1
+          },
+          "tool_seconds_remaining": 603.1,
+          "failed_requests_consume_allowances": true,
+          "failed_detector_targets": []
+        }
+      }
+    },
+    {
+      "response_index": 2,
+      "final_phase": false,
+      "response": {
+        "role": "assistant",
+        "content": "{\n  \"status\": \"answered\",\n  \"accepted_proposal_ids\": [\"proposal_0554ced64a493571e1e1\"],\n  \"readings\": [\n    {\n      \"kind\": \"count\",\n      \"value\": 1,\n      \"unit\": \"fixtures\",\n      \"evidence_ids\": [\"proposal_0554ced64a493571e1e1\"],\n      \"description\": \"One bathtub; no separate showers.\"\n    }\n  ],\n  \"notes\": [\n    \"Duplicate bathtub detection excluded. The small shower proposal marks part of the bathtub, not a separate fixture.\"\n  ]\n}",
+        "reasoning": "**Evaluating bathroom layout**\n\nI need to decide on a bathtub since the shower proposal involves a tub drain. The dashed square might represent a laundry cabinet, and the dashed box with a zigzag likely indicates the washing machine reservation. It seems clear that I can reject the idea of a small drain or duplicate bathtub. I don't need to inspect further since it appears I can finalize my decision on just one bathtub.",
+        "reasoning_details": [
+          {
+            "type": "reasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summaryreasoning.summary",
+            "summary": "**Evaluating bathroom layout**\n\nI need to decide on a bathtub since the shower proposal involves a tub drain. The dashed square might represent a laundry cabinet, and the dashed box with a zigzag likely indicates the washing machine reservation. It seems clear that I can reject the idea of a small drain or duplicate bathtub. I don't need to inspect further since it appears I can finalize my decision on just one bathtub.",
+            "format": "openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1openai-responses-v1"
+          },
+          {
+            "type": "reasoning.encrypted",
+            "data": "gAAAAABq-V88RBZ-QAmH5qFZgiDnBdb18lErTUYvcX5vACp-iCt78cP3TDMhvXJ3949FRZHQZx2J7oqIt8Y6hft_biiPHQpecRsxt13ZY62abAjoGS_9jW55wecbTrltgZWIJ_bI9A5Zf0j0uOAKRl1YLlEmTC9ekHkTn8BUk-sVK2gIx98UNlo2tMXKIRwWLl0i2W3NOpeq3In-DuDwVIooDQeD7vsEN8lev3pqa8r3_eNObzVgvpjcf5BYiivSYZojIlUL9gOITmFNTtNRyC0NkkZ_xepsvTUsuz7zfS-_JofoFLKfbDWVGRCaLFHWau6UrsQpy077h4H4agKVzojAQnIazdnNFDwwke4YLAyEbBdbhAwmU4qhmMN_W1H6wAw2B09RavS0qCcJtmXNdoXyVLJx7srTtr3Z7mGFYTO9j7gzfpt9hHPdFiUlBa378AxLqEQu80VZGbQEhGZsUm9BDZ6TX7RibxPnAOglDTysvB_5eGsp-DVHE4TgAZpwzCObfzuhfY-ylup-A5AY3rJSUB6GzCIb4tXktuf3_eHgGOJWTxb-XT4SUy1dnLhe7esiery-nbwCgRd0f1s6F5pOGSvhZtuUiJl194wGveYwEqjvKjk_fM3jfzIuXFlWwCJinGLOD4CGW_zc9q4Iy4z_3xJpg4z1Z6TXEiKX3xCwyNFbQDwjTI8hwTEthm_ZbPYdiRJ7eEPSUGKXBb0i1J-DfDmVX7G40LHUHmlTnERctCXdVDrQSEQQV2IgLJqDaU1eiqqp6ahDUs0cxCMIxgV2Oz9_nQqVWOkUlnSzc8W9ACjGg7O8xMoDMr49Ma8NZyFL-HrcZDeSFdDV1vPLISGwvZxQxkqpLgXrIREGvnbz3jyh2xSRgeX1kuPH9QrQnffhJzYv8VGJ0j4o9ID42xT2OqL0b0V_Vr2eSejCTNmkUqPfg9RGWflb6YtOavjYRcRXcY9e8gCdV3Br_RRIVtH4KYxculaFRoUNimTGd6-kWeXGHEtK1YdOoOLxawyPSAlxQoLnJ1i0nznvGWMCsvPYjitWyt2eKTs6lioqrKTOiE2L6YQCOQkXDwofFthb_2bIu6AWTbXaFGOJ3D59MysCPVUPtB8WS9CmNJVvHvX8OE3_zCZrGQBBmvegZj__ki0buPaJv_iLzBWrJa1RmSlQQQW1YsIqaaBrhTjngooPjFjQf-SFMO5DK40knFcE7CBbUpiGhHKAoH8u8ZlqupQne19xFnWsxyjwri9IYJwqW5M7HSUNjR6S9GpMEIH7p7VhyqiofzqCBbloo0a3ewFgPCnDZt_ACDIJuUbmEilZGoBPsm7AbwUIUcjIJcd_9dfQ5nGqtTXeec8g3uzceWDtR5OL6TEIA50NInxTid6lzbOy0sSGuBE3RD97rzrU3E71cIvMD_Py_nDxUM9xAon1OK8IhPxdgoX2EXCYVvzEHHDNh0oiE2GZ1IAtWTxhFvKn2Go1pJ7qh6cbxc8byqvzg3MGxC-ZxFbYSqx0yRYfhTNYDJGRhvSgF4EjI97YF8xswO6I5ifLwYwtFtBNq2ExHckPKlGjwV_k_xgLi6nHgzHwgwiNoSOOx27jB0RfenBkRu1ukrNo4nlpExguhb9esXZdv8lDBy6tv7mhF47GKGeJqIDLMEyY0kaaUVEK_EsjMMAjIkio9fVETWL36DWhmZ1Ig4Z6cgaPLOKHf7SkDubBtqOD3tAtEX-lGNcFpV9qbNBuHUCZ1OoRJvOrh5iGCOmpyGVzzxWBEksCFH2IuPD8_Kr6ri_tuFCxHg6U2ZA1qZI90ZU1UgTEqnt8bVhKv51oWJiYB8Ff_NKSMg4Bs8BaQLXcHTcQdxBwtEd06LvVJbT1bF7EimYiX44rYNOtK7vPVWOF6pYTvidfDXVwqr2XZRlzorvgM5ulp4X8zTcb2uByJWBDR46mpglX4gn7Mbn0nEsXjoEyvAWoV9OkmHEruhRdTQVmLVctPJQ8mMno5eK9bFkPTzTsW7hAOSgiYeMMRTjpO-nFhrC-KVkp4VKHVVKdpGqSNVVPI3Y3QhmLwvBK0BpEYUYalJUp_5ByZK3bM6WzJv3kPSgSHqSI0pzZrw70wwVV3eTpGmYNHGd5vOmN2OhwMNUi-ETulxkTzTWeyxQutF6Xjb0IYMwP36FbVM4Q_0YKIGvyU8A18Mtlk69lkp1exEvddHIz0KZvDTg2izGtFUIcGREzLaZnZLIWHuET7vDPJOBFNw7VXRdwtsy0ylrRwY1W3aQjc7zJWrz77uCg-ouGRcReH9lTpTiVJwZacO4EpuRnmyN0Niyq7dRthH9i_jrrLKkm0OfQSAFTPwpwe6ESE_QL2TcgJ8ItgYLf-N_YpFurtR8m1CTN0T8tSMt_HJj83paWpTxbZiwoeeKMrNWNGI976m4K9mq4kfbywAxqyOV54kBfNO2G9Lmaa8u30jtYM6GLGmMjcnkhp5vctEDe4rZ87pfu-EWYHECOUwV3N6YPSEjby2_6grVhDTo9C770YqYgeFxZkSy8yv6mtcR8pILP08w53_FYTKmg7RWogkcXZ9JQc2STagDgM028jBwQnBjGfp0QrT-z8l7s2c9vQFG8rYS96im-ERgfkvK8zM31bQkmts0VARroEWj2wPoAcmqJyfooJYsEbw7ehoEJKZj-oytIG0KuF0uLZ-jpoyt0IcXwhSAFHCapvTpmH_rpxRw2imzRET3-mTkUTTftxD3SWKKUJGaZCekWNKvEYD1nwzwB24YhFIe9cP2Ewx4t0w26WLB5ZEhDSZKFiR1XmsT0l70tzTKSlvV0JjxwGmI1u_R6rVfsfNsGrYKcllwqEw479XGGhtZVRUJLqqV_nYV7DXtLfKqLinrJuepQkue6YFPR4C9dYoKAgXXet275krf7_2_toqWWtt7OFyzuPggC5lDiRoQiSVH_hKFYkGI_lwB7w6QYVCvqJuaxnRvP4UlQjZqx8NXl4_Fu_u2TCT93sr9S09HD-HLBTWzbesSCld209gyqxzskrPnbhmvurmei1i4dQTKnbaYTisFqB28IEhlYNm123T7PW2UALuGu-CM11kA5QChEr5qVhRv71ACqjVXoO96fx5ZMP9ndOGzCwLpVPjDjTaO1QOJvRblo8oVJsz9-5E8THpA7cqv-h2kFLV4CA0rW1ProB9STV6CMS3m-Xv2Um1PWpmUP1tdt-FZUBq9TCoSVcXuKw8uQLdbAUuzNytP-sKHRDtAV2NWoN-zFYRCn-SVWMPmaW6gpn5HRfXXoMiCaUnax8BDT5kKtq5FZ1W8ffDE8SFxzu2pVPEi3mT8GS_qHa5mnByiQet6a1bhEnbrxmYsFWJA5BZQbthCreVdH_4_rf9BrLD6p9Pr7M4XB8fsMBMG3w7rxdST-P3lvUnyRWPAZqjxEJhnpxP4WDliepgiG6-3KIkjSi6SuqszmYzMgtNXOIqKVZ7I_I_0q1IkZlh4HKeY85Qa28CSkRnGTPiiEYUJ6TnhIp0-IN5mYc4zeUhxwnSZPYav9Z_zhDlgw-jZq4lrZCG6jVp-iUsF5reA0lFc40HzSS0ge7G8CI6rwDnZrt_K_LZcgbL5oyPbsfZC0m3XCwGhLfpYiAw_7mRtEhD-qTh2v8Hv8rq9Y0BFpwpD5ZHrZKPXV7XOI5USuURFGLrOoVr6Zsobqc8pc4BMKyraYWjKjpyEX_yd6tZhNMC8sVEZ5mKU9Sy7CSQIFIryTI_JCjbP91Lw1oOvO50yzZpbI99KXP1Y2xyrTyCQ6JnO5-I2t1lGClOI0X-PYEHYENh4IaIGUCZsbzqNC9dF30FaeU3fKT3f2dyV04KsRPkmaD5U3l77rY_dA28Et_Dig-_c3QmLoYv_hrVeEfawz0qYwu5LJISlXNXpUaFgBCmkYG9-5rPkNX136iGfElHxB3I5wU2EjLEy2VwdawQobeg2OM6oiBGrEUugryLw8jMaXx7snvbqI4oRTGNVSGnMN2fdtKAtew_hRrUUvibTW67jLh7ZCvA57zV40V5-3RrS3cDXMbHRAIONYq1EpMXdC5iiiVI8tYbj4U2dhIXaw8ByVZmJz7-LzVIef43M9gYrhUypFiZF1SlVxUpaeWSrWZ1_7qK72g7bQRcx2WVwdQ9uZ45bVBKOy8-FGKtMfcpwUTVCVxgNJWlBiSlHWuQgbuwtxZtCyO9pmoeiooll98eqTQfCoyUKO_CJ_xn3bPz4OunVHrF5k65hFesSl8FTX.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LjEtc29sLTIwMjYwOTI5fG9wZW5haSJ9",
+            "format": "openai-responses-v1",
+            "id": "rs_053e2a45814b676f016af95f3a062c87d194fac077a9e75bf8"
+          }
+        ]
+      }
+    },
+    {
+      "validation_error": "Reading cites unregistered evidence"
+    },
+    {
+      "response_index": 3,
+      "final_phase": true,
+      "response": {
+        "role": "assistant",
+        "content": "{\n  \"status\": \"answered\",\n  \"accepted_proposal_ids\": [\"proposal_0554ced64a493571e1e1\"],\n  \"notes\": [\"Total: 1 bathing fixture\u2014one bathtub and no separate showers. Duplicate and bathtub-component proposals were excluded.\"]\n}"
+      }
+    }
+  ],
+  "result": {
+    "status": "answered",
+    "counts": [
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "object_class": "bathing",
+        "object_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "count": 1,
+        "accepted_proposal_ids": [
+          "proposal_0554ced64a493571e1e1"
+        ],
+        "detector_complete": true,
+        "reason": null
+      }
+    ],
+    "count": 1,
+    "accepted_proposal_ids": [
+      "proposal_0554ced64a493571e1e1"
+    ],
+    "proposals": [
+      {
+        "id": "proposal_cf7f804845c29140c2a5",
+        "label": "shower",
+        "raw_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "view_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "native_box_xyxy": [
+          267.71038818359375,
+          49.540916442871094,
+          278.4603271484375,
+          67.69506072998047
+        ],
+        "confidence": 0.7310585379600525,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_0554ced64a493571e1e1",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "view_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "native_box_xyxy": [
+          267.1939697265625,
+          39.22907638549805,
+          351.56390380859375,
+          79.49034881591797
+        ],
+        "confidence": 0.8933094143867493,
+        "confidence_kind": "detector_score_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "d-fine-l-junction-ema",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      },
+      {
+        "id": "proposal_66b0e6535d6b7f1fd3d1",
+        "label": "bathtub",
+        "raw_box_xyxy": [
+          351.0,
+          80.0,
+          462.0,
+          163.0
+        ],
+        "view_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.12,
+          79.218
+        ],
+        "native_box_xyxy": [
+          266.76,
+          38.879999999999995,
+          351.12,
+          79.218
+        ],
+        "confidence": 0.99,
+        "confidence_kind": "vlm_self_reported_uncalibrated",
+        "clipped": false,
+        "touches_crop_edge": false,
+        "requires_wider_inspection": false,
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be",
+        "model": "google/gemini-4-argon",
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "page": 0,
+        "query_class": "bathing",
+        "requested_class": "bathing",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ]
+      }
+    ],
+    "rooms": [],
+    "room_count": 0,
+    "readings": [],
+    "notes": [
+      "Total: 1 bathing fixture\u2014one bathtub and no separate showers. Duplicate and bathtub-component proposals were excluded."
+    ],
+    "text_associations": [],
+    "text_evidence": [],
+    "validation_errors": [],
+    "detections": [
+      {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "backend": "dfine_argon",
+        "status": "complete",
+        "region": [
+          0,
+          0,
+          760,
+          486
+        ],
+        "view_id": "view-1d2d16e462947314219887be",
+        "proposal_ids": [
+          "proposal_cf7f804845c29140c2a5",
+          "proposal_0554ced64a493571e1e1",
+          "proposal_66b0e6535d6b7f1fd3d1"
+        ]
+      }
+    ],
+    "measurements": [],
+    "coverage": {
+      "proposal_ids": [
+        "proposal_cf7f804845c29140c2a5",
+        "proposal_0554ced64a493571e1e1",
+        "proposal_66b0e6535d6b7f1fd3d1"
+      ],
+      "candidate_ids": [],
+      "view_ids": [
+        "view-1d2d16e462947314219887be",
+        "view-c2fb901e52e6d2eabc882754"
+      ],
+      "calibration_ids": [],
+      "text_ids": [],
+      "remaining_tools": {
+        "detect_objects": 8,
+        "read_pdf_text": 4,
+        "coverage_plan": 1
+      },
+      "vista_views_used": 1,
+      "sources": [
+        {
+          "page_id": "page-372fa21c800cac6f15ead6a5",
+          "source_id": "page-372fa21c800cac6f15ead6a5",
+          "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+          "width": 760,
+          "height": 486,
+          "page": 0,
+          "source_page": 1,
+          "vista_turn": 0
+        }
+      ],
+      "bound_target": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "object_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "description": "bathing"
+      },
+      "coverage_plan": {
+        "plan_submitted": true,
+        "regions": [
+          {
+            "id": "whole-page",
+            "name": "Entire floor plan and page margins",
+            "region": [
+              0,
+              0,
+              760,
+              486
+            ],
+            "inspection_fraction": 1.0,
+            "detection_fraction": 1.0,
+            "inspected": true,
+            "detected": true
+          }
+        ],
+        "all_inspected": true,
+        "all_detected": true,
+        "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+      }
+    },
+    "coverage_plan": {
+      "plan_submitted": true,
+      "regions": [
+        {
+          "id": "whole-page",
+          "name": "Entire floor plan and page margins",
+          "region": [
+            0,
+            0,
+            760,
+            486
+          ],
+          "inspection_fraction": 1.0,
+          "detection_fraction": 1.0,
+          "inspected": true,
+          "detected": true
+        }
+      ],
+      "all_inspected": true,
+      "all_detected": true,
+      "meaning": "Geometric coverage from tool receipts; it does not prove object recall or resolve ambiguous proposals."
+    },
+    "evidence_views": {
+      "view-1d2d16e462947314219887be": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 760,
+        "height": 486,
+        "original_width": 760,
+        "original_height": 486,
+        "transform": {
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "view_id": "view-1d2d16e462947314219887be"
+      },
+      "view-c2fb901e52e6d2eabc882754": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "source_id": "page-372fa21c800cac6f15ead6a5",
+        "source_sha256": "8eaeefdcd124470b3f2400f9f2a6206b83fb61b6e8bf4ebd1abefacdc21f7c7d",
+        "page": 0,
+        "vista_turn": 0,
+        "width": 1600,
+        "height": 1023,
+        "original_width": 760,
+        "original_height": 486,
+        "transform": {
+          "scale_x": 0.475,
+          "scale_y": 0.4750733137829912,
+          "origin_x": 0,
+          "origin_y": 0
+        },
+        "image_sha256": "ec8ceb6f1ea7e1ae3d8c00f6f175915b5acbd3955680e5adfe731b7baaf504ba",
+        "view_id": "view-c2fb901e52e6d2eabc882754"
+      }
+    },
+    "calibrations": [],
+    "elapsed_seconds": 128.8083668788895,
+    "configuration": {
+      "orchestrator": "openai/gpt-6.1-sol",
+      "reasoning": "high",
+      "max_output_tokens": 65536,
+      "dedicated_ocr": false,
+      "class_policy": {
+        "recipe_sha256": "37d69d30bc5003f270cacff4f67281bbed3d52e79eba196e1a2c0622670b9ab2",
+        "best_metadata_sha256": "aafde53267dfe77a137917bc5e80aa77381ea79a8ce67cbce91066b23fb0dcca",
+        "heads": [
+          "door_single",
+          "door_double",
+          "door_sliding",
+          "window",
+          "toilet_bowl",
+          "sink",
+          "bathtub",
+          "shower",
+          "cooker_stove",
+          "refrigerator",
+          "washing_machine",
+          "dishwasher",
+          "door",
+          "appliance"
+        ],
+        "mode": "dfine_and_argon",
+        "trained_class_policy": "both",
+        "untrained_class_policy": "argon_only",
+        "confidence_comparison": "uncalibrated; do not rank across models"
+      },
+      "limits": {
+        "responses": 12,
+        "tools_per_response": 3,
+        "detector_requests": 12,
+        "raster_predictions": 2,
+        "text_requests": 4,
+        "deadline_s": 900,
+        "final_reserve_s": 180
+      },
+      "provider": "OpenRouter",
+      "cv_model": "google/gemini-4-argon",
+      "dfine_enabled": true,
+      "paired_detection": true,
+      "verda_disabled": true,
+      "bound_counter": {
+        "page_id": "page-372fa21c800cac6f15ead6a5",
+        "target_classes": [
+          "shower",
+          "bathtub"
+        ],
+        "description": "bathing",
+        "backend": "dfine_argon",
+        "atomic_crop": true,
+        "dedicated_ocr": false,
+        "complete_detector_required": true,
+        "historical_difference": "historical harness counted after any successful valid detector reply, including partial"
+      },
+      "coverage_planning": {
+        "enabled": true,
+        "vista_view_limit": 20,
+        "coverage_source": "Actual registered VISTA views and complete detector receipts",
+        "separate_router_agent": false
+      }
+    }
+  }
+}

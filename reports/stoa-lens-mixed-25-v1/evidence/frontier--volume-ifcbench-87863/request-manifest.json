@@ -1,0 +1,50 @@
+{
+  "case_id": "volume-ifcbench-87863",
+  "route": "frontier",
+  "configuration": {
+    "model": "openai/gpt-6.1-sol",
+    "planning": true,
+    "route": "frontier",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "What is the total net volume of all walls on 'Dachgeschoss', in m\u00b3?",
+  "sources": [
+    {
+      "page_id": "page-ee76ec5cae3b79e330ce931c",
+      "source_id": "page-ee76ec5cae3b79e330ce931c",
+      "source_sha256": "1c6fa895e14e4589ef9e4b23798bf663b4cecc2ba35ca0d2c1c2b523463a05be",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-fzk-haus_ac20-fzk-haus_plan-02-dachgeschoss.render.png",
+      "width": 1134,
+      "height": 790,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/ifc_models/kit-fzk-haus_ac20-fzk-haus_plan-02-dachgeschoss.pdf",
+      "pdf_sha256": "f54d2785c2c8315d682ee9c706a5a3cba3db03ff346276dcfc5b6da0faa65ee3",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        2.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "c56d242d51f4d4ac6bde33b95e275661bed067d833b7474cf93b1ee802f3f82b",
+  "evaluation_mode": "computed_geometry"
+}

@@ -1,0 +1,50 @@
+{
+  "case_id": "area-openingdesign-89422",
+  "route": "smart",
+  "configuration": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "planning": false,
+    "route": "smart",
+    "provider": "OpenRouter",
+    "reasoning": "high",
+    "max_tokens": 65536
+  },
+  "question": "On sheet A-801 of the Xcel Sports Complex drawings, what is the area of room 118 (Fitness Center) in the finish room schedule?",
+  "sources": [
+    {
+      "page_id": "page-630c49ad73556b0ad500de9f",
+      "source_id": "page-630c49ad73556b0ad500de9f",
+      "source_sha256": "601deaab1d02a2df9e78b2c1dc489d4add0715263c62cc5ab17f13afadb4d7b9",
+      "path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/opening_design/Sports_Complex/Sheets - Current Set/A-801 - Door and Finish Schedules & Wall Types.render.png",
+      "width": 6048,
+      "height": 4320,
+      "page": 0,
+      "source_page": 1,
+      "vista_turn": 0,
+      "pdf_path": "stoa-workspace/data/stoa-lens/mixed-25-v1/sources/data/opening_design/Sports_Complex/Sheets - Current Set/A-801 - Door and Finish Schedules & Wall Types.pdf",
+      "pdf_sha256": "0c6bc07e4e413738cb8db95cffd3356664b25719fa1f2648f99599a3db92f36c",
+      "pdf_page": 0,
+      "pdf_to_page": [
+        0.0,
+        2.0,
+        -2.0,
+        0.0,
+        6048.0,
+        0.0
+      ]
+    }
+  ],
+  "limits": {
+    "responses": 12,
+    "tools_per_response": 3,
+    "detector_requests": 12,
+    "raster_predictions": 2,
+    "text_requests": 4,
+    "deadline_s": 900,
+    "final_reserve_s": 180
+  },
+  "vista_views": 20,
+  "reference_annotations_provided": false,
+  "runtime_sha256": "471e43e47175603034d84ba713c71bc7ffbc0d50eef63be70d21108c85d0a1d3",
+  "evaluation_mode": "source_reading"
+}
