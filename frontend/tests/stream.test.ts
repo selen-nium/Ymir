@@ -28,3 +28,25 @@ test('a stream that ends with the answer reports nothing more', async () => {
   const events = await collect();
   expect(events.map((e) => e.type)).toEqual(['job', 'answer']);
 });
+
+test('SSE progress is delivered before the answer while the connection stays open', async () => {
+  const events: TraceEvent[]=[];
+  let stream!: ReadableStreamDefaultController<Uint8Array>;
+  const body=new ReadableStream<Uint8Array>({start(controller){stream=controller;}});
+  const fetcher=vi.fn<typeof fetch>().mockResolvedValue(new Response(body,{headers:{'Content-Type':'text/event-stream'}}));
+  vi.stubGlobal('fetch',fetcher);
+  const stop=reconnectJob('live',event=>events.push(event));
+  const write=(value:string)=>stream.enqueue(new TextEncoder().encode(value));
+  write(': keep-alive\r\n\r\nid: 1\r\ndata: {"type":"job","status":"running","job_id":"live","seq":1}\r\n\r\n');
+  await vi.waitFor(()=>expect(events).toHaveLength(1));
+  expect(events[0]).toMatchObject({type:'job',status:'running'});
+  expect(new Headers(fetcher.mock.calls[0]?.[1]?.headers).get('Accept')).toBe('text/event-stream');
+  write('id: 2\ndata: {"type":"progress","activity":{"operation":"tool","phase":"started",');
+  write('"tool":"predict_room_polygons"},"seq":2}\n\n');
+  await vi.waitFor(()=>expect(events).toHaveLength(2));
+  expect(events.some(e=>e.type==='answer')).toBe(false);
+  write('data: {"type":"answer",\ndata: "answer":{"status":"answered","text":"done"}}\n\n');
+  stream.close();
+  await vi.waitFor(()=>expect(events).toHaveLength(3));
+  expect(events.at(-1)).toMatchObject({type:'answer'});stop();
+});

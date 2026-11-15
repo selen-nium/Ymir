@@ -333,3 +333,17 @@ def isolated_native(source,folder):
     geometry=GeometryTools(folder/'without-source-checkout',folder/'isolated',source['source_id'],source['source_sha256'],source['page'],source['width'],source['height'],native_source=source)
     try:return geometry.native_room_candidates(source['source_id'],source['page'],timeout=20)
     finally:geometry.close()
+
+
+def test_sse_submission_reconnect_and_fresh_conversation_context(integration):
+    jobs,_,_,calls=integration
+    with TestClient(app) as client:
+        first=client.post('/api/ask',json=req('sse-old'),headers={'Accept':'text/event-stream'})
+        assert first.headers['content-type'].startswith('text/event-stream')
+        events=[json.loads(line[6:]) for line in first.text.splitlines() if line.startswith('data: ')]
+        ident=events[0]['job_id']
+        replay=client.get(f'/api/lens/jobs/{ident}/events?after=2',headers={'Accept':'text/event-stream'})
+        assert [json.loads(line[6:]) for line in replay.text.splitlines() if line.startswith('data: ')]==[event for event in events if event['seq']>2]
+        fresh=client.post('/api/ask',json=req('fresh',conversation_id='new-chat'),headers={'Accept':'text/event-stream'})
+        assert fresh.status_code==200 and calls[-1][2]==[]
+        assert jobs.lookup(ident)['answer'] is not None

@@ -22,8 +22,10 @@ execution facts; preview nodes describe pending work. No vendored code is change
    snapshotted in the job configuration and preserved through terminal events.
 4. **Model work.** `stoa_lens.service.run` registers the immutable source, sets up
    metered transport and detector/geometry resources, and records its implementation,
-   source, limit and model manifest. It invokes `BoundCounter` for the bound scope,
-   otherwise `LensHarness`. The loop in `harness.py` emits response started/completed
+   source, limit and model manifest. Smart invokes `BoundCounter` for the bound scope,
+   otherwise `LensHarness`. New Frontier snapshots select `PlanningCounter`
+   (`coverage_plan`) or `PlanningHarness` (`execution_plan`) respectively. These
+   are explicit tool steps in the same conversation, not another model/agent. The loop in `harness.py` emits response started/completed
    or failed, and tool started/completed receipts in serial execution order.
    `BoundCounter._emit` enriches detection receipts with its bound classes, detector
    routing and model identity; it does not add another hidden operation.
@@ -77,7 +79,7 @@ unchanged. `GET /api/agents` returns the pending pipeline, with optional review.
 
 `frontend/lib/lens-trace.ts` projects stage receipts into the same sequence as model
 activity. Receipts without stages gain no synthetic stages. Old static graphs keep
-their parent links. Live NDJSON, reconnect using `after`, and artifact events all
+their parent links. Live SSE (negotiated by browser Accept), legacy NDJSON, reconnect using `after`, and artifact events all
 read the same append-only log. Local entry persistence retains those events and
 frontend-owned review receipts.
 
@@ -88,3 +90,10 @@ uses no paid inference. Start it on port 8012 and Next on port 3011, then run
 `node scripts/check_ask_pipeline_browser.cjs`. It checks both routes, validation and
 box review, earlier-answer replay, artifact replay, and mid-job reconnection, and
 saves screenshots under `/tmp/ymir-ask-pipeline`.
+
+Clear chat rotates the active conversation ID for that project, so the server's
+six-turn context lookup cannot include earlier answers. Browser preferences and
+thread storage follow the new ID. Prior receipts and human reviews remain stored.
+The button is disabled while inference is pending; it does not silently cancel a
+job. Live status names follow recorded activity and elapsed time is a clock, not a
+completion estimate.

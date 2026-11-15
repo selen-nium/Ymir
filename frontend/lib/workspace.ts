@@ -9,12 +9,13 @@ import {
   type Ghost, type Level, type Overlay, type Placement, type Project, type SheetView, type View,
 } from './project';
 import {
-  createLocalProject, getLocalProject, loadOverlay, loadThread, loadRoutingMode, nextLevel, saveOverlay, saveThread, saveRoutingMode, touchRecent,
+  createLocalProject, getLocalProject, loadOverlay, loadThread, loadConversationId, saveConversationId, loadRoutingMode, nextLevel, saveOverlay, saveThread, saveRoutingMode, touchRecent,
 } from './persist';
 import { createSession, needsReview, type ReviewRecord, type Selection, type Snapshot } from './session';
-import {applyReviews, latestReviews, savedReview, requestStatus} from './answer-presentation';
+import {applyReviews, latestReviews, savedReview} from './answer-presentation';
 import {detectedOpenings, reviewedWindows, withDetected} from './window-model';
 import {modeReady, modeLabel} from './routing';
+import {progressLabel} from './job-progress';
 import { buildSteps } from './steps';
 import { toast } from './toast';
 import type { Plan } from './plan2d';
@@ -50,6 +51,7 @@ export interface Entry {
 }
 
 export interface WorkspaceState {
+  conversationId: string | null;
   routingMode: RoutingMode;
   status: 'loading' | 'ready' | 'error';
   error: string | null;
@@ -94,7 +96,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   const session = createSession({ pickRef: true });
   const S = session.state;
   const store = createStore<WorkspaceState>(() => ({
-    routingMode: 'smart', status: 'loading', error: null, project: null, activeId: null, ghostSel: null, needsGhost: null,
+    conversationId:null, routingMode: 'smart', status: 'loading', error: null, project: null, activeId: null, ghostSel: null, needsGhost: null,
     explode: false, isolate: false, hideGhosts: false, placing: null, tab: 'build', open: null, viewMode: 'both',
     drawing: false, thread: [], busy: false, currentId: null, reviewingId: null, savingReview:false,
     traceOpen: true, traceStatus: IDLE_TRACE, traceBusy: false, suggestions: [], askDot: false, selectedIds: [], lensStatus: null,
@@ -215,10 +217,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     const seq = ++loadSeq;
     cancelAsk?.(); cancelAsk = null; stopReconnect();
     manifest = p;
+    const conversationId=loadConversationId(p.id);
     overlay = loadOverlay(p.id) ?? {};
     drawings.clear(); snaps.clear();sheetReviews.clear();
     set({ status: 'loading', error: null, project: null, activeId: null, ghostSel: null, needsGhost: null, placing: null,
-      busy: false, currentId: null, reviewingId: null, thread: [], suggestions: [], routingMode: loadRoutingMode(p.id) ?? 'smart', lensStatus: null });
+      busy: false, currentId: null, reviewingId: null, thread: [], suggestions: [], conversationId, routingMode: loadRoutingMode(p.id) ?? 'smart', lensStatus: null });
     const all = mergeOverlay(p, overlay);
     await Promise.all(all.sheets.map(async(s) => {
       const [drawing,records]=await Promise.all([api.loadDrawing(s.drawing_id).catch(()=>null),api.loadReviews(s.drawing_id).catch(()=>[])]);
@@ -230,17 +233,17 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     const project = merged();
     if (!project.sheets.length) { set({ status: 'error', error: 'This building has no drawings left.' }); return; }
     const thread: Entry[] = loadThread(project.id).map((e) => ({ ...e, id: e.id ?? uid(), status: e.status ?? 'done' as const }));
-    const remote=await api.loadJobs(project.id).catch(()=>[]);
+    const remote=await api.loadJobs(project.id,conversationId).catch(()=>[]);
     if(seq!==loadSeq)return;
     for(const job of remote){
       const found=thread.find(e=>e.job_id===job.id || e.request_id===job.request.request_id);
       const terminal=['completed','failed','cancelled','interrupted'].includes(job.status);
       const records=job.human_reviews ?? found?.records ?? [];
-      const patch={routing_mode:job.request.routing_mode,job_id:job.id,request_id:job.request.request_id,modelAnswer:job.answer ?? undefined,records,
+      const patch={at:Date.parse(job.created_at),routing_mode:job.request.routing_mode,job_id:job.id,request_id:job.request.request_id,modelAnswer:job.answer ?? undefined,records,
         record:records.at(-1) ?? found?.record,
         answer:job.answer ? applyReviews(job.answer,records) : found?.answer,status:terminal?'done' as const:'pending' as const};
       if(found)Object.assign(found,patch);
-      else thread.push({id:job.id,q:job.request.question,sheet:job.request.drawing_id,sheets:job.request.selected_drawing_ids,events:[],at:Date.parse(job.created_at),...patch});
+      else thread.push({id:job.id,q:job.request.question,sheet:job.request.drawing_id,sheets:job.request.selected_drawing_ids,events:[],...patch});
     }
     set({ project, thread, routingMode: loadRoutingMode(project.id) ?? thread.findLast(e=>e.routing_mode)?.routing_mode ?? 'smart', traceOpen: !!project.single, status: 'ready' });
     v3.viewer?.setKeepView(false);
@@ -501,13 +504,12 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if(ev.type==='connection'){ handleDisconnect(entry, ev.message); return; }
     if(ev.seq)reconnectTries.delete(entry.id);
     entry.events.push(ev);v3.trace?.apply(ev);
+    const stage=progressLabel(ev);
+    if(stage){updateEntry(entry.id,{stage});set({traceStatus:stage});}
     if(ev.type==='job'){
       entry.job_id=ev.job_id;
       if(ev.routing_mode)entry.routing_mode=ev.routing_mode;
-      updateEntry(entry.id,{job_id:ev.job_id,routing_mode:entry.routing_mode,stage:ev.status});persistThread();
-    }
-    if(ev.type==='status' && ev.state==='running'){
-      updateEntry(entry.id,{stage:requestStatus(ev.summary ?? ev.id)});set({traceStatus:requestStatus(ev.summary ?? ev.id)});
+      updateEntry(entry.id,{job_id:ev.job_id,routing_mode:entry.routing_mode,stage:stage ?? entry.stage});persistThread();
     }
     if(ev.type==='answer'){
       cancelAsk=null;updateEntry(entry.id,{events:entry.events,modelAnswer:ev.answer});
@@ -544,12 +546,25 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     if(!modeReady(lensStatus,routingMode)){toast(`${modeLabel(routingMode)} is unavailable. Try again when it is ready.`);return;}
     const request_id=crypto.randomUUID();const sheets=selectedIds.length?selectedIds:[activeId];
     const anchor=sheets.includes(activeId)?activeId:sheets[0];
-    const entry: Entry={id:request_id,request_id,routing_mode:routingMode,q,sheet:anchor,sheets:[...sheets],status:'pending',stage:'Queued',events:[]};
+    const entry: Entry={id:request_id,request_id,routing_mode:routingMode,q,sheet:anchor,sheets:[...sheets],status:'pending',stage:'Sending question…',events:[],at:Date.now()};
     const prior_job_ids=get().thread.filter(e=>e.answer && e.job_id).map(e=>e.job_id!).slice(-6);
-    set({busy:true,thread:[...get().thread,entry],traceOpen:true,needsGhost:null,traceStatus:'Queued',traceBusy:true});
+    set({busy:true,thread:[...get().thread,entry],traceOpen:true,needsGhost:null,traceStatus:'Sending question…',traceBusy:true});
     persistThread();if(get().tab!=='ask')setTab('ask');session.setAnswer(null);v3.trace?.reset();traceEntryId=entry.id;
-    cancelAsk=api.ask({routing_mode:routingMode,drawing_id:anchor,question:q,request_id,selected_drawing_ids:sheets,project_id:P()!.id,conversation_id:P()!.id,prior_job_ids,
+    cancelAsk=api.ask({routing_mode:routingMode,drawing_id:anchor,question:q,request_id,selected_drawing_ids:sheets,project_id:P()!.id,conversation_id:get().conversationId ?? P()!.id,prior_job_ids,
       context:{m_per_px:S.scale,scale_confirmed:S.scaleConfirmed,height_m:S.height,removed_walls:[...session.removed()],added_walls:S.d.walls.filter(w=>w.user).map(({id,a,b})=>({id,a,b}))}},ev=>handleEvent(entry,ev));
+  }
+  function clearChat() {
+    if(!P() || get().savingReview || get().thread.some(e=>e.status==='pending'))return;
+    if(get().reviewingId)skipReview();
+    cancelAsk?.();cancelAsk=null;stopReconnect();reconnectTries.clear();
+    const conversationId=crypto.randomUUID();
+    saveConversationId(P()!.id,conversationId);
+    saveRoutingMode(P()!.id,'smart');
+    set({conversationId,thread:[],routingMode:'smart',currentId:null,reviewingId:null,busy:false,
+         needsGhost:null,traceStatus:IDLE_TRACE,traceBusy:false});
+    persistThread();session.setAnswer(null);traceEntryId=null;v3.trace?.reset();
+    refreshScene();void idleTrace();
+    toast('Chat cleared. The next question starts without earlier answers.');
   }
   function showAnswer(id: string, answer: Answer, preserveView = false) {
     updateEntry(id, { status: 'done', answer, at: Date.now() });
@@ -741,7 +756,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     init, selectSheet, selectGhost, setKind, setOpen, confirmScale, finishWalls,
     startPlacing, confirmPlacing, cancelPlacing, redoPlacing: () => { cancelPlacing(); startPlacing(); }, takeOut,
     addSheet, removeSheet, addLevel, toBuilding,
-    ask, revisit, focusCite, doneReview, skipReview, refreshLens,
+    ask, clearChat, revisit, focusCite, doneReview, skipReview, refreshLens,
     setRoutingMode: (routingMode: RoutingMode) => {
       if(get().busy || get().thread.some(e=>e.status==='pending') || !P() || !['smart','frontier'].includes(routingMode))return;
       set({routingMode});saveRoutingMode(P()!.id,routingMode);

@@ -189,13 +189,22 @@ def run(pages,question,directory,*,root=None,budget=None,transport=None,detector
         if context:hooks['conversation_context']=context
         if cancelled is not None:hooks['cancelled']=cancelled
         if agent_profile:hooks['agent_profile']=agent_profile
+        planning=configuration.get('planning',{}).get('enabled',False)
         if count_scope:
             from .bound_counter import BoundCounter
-            result=BoundCounter(registry,detector,transport,folder,limits=limits,**hooks,
+            if planning:
+                from .planning import PlanningCounter
+                counter=PlanningCounter
+            else:counter=BoundCounter
+            result=counter(registry,detector,transport,folder,limits=limits,**hooks,
                 page_id=manifest['count_scope']['page_id'],target_classes=manifest['count_scope']['target_classes'],
                 description=count_scope['description'],backend=actual_backend).run(question)
         else:
-            result=LensHarness(registry,detector,geometry,transport,folder,limits=limits,**hooks).run(question)
+            if planning:
+                from .planning import PlanningHarness
+                harness=PlanningHarness
+            else:harness=LensHarness
+            result=harness(registry,detector,geometry,transport,folder,limits=limits,**hooks).run(question)
         if not isinstance(result,dict):raise ValueError('Lens harness must return a result object')
     except BaseException as exc:
         failure=exc

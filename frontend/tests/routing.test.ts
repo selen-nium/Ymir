@@ -74,3 +74,35 @@ test('historical spending stop projects plain copy while preserving the receipt'
   expect(out[0]).toMatchObject({summary:'Request incomplete. The recorded evidence is available for review.'});
   expect(JSON.stringify(event)).toBe(before);
 });
+
+test('clear chat resets model context with a new durable conversation ID',async()=>{
+  const storage=memory();vi.stubGlobal('window',{localStorage:storage});
+  vi.stubGlobal('requestAnimationFrame',(fn:()=>void)=>{fn();return 1;});
+  vi.spyOn(api,'loadDrawing').mockImplementation(async id=>drawing(id));
+  vi.spyOn(api,'loadReviews').mockResolvedValue([]);const jobs=vi.spyOn(api,'loadJobs').mockResolvedValue([]);
+  vi.spyOn(api,'loadSuggestions').mockResolvedValue([]);vi.spyOn(api,'previewGraph').mockResolvedValue([]);
+  vi.spyOn(api,'lensStatus').mockResolvedValue(ready);
+  const callbacks:((event:TraceEvent)=>void)[]=[];
+  const ask=vi.spyOn(api,'ask').mockImplementation((_body,callback)=>{callbacks.push(callback);return ()=>{};});
+  const ws=createWorkspace({navigate:()=>{}});await ws.actions.init('drawing','clear');await ws.actions.refreshLens();
+  ws.actions.setRoutingMode('frontier');ws.actions.ask('First question');
+  const original=ws.store.getState().conversationId,scope=ws.store.getState().selectedIds;
+  ws.actions.clearChat();expect(ws.store.getState().conversationId).toBe(original); // Active inference stays attached.
+  callbacks[0]({type:'job',job_id:'previous-job',status:'running',seq:1});
+  callbacks[0]({type:'progress',activity:{operation:'tool',phase:'started',tool:'predict_room_polygons'},seq:2});
+  expect(ws.store.getState().thread[0].stage).toBe('Finding room outlines…');
+  callbacks[0]({type:'answer',answer:{status:'answered',text:'Old result',job_id:'previous-job'},seq:3});
+  ws.actions.clearChat();
+  const fresh=ws.store.getState().conversationId;
+  expect(fresh).not.toBe(original);expect(ws.store.getState().thread).toEqual([]);
+  expect(ws.store.getState().selectedIds).toEqual(scope);expect(ws.store.getState().routingMode).toBe('smart');
+  ws.actions.dispose();
+  const reload=createWorkspace({navigate:()=>{}});await reload.actions.init('drawing','clear');await reload.actions.refreshLens();
+  expect(reload.store.getState().conversationId).toBe(fresh);expect(reload.store.getState().thread).toEqual([]);
+  expect(jobs).toHaveBeenLastCalledWith('d:clear',fresh);
+  reload.actions.ask('Fresh question');
+  expect(ask.mock.calls.at(-1)?.[0]).toMatchObject({conversation_id:fresh,prior_job_ids:[]});
+  expect(storage.getItem('ymir.thread.d:clear')).toContain('Old result');
+  callbacks.at(-1)!({type:'answer',answer:{status:'answered',text:'New result'}});
+  reload.actions.dispose();
+});

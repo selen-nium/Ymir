@@ -69,23 +69,29 @@ export interface StoredEntry {
   events: TraceEvent[];
   at: number;
 }
-const threadKey = (pid: string) => `ymir.thread.${pid}`;
+const conversationKey = (pid: string) => `ymir.conversation.${pid}`;
+export function loadConversationId(pid: string, storage = browserStorage()): string {
+  const id=read<unknown>(storage,conversationKey(pid),null);
+  return typeof id==='string' && id.length>0 && id.length<=120 ? id : pid;
+}
+export const saveConversationId = (pid: string, id: string, storage = browserStorage()) => write(storage,conversationKey(pid),id);
+const threadKey = (pid: string, storage: KeyValueStorage | undefined) => `ymir.thread.${loadConversationId(pid,storage)}`;
 export function loadThread(pid: string, storage = browserStorage()): StoredEntry[] {
-  const t = read<unknown>(storage, threadKey(pid), []);
+  const t = read<unknown>(storage, threadKey(pid,storage), []);
   return Array.isArray(t) ? (t as StoredEntry[]) : [];
 }
 /** Keeps what re-showing an answer needs: the question, the sheet it was asked on, the answer and its trace. */
 export function saveThread(pid: string, entries: Partial<StoredEntry>[], storage = browserStorage()): boolean {
   const kept = entries.filter((e) => e.answer || e.job_id || e.request_id).slice(-MAX_THREAD)
     .map(({ q, sheet, sheets, routing_mode, answer, modelAnswer, records, record, events, at, id, job_id, request_id, status }) => ({ q, sheet, sheets, routing_mode, answer, modelAnswer, records, record, events: events ?? [], at: at ?? Date.now(), id, job_id, request_id, status }));
-  return write(storage, threadKey(pid), kept);
+  return write(storage, threadKey(pid,storage), kept);
 }
-const routingKey = (pid: string) => `ymir.routing.${pid}`;
+const routingKey = (pid: string, storage: KeyValueStorage | undefined) => `ymir.routing.${loadConversationId(pid,storage)}`;
 export function loadRoutingMode(pid: string, storage = browserStorage()): RoutingMode | null {
-  const value = read<unknown>(storage, routingKey(pid), null);
+  const value = read<unknown>(storage, routingKey(pid,storage), null);
   return value === 'smart' || value === 'frontier' ? value : null;
 }
-export const saveRoutingMode = (pid: string, mode: RoutingMode, storage = browserStorage()) => write(storage, routingKey(pid), mode);
+export const saveRoutingMode = (pid: string, mode: RoutingMode, storage = browserStorage()) => write(storage, routingKey(pid,storage), mode);
 export function threadSummary(pid: string, storage = browserStorage()) {
   const t = loadThread(pid, storage);
   if (!t.length) return null;
@@ -121,8 +127,9 @@ export function createLocalProject(
 }
 export function removeLocalProject(id: string, storage = browserStorage()) {
   write(storage, LOCAL, localProjects(storage).filter((p) => p.id !== id));
-  remove(storage, routingKey(id));
-  remove(storage, threadKey(id));
+  remove(storage, routingKey(id,storage));
+  remove(storage, threadKey(id,storage));
+  remove(storage, conversationKey(id));
   remove(storage, overlayKey(id));
 }
 /** The next storey above the top one, for "Add level". */
@@ -145,8 +152,9 @@ export function setHidden(key: string, hidden: boolean, storage = browserStorage
 }
 /** Forget what this browser kept about a drawing that was deleted (its conversation, its recent entry). */
 export function forgetDrawing(id: string, storage = browserStorage()) {
-  remove(storage, routingKey(`d:${id}`));
-  remove(storage, threadKey(`d:${id}`));
+  remove(storage, routingKey(`d:${id}`,storage));
+  remove(storage, threadKey(`d:${id}`,storage));
+  remove(storage, conversationKey(`d:${id}`));
   write(storage, RECENT, recent(storage).filter((r) => r.id !== id));
 }
 

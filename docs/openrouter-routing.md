@@ -5,7 +5,9 @@ and records it beside each question's source scope. Switching modes preserves th
 thread and selected drawings. Submission snapshots the mode; the selector stays
 locked until that job finishes, including during reconnect. Suggestions use the
 same submit path. Six previous completed turns remain context across switches;
-prior answers and IDs are never registered as new evidence.
+prior answers and IDs are never registered as new evidence. Clear chat starts a new
+server conversation ID and restores the Smart default. Earlier jobs, saved labels
+and drawing selection remain intact; reload loads only the new conversation.
 
 | Mode or tool | OpenRouter model | Pinned endpoint |
 | --- | --- | --- |
@@ -20,6 +22,17 @@ snapshot, sources and context. Runtime manifests and results also record these
 identities; billing receipts retain returned model/provider identities and generation
 IDs. Trace projection uses recorded identities, while legacy DeepSeek/Kimi jobs
 retain their original labels and events.
+
+New Frontier jobs add an explicit planning step in the same model conversation.
+Compact counting uses the reviewed Stoa `coverage_plan` tool: the recorded regions
+cover the registered page, and coverage is checked against actual inspection and
+complete detection receipts. General questions use `execution_plan`, a short
+checklist constrained to registered page IDs and available tools. Native geometry
+and printed readings keep their existing source-capability policy. The plan is not
+evidence and cannot establish counts or measurements. Smart/DeepSeek keeps the
+existing harness without either explicit planning tool. Both retain the current
+tool, output-token and deadline limits; there is no separate planner model.
+Pre-planning job snapshots keep their original execution policy.
 
 D-FINE handles its fourteen verified trained classes, including explicit aliases.
 Argon handles other exact classes, including subtypes that cannot safely be mapped
@@ -68,3 +81,10 @@ state is separate from that experiment. `vendor/stoa-runtime/PROVENANCE.json`
 records source hashes and port adaptations. Archived research records remain
 unchanged. This migration's transport and UI checks are independent of the ongoing
 model-quality evaluation.
+
+Browser event transport negotiates `text/event-stream` so Modal delivers progress
+as events arrive; legacy API clients continue to receive NDJSON. Both read the
+same sequenced durable log, and reconnect uses the existing `after` cursor without
+resubmitting a question. The UI distinguishes sending, an actual queued job, model
+work, tool work and final checks, and shows elapsed time while a request is active.
+See [Modal streaming delivery](https://modal.com/docs/guide/streaming-endpoints).

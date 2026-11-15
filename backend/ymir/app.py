@@ -13,7 +13,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
@@ -41,6 +41,7 @@ reviews = ReviewStore()
 from .documents import DocumentStore, SheetSelection
 from .lens_jobs import JobStore, RouteUnavailable
 from .lens_readiness import readiness
+from .lens_stream import event_response
 documents = DocumentStore(store)
 jobs = JobStore(store, documents)
 
@@ -176,7 +177,7 @@ def project(project_id: str):
 
 
 @app.post("/api/ask")
-def ask(req: AskRequest):
+def ask(req: AskRequest, request: Request):
     for ident in req.selected_drawing_ids:drawing_or_404(ident)
     if req.drawing_id not in req.selected_drawing_ids:
         raise HTTPException(422, 'Active drawing must be in the selected scope')
@@ -185,7 +186,7 @@ def ask(req: AskRequest):
         ident=jobs.submit(req.model_dump())
     except ValueError as e:raise HTTPException(409, str(e))
     except RouteUnavailable as e:raise HTTPException(503, str(e))
-    return StreamingResponse(jobs.stream(ident),media_type='application/x-ndjson',headers={'X-Lens-Job':ident,'Cache-Control':'no-store','X-Accel-Buffering':'no'})
+    return event_response(jobs.stream(ident),request.headers.get('accept',''),{'X-Lens-Job':ident})
 
 
 @app.get('/api/lens/status')
@@ -204,10 +205,10 @@ def lens_job(ident: str):
 
 
 @app.get('/api/lens/jobs/{ident}/events')
-def lens_events(ident: str, after: int = Query(default=0,ge=0)):
+def lens_events(ident: str, request: Request, after: int = Query(default=0,ge=0)):
     try:jobs.lookup(ident)
     except KeyError:raise HTTPException(404,'Unknown Ymir job')
-    return StreamingResponse(jobs.stream(ident,after),media_type='application/x-ndjson',headers={'Cache-Control':'no-store','X-Accel-Buffering':'no'})
+    return event_response(jobs.stream(ident,after),request.headers.get('accept',''))
 
 
 @app.post('/api/lens/jobs/{ident}/cancel')

@@ -113,16 +113,17 @@
     "src/stoa_lens/dfine.py": "80527dbee21e8e791493129ca0e8cfd270aacdf96dd7b7bf456977a48aeeca4f",
     "src/stoa_lens/dfine_worker.py": "acf7e8dd4db62cfd94b5acf943e115099e4e01e572a4714d6cca85d86a616c74",
     "src/stoa_lens/geometry.py": "041607b050b4c2fa025ab6e3e3d0974d600608d054653385fe43c80559296077",
-    "src/stoa_lens/harness.py": "b9e65108f8dbff7884c80e05ec44e09e4e89e3b3c7b71c98dcf66a9eacad3407",
-    "src/stoa_lens/model_config.py": "884647f341ff2a1ba3403057dc07aada717589aac0a7b966f619b63ba7c5ee2c",
+    "src/stoa_lens/harness.py": "80dd284c026ff5a4fcc74e0e8ac5e0a795c6b85c90d48fabfb9d22e584af57a1",
+    "src/stoa_lens/model_config.py": "51c7146ea5a7f50183225ff820d075dfc235dae38934c0dc5a0553bc25827ea8",
     "src/stoa_lens/native_text.py": "33e4b0e7ffe871ee70f988431acc3b0bd406cd544499ace897bcba39a96b0bea",
     "src/stoa_lens/native_vectors.py": "e9a5d20c4ac5e8a7b5ae0dc459fbf4d2967eb86f3a8b66e9d8d9cebe12a7fb6b",
     "src/stoa_lens/pacing.py": "ba8bcebc575dfd60cf025b28d5fd1bff6b181c05f93fc632a844c0206dd774db",
     "src/stoa_lens/pilot.py": "cab3c3ec43868a4dba6a5d3456287d39fe133e450fd5dd598911c0efd042eaa9",
+    "src/stoa_lens/planning.py": "d2f553236c0ac13732c92cd829fef1cb8041da1de8660e2cf5d143a2daaea570",
     "src/stoa_lens/registry.py": "b97d32e020dedc51cb5a6b8a1e8b3c0ee397a52665c2fb09ac563d31fd9c9330",
     "src/stoa_lens/review.py": "2b7d803d265ecc12f5c35a30d98014ee2965971a32aee66e801b551cfb29c4eb",
     "src/stoa_lens/routing.py": "9c2a3ab42806f4d107549bf134f7a75b1978a1cb35b226943d1007ab4ace7885",
-    "src/stoa_lens/service.py": "424d63118a3addf6daa04423a2150b79468b661eb536361071058375f6618826",
+    "src/stoa_lens/service.py": "4681ca64c2f8ff551be6c8ecac860be86002c42f9d209f9a215170d5c6eb30b4",
     "src/stoa_lens/streaming.py": "5ef8cd420872dc4db7784b7e6d555c91bc56e3f10be44f64b2181b309216305a",
     "src/stoa_lens/transport.py": "15cf51df5a8ebae7377e40edc7c33d7ff86448b2aeb49ae163fff0a1568f935e",
     "src/stoa_native_geometry/__init__.py": "fef0a7334137a39bcac2308223ede6bad0a45ae7dbf845fac3506fae197ee093",
@@ -282,5 +283,21 @@
       "src/stoa_lens/service.py": "7ce2fa486d6aa7267f4296a753bd414a5213f42302c906c527276a0e1ee0b6aa",
       "src/stoa_lens/transport.py": "12c852d1c6acd80f3ea263caa351267ef3a9bd8cb4b7e2096ea72662ef8c77c2"
     }
+  },
+  "frontier_planning": {
+    "recorded_at_utc": "2026-11-15T07:18:45.437285+00:00",
+    "source_file": "/mnt/berstorage/stoa/src/stoa_lens/planning.py",
+    "source_sha256": "a7601443ba773a0ebd32b73e13893afae946d27173ad8c9c3299914436acc6a8",
+    "source_head_at_read": "bc88f0238f76b8154495425b51cc23f4ed99673b",
+    "source_note": "Reviewed working-tree PlanningCounter; source hash identifies adopted bytes independently of HEAD.",
+    "adaptations": [
+      "Frontier selects explicit in-conversation planning; Smart retains its existing unplanned harness.",
+      "PlanningCounter retains the source coverage-plan contract using the production nine-view allowance, existing deadlines and detector limits.",
+      "General PlanningHarness adapts the same explicit-plan-first mechanism to a registered-page and available-tool checklist; a plan is not evidence.",
+      "Native geometry/printed-area questions do not require object-detection coverage.",
+      "CoverageIncomplete may use remaining bounded tools for missing evidence, as in the upstream allow_tools correction.",
+      "Older routing snapshots without a planning field retain their original execution policy; history is never relabelled.",
+      "No experimental hybrid detector, expanded study limits, monkeypatch, dataset, ledger or report is imported."
+    ]
   }
 }

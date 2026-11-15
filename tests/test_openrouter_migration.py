@@ -250,10 +250,19 @@ def test_service_uses_recorded_mode_in_both_loops(tmp_path, mode, compact):
                 reg=next(m for m in body['messages'] if m['role']=='user')
                 context=json.loads(reg['content'][0]['text'])
                 arguments.update(object_class='door',view_id=context['initial_views'][0]['view_id'])
-            message={'role':'assistant','content':None,'reasoning_details':[{'type':'reasoning.encrypted','data':'continuation','index':0}],
-                     'tool_calls':[{'id':'find','type':'function','function':{'name':'detect_objects','arguments':json.dumps(arguments)}}]}
+            calls=[{'id':'find','type':'function','function':{'name':'detect_objects','arguments':json.dumps(arguments)}}]
+            if mode=='frontier':
+                if compact:
+                    plan={'regions':[{'id':'sheet','name':'Whole page','region':[0,0,100,80]}]}
+                    calls=[{'id':'plan','type':'function','function':{'name':'coverage_plan','arguments':json.dumps(plan)}},
+                           {'id':'inspect','type':'function','function':{'name':'inspect','arguments':json.dumps({'question':'Check page','views':[{'turn':0,'label':'whole'}]})}},*calls]
+                else:
+                    plan={'steps':[{'id':'doors','tool':'detect_objects','page_ids':[context['initial_views'][0]['page_id']],'reason':'Locate door evidence'}]}
+                    calls=[{'id':'plan','type':'function','function':{'name':'execution_plan','arguments':json.dumps(plan)}},*calls]
+            else:assert not any(t['function']['name'] in ('coverage_plan','execution_plan') for t in body['tools'])
+            message={'role':'assistant','content':None,'reasoning_details':[{'type':'reasoning.encrypted','data':'continuation','index':0}],'tool_calls':calls}
         else:
-            detection=json.loads(next(m for m in body['messages'] if m['role']=='tool')['content'])
+            detection=next(json.loads(m['content']) for m in body['messages'] if m['role']=='tool' and 'proposals' in json.loads(m['content']))
             ident=detection['proposals'][0]['id']
             value={'status':'answered','accepted_proposal_ids':[ident]}
             if not compact:
@@ -387,8 +396,12 @@ def test_default_service_factories_dispatch_argon_for_untrained_count(tmp_path, 
         if body['model']==ARGON:
             value={'status':'complete','instances':[{'label':'folding door','bbox_2d':[100,100,200,200],'confidence':None}],'uncertainties':[]}
         elif len(bodies)==1:
-            return response(body['model'],message={'role':'assistant','tool_calls':[{'id':'d','type':'function',
-                 'function':{'name':'detect_objects','arguments':'{"region":[0,0,100,80],"reason":"Find folding doors"}'}}]})
+            calls=[{'id':'d','type':'function','function':{'name':'detect_objects','arguments':'{"region":[0,0,100,80],"reason":"Find folding doors"}'}}]
+            if mode=='frontier':
+                plan={'regions':[{'id':'sheet','name':'Whole page','region':[0,0,100,80]}]}
+                calls=[{'id':'plan','type':'function','function':{'name':'coverage_plan','arguments':json.dumps(plan)}},
+                       {'id':'inspect','type':'function','function':{'name':'inspect','arguments':json.dumps({'question':'Check page','views':[{'turn':0,'label':'whole'}]})}},*calls]
+            return response(body['model'],message={'role':'assistant','tool_calls':calls})
         else:
             result=json.loads(next(m['content'] for m in reversed(body['messages']) if m['role']=='tool'))
             value={'status':'answered','accepted_proposal_ids':[result['proposals'][0]['id']]}

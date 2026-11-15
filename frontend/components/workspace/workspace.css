@@ -284,3 +284,6 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .lens-notes ul { margin: 4px 0 0; padding-left: 18px; }
 .lens-notes li + li { margin-top: 4px; }
 .lens-receipts { display: flex; flex-wrap: wrap; gap: 0 16px; }
+
+.ask-toolbar { display: flex; justify-content: flex-end; padding: 8px 12px 0; }
+.pending-elapsed { display: block; margin: 6px 0; color: var(--ink-2); font-size: 12px; font-variant-numeric: tabular-nums; }

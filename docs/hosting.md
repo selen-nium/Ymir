@@ -144,3 +144,10 @@ The migration does not require changing or redeploying GPU checkpoints.
 See [routing and validation](openrouter-routing.md) for endpoint pins, continuation
 handling and verification scope. This change is delivered by normal Git push; no
 manual deployment is part of the migration.
+
+The browser now requests SSE for live job progress. Existing NDJSON clients remain
+compatible. `deploy/check_streaming.py` is a disposable transport-only validation
+app: it uses no production data, secrets, GPU functions or paid inference. Stop that
+validation app after checking delivery. Clear chat rotates a conversation ID; it
+does not reset or delete production jobs, labels or accounting state. New Frontier
+jobs use explicit planning; Smart keeps the direct tool path.

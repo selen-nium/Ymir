@@ -6,6 +6,7 @@ import { countNoun } from '@/lib/session';
 import { absolute } from '@/lib/api';
 import {answerText, answerNotes, savedReview, shortDetail, productName} from '@/lib/answer-presentation';
 import {modeReady, modeLabel} from '@/lib/routing';
+import {elapsedLabel} from '@/lib/job-progress';
 import type {RoutingMode} from '@/lib/types';
 import type { Entry } from '@/lib/workspace';
 import { useSessionTick, useWorkspace, useWs } from './context';
@@ -29,6 +30,7 @@ export function AskPanel() {
 
   return (
     <div className="askp">
+      <div className="ask-toolbar"><button type="button" className="btn sm" disabled={!thread.length || thread.some(e=>e.status==='pending') || saving} onClick={ws.actions.clearChat} title="Start a fresh conversation. Drawings and saved labels stay."><Icon name="trash" />Clear chat</button></div>
       <div id="routing-readiness" className="lens-status" role="status" aria-live="polite">{!lens ? `Checking ${modeLabel(mode)}…` : ready ? `${modeLabel(mode)} ready` : `${modeLabel(mode)} unavailable · Try again when it is ready.`}</div>
       <fieldset className="ask-scope"><legend>Question scope · {selected.length}/3 sheets</legend>
         {project?.sheets.map(sheet=><label key={sheet.drawing_id}><input type="checkbox" checked={selected.includes(sheet.drawing_id)} disabled={busy || (selected.length===1 && selected.includes(sheet.drawing_id)) || (selected.length===3 && !selected.includes(sheet.drawing_id))} onChange={()=>ws.actions.toggleScope(sheet.drawing_id)}/>{ws.read.sheetLabel(sheet.drawing_id)}</label>)}
@@ -44,7 +46,7 @@ export function AskPanel() {
         {thread.map((e) => (
           <div key={e.id} style={{ display: 'contents' }}>
             <div className="msg q">{e.q}<small className="scope">{e.routing_mode && `${modeLabel(e.routing_mode)} · `}{(e.sheets ?? [e.sheet]).map(ws.read.sheetLabel).join(" · ")}</small></div>
-            {e.status === 'pending' ? <div className="msg a pending"><span className="spin" />{productName(e.stage ?? 'Queued')}{e.job_id && <div className="row"><button className="btn sm" onClick={()=>ws.actions.reconnect(e.id)}>Reconnect</button><button className="btn sm" onClick={()=>ws.actions.cancelJob(e.id)}>Cancel job</button></div>}</div>
+            {e.status === 'pending' ? <PendingAnswer entry={e} />
               : e.status === 'review' ? saving ? <div className="msg a" role="status">Saving labels…</div> : <ReviewCard entry={e} />
                 : <AnswerCard entry={e} />}
           </div>
@@ -63,6 +65,17 @@ export function AskPanel() {
       </form>
     </div>
   );
+}
+
+function PendingAnswer({entry}: {entry: Entry}) {
+  const ws=useWorkspace();
+  const [now,setNow]=useState(()=>Date.now());
+  useEffect(()=>{const timer=setInterval(()=>setNow(Date.now()),1000);return ()=>clearInterval(timer);},[]);
+  return <div className="msg a pending">
+    <div role="status" aria-live="polite"><span className="spin" />{productName(entry.stage ?? 'Connecting to this job…')}</div>
+    {entry.at && <small className="pending-elapsed" aria-live="off">{elapsedLabel(entry.at,now)}</small>}
+    {entry.job_id && <div className="row"><button className="btn sm" onClick={()=>ws.actions.reconnect(entry.id)}>Reconnect</button><button className="btn sm" onClick={()=>ws.actions.cancelJob(entry.id)}>Cancel job</button></div>}
+  </div>;
 }
 
 /** Answer text from the backend: plain text with <b> and <cite>n</cite> only, turned into elements (never HTML). */

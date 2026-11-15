@@ -56,7 +56,8 @@ function streamEvents(path: string,onEvent: (ev: TraceEvent) => void,init: Reque
   const ctl = new AbortController();
   (async () => {
     try {
-      const res=await fetch(api(path),{...init,signal:ctl.signal});
+      const headers=new Headers(init.headers);headers.set('Accept','text/event-stream');
+      const res=await fetch(api(path),{...init,headers,signal:ctl.signal,cache:'no-store'});
       if(!res.ok){
         let message=`Request failed (${res.status})`;try{await json(res);}catch(e){message=(e as Error).message;}
         onEvent({type:'answer',answer:{status:'error',text:message,citations:[]}});return;
@@ -64,16 +65,24 @@ function streamEvents(path: string,onEvent: (ev: TraceEvent) => void,init: Reque
       if(!res.body)throw new Error('No event stream. Reload to reconnect.');
       const reader=res.body!.pipeThrough(new TextDecoderStream()).getReader();
       let buf='',answered=false;
+      const sse=res.headers.get('content-type')?.includes('text/event-stream');
+      let data: string[]=[];
       const emit=(line: string)=>{const ev=JSON.parse(line) as TraceEvent;if(ev.type==='answer')answered=true;onEvent(ev);};
+      const line=(value: string)=>{
+        if(!sse){if(value.trim())emit(value);return;}
+        if(value===''){if(data.length){emit(data.join('\n'));data=[];}return;}
+        if(value.startsWith('data:'))data.push(value.slice(5).replace(/^ /,''));
+      };
       for (;;) {
         const {value,done}=await reader.read(); if(done) break;
         buf+=value;
         for(let i=buf.indexOf('\n');i>=0;i=buf.indexOf('\n')) {
-          const line=buf.slice(0,i).trim();buf=buf.slice(i+1);
-          if(line) emit(line);
+          const value=buf.slice(0,i).replace(/\r$/,'');buf=buf.slice(i+1);
+          line(value);
         }
       }
-      if(buf.trim())emit(buf);
+      if(buf.trim())line(buf.replace(/\r$/,''));
+      if(sse && data.length)emit(data.join('\n'));
       // The server always ends a job stream with its answer; anything else is a dropped connection.
       if(!answered)onEvent({type:'connection',message:'The connection closed before the answer arrived.'});
     } catch(e) {
@@ -83,7 +92,7 @@ function streamEvents(path: string,onEvent: (ev: TraceEvent) => void,init: Reque
   return () => ctl.abort();
 }
 export const lensStatus = () => get<LensStatus>('api/lens/status');
-export const loadJobs = (project: string) => get<LensJob[]>(`api/lens/jobs?project_id=${encodeURIComponent(project)}&conversation_id=${encodeURIComponent(project)}`);
+export const loadJobs = (project: string, conversation = project) => get<LensJob[]>(`api/lens/jobs?project_id=${encodeURIComponent(project)}&conversation_id=${encodeURIComponent(conversation)}`);
 export const loadJobTrace = (id: string) => get<TraceEvent[]>(`api/lens/jobs/${encodeURIComponent(id)}/artifacts/events`);
 export const loadReviews = (sheet: string) => get<import('./session').ReviewRecord[]>(`api/reviews?drawing_id=${encodeURIComponent(sheet)}`);
 export const cancelJob = (id: string) => fetch(api(`api/lens/jobs/${encodeURIComponent(id)}/cancel`),{method:'POST'}).then(r=>json<LensJob>(r));

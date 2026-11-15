@@ -29,3 +29,9 @@ hashes and adaptations are in `PROVENANCE.json`. The experimental hybrid router
 and process-wide monkeypatch installer are not used. D-FINE handles trained
 classes; Argon handles the rest. Historical helper modules remain in this snapshot
 for provenance but no production language-model path imports the Verda transport.
+
+Frontier planning is ported from Stoa's reviewed `PlanningCounter`; the provenance
+section `frontier_planning` records source bytes and the general-question extension.
+Smart retains the existing direct tool harness. No expanded experiment allowances
+or paired-detector policy are adopted. Old configuration snapshots remain valid
+and retain their recorded behavior.

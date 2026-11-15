@@ -23,16 +23,20 @@ def resolve(mode='smart'):
     return {'routing_mode': mode, 'orchestrator': model_identity(MODES[mode]),
             'detector': model_identity(ARGON), 'automatic_retries': False,
             'provider_fallbacks': False, 'require_parameters': True,
-            'detection_policy': 'dfine_trained_argon_other'}
+            'detection_policy': 'dfine_trained_argon_other',
+            'planning': {'enabled': mode == 'frontier', 'in_conversation': True, 'separate_router_agent': False}}
 
 
 def validate(config):
     if not isinstance(config, dict):
         raise ValueError('Invalid server routing snapshot')
     expected = resolve(config.get('routing_mode'))
-    if config != expected:
-        raise ValueError('Invalid server routing snapshot')
-    return copy.deepcopy(expected)
+    if config == expected:return copy.deepcopy(config)
+    # Existing queued jobs retain the execution policy recorded before planning
+    # was introduced. Historical replay never gains a synthetic planning step.
+    legacy=copy.deepcopy(expected);legacy.pop('planning')
+    if config == legacy:return copy.deepcopy(config)
+    raise ValueError('Invalid server routing snapshot')
 
 
 def provider_home():

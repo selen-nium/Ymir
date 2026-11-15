@@ -469,7 +469,7 @@ class LensHarness:
                         self.transcript.append({'validation_error': str(exc)})
                         self._save()
                         if index < self.limits.responses - 1:
-                            force_final = True
+                            force_final = not getattr(exc,'allow_tools',False)
                             messages.append({'role': 'user', 'content': 'Correct this validation error using only recorded IDs: ' + validation_message(exc)})
                             continue
                         try:
