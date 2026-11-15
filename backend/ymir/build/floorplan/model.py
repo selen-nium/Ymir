@@ -33,7 +33,7 @@ class Wall(Strict):
     a: Point
     b: Point
     status: Literal["proposed", "accepted"] = "proposed"
-    method: Literal["raster_lines", "wallnet", "human"] = "human"
+    method: Literal["raster_lines", "wallnet", "stoa_bim", "human"] = "human"
     thickness_m: float | None = Field(default=None, ge=.03, le=2)
     # Detector evidence: mean wall probability along the segment, and drawn wall thickness in pixels.
     confidence: float | None = Field(default=None, ge=0, le=1)
@@ -136,7 +136,17 @@ def room_polygons(walls: list[dict], bridges: list[dict] | None = None) -> list[
     """Rooms = faces of the wall-centreline network. bridges close door-sized breaks (see vectorize.bridge_gaps)."""
     if not walls:
         return []
-    network = unary_union([LineString([w["a"], w["b"]]) for w in walls + (bridges or [])])
+
+    def reach(w, eps=0.02):
+        # 2 cm past each end, so walls that meet at a corner or T cross exactly and the junction is
+        # noded; a point computed onto another line is otherwise lost to rounding. polygonize drops
+        # the stubs this leaves.
+        (ax, ay), (bx, by) = w["a"], w["b"]
+        n = math.hypot(bx - ax, by - ay) or 1.0
+        ux, uy = (bx - ax) / n * eps, (by - ay) / n * eps
+        return LineString([(ax - ux, ay - uy), (bx + ux, by + uy)])
+
+    network = unary_union([reach(w) for w in walls + (bridges or [])])
     polygons = sorted(polygonize(network), key=lambda p: (-p.area, p.centroid.x, p.centroid.y))
     return [{"id": f"space-{i+1}", "name": f"Space {i+1}",
              "polygon_m": [list(p) for p in poly.exterior.coords],

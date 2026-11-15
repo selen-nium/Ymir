@@ -67,14 +67,22 @@ def _propose_wallnet(png: bytes, crop) -> tuple[list[dict], dict]:
                                    "Confidence is the mean wall probability along each segment, not a calibrated accuracy."]}
 
 
-def propose(png: bytes, crop, minimum_px=70, merge_px=10, detector: str = "lines") -> tuple[list[dict], dict]:
-    """detector: 'lines' (classical), 'wallnet' (learned; requires weights) or 'auto' (wallnet if available)."""
-    if detector in ("auto", "wallnet"):
+def propose(png: bytes, crop, minimum_px=70, merge_px=10, detector: str = "lines",
+            m_per_px: float | None = None) -> tuple[list[dict], dict]:
+    """detector: 'stoa' (the Stoa Lens converter's walls; needs m_per_px), 'lines' (classical), 'wallnet'
+    (retired learned model; requires weights) or 'auto' (stoa when its research code is present, else lines)."""
+    if detector in ("auto", "stoa"):
+        from . import converter
+        if converter.available():
+            return converter.propose(png, crop, m_per_px or 0.02)
+        if detector == "stoa":
+            raise ValueError("The Stoa Lens converter (research/stoa-lens/src) is not installed.")
+        detector = "lines"
+    if detector == "wallnet":
         from . import wallnet
-        if wallnet.available():
-            return _propose_wallnet(png, crop)
-        if detector == "wallnet":
+        if not wallnet.available():
             raise ValueError("Wall model weights are not installed (weights/wallnet.pt).")
+        return _propose_wallnet(png, crop)
     t = time.perf_counter()
     image = cv2.imdecode(np.frombuffer(png, np.uint8), cv2.IMREAD_GRAYSCALE)
     x0, y0, x1, y1 = map(int, crop)
