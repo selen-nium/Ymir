@@ -1362,6 +1362,7 @@
     "All 50 slots retained; reviews and failures receive no accuracy credit. Count uses exact match.",
     "Both routes use hybrid D-FINE plus Argon; this is not a D-FINE-only or Argon-only comparison.",
     "Visual phase had two local SQLite post-response errors, preserved without paid retry; source/runtime frozen.",
-    "Native phase uses the same runtime plus quantity tools and a 60-second budget lock timeout with explicit connection closure."
+    "Native phase uses the same runtime plus quantity tools and a 60-second budget lock timeout with explicit connection closure.",
+    "The Swiss native-room study adapter has a source-ID mismatch: the registry uses page IDs while the legacy backend is keyed by Swiss dataset IDs. All six native-room attempts returned unsupported_native_source before extraction. Computed-area scores therefore reflect Raster2Seq fallback, not native extraction performance. Both routes are affected; IFC length/volume uses a separate backend and is unaffected. Frozen runtime, outcomes and scores are unchanged."
   ]
 }

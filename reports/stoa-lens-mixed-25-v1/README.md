@@ -19,3 +19,7 @@ The sample covers CubiCasa, Swiss Dwellings, IFCBench-linked source models, and 
 Lengths measure explicit IFC wall axes; four cases differ from annotation conventions by 2.8–4.6%, despite complete element coverage. Volumes subtract represented openings and reject invalid solids. One case on each route uses complete authored IFC NetVolume quantities because one wall is non-manifold; it is explicitly labeled `source_reported`, distinct from computed geometry. Computed areas and printed schedule readings are scored separately. The weak computed-area performance remains unresolved.
 
 This publication bundles source drawing PNGs and per-case evidence JSON. Local path prefixes are redacted in the portable copies. No provider credentials, ledgers, raw API bodies, original IFC/PDF files or model checkpoints are included. The canonical source/runtime hashes are retained in `provenance.json`; hashes in `selection-sha256.json` refer to the unchanged canonical artifacts, not these redacted copies.
+
+## Computed-area routing limitation
+
+The Swiss native-room study adapter has a source-ID mismatch: the registry uses page IDs while the legacy backend is keyed by Swiss dataset IDs. All six native-room attempts returned unsupported_native_source before extraction. Computed-area scores therefore reflect Raster2Seq fallback, not native extraction performance. Both routes are affected; IFC length/volume uses a separate backend and is unaffected. Frozen runtime, outcomes and scores are unchanged. See [receipt-backed diagnostic](native-room-routing-diagnostic.json).
