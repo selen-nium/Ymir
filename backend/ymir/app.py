@@ -14,7 +14,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, Response, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
 
 from . import calibration, models, qa, settings
@@ -26,9 +26,13 @@ log = logging.getLogger("ymir")
 
 @asynccontextmanager
 async def lifespan(app):
-    await asyncio.to_thread(jobs.start)
+    # Hosting may start the job worker later, once this container is the only writer (deploy/modal_app.py).
+    if getattr(app.state, "start_jobs", True):
+        await asyncio.to_thread(jobs.start)
     yield
     await asyncio.to_thread(jobs.stop)
+    for hook in getattr(app.state, "after_shutdown", []):
+        await asyncio.to_thread(hook)
 
 app = FastAPI(title="Ymir", version="0.2.0", lifespan=lifespan)
 store = DrawingStore()
@@ -38,6 +42,19 @@ from .lens_jobs import JobStore
 from .lens_readiness import readiness
 documents = DocumentStore(store)
 jobs = JobStore(store, documents)
+
+@app.middleware("http")
+async def gate_writes(request, call_next):
+    """Hosting can hold writes, e.g. while a redeployed container waits for the previous one to stop.
+    `app.state.write_gate` returns the reason writes must wait, or None. Added before CORS, so the
+    browser can read the 503."""
+    gate = getattr(request.app.state, "write_gate", None)
+    if gate and request.method in ("POST", "DELETE"):
+        reason = gate()
+        if reason:
+            return JSONResponse({"detail": reason}, status_code=503, headers={"Retry-After": "30"})
+    return await call_next(request)
+
 
 if settings.CORS_ORIGINS or settings.CORS_ORIGIN_REGEX:
     app.add_middleware(CORSMiddleware, allow_origins=settings.CORS_ORIGINS, allow_origin_regex=settings.CORS_ORIGIN_REGEX,

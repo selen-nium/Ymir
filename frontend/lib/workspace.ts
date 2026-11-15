@@ -106,6 +106,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   const sheetReviews = new Map<string, ReviewRecord[]>();
   const v3: { plan?: Plan; viewer?: Viewer; basePlan?: Plan; trace?: Trace } = {};
   let cancelAsk: (() => void) | null = null;
+  // A dropped job stream reconnects on its own a few times before handing back the Ask box.
+  const RECONNECT_DELAYS_MS = [1000, 3000, 8000];
+  const reconnectTries = new Map<string, number>();
+  let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+  const stopReconnect = () => { if (reconnectTimer) clearTimeout(reconnectTimer); reconnectTimer = null; };
   let traceEntryId: string | null = null;
   let loadSeq = 0;
 
@@ -204,7 +209,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   /* ---------- Opening a building or a drawing ---------- */
   async function openProject(p: Project, { sheet }: { sheet?: string } = {}) {
     const seq = ++loadSeq;
-    cancelAsk?.(); cancelAsk = null;
+    cancelAsk?.(); cancelAsk = null; stopReconnect();
     manifest = p;
     overlay = loadOverlay(p.id) ?? {};
     drawings.clear(); snaps.clear();sheetReviews.clear();
@@ -489,13 +494,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
   async function refreshLens() { const lensStatus=await api.lensStatus().catch(()=>null);set({lensStatus}); }
   function handleEvent(entry: Entry, ev: TraceEvent) {
     if(ev.seq && entry.events.some(e=>e.seq===ev.seq))return;
+    if(ev.type==='connection'){ handleDisconnect(entry, ev.message); return; }
+    if(ev.seq)reconnectTries.delete(entry.id);
     entry.events.push(ev);v3.trace?.apply(ev);
     if(ev.type==='job'){
       entry.job_id=ev.job_id;updateEntry(entry.id,{job_id:ev.job_id,stage:ev.status});persistThread();
-    }
-    if(ev.type==='connection'){
-      updateEntry(entry.id,{stage:ev.message+' · Reload or reconnect to continue watching.'});
-      set({traceStatus:'Connection interrupted · job retained',traceBusy:false});
     }
     if(ev.type==='status' && ev.state==='running'){
       updateEntry(entry.id,{stage:ev.summary ?? ev.id});set({traceStatus:ev.summary ?? ev.id});
@@ -506,8 +509,26 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
       void refreshLens();
     }
   }
+  function handleDisconnect(entry: Entry, message: string) {
+    cancelAsk=null;
+    if(!entry.job_id){
+      // The request never reached a durable job, so there is nothing to reconnect to.
+      showAnswer(entry.id,{status:'error',text:message,citations:[]});return;
+    }
+    const tries=reconnectTries.get(entry.id) ?? 0;
+    if(tries<RECONNECT_DELAYS_MS.length){
+      reconnectTries.set(entry.id,tries+1);
+      updateEntry(entry.id,{stage:'Reconnecting to this job…'});set({traceStatus:'Reconnecting…'});
+      stopReconnect();
+      reconnectTimer=setTimeout(()=>{reconnectTimer=null;if(entryById(entry.id)?.status==='pending')subscribeEntry(entry);},RECONNECT_DELAYS_MS[tries]);
+      return;
+    }
+    reconnectTries.delete(entry.id);
+    updateEntry(entry.id,{stage:message+' · The job keeps running. Reconnect to continue watching.'});
+    set({busy:false,traceStatus:'Connection interrupted · job retained',traceBusy:false});
+  }
   function subscribeEntry(entry: Entry) {
-    cancelAsk?.();set({busy:true,traceBusy:true});
+    cancelAsk?.();stopReconnect();set({busy:true,traceBusy:true});
     v3.trace?.replay(entry.events);traceEntryId=entry.id;
     cancelAsk=api.reconnectJob(entry.job_id!,ev=>handleEvent(entry,ev),Math.max(0,...entry.events.map(e=>e.seq ?? 0)));
   }
@@ -730,7 +751,7 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     fit: () => { v3.plan?.fit(); v3.viewer?.fit(); },
     setHeight: (h: number) => session.setHeight(h),
     attachViews, detachViews, attachTrace, detachTrace,
-    dispose: () => { cancelAsk?.(); loadSeq += 1; },
+    dispose: () => { cancelAsk?.(); stopReconnect(); loadSeq += 1; },
   };
   const baseId = () => (P() ? baseView(P()!)?.drawing_id ?? null : null);
   const read = { viewOf, levelName, sheetLabel, ghosts, steps, ghostForEntry, drawing: (id: string) => drawings.get(id), isBase, baseId };

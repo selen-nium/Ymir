@@ -54,6 +54,13 @@ references because the migration retains IDs and artifacts.
 
 The API keeps one CPU container warm so jobs continue after every browser
 connection closes. This incurs idle CPU/memory cost; GPU workers remain independent.
+A redeploy or crash can briefly run two API containers on the same volume, so only
+the holder of the `ymir-writer-lease` Modal Dict entry commits or runs jobs. A new
+container serves reads and answers writes with 503 ("finishing an update") until the
+previous one releases the lease on shutdown, or its heartbeat lapses for 60 seconds.
+It then reloads the volume, marks jobs left running as interrupted, and takes over.
+Job streams are async and hold no worker thread, and the container accepts up to
+128 concurrent requests, so many viewers can watch jobs at once.
 All mutations commit the data volume, including source intake failures. Job status,
 progress, reservations and settlements commit at operation boundaries. Interrupted
 jobs stay stopped, and unknown billing retains its reservation. Fresh Verda pricing

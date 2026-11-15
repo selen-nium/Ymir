@@ -1,6 +1,7 @@
 """Persistent single-worker queue. Replays events, never paid inference."""
 from __future__ import annotations
 
+import asyncio
 import copy
 import fcntl
 import json
@@ -171,17 +172,29 @@ class JobStore:
         with self.db() as db:rows=db.execute('SELECT event FROM events WHERE job=? AND seq>? ORDER BY seq',(ident,after)).fetchall()
         return [json.loads(r[0]) for r in rows]
 
-    def stream(self, ident, after=0):
-        self._row(ident)
-        heartbeat=time.monotonic()
+    def _poll(self, ident, after):
+        # Status first: terminal status and its final events commit together, so a terminal
+        # status read here guarantees the events query below already includes the answer.
+        with self.db() as db:
+            row=db.execute('SELECT status FROM jobs WHERE id=?',(ident,)).fetchone()
+            if not row:raise KeyError(ident)
+            rows=db.execute('SELECT event FROM events WHERE job=? AND seq>? ORDER BY seq',(ident,after)).fetchall()
+        return row['status'],[json.loads(r[0]) for r in rows]
+
+    async def stream(self, ident, after=0, poll=.25, heartbeat=15):
+        """NDJSON events until the job ends. Async, so a watcher holds no worker thread for the
+        minutes a job can run; each poll is a short SQLite read off the event loop."""
+        await asyncio.to_thread(self._row,ident)
+        last=time.monotonic()
         while True:
-            events=self.events(ident,after)
+            status,events=await asyncio.to_thread(self._poll,ident,after)
             for ev in events:
                 after=ev['seq'];yield json.dumps(ev,ensure_ascii=False)+'\n'
-            if self._row(ident)['status'] in TERMINAL and not self.events(ident,after):return
-            if time.monotonic()-heartbeat>=15:
-                yield '\n';heartbeat=time.monotonic()
-            self.wake.wait(.2);self.wake.clear()
+            if status in TERMINAL:return
+            if events:last=time.monotonic()
+            elif time.monotonic()-last>=heartbeat:
+                yield '\n';last=time.monotonic()
+            await asyncio.sleep(poll)
 
     def _worker(self):
         try:

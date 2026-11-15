@@ -62,13 +62,17 @@ def answer_for(job_id, result, page_sheets):
         if key not in keys:
             groups.append({'page_id':key[0],'object_class':key[1],'count':None});keys.add(key)
     for c in groups:
+        # A box review is checked against one of the selected sheets; a page the job did not
+        # start from (none so far) keeps its count and citations but offers no review.
+        if c['page_id'] not in page_sheets:continue
         proposals=[p for p in result.get('proposals',[]) if p['page_id']==c['page_id'] and p['query_class']==c['object_class']]
         reviews.append({'sheet':page_sheets[c['page_id']],'page_id':c['page_id'],'class':c['object_class'],'threshold':0,
                         'boxes':[{'id':p['id'],'box':p['native_box_xyxy'],'score':p.get('confidence'), 'confidence_kind':p.get('confidence_kind'), 'model':p.get('model'), 'accepted':p['id'] in accepted} for p in proposals], 'count':c['count']})
     reasons=result.get('validation_errors',[])+result.get('notes',[])
     if result.get('unavailable_reason'):reasons.append(result['unavailable_reason'])
-    counts=[dict(c,sheet=page_sheets[c['page_id']],provenance='host_derived') for c in result.get('counts',[])]
-    rooms=[dict(r,sheet=page_sheets[r['page_id']],provenance='host_derived_geometry') for r in result.get('rooms',[])]
+    # .get, like citations: an unexpected page must not discard a paid, completed result.
+    counts=[dict(c,sheet=page_sheets.get(c['page_id']),provenance='host_derived') for c in result.get('counts',[])]
+    rooms=[dict(r,sheet=page_sheets.get(r['page_id']),provenance='host_derived_geometry') for r in result.get('rooms',[])]
     text='Some details need checking.' if result['status']=='needs_review' else 'Here’s what I found on the selected sheets.'
     if len(counts)==1:
         c=counts[0];noun=count_group_noun(c,c['count']);text=f"I found {c['count']} {noun}." if c['count'] is not None else f"I couldn’t confirm the {count_group_noun(c,1)} count. Please check the boxes."
