@@ -96,7 +96,7 @@ export interface Answer {
   unit?: string | null;
   confidence?: number | null;
   job_id?: string;
-  counts?: { sheet: string; object_class: string; count: number | null; provenance: string }[];
+  counts?: { sheet: string; object_class: string; object_classes?: string[]; count: number | null; provenance: string }[];
   rooms?: { sheet: string; room_id: string; label: string; area_m2: number | null; measurement?: {reason?: string; estimate?: boolean}; quality_flags?: string[] }[];
   measurements?: { tool: string; result: { distance_m?: number; area_m2?: number; reason?: string } }[];
   readings?: { kind: string; value: string | number | null; unit: string | null; description: string }[];

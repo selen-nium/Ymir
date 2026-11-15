@@ -12,6 +12,8 @@ def injected_trained_head_policy(monkeypatch):
  ('How many toilet bowls are drawn on the page?',['toilet_bowl']),
  ('How many windows are there?',['window']),
  ('Count the bathtubs and showers.',['bathtub','shower']),
+ ('How many showers and bathtubs are drawn on this floor plan in total?',['shower','bathtub']),
+ ('How many windows are there in total?',['window']),
  ('Count sliding doors',['door_sliding']),
 ])
 def test_explicit_one_page_count(question,classes):

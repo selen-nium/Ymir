@@ -31,7 +31,7 @@ export function applyReviews(machine: Answer, records: ReviewRecord[]): Answer {
     const group = groups.find(g => key(g.sheet,g.class) === key(sheet,r.class));
     if (!group) continue;
     citations = citations.filter(c => !belongs(c,group));
-    const noun = countNoun(r.class,1);
+    const noun = countNoun(r.class,1,counts.find(c => key(c.sheet,c.object_class) === key(sheet,r.class))?.object_classes);
     citations.push(...r.objects.filter(o => o.status === 'accepted').map(o => ({
       n: o.proposal_id ? (machine.citations?.find(c => c.sheet === sheet && (c.proposal_id ?? c.evidence_id) === o.proposal_id)?.n ?? 0) : 0,
       label: `${noun.charAt(0).toUpperCase()+noun.slice(1)} · human-verified label`,
@@ -48,7 +48,7 @@ export function applyReviews(machine: Answer, records: ReviewRecord[]): Answer {
   const complete = groups.length > 0 && groups.every(g => !!savedReview(latest,g));
   return {...machine, counts, citations, checked:true, review:undefined,
     value:counts.length === 1 ? counts[0].count : machine.value,
-    text:counts.length === 1 && countOnly ? countSentence(counts[0].object_class,counts[0].count) : machine.text,
+    text:counts.length === 1 && countOnly ? countSentence(counts[0].object_class,counts[0].count,counts[0].object_classes) : machine.text,
     status:machine.status === 'needs_review' && countOnly && complete ? 'answered' : machine.status,
     human_reviews:latest.map(r => ({sheet:r.sheet_id ?? r.drawing.id,class:r.class,count:r.user_count})),
   };
@@ -71,7 +71,7 @@ export function shortDetail(text: string, limit = 170) {
 }
 export function answerText(a: Answer) {
   if (a.job_id && a.counts?.length === 1 && !a.rooms?.length && !a.readings?.length && !a.measurements?.length)
-    return countSentence(a.counts[0].object_class,a.counts[0].count);
+    return countSentence(a.counts[0].object_class,a.counts[0].count,a.counts[0].object_classes);
   if (a.job_id && /^(Answer grounded|Here’s what I found|Evidence needs review|Some details need checking)/.test(a.text)) {
     const finding = a.reasons?.find(r => /^Answer:/i.test(r));
     if (finding) return shortDetail(finding.replace(/^Answer:\s*/i,''),240);

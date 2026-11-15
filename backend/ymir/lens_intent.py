@@ -15,7 +15,7 @@ CLASSES={
  'cooker stove':'cooker_stove','cooker stoves':'cooker_stove',
 }
 GROUPS={'bathtubs and showers':['bathtub','shower'],'showers and bathtubs':['shower','bathtub']}
-COUNT=re.compile(r'^(?:how many (?P<how>[a-z ]+?) (?:are (?:shown|drawn|there)|are there|exist)|count (?:the )?(?P<count>[a-z ]+?))(?: (?:on|in) (?:this|the) (?:floor plan|plan|drawing|sheet|page))?[?.!]?$')
+COUNT=re.compile(r'^(?:how many (?P<how>[a-z ]+?) (?:are (?:shown|drawn|there)|are there|exist)|count (?:the )?(?P<count>[a-z ]+?))(?: (?:on|in) (?:this|the) (?:floor plan|plan|drawing|sheet|page))?(?: in total)?[?.!]?$')
 
 def bind_count_scope(question,pages):
     """Return explicit scope only for simple whole-page exact class requests."""

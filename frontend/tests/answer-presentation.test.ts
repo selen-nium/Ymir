@@ -62,3 +62,16 @@ test('browser storage retains saved records and the untouched machine answer',()
   saveThread('p',[{sheet:'a',q:'Count windows',modelAnswer:machine,answer:applyReviews(machine,[saved]),records:[saved],record:saved}],storage);
   expect(loadThread('p',storage)[0]).toMatchObject({modelAnswer:machine,records:[saved],record:saved});
 });
+
+test('combined targets retain a single readable total after presentation and review',()=>{
+  const cls='showers and bathtubs';
+  const group: Answer={...machine,counts:[{sheet:'a',object_class:cls,object_classes:['shower','bathtub'],count:1,provenance:'host_derived'}],
+    reviews:[{...machine.reviews![0],class:cls}]};
+  expect(answerText(group)).toBe('I found 1 shower or bathtub.');
+  expect(answerText({...group,counts:[{...group.counts![0],count:3}]})).toBe('I found 3 showers and bathtubs in total.');
+  expect(answerText({...group,counts:[{...group.counts![0],count:null}]})).toBe('I couldn’t confirm the shower or bathtub count. Please check the boxes.');
+  const reviewed=applyReviews(group,[{...saved,class:cls,objects:saved.objects.map(o=>({...o,class:cls}))}]);
+  expect(reviewed.text).toBe('I found 2 showers and bathtubs in total.');
+  expect(answerText(reviewed)).toBe(reviewed.text);
+  expect(reviewed.counts![0].object_classes).toEqual(['shower','bathtub']);
+});
