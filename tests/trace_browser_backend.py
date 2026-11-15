@@ -87,4 +87,5 @@ def fixture_runner(pages,question,directory,**hooks):
 
 api.jobs.runner=fixture_runner
 api.readiness=lambda budget,mode='smart':{'ready':True,'checks':{'injected_browser_fixture':True},
+                             'modes':{m:{'ready':True,'checks':{}} for m in ('smart','frontier')},
                              'budget':{k:v for k,v in budget.summary().items() if k!='charges'}}

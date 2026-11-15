@@ -323,7 +323,7 @@ def test_queue_snapshot_defaults_conflicts_context_and_legacy_replay(tmp_path):
     try:
         store.start();assert wait(store,a)['status']=='completed';assert wait(store,b)['status']=='completed'
         assert [c['configuration']['routing_mode'] for c in calls]==['smart','frontier']
-        assert store.events(b)[1]['status']=='running'
+        assert [e['status'] for e in store.events(b) if e['type']=='job']==['queued','running','completed']
         assert next(e for e in store.events(b) if e['type']=='node')['tool']=='Sol'
         c=store.submit(request('third',routing_mode='frontier'));wait(store,c)
         assert [turn['job_id'] for turn in calls[-1]['conversation_context']]==[a,b]

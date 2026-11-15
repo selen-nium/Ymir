@@ -82,7 +82,7 @@ export default function LandingPage() {
               <p>See the route, model calls, tools and host checks.<br />Reconnect to the same job after a reload.</p>
             </div>
             <PipelinePreview />
-            <div className={s.engineNotes}><span><b>DeepSeek</b> chooses tools</span><span><b>D-FINE-L / Kimi</b> localize objects</span><span><b>Native geometry / Raster2Seq</b> provide room outlines</span></div>
+            <div className={s.engineNotes}><span><b>Smart / Frontier</b> choose tools</span><span><b>D-FINE-L / Argon</b> localize objects</span><span><b>Native geometry / Raster2Seq</b> provide room outlines</span></div>
           </div>
         </section>
 

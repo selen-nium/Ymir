@@ -17,7 +17,7 @@ fs.mkdirSync(output,{recursive:true});
   await page.route('**/api/**',async route=>{const u=new URL(route.request().url());await route.continue({url:'http://127.0.0.1:8012'+u.pathname+u.search});});
   await page.goto(`${frontend}/building?id=ac20`);
   await page.getByRole('tab',{name:'Ask',exact:true}).click();
-  await page.getByText('Ymir ready',{exact:false}).waitFor();
+  await page.getByText('Smart ready',{exact:false}).waitFor();
   async function openTrace(){
    const expand=page.getByRole('button',{name:'Expand the trace'});
    if(await expand.isVisible())await expand.click();

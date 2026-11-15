@@ -30,12 +30,12 @@ execution facts; preview nodes describe pending work. No vendored code is change
 
    Smart uses `deepseek/deepseek-v4.1-flash-1017`; Frontier uses
    `openai/gpt-6.1-sol`, both via pinned OpenRouter endpoints. General tools are VISTA `inspect`
-   and `read_pixels`, `detect_objects`, native `read_pdf_text` and `inspect_pdf_vectors`,
+   and `read_pixels`, `detect_objects`, native `read_pdf_text` and `read_pdf_vectors`,
    `native_room_candidates`, Raster2Seq `predict_room_polygons`, `calibrate`,
    `measure_room` and `measure_distance`. Detection uses D-FINE-L
    (`d-fine-l-junction-ema`) for trained classes or Argon (`google/gemini-4-argon`) otherwise;
    these are class routes, not automatic fallback attempts. The compact counter
-   exposes only inspection, pixels, detection and native PDF text/vector inspection. It has no room
+   exposes only inspection, pixels, detection and native PDF text. It has no room
    geometry tools. Tools appear only when their receipts exist.
 5. **Host checks.** Binding validates registered proposal IDs, clipping/edge contact,
    duplicates, complete detector evidence and count scope. General binding also
