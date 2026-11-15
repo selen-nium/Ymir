@@ -3,8 +3,9 @@
 import type {Box, Drawing, Pt, Wall} from './types';
 import type {ReviewRecord} from './session';
 
-/** kind defaults to window. detected: found by Build's wall finder, not reviewed by a person. */
-export interface ModelWindow { id: string; sheet: string; box: Box; verified: boolean; kind?: 'window' | 'door'; detected?: boolean }
+/** kind defaults to window; a passage is a doorway with no door drawn. detected: found by Build's
+ *  wall finder, not reviewed by a person. */
+export interface ModelWindow { id: string; sheet: string; box: Box; verified: boolean; kind?: 'window' | 'door' | 'passage'; detected?: boolean }
 export interface WallWindow extends ModelWindow { wallId: string; start: number; end: number }
 export interface WindowLayout { placed: WallWindow[]; unplaced: ModelWindow[] }
 
@@ -19,14 +20,14 @@ export function reviewedWindows(records: ReviewRecord[], sheet: string): ModelWi
 /** Doors and windows Build detected on a sheet (Drawing.openings), as unreviewed model openings. */
 export function detectedOpenings(d: Drawing | null | undefined, sheet: string): ModelWindow[] {
   return (d?.openings ?? []).filter(o => o.box?.length === 4 && o.box.every(Number.isFinite) && o.box[2] > o.box[0] && o.box[3] > o.box[1])
-    .map(o => ({id:`detected-${o.id}`, sheet, box:[...o.box] as Box, verified:false, detected:true, kind:o.kind === 'door' ? 'door' : 'window'}));
+    .map(o => ({id:`detected-${o.id}`, sheet, box:[...o.box] as Box, verified:false, detected:true, kind:o.kind === 'door' || o.kind === 'passage' ? o.kind : 'window'}));
 }
 
 const overlaps = (a: Box, b: Box) => Math.min(a[2],b[2]) > Math.max(a[0],b[0]) && Math.min(a[3],b[3]) > Math.max(a[1],b[1]);
 
-/** People's reviewed windows win: a detected window under a reviewed one is dropped. Doors always stay. */
+/** People's reviewed windows win: a detected window under a reviewed one is dropped. Doors and doorways always stay. */
 export function withDetected(reviewed: ModelWindow[], detected: ModelWindow[]): ModelWindow[] {
-  return [...reviewed, ...detected.filter(o => o.kind === 'door' || !reviewed.some(r => overlaps(r.box, o.box)))];
+  return [...reviewed, ...detected.filter(o => o.kind === 'door' || o.kind === 'passage' || !reviewed.some(r => overlaps(r.box, o.box)))];
 }
 
 /** Match the labelled opening to an intersecting/aligned wall, never a distant wall. */

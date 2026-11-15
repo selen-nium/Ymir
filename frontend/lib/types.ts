@@ -26,7 +26,9 @@ export interface Located {
   text?: string;
 }
 /** A door or window found by Build's wall finder (its gap scan), in image pixels. */
-export interface Opening extends Located { kind?: 'door' | 'window' }
+export interface Opening extends Located { kind?: 'door' | 'window' | 'passage' }
+/** Odd-shaped wall the straight segments don't cover (a pier, a splayed corner): an outline to extrude. */
+export interface WallBlock { id: string; polygon: Pt[] }
 
 export interface Drawing {
   id: string;
@@ -44,6 +46,7 @@ export interface Drawing {
   texts: Located[];
   symbols: Located[];
   openings: Opening[];
+  wall_blocks?: WallBlock[];
 }
 
 export interface LibraryEntry {

@@ -122,7 +122,8 @@ function Note3D() {
     const windows=ws.session.windowSummary(), plural=(n:number,word:string)=>`${n} ${word}${n===1?'':'s'}`;
     const parts=[windows.placed ? plural(windows.placed,windows.preview?'window':'verified window') : '',
       windows.detectedWindows ? plural(windows.detectedWindows,'detected window') : '',
-      windows.detectedDoors ? plural(windows.detectedDoors,'detected door') : ''].filter(Boolean);
+      windows.detectedDoors ? plural(windows.detectedDoors,'detected door') : '',
+      windows.doorways ? plural(windows.doorways,'open doorway') : ''].filter(Boolean);
     if(parts.length || windows.unplaced)text=<>
       {windows.preview?'Preview · ':''}{parts.join(' · ')}{parts.length ? ' · height estimated' : ''}
       {windows.unplaced>0 && <><br />{windows.unplaced} label{windows.unplaced===1?' needs':'s need'} a wall</>}

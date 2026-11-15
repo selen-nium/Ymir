@@ -28,11 +28,12 @@ function makeWindow() {
   group.userData={pane,mullion,frame,glass};
   return group;
 }
-function makeDoor() {
+/** A door: frame and leaf. A bare doorway (passage): the frame alone. */
+function makeDoor(withLeaf:boolean) {
   const group=new THREE.Group();
   const frame=new THREE.MeshStandardMaterial({color:FRAME.detected,roughness:.65});
   const leaf=new THREE.MeshStandardMaterial({color:0xb08a64,roughness:.8});
-  const panel=new THREE.Mesh(new THREE.BoxGeometry(.94,.97,.12),leaf);panel.position.y=-.015;group.add(panel);
+  const panel=new THREE.Mesh(new THREE.BoxGeometry(.94,.97,.12),leaf);panel.position.y=-.015;panel.visible=withLeaf;group.add(panel);
   const head=new THREE.Mesh(new THREE.BoxGeometry(1,.03,1),frame);head.position.y=.485;group.add(head);
   for(const x of [-.49,.49]){const post=new THREE.Mesh(new THREE.BoxGeometry(.02,1,1),frame);post.position.x=x;group.add(post);}
   group.userData={frame,leaf};
@@ -80,11 +81,11 @@ export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
     for(const window of windows) {
       const wall=walls.find(w=>w.id===window.wallId);if(!wall)continue;
       const length=Math.hypot(wall.b[0]-wall.a[0],wall.b[1]-wall.a[1]);
-      const center=(window.start+window.end)/2, door=window.kind==='door';
+      const center=(window.start+window.end)/2, passage=window.kind==='passage', door=window.kind==='door' || passage;
       const sill=door?0:height*OPENING.sill;
       const to:Pose={x:(wall.a[0]+(wall.b[0]-wall.a[0])*center/length)*scale,z:(wall.a[1]+(wall.b[1]-wall.a[1])*center/length)*scale,
         center:center*scale,width:(window.end-window.start)*scale,height:height*OPENING.head-sill,sill,depth:thickness(wall,scale),angle:Math.atan2(-(wall.b[1]-wall.a[1]),wall.b[0]-wall.a[0]),opacity:1};
-      const key=`${window.sheet}:${door?'door':'window'}:${window.id}@${wall.id}`;wanted.add(key);
+      const key=`${window.sheet}:${window.kind ?? 'window'}:${window.id}@${wall.id}`;wanted.add(key);
       const signature=JSON.stringify([to,window.verified]);
       const previous=items.get(key);
       if(previous?.signature===signature && !previous.removing){
@@ -92,7 +93,7 @@ export function createWindowLayer(reducedMotion:()=>boolean=()=>false) {
         continue;
       }
       const animated=animate && !reducedMotion();
-      const mesh=previous?.mesh ?? (door?makeDoor():makeWindow());if(!previous)group.add(mesh);
+      const mesh=previous?.mesh ?? (door?makeDoor(!passage):makeWindow());if(!previous)group.add(mesh);
       const from=previous?{...previous.current}:{...to,width:animated ? .00001 : to.width,opacity:animated?0:1};
       const item:Item={id:window.id,wallId:wall.id,door,detected:!!window.detected,mesh,from,to,current:{...from},started:now+(previous?0:Math.min(120,stagger++*35)),duration:animated?(previous?300:520):0,
         removing:false,verified:window.verified,signature,flash:animated && window.verified && (!previous || !previous.verified)};

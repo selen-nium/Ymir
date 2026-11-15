@@ -126,7 +126,7 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
   const modelWindows = (): ModelWindow[] => {
     const detected = s.d ? detectedOpenings(s.d, s.d.id) : [];
     return s.reviewShown && s.review?.cls === 'window'
-      ? [...s.review.items.filter(i=>i.counted).map(i=>({id:i.id,sheet:s.d!.id,box:i.box,verified:false})), ...detected.filter(o=>o.kind==='door')]
+      ? [...s.review.items.filter(i=>i.counted).map(i=>({id:i.id,sheet:s.d!.id,box:i.box,verified:false})), ...detected.filter(o=>o.kind==='door' || o.kind==='passage')]
       : withDetected(s.verifiedWindows, detected);
   };
 
@@ -257,7 +257,8 @@ export function createSession(opts: { pickRef?: boolean; flagBelow?: number } = 
       const detected=layout.placed.filter(w=>w.detected);
       // Reviewed and detected openings are counted apart: only people's labels are "verified".
       return {placed:layout.placed.filter(w=>!w.detected).length,unplaced:layout.unplaced.filter(w=>!w.detected).length,
-        detectedWindows:detected.filter(w=>w.kind!=='door').length,detectedDoors:detected.filter(w=>w.kind==='door').length,
+        detectedWindows:detected.filter(w=>w.kind!=='door' && w.kind!=='passage').length,detectedDoors:detected.filter(w=>w.kind==='door').length,
+        doorways:detected.filter(w=>w.kind==='passage').length,
         preview:s.reviewShown && s.review?.cls==='window'};
     },
     citationBox(c: Citation): Box | null {

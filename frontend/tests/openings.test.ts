@@ -50,3 +50,17 @@ test('the layer draws doors as door leaves standing on the floor, apart from win
   expect(layer.spans('w1')).toHaveLength(1);
   layer.reset();
 });
+
+test('a bare doorway keeps its kind, is cut like a door and has no leaf',()=>{
+  const d={openings:[{id:'o9',kind:'passage',box:[100,6,140,14]}]} as unknown as Drawing;
+  const found=detectedOpenings(d,'sheet');
+  expect(found[0]).toMatchObject({id:'detected-o9',kind:'passage',detected:true});
+  expect(withDetected([{id:'r',sheet:'sheet',box:[90,0,150,20],verified:true}],found).map(o=>o.id)).toEqual(['r','detected-o9']);
+  const layer=createWindowLayer(()=>true);
+  layer.sync(windowLayout([wall],found).placed,[wall],.03,3,false);
+  expect(layer.doorSpans('w1')).toHaveLength(1);expect(layer.spans('w1')).toHaveLength(0);
+  const mesh=layer.group.children[0];
+  expect(mesh.userData.leaf).toBeDefined();
+  expect(mesh.children.some(c=>!c.visible)).toBe(true); // the leaf is hidden
+  layer.reset();
+});

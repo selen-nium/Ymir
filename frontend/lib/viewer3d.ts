@@ -76,11 +76,12 @@ export function createViewer(el: HTMLElement) {
   const root = new THREE.Group();
   const active = new THREE.Group(); // local coords: sheet px × scale, y up in metres
   const wallsG = new THREE.Group();
+  const blocksG = new THREE.Group(); // odd-shaped wall pieces (piers, splayed corners), extruded outlines
   const roomsG = new THREE.Group();
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const windows=createWindowLayer(()=>reducedMotion.matches);
   const evidenceG = new THREE.Group();
-  active.add(roomsG, wallsG, windows.group);
+  active.add(roomsG, wallsG, blocksG, windows.group);
   const othersG = new THREE.Group();
   const ghostsG = new THREE.Group();
   root.add(active, othersG, ghostsG, evidenceG);
@@ -179,6 +180,18 @@ export function createViewer(el: HTMLElement) {
     return m;
   }
 
+  /** An outline (sheet px) extruded to the wall height, in the same local frame as wallMesh. */
+  function blockMesh(polygon: Pt[], scale: number, height: number, color: THREE.Color, edgeOpacity: number): THREE.Mesh<THREE.ExtrudeGeometry, THREE.MeshStandardMaterial> | null {
+    if (polygon.length < 3) return null;
+    const shape = new THREE.Shape(polygon.map(([x, y]) => new THREE.Vector2(x * scale, -y * scale)));
+    const g = new THREE.ExtrudeGeometry(shape, { depth: height, bevelEnabled: false, steps: 1, curveSegments: 1 });
+    g.rotateX(-Math.PI / 2);
+    const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color, roughness: 0.9 }));
+    m.castShadow = m.receiveShadow = true;
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: C.edge, transparent: true, opacity: edgeOpacity })));
+    return m;
+  }
+
   function buildWalls() {
     const projected=ctx.walls!==false && active.visible && d && view ? windowLayout(d.walls,view.windows ?? [],view.removed).placed : [];
     windows.sync(projected,d?.walls ?? [],s,view?.height ?? 2.7);
@@ -193,6 +206,15 @@ export function createViewer(el: HTMLElement) {
         m.userData = { type: 'wall', id: w.id, w };
         styleWall(m);
         wallsG.add(m);
+      }
+    }
+    disposeTree(blocksG);
+    blocksG.clear();
+    blocksG.scale.y = Math.max(0.02, lift);
+    if (d && view && ctx.walls !== false) {
+      for (const b of d.wall_blocks ?? []) {
+        const m = blockMesh(b.polygon, s, view.height, C.wall, 0.55);
+        if (m) blocksG.add(m);
       }
     }
     buildMarkers();
@@ -299,6 +321,12 @@ export function createViewer(el: HTMLElement) {
           g.add(otherWindows.group);
           for (const wall of o.drawing.walls ?? []) {
             const m = wallMesh(wall, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3,otherWindows.spans(wall.id),otherWindows.doorSpans(wall.id));
+            if (!m) continue;
+            if (o.faded) { m.material.transparent = true; m.material.opacity = 0.12; m.material.depthWrite = false; m.castShadow = false; }
+            g.add(m);
+          }
+          for (const b of o.drawing.wall_blocks ?? []) {
+            const m = blockMesh(b.polygon, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3);
             if (!m) continue;
             if (o.faded) { m.material.transparent = true; m.material.opacity = 0.12; m.material.depthWrite = false; m.castShadow = false; }
             g.add(m);
@@ -439,7 +467,7 @@ export function createViewer(el: HTMLElement) {
 
   let liftAnim: { from: number; to: number; start: number; ms: number } | null = null;
   const animateLift = (to: number, ms = 900) => {
-    if(reducedMotion.matches){lift=to;wallsG.children.forEach(m=>{m.scale.y=Math.max(.02,lift);});liftAnim=null;dirty=true;return;}
+    if(reducedMotion.matches){lift=to;wallsG.children.forEach(m=>{m.scale.y=Math.max(.02,lift);});blocksG.scale.y=Math.max(.02,lift);liftAnim=null;dirty=true;return;}
     liftAnim = { from: lift, to, start: performance.now(), ms };
   };
 
@@ -506,6 +534,7 @@ export function createViewer(el: HTMLElement) {
       if (t >= 1) liftAnim = null;
     }
     windows.group.scale.y=Math.max(.02,lift);
+    blocksG.scale.y=Math.max(.02,lift);
     if (camTarget.t < 1) {
       camTarget.t = Math.min(1, camTarget.t + 0.03);
       const k = ease(camTarget.t);

@@ -178,12 +178,45 @@ def darken(bgr: np.ndarray) -> np.ndarray:
     return cv2.cvtColor(out, cv2.COLOR_GRAY2BGR)
 
 
+def remove_fills(bgr: np.ndarray) -> tuple[np.ndarray, int]:
+    """Paint room-sized flat tints white: coloured room fills, shaded balconies, legend swatches.
+
+    A wall finder that looks for dark areas reads a tinted room as one solid wall. A fill is a tone
+    between ink and paper in an area wider than any wall. Slivers of the same colours (between
+    furniture, around labels) go too; narrow bands of other tones (grey or hatched walls) are kept.
+    Returns the image and the share of the image that was fill."""
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    sat = bgr.max(2).astype(np.int16) - bgr.min(2)
+    # Room tints are pale (measured: 200-240 on a 0-255 scale) or coloured. Grey wall fills are
+    # darker (about 170 on Swiss Dwellings sheets) and stay.
+    tint = ((gray < 246) & ((gray > 185) | ((sat >= 25) & (gray > 110)))).astype(np.uint8)
+    # Wider than a wall: about 1.3% of the short side (28 px across on a 2200 px sheet).
+    k = 2 * max(6, int(round(0.0065 * min(gray.shape)))) + 1
+    kernel = np.ones((k, k), np.uint8)
+    wide = cv2.dilate(cv2.erode(tint, kernel), kernel).astype(bool) & tint.astype(bool)
+    share = float(wide.mean())
+    # Nothing room-sized, or nearly everything: then the "tint" is the paper itself (a scan on
+    # off-white paper), and painting it out would take faint lines with it.
+    if share < 0.002 or share > 0.45:
+        return bgr, 0.0
+    # The fills' own colours, in 8-level steps per channel; the few that make up 97% of the wide areas.
+    code = (bgr[..., 0].astype(np.int32) >> 3 << 10) | (bgr[..., 1].astype(np.int32) >> 3 << 5) | (bgr[..., 2].astype(np.int32) >> 3)
+    codes, counts = np.unique(code[wide], return_counts=True)
+    order = np.argsort(-counts)
+    keep = order[: int(np.searchsorted(np.cumsum(counts[order]), 0.97 * counts.sum())) + 1]
+    same = np.isin(code, codes[keep]) & tint.astype(bool)
+    out = bgr.copy()
+    out[wide | same] = 255
+    return out, share
+
+
 def clean_plan(png: bytes) -> tuple[bytes, dict]:
-    """Text removed (PNG bytes, same size) and the drawing's box in that frame."""
+    """Fills and text removed (PNG bytes, same size) and the drawing's box in that frame."""
     bgr = cv2.imdecode(np.frombuffer(png, np.uint8), cv2.IMREAD_COLOR)
+    bgr, fill_share = remove_fills(bgr)
     cleaned, count = remove_text(bgr)
     box = drawing_box(cleaned)
     ok, buf = cv2.imencode(".png", cleaned)
     if not ok:
         raise ValueError("Could not encode the cleaned drawing")
-    return buf.tobytes(), {"text_marks_removed": count, "drawing_box": list(box)}
+    return buf.tobytes(), {"text_marks_removed": count, "fill_share": round(fill_share, 3), "drawing_box": list(box)}

@@ -191,17 +191,21 @@ def build_drawing(raw: bytes, *, drawing_id: str, title: str, dataset: str, kind
         "openings": [{"id": f"o{i + 1}", "kind": o["kind"],
                       "box": [round(o["box"][0] - x0, 1), round(o["box"][1] - y0, 1), round(o["box"][2] - x0, 1), round(o["box"][3] - y0, 1)]}
                      for i, o in enumerate(ext.get("openings", []))],
+        # Odd-shaped wall the straight segments don't cover (piers, splayed corners), as outlines to extrude.
+        "wall_blocks": [{"id": f"k{i + 1}", "polygon": [[round(px - x0, 1), round(py - y0, 1)] for px, py in b["polygon"]]}
+                        for i, b in enumerate(ext.get("blocks", []))],
         "rooms": out_rooms, "symbols": [],
         "texts": [{"id": f"t{i + 1}", "text": l["text"], "box": l["box"], "confidence": l["score"]} for i, l in enumerate(labels)],
     }
     trace = _trace([
         ("read", "Read drawing", "Pillow", [], "done", f"{kind} · {x1 - x0}×{y1 - y0} px", t_read),
         ("plan", "Find plan", "OpenCV", ["read"], "done",
-         f"{cleaning['text_marks_removed']} text marks removed · plan cropped" if cleaning else "Plan region cropped",
+         f"{cleaning['text_marks_removed']} text marks removed" + (" · room fills removed" if cleaning.get("fill_share") else "") + " · plan cropped"
+         if cleaning else "Plan region cropped",
          t_plan if cleaning else 30),
         ("walls", "Detect walls", "WallNet" if learned else "Stoa wall model" if ext.get("vectorized") else "OpenCV lines", ["plan"], "done",
-         f"{len(out_walls)} walls found" + "".join(f" · {n} {k}{'' if n == 1 else 's'}" for k in ("door", "window") if ext.get("openings")
-                                                   for n in [sum(o["kind"] == k for o in ext["openings"])])
+         f"{len(out_walls)} walls found" + "".join(f" · {n} {label}{'' if n == 1 else 's'}" for k, label in (("door", "door"), ("window", "window"), ("passage", "doorway"))
+                                                   for n in [sum(o["kind"] == k for o in ext.get("openings", []))] if n or (k != "passage" and ext.get("openings")))
          + (" · line drawing darkened" if ext.get("line_drawing") else ""), ext["seconds"] * 1000),
         *([("text", "Read text", "Text extraction", ["plan"], "done", f"{len(labels)} labels", t_ocr)] if labels else []),
         ("scale", "Read scale", "Source metadata" if sheet else "Estimate", ["plan"], "done",

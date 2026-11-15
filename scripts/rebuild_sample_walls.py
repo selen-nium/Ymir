@@ -55,6 +55,8 @@ def rebuild(sid: str, store: DrawingStore) -> dict:
     before = len(payload.get("walls", []))
     payload["walls"] = walls
     payload["openings"] = openings
+    payload["wall_blocks"] = [{**b, "polygon": [[round((px + x0) * fx, 1), round((py + y0) * fy, 1)] for px, py in b["polygon"]]}
+                              for b in built.payload.get("wall_blocks", [])]
     payload.setdefault("source", {})["wall_input"] = built.payload["source"].get("wall_input")
     payload["source"]["walls_built_by"] = "Stoa Lens converter (research/stoa-lens) after text removal; WallNet retired"
     path.write_text(json.dumps(payload, ensure_ascii=False))
