@@ -288,8 +288,9 @@
 @media (prefers-reduced-motion: reduce) {
   .page *, .page *::before, .page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
-/* Retained styles for the standalone, historical architecture component. */
+/* Architecture: original system-map style, with current runtime flows. */
 .diagram { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 18px; overflow-x: auto; }
+.diagram:focus-visible { outline: 2px solid var(--answer); outline-offset: 4px; }
 .diagram svg { display: block; min-width: 1000px; width: 100%; height: auto; font-family: var(--sans); }
 .dgBox { fill: #fff; stroke: var(--line); stroke-width: 1.2; }
 .dg_acc { fill: #fdf1eb; stroke: #f3c7b2; }

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BuildingPreview, EvidencePreview, PipelinePreview } from '@/components/landing/LandingDemos';
+import { BuildingPreview, EvidencePreview } from '@/components/landing/LandingDemos';
+import { ArchitectureDiagram } from '@/components/landing/ArchitectureDiagram';
 import s from '@/components/landing/landing.module.css';
 
 const TECHNOLOGIES = [
@@ -81,7 +82,7 @@ export default function LandingPage() {
               <div><span className={s.eyebrow}>03 / Follow the work</span><h2>A question goes in.<br /><em>The steps stay visible.</em></h2></div>
               <p>See the route, model calls, tools and host checks.<br />Reconnect to the same job after a reload.</p>
             </div>
-            <PipelinePreview />
+            <div className={s.diagram} tabIndex={0} role="region" aria-label="Ymir architecture diagram; scroll horizontally on small screens"><ArchitectureDiagram /></div>
             <div className={s.engineNotes}><span><b>Smart / Frontier</b> choose tools</span><span><b>D-FINE-L / Argon</b> localize objects</span><span><b>Native geometry / Raster2Seq</b> provide room outlines</span></div>
           </div>
         </section>
