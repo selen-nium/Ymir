@@ -148,7 +148,14 @@ def test_upload_builds_a_new_drawing():
     entry = res.json()
     assert entry["id"].startswith("u-") and entry["title"] == "my plan"
     d = client.get(f"/api/drawings/{entry['id']}").json()
-    assert len(d["walls"]) > 5 and d["rooms"]
+    # With the converter's dependencies installed the app shows its model: wall outlines instead of line walls.
+    if d.get("model_files", {}).get("status") == "built" and d.get("wall_blocks"):
+        assert d["walls"] == [] and len(d["wall_blocks"]) > 3 and "model.ifc" in d["model_files"]["files"]
+        assert len(d["build_lines"]["walls"]) > 5
+        assert client.get(f"/api/drawings/{d['id']}/model/model.ifc").status_code == 200
+        assert client.get(f"/api/drawings/{d['id']}/model/secret.txt").status_code == 404
+    else:
+        assert len(d["walls"]) > 5 and d["rooms"]
     assert any(o["kind"] == "door" for o in d["openings"])
     assert client.get(f"/api/drawings/{entry['id']}/image").status_code == 200
     assert entry["id"] in [e["id"] for e in client.get("/api/library").json()]

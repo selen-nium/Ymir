@@ -239,7 +239,35 @@ class DocumentStore:
                 document_id=ident,source_page=row['source_page'],document_page_count=d['page_count'],rendering_scope=row.get('native_source',{}).get('rendering_scope'),limitations=limitations)
             if row.get('image_registration'):payload['source']['image_registration']=row['image_registration']
             payload['lens_source']=row
+            if not row.get('native_source') and payload['scale'].get('source')=='estimate':
+                # A printed scale bar beats the size guess. Read on the full page; never from paper size alone.
+                from .build import ocr
+                if ocr.available():
+                    try:
+                        import cv2,numpy as np
+                        from .build import scale_bar
+                        found=scale_bar.read(ocr.ocr_image(cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_COLOR)))
+                    except Exception:found=None
+                    if found:
+                        payload['scale']={'m_per_px':found['m_per_px'],'source':'scale_bar','confidence':0.8,
+                                          'text':' '.join(found['labels'])+(' '+found['unit'] if found['unit'] not in ''.join(found['labels']) else ''),
+                                          'replaced_estimate_m_per_px':payload['scale']['m_per_px']}
             drawing_id=self.drawings.save(payload,trace,raw,'png')
+            if not row.get('native_source'):
+                # The converter's own building model (IFC, GLB, DXF, SVG, PDF) from the full-resolution page.
+                from .build.floorplan.model_files import convert
+                sx=row['width']/normalized['width'];sy=row['height']/normalized['height']
+                x0,y0,x1,y1=built.payload['source']['crop']
+                record=convert(row['image'],self.drawings.model_dir(drawing_id),payload['scale']['m_per_px'],
+                               [round(x0*sx),round(y0*sy),round(x1*sx),round(y1*sy)],payload['scale'].get('source','estimate'))
+                geometry=None
+                if record.get('status')=='built' and record['counts']['walls']:
+                    # Show what the converter built: its wall outlines and rooms replace Build's re-traced lines.
+                    from .build.floorplan.model_files import payload_geometry
+                    geometry=payload_geometry(self.drawings.model_dir(drawing_id),image_factor=record.get('converter_image_factor',1.0))
+                    record['shown_in_app']={'wall_outlines':len(geometry['wall_blocks']),'rooms':len(geometry['rooms']),'openings':len(geometry['openings']),
+                                            'replaced_build_lines':len(payload['walls'])}
+                self.drawings.set_model_files(drawing_id,record,geometry)
             entries.append(next(e for e in self.drawings.library() if e['id']==drawing_id))
         (run/'sheets.json').write_text(json.dumps({'rows':rows,'drawing_ids':[e['id'] for e in entries]},indent=2))
         return {'sheets':entries,'status':'prepared','limitations':list(dict.fromkeys(limitations))}

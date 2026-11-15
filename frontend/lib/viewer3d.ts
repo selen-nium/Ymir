@@ -85,11 +85,12 @@ export function createViewer(el: HTMLElement) {
   const root = new THREE.Group();
   const active = new THREE.Group(); // local coords: sheet px × scale, y up in metres
   const wallsG = new THREE.Group();
+  const blocksG = new THREE.Group(); // odd-shaped wall pieces (piers, splayed corners), extruded outlines
   const roomsG = new THREE.Group();
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const windows=createWindowLayer(()=>reducedMotion.matches);
   const evidenceG = new THREE.Group();
-  active.add(roomsG, wallsG, windows.group);
+  active.add(roomsG, wallsG, blocksG, windows.group);
   const othersG = new THREE.Group();
   const ghostsG = new THREE.Group();
   root.add(active, othersG, ghostsG, evidenceG);
@@ -173,16 +174,28 @@ export function createViewer(el: HTMLElement) {
   }
 
   /** One extruded wall in a sheet's local frame (px × scale). */
-  function wallMesh(w: Wall, scale: number, height: number, color: THREE.Color, edgeOpacity: number, spans:[number,number][]=[]): WallMesh | null {
+  function wallMesh(w: Wall, scale: number, height: number, color: THREE.Color, edgeOpacity: number, spans:[number,number][]=[], doors:[number,number][]=[]): WallMesh | null {
     const [ax, az] = [w.a[0] * scale, w.a[1] * scale], [bx, bz] = [w.b[0] * scale, w.b[1] * scale];
     const len = Math.hypot(bx - ax, bz - az);
     if (len < 0.05) return null;
     // drawn thickness from the detector when plausible, else 20 cm
     const tw = wallThickness(w,scale);
-    const g = wallGeometry(len,height,tw,spans);
+    const g = wallGeometry(len,height,tw,spans,doors);
     const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color, roughness: 0.9 }));
     m.position.set((ax + bx) / 2, 0, (az + bz) / 2);
     m.rotation.y = Math.atan2(-(bz - az), bx - ax);
+    m.castShadow = m.receiveShadow = true;
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: C.edge, transparent: true, opacity: edgeOpacity })));
+    return m;
+  }
+
+  /** An outline (sheet px) extruded to the wall height, in the same local frame as wallMesh. */
+  function blockMesh(polygon: Pt[], scale: number, height: number, color: THREE.Color, edgeOpacity: number): THREE.Mesh<THREE.ExtrudeGeometry, THREE.MeshStandardMaterial> | null {
+    if (polygon.length < 3) return null;
+    const shape = new THREE.Shape(polygon.map(([x, y]) => new THREE.Vector2(x * scale, -y * scale)));
+    const g = new THREE.ExtrudeGeometry(shape, { depth: height, bevelEnabled: false, steps: 1, curveSegments: 1 });
+    g.rotateX(-Math.PI / 2);
+    const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color, roughness: 0.9 }));
     m.castShadow = m.receiveShadow = true;
     m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: C.edge, transparent: true, opacity: edgeOpacity })));
     return m;
@@ -196,12 +209,36 @@ export function createViewer(el: HTMLElement) {
     if (d && view && ctx.walls !== false) {
       for (const w of d.walls) {
         if (!wallLook(w)) continue;
-        const m = wallMesh(w, s, view.height, C.wall, 0.55,windows.spans(w.id));
+        const m = wallMesh(w, s, view.height, C.wall, 0.55,windows.spans(w.id),windows.doorSpans(w.id));
         if (!m) continue;
         m.scale.y = Math.max(0.02, lift);
         m.userData = { type: 'wall', id: w.id, w };
         styleWall(m);
         wallsG.add(m);
+      }
+    }
+    disposeTree(blocksG);
+    blocksG.clear();
+    blocksG.scale.y = Math.max(0.02, lift);
+    if (d && view && ctx.walls !== false) {
+      for (const b of d.wall_blocks ?? []) {
+        const m = blockMesh(b.polygon, s, view.height, C.wall, 0.55);
+        if (m) blocksG.add(m);
+      }
+      // A converter-built model has wall outlines and no line walls, so its doors and windows have no wall
+      // segment to sit in. Draw them where the converter found them: a door leaf from the floor to the door
+      // head, a pane of glass at window height.
+      if (!d.walls.length) {
+        for (const o of d.openings ?? []) {
+          const [x0, y0, x1, y1] = o.box;
+          const door = o.kind !== 'window';
+          const h = door ? Math.min(2.1, view.height) : Math.max(0.3, Math.min(1.2, view.height - 0.9));
+          const g = new THREE.BoxGeometry(Math.max((x1 - x0) * s, 0.08), h, Math.max((y1 - y0) * s, 0.08));
+          const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: door ? 0x9a5a2a : 0x7fb4d8, roughness: 0.6, transparent: !door, opacity: door ? 1 : 0.65 }));
+          m.position.set(((x0 + x1) / 2) * s, door ? h / 2 : 0.9 + h / 2, ((y0 + y1) / 2) * s);
+          m.castShadow = true;
+          blocksG.add(m);
+        }
       }
     }
     buildMarkers();
@@ -211,7 +248,7 @@ export function createViewer(el: HTMLElement) {
       const mesh=child as WallMesh,w=mesh.userData.w as Wall;
       if(!ids.has(w.id))continue;
       const length=Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1])*s;
-      mesh.geometry.dispose();mesh.geometry=wallGeometry(length,view!.height,wallThickness(w,s),windows.spans(w.id));
+      mesh.geometry.dispose();mesh.geometry=wallGeometry(length,view!.height,wallThickness(w,s),windows.spans(w.id),windows.doorSpans(w.id));
       const edges=mesh.children[0] as THREE.LineSegments;
       edges.geometry.dispose();edges.geometry=new THREE.EdgesGeometry(mesh.geometry);
     }
@@ -307,7 +344,13 @@ export function createViewer(el: HTMLElement) {
           otherWindows.sync(windowLayout(o.drawing.walls,o.windows ?? []).placed,o.drawing.walls,L,o.height ?? 3,false);
           g.add(otherWindows.group);
           for (const wall of o.drawing.walls ?? []) {
-            const m = wallMesh(wall, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3,otherWindows.spans(wall.id));
+            const m = wallMesh(wall, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3,otherWindows.spans(wall.id),otherWindows.doorSpans(wall.id));
+            if (!m) continue;
+            if (o.faded) { m.material.transparent = true; m.material.opacity = 0.12; m.material.depthWrite = false; m.castShadow = false; }
+            g.add(m);
+          }
+          for (const b of o.drawing.wall_blocks ?? []) {
+            const m = blockMesh(b.polygon, L, o.height ?? 3, C.wall, o.faded ? 0.06 : 0.3);
             if (!m) continue;
             if (o.faded) { m.material.transparent = true; m.material.opacity = 0.12; m.material.depthWrite = false; m.castShadow = false; }
             g.add(m);
@@ -448,7 +491,7 @@ export function createViewer(el: HTMLElement) {
 
   let liftAnim: { from: number; to: number; start: number; ms: number } | null = null;
   const animateLift = (to: number, ms = 900) => {
-    if(reducedMotion.matches){lift=to;wallsG.children.forEach(m=>{m.scale.y=Math.max(.02,lift);});liftAnim=null;dirty=true;return;}
+    if(reducedMotion.matches){lift=to;wallsG.children.forEach(m=>{m.scale.y=Math.max(.02,lift);});blocksG.scale.y=Math.max(.02,lift);liftAnim=null;dirty=true;return;}
     liftAnim = { from: lift, to, start: performance.now(), ms };
   };
 
@@ -529,6 +572,7 @@ export function createViewer(el: HTMLElement) {
       if (t >= 1) liftAnim = null;
     }
     windows.group.scale.y=Math.max(.02,lift);
+    blocksG.scale.y=Math.max(.02,lift);
     if (camTarget.t < 1) {
       camTarget.t = Math.min(1, camTarget.t + 0.03);
       const k = ease(camTarget.t);
