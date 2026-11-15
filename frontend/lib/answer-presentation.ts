@@ -69,7 +69,10 @@ export function shortDetail(text: string, limit = 170) {
   const chunk = t.slice(0,limit-1).replace(/\s+\S*$/,'');
   return `${chunk}…`;
 }
+const accountingFailure = /\bbudget(?:error|s)?\b|spending.limit|\breserv(?:ations?|ed)\b|\bbalances?\b|\$[\d.,]+.*(?:remaining|held|cap)/i;
+export const requestStatus = (text: string) => accountingFailure.test(text) ? 'Request incomplete. The recorded evidence is available for review.' : text;
 export function answerText(a: Answer) {
+  if (accountingFailure.test(a.text))return requestStatus(a.text);
   if (a.job_id && a.counts?.length === 1 && !a.rooms?.length && !a.readings?.length && !a.measurements?.length)
     return countSentence(a.counts[0].object_class,a.counts[0].count,a.counts[0].object_classes);
   if (a.job_id && /^(Answer grounded|Here’s what I found|Evidence needs review|Some details need checking)/.test(a.text)) {
@@ -98,7 +101,7 @@ export function answerNotes(a: Answer): string[] {
     if (/relative comparison|ranking.*footprint/.test(r)) notes.add('Room sizes were compared on the drawing; metric areas are unavailable.');
     if (/quantiz|raster.*(?:estimat|approximat)|polygon.*approximat/.test(r)) notes.add('Room outlines are approximate.');
     if (/(?:clipped|cut off).*(?:unresolved|incomplete)|(?:incomplete|unresolved).*(?:clipped|cut off)/.test(r)) notes.add('Some objects are cut off at the image edge.');
-    if (/budget.*(?:exhaust|limit|insufficient)|insufficient.*budget/.test(r)) notes.add('The budget ran out before this check finished.');
+    if (accountingFailure.test(raw)){notes.add(requestStatus(raw));continue;}
     if (/timed? ?out|timeout|tool.*fail|tool.*unavailable/.test(r)) notes.add('A tool could not finish. Check the affected evidence.');
     if (/scope|limited to|provided page|single.*page|accepted.*proposal|detector|proposal[_-]|view-|page-|r2s-|polygon quantiz|zoom|magnif|pixel|\bpx\b/.test(r)) continue;
     if (/calibrat|native.*text|room (?:uses|labels?)|relative comparison|budget|tool.*fail/.test(r)) continue;

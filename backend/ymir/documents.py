@@ -136,7 +136,7 @@ class DocumentStore:
     def upload(self, raw, filename, project_identity=None, dataset='Upload', exposure='user_upload'):
         ext=Path(filename).suffix.lower().lstrip('.')
         if ext=='jpeg':ext='jpg'
-        if ext not in ('png','jpg','webp','pdf','ifc','svg'):raise ValueError('Use a PDF, PNG, JPEG, WebP, IFC or SVG file.')
+        if ext not in ('png','jpg','webp','pdf','ifc','svg','dxf'):raise ValueError('Use a PDF, PNG, JPEG, WebP, IFC, SVG or DXF file.')
         ident='doc-'+secrets.token_hex(10);folder=self.root/ident;folder.mkdir(parents=True)
         path=folder/('original.'+ext);path.write_bytes(raw)
         data={'id':ident,'filename':Path(filename).name,'title':Path(filename).stem[:80], 'format':ext,'sha256':sha(path),
@@ -154,8 +154,12 @@ class DocumentStore:
                                               'native_text':bool(p.get_text().strip()),'off_page_image_placements':clipped})
                         if clipped:
                             data['limitations'].append(f'Page {i+1} has embedded image placements outside the visible PDF page; the page rendering may omit part or all of those images.')
-            elif ext in ('ifc','svg'):
-                if ext=='svg':
+            elif ext in ('ifc','svg','dxf'):
+                if ext=='dxf':
+                    from stoa_native_geometry.dxf import inventory
+                    data['selectors']=inventory(path)
+                    data['limitations']=['Select closed entities representing rooms. Blocks are expanded with their transforms. Unitless drawings require confirmed units. Curves are approximated.']
+                elif ext=='svg':
                     from defusedxml import ElementTree
                     root=ElementTree.fromstring(raw)
                     data['selectors']=[{'id':n.get('id'),'label':n.get('data-name') or n.get('aria-label') or n.get('id')} for n in root.iter() if n.get('id') and n.tag.rsplit('}',1)[-1] in ('path','polygon','polyline','rect','g')]
@@ -185,10 +189,10 @@ class DocumentStore:
         d=self.get(ident);original=self.original(ident)
         run=self.root/ident/('prepare-'+secrets.token_hex(8));run.mkdir(parents=True)
         rows=[];limitations=list(d['limitations'])
-        if d['format'] in ('svg','ifc'):
+        if d['format'] in ('svg','ifc','dxf'):
             if selection.pages:raise ValueError('Use room or storey selection for native geometry.')
             if d['format']=='ifc' and d['selectors'] and not selection.options.storey_id:raise ValueError('Select an IFC storey.')
-            if d['format']=='svg' and not selection.options.element_ids:raise ValueError('Select SVG room elements.')
+            if d['format'] in ('svg','dxf') and not selection.options.element_ids:raise ValueError('Select source entities representing rooms.')
             from stoa_native_geometry import prepare
             receipt=prepare(original,run/'native',options=selection.options.model_dump(mode='json'),project_identity=d['project_identity'],dataset=d['dataset'],exposure=d['exposure'])
             extraction=receipt['extraction']

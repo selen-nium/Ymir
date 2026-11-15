@@ -63,6 +63,7 @@ def test_isolated_api_idempotent_replay_without_paid_calls(tmp_path,monkeypatch)
                 'text_evidence':[],'readings':[],'measurements':[],'calibrations':[], 'validation_errors':[],
                 'coverage':{'sources':[reg.public_source(pid)]},'evidence_views':{}}
     monkeypatch.setattr(ymir.lens_jobs,'run',fake_run)
+    monkeypatch.setattr('ymir.lens_readiness.readiness',lambda budget:{'modes':{'smart':{'ready':True},'frontier':{'ready':True}}})
     ledger=tmp_path/'shared.sqlite';LensBudget(ledger,15)
     output=tmp_path/'output';manifest=public_fixture(tmp_path)
     monkeypatch.setattr(sys,'argv',['check_junction_live_api.py','--manifest',str(manifest),'--ledger',str(ledger),'--budget','15','--output',str(output)])

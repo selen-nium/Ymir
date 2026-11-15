@@ -8,11 +8,11 @@ const assert=require('node:assert/strict');
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/api/**',async route=>{
   const path=new URL(route.request().url());
-  await route.continue({url:'http://127.0.0.1:8012'+path.pathname+path.search});
+  await route.continue({url:(process.env.YMIR_TEST_BACKEND || 'http://127.0.0.1:8012')+path.pathname+path.search});
  });
- await page.goto('http://127.0.0.1:3011/building?id=ac20');
+ await page.goto((process.env.YMIR_TEST_FRONTEND || 'http://127.0.0.1:3011')+'/building?id=ac20');
  await page.getByRole('tab',{name:'Ask',exact:true}).click();
- await page.getByText('Ymir ready').waitFor();
+ await page.getByText('Smart ready').waitFor();
  const scope=page.locator('.ask-scope');const checks=scope.locator('input');await checks.first().waitFor();
  assert.equal(await checks.count(),5);
  for(let i=0;i<5;i++){if(!(await checks.nth(i).isChecked()) && await checks.nth(i).isEnabled()){await checks.nth(i).check();}}

@@ -207,7 +207,7 @@ function NewBuildingDialog({ ref, onCreated }: { ref: React.RefObject<HTMLDialog
         <label>Name<input value={name} onChange={(e) => { setName(e.target.value); setErr(''); }} placeholder="Lakeside apartments" autoComplete="off" /></label>
         <div className={s.field}>
           <span>First sheet</span>
-          <FilePick className={`${s.drop}${file ? ` ${s.has}` : ''}`} onFile={(f) => { setFile(f); setErr(''); }}>{file ? file.name : 'Choose a PDF, image, IFC or SVG'}</FilePick>
+          <FilePick className={`${s.drop}${file ? ` ${s.has}` : ''}`} onFile={(f) => { setFile(f); setErr(''); }}>{file ? file.name : 'Choose a PDF, image, IFC, SVG or DXF'}</FilePick>
         </div>
         <span className={s.err} role="alert">{err}</span>
         <div className={s.row}>

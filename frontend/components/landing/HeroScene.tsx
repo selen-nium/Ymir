@@ -13,8 +13,10 @@ const ease = (t: number) => 1 - (1 - Math.min(1, Math.max(0, t))) ** 3;
 
 /** The sample building assembling itself: sheets drop into their levels, walls rise, the missing level is a ghost.
  *  Drag to turn it; it sways on its own while left alone. */
-export function HeroScene() {
+export function HeroScene({ paused = false }: { paused?: boolean }) {
   const host = useRef<HTMLDivElement>(null), label = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(paused);
+  useEffect(() => { pausedRef.current=paused; }, [paused]);
 
   useEffect(() => {
     const el = host.current!, tag = label.current!;
@@ -137,7 +139,7 @@ export function HeroScene() {
       pin.position.set(cx, 4.2, cz);
       pin.userData = { room: roomMesh };
       roomLevel.group.add(pin);
-      tag.querySelector('b')!.textContent = `${data.room.area.toFixed(2)} m²`;
+      tag.querySelector('b')!.textContent = 'Sample room';
       tag.querySelector('span')!.textContent = data.room.label;
 
       // frame the exploded building
@@ -175,7 +177,7 @@ export function HeroScene() {
           tag.style.transform = `translate(${(pinWorld.x * 0.5 + 0.5) * r.width}px, ${(-pinWorld.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
         }
         // the sway's own clock stops while the visitor holds or just let go, so it resumes from where it paused
-        if (!still && !held && now - letGo > IDLE_MS) sway += Math.min(0.1, (now - last) / 1000);
+        if (!still && !pausedRef.current && !held && now - letGo > IDLE_MS) sway += Math.min(0.1, (now - last) / 1000);
         pivot.rotation.y = 0.35 * Math.sin(sway * 0.18) - 0.15;
         controls.update();
         renderer.render(scene, camera);

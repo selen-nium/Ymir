@@ -1,5 +1,9 @@
 # Stoa Lens in Ymir (local)
 
+Current provider setup and Smart/Frontier capabilities are documented in
+[OpenRouter routing](openrouter-routing.md) and [hosting](hosting.md). The validation
+records below preserve the earlier Verda/Kimi runs; they do not configure new jobs.
+
 Ymir keeps its branding, sheet placement, wall editor, and Build pipeline. Ask uses
 `stoa_lens.service.run`; machine findings appear as evidence overlays. Human-verified
 window labels also add schematic window openings to the existing model. The
@@ -19,7 +23,7 @@ No retry path repeats paid work. Do not delete/reset this ledger to resume work.
 
 Ask requires `request_id`, `drawing_id`, `selected_drawing_ids` (1–3 unique IDs,
 including the active drawing), `project_id`, `conversation_id`, `question`, and
-optional `prior_job_ids`/Build `context`. One conversation is currently the
+optional `prior_job_ids`/Build `context`/`routing_mode` (`smart` by default or `frontier`). One conversation is currently the
 existing browser thread for its drawing/building. The server supplies its six
 latest completed turns, irrespective of which earlier IDs the browser remembers.
 Old answers only interpret the question. Current source validation binds every

@@ -1,125 +1,111 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArchitectureDiagram } from '@/components/landing/ArchitectureDiagram';
-import { HeroScene } from '@/components/landing/HeroScene';
+import { BuildingPreview, EvidencePreview, PipelinePreview } from '@/components/landing/LandingDemos';
 import s from '@/components/landing/landing.module.css';
 
-const PROBLEMS = [
-  ['The answer is spread across sheets', 'A plan tags a door type, the schedule defines it and the plumbing runs on a third sheet. Checking one fact means holding all of them at once.'],
-  ['A number is only as good as its source', 'A count or an area is hard to trust without the sheet, the region and the marks that produced it. A bare number gives you none of those.'],
-  ['Every source speaks differently', 'A PDF may carry positioned text, a scan has only pixels, and IFC or SVG files hold exact room boundaries. One generic reader treats them all the same.'],
-];
-const FEATURES = [
-  ['Follow the evidence', 'Every citation opens its sheet and focuses the text, box or room behind it. On placed sheets the same evidence lights up in the 3D building.'],
-  ['Assemble your building', 'Place each plan with two matching corners. Elevations stand on their base line, schedules stay attached, and dashed ghosts mark plans that are missing.'],
-  ['Counts that show their work', '“How many doors?” takes a short counting path: D‑FINE‑L proposes boxes for its 14 trained classes, Kimi handles other objects, and Ymir counts only accepted proposals.'],
-  ['Rooms and measurements', 'Rooms come from native IFC/SVG geometry or Raster2Seq polygons. Areas need a scale from the source itself; printed areas stay readings, and gaps are flagged for review.'],
-  ['Check the boxes', 'When a count is uncertain, the box editor opens. Resize, delete or draw boxes and save the labels; each edit is a new revision and the model’s answer stays untouched.'],
-  ['Jobs you can walk away from', 'Each question is a durable job. Watch the live trace of model calls and tools, cancel it, or close the tab and reconnect to the same job later.'],
-];
-const STEPS = [
-  ['Import', 'Upload a PDF, image, IFC or SVG. Ymir keeps the original and its SHA-256, then prepares the PDF pages, IFC storey or SVG rooms you pick.'],
-  ['Build', 'A working copy has text removed and its plan region selected. The Stoa Lens converter traces walls, doors and windows; rooms and an estimated scale complete the model.'],
-  ['Assemble', 'Place sheets in one building at their levels. Ghosts show expected plans that are still missing; clicking one asks for that sheet.'],
-  ['Ask', 'A job snapshots up to three sheets. DeepSeek plans the tool calls, the tools return evidence, and Ymir checks it before computing the answer.'],
-];
-const STACK: [string, [string, string?][]][] = [
-  ['Frontend', [['Next.js', 'Vercel'], ['React'], ['three.js', '2D & 3D views'], ['zustand', 'state'], ['TypeScript']]],
-  ['API & state', [['FastAPI', 'NDJSON'], ['SQLite', 'jobs, budget'], ['Pydantic', 'validation'], ['Modal', 'CPU container'], ['Python']]],
-  ['Ask', [['DeepSeek', 'planner · Verda'], ['D‑FINE‑L', 'Modal GPU'], ['Kimi', 'Verda'], ['VISTA', 'crops, pixels']]],
-  ['Sources & rooms', [['PyMuPDF', 'PDF text'], ['IfcOpenShell', 'IFC spaces'], ['SVG', 'room outlines'], ['Raster2Seq', 'Modal GPU'], ['Shapely', 'areas']]],
-  ['Model building', [['Stoa Lens', 'walls'], ['OpenCV', 'cleanup'], ['NumPy'], ['Pillow', 'images']]],
+const TECHNOLOGIES = [
+  ['nextdotjs', 'Next.js'], ['react', 'React'], ['threedotjs', 'Three.js'],
+  ['python', 'Python'], ['fastapi', 'FastAPI'], ['sqlite', 'SQLite'],
 ];
 
 export default function LandingPage() {
   return (
     <div className={s.page}>
+      <a className={s.skipLink} href="#main">Skip to content</a>
       <header className={s.nav}>
         <div className={s.wrap}>
-          <Link className="brand" href="/"><i />Ymir</Link>
-          <nav><a href="#problem">Problem</a><a href="#features">Features</a><a href="#architecture">Architecture</a><a href="#stack">Stack</a></nav>
-          <Link className={`${s.btn} ${s.dark} ${s.sm}`} href="/home">Open the app</Link>
+          <Link className={`brand ${s.brand}`} href="/" aria-label="Ymir home"><i />Ymir<span>DRAWINGS, CONNECTED.</span></Link>
+          <nav aria-label="Main navigation"><a href="#workspace">Workspace</a><a href="#evidence">Evidence</a><a href="#pipeline">How it works</a></nav>
+          <Link className={`${s.btn} ${s.dark} ${s.sm}`} href="/home">Open Ymir <span aria-hidden="true">↗</span></Link>
         </div>
       </header>
 
-      <section className={s.hero}>
-        <div className={`${s.wrap} ${s.heroGrid}`}>
-          <div className={s.heroText}>
-            <h1>Let’s make<br /><em>blueprints talk.</em></h1>
-            <p>Ymir brings your sheets into one building. Ask about up to three sheets and open the drawing evidence behind the answer.</p>
-            <div className={s.ctas}>
-              <Link className={`${s.btn} ${s.acc}`} href="/building?id=junction-ac20">Explore the sample building</Link>
-              <Link className={s.btn} href="/home">Upload a drawing</Link>
+      <main id="main">
+        <section className={s.hero} aria-labelledby="hero-title">
+          <div className={`${s.wrap} ${s.heroGrid}`}>
+            <div className={s.heroText}>
+              <div className={s.eyebrow}><span className={s.liveDot} />From sheets to understanding</div>
+              <h1 id="hero-title">Let’s make<br />blueprints<br /><em>talk.</em></h1>
+              <p>Ymir brings your sheets into one building.</p>
+              <div className={s.ctas}>
+                <Link className={`${s.btn} ${s.acc}`} href="/building?id=ac20">Explore a building <span aria-hidden="true">↗</span></Link>
+                <Link className={s.textLink} href="/home">Bring your own drawing <span aria-hidden="true">→</span></Link>
+              </div>
+              <div className={s.heroNote}><span aria-hidden="true">⌘</span> A workspace for construction drawings.</div>
+            </div>
+            <BuildingPreview />
+          </div>
+          <div className={`${s.wrap} ${s.heroFoot}`}><span>DRAWING → BUILDING → EVIDENCE</span><a href="#workspace">Take a closer look <span aria-hidden="true">↓</span></a></div>
+        </section>
+
+        <section className={`${s.wrap} ${s.formats}`} aria-label="Supported source formats">
+          <p>Your drawings.<br /><b>Their original detail.</b></p>
+          <div className={s.formatList}>{[['PDF', 'Selected pages'], ['IMG', 'Images & scans'], ['IFC', 'Storey spaces'], ['SVG', 'Room outlines']].map(([format, detail])=>(
+            <div className={s.format} key={format}><span className={s.fileIcon} aria-hidden="true">{format}</span><span>{format==='IMG'?'Images':format}<small>{detail}</small></span></div>
+          ))}</div>
+        </section>
+
+        <section id="workspace" className={s.workspaceSection}>
+          <div className={s.wrap}>
+            <div className={s.sectionHead}>
+              <div><span className={s.eyebrow}>01 / The workspace</span><h2>The whole building.<br /><em>In the same conversation.</em></h2></div>
+              <p>Place your sheets. Explore in 2D and 3D.<br />Ask from the source drawings.</p>
+            </div>
+            <figure className={s.productFrame}>
+              <div className={s.productBar}><span className={s.windowDots} aria-hidden="true"><i /><i /><i /></span><span>AC20 / Sample building</span><span className={s.viewBadge}>2D + 3D</span></div>
+              <Image src="/landing/workspace.png" width={1068} height={884} sizes="(max-width: 1200px) 94vw, 1232px" alt="Actual Ymir workspace showing the AC20 ground-floor drawing beside its assembled 3D building" className={s.workspaceImage} />
+              <figcaption>Actual workspace · bundled AC20 sample</figcaption>
+            </figure>
+            <div className={s.workspaceNotes}>
+              <div><span>01</span><p><b>Bring the sheets together.</b> Match corners to place each plan.</p></div>
+              <div><span>02</span><p><b>Keep the gaps visible.</b> Missing plans appear as dashed outlines.</p></div>
+              <div><span>03</span><p><b>Stay close to the source.</b> Open the drawing behind a citation.</p></div>
             </div>
           </div>
-          <div className={s.stage}>
-            <HeroScene />
-            <div className={s.ask}>Which is the largest room?</div>
-            <p className={s.sceneCaption}>Prebuilt sample view · drag to turn</p>
+        </section>
+
+        <section id="evidence" className={`${s.wrap} ${s.evidenceSection}`}>
+          <div className={s.evidenceCopy}>
+            <span className={s.eyebrow}>02 / Evidence you can see</span>
+            <h2>Don’t just get<br />an answer.<br /><em>Find it.</em></h2>
+            <p>Citations take you to the source sheet and the region behind the answer.</p>
+            <a className={s.textLink} href="#source-preview">Try the source highlight <span aria-hidden="true">↘</span></a>
+            <div className={s.marginNote}><span aria-hidden="true">+</span><p>Counts come from accepted boxes.<br />Measurements need source-bound scale.</p></div>
           </div>
-        </div>
-      </section>
+          <EvidencePreview />
+        </section>
 
-      <section id="problem" className={s.section}>
-        <div className={s.wrap}>
-          <h2>One question can send you across several sheets.</h2>
-          <div className={s.cards}>
-            {PROBLEMS.map(([t, d]) => <div key={t} className={s.pcard}><h3>{t}</h3><p>{d}</p></div>)}
+        <section id="pipeline" className={s.pipelineSection}>
+          <div className={s.wrap}>
+            <div className={s.sectionHead}>
+              <div><span className={s.eyebrow}>03 / Follow the work</span><h2>A question goes in.<br /><em>The steps stay visible.</em></h2></div>
+              <p>See the route, model calls, tools and host checks.<br />Reconnect to the same job after a reload.</p>
+            </div>
+            <PipelinePreview />
+            <div className={s.engineNotes}><span><b>Smart / Frontier</b> choose tools</span><span><b>D-FINE-L / Argon</b> localize objects</span><span><b>Native geometry / Raster2Seq</b> provide room outlines</span></div>
           </div>
-          <p className={s.sourceNote}>Ymir keeps each uploaded original, its page numbers and its SHA-256 hash, so any answer can be checked against the exact file it came from.</p>
-        </div>
-      </section>
+        </section>
 
-      <section id="features" className={`${s.section} ${s.darkSection}`}>
-        <div className={s.wrap}>
-          <h2>Check the drawing behind each answer</h2>
-          <div className={s.features}>
-            {FEATURES.map(([t, d]) => <div key={t} className={s.fcard}><h3>{t}</h3><p>{d}</p></div>)}
+        <section className={`${s.wrap} ${s.reviewSection}`}>
+          <div className={s.reviewGraphic} aria-hidden="true">
+            <div className={s.reviewGrid} /><span className={s.reviewBox}><i /><i /><i /><i /><b>Check the boundary</b></span>
+            <span className={s.reviewCursor}><svg viewBox="0 0 24 28"><path d="M3 2v21l6-6 4 9 4-2-4-8h9Z" /></svg></span>
+            <div className={s.reviewStamp}><span>✓</span> Your check stays on record</div>
           </div>
-        </div>
-      </section>
+          <div className={s.reviewCopy}><span className={s.eyebrow}>04 / A human has the last look</span><h2>Some boxes<br />need your eye.</h2><p>Keep, resize, remove or draw a box. Save your labels as a review, with the model’s original answer preserved.</p><span className={s.smallNote}>Box review is available for count evidence.</span></div>
+        </section>
 
-      <section id="architecture" className={s.section}>
-        <div className={s.wrap}>
-          <h2>How Ymir builds a model and answers a question</h2>
-          <p className={s.sectionIntro}>Build prepares the 3D view; Ask answers from the selected source sheets and adds its findings as evidence overlays. The frontend runs on Vercel. One Modal CPU container runs the FastAPI app and owns the job queue, SQLite and source files. D-FINE-L and Raster2Seq run as private Modal GPU functions that scale to zero, and DeepSeek and Kimi run on Verda. Every paid call reserves money from one shared budget before it is sent.</p>
-          <div className={s.steps}>
-            {STEPS.map(([t, d], i) => <div key={t} className={s.step}><span>{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>)}
-          </div>
-          <div className={s.diagram} tabIndex={0} role="region" aria-label="Ymir architecture diagram; scroll to view on small screens"><ArchitectureDiagram /></div>
-          <p className={s.sourceNote}>Counts and measurements are computed by Ymir, not written by a model: it validates proposal IDs, rejects duplicate and clipped boxes, and measures polygons with Shapely. Measurements use calibration from the source; Build’s estimated scale stays with the 3D model.</p>
-        </div>
-      </section>
+        <section className={`${s.wrap} ${s.technology}`} aria-labelledby="technology-title">
+          <div><h2 id="technology-title">Under the hood.</h2><p>Built with tools we can name.</p></div>
+          <div className={s.logos}>{TECHNOLOGIES.map(([file,name])=><div key={file}><Image src={`/landing/logos/${file}.svg`} width={28} height={28} alt="" /><span>{name}</span></div>)}</div>
+        </section>
 
-      <section id="stack" className={s.section} style={{ paddingTop: 20 }}>
-        <div className={s.wrap}>
-          <h2>The tools behind Ymir</h2>
-          <div className={s.stack}>
-            {STACK.map(([group, items]) => (
-              <div key={group} className={s.scol}>
-                <h3>{group}</h3>
-                <ul>{items.map(([name, note]) => <li key={name}><i />{name}{note && <small>{note}</small>}</li>)}</ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <section className={s.cta}>
+          <div className={s.wrap}><span className={s.eyebrow}>Start with a real drawing</span><h2>Your next question<br />is already on the plan.</h2><Link className={`${s.btn} ${s.dark}`} href="/building?id=ac20">Open the sample building <span aria-hidden="true">↗</span></Link><div className={s.ctaLine} aria-hidden="true" /></div>
+        </section>
+      </main>
 
-      <div className={s.cta}>
-        <h2>See it on a real building</h2>
-        <p>The sample has five sheets from an IFC model. Place the remaining floor plan and inspect the markers for missing plans.</p>
-        <div className={s.ctas}>
-          <Link className={`${s.btn} ${s.dark}`} href="/building?id=junction-ac20">Open the sample building</Link>
-          <Link className={s.btn} href="/home">Upload your own drawing</Link>
-        </div>
-      </div>
-
-      <footer className={s.footer}>
-        <div className={s.wrap}>
-          <Link className="brand" href="/"><i />Ymir</Link>
-          <span>Built for the Stoa challenge at Junction 2026.</span>
-          <span>Sample drawings: Stoa dataset, each under its own licence (AC20 model: IAI / KIT).</span>
-        </div>
-      </footer>
+      <footer className={s.footer}><div className={s.wrap}><Link className="brand" href="/"><i />Ymir</Link><span>Built for the Stoa challenge · Junction 2026</span><small>AC20 sample: IAI / KIT · Technology marks identify dependencies.</small><a href="#main">Back to top ↑</a></div></footer>
     </div>
   );
 }

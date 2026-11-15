@@ -5,6 +5,8 @@ import { isPlaceable, isPlaced } from '@/lib/project';
 import { countNoun } from '@/lib/session';
 import { absolute } from '@/lib/api';
 import {answerText, answerNotes, savedReview, shortDetail, productName} from '@/lib/answer-presentation';
+import {modeReady, modeLabel} from '@/lib/routing';
+import type {RoutingMode} from '@/lib/types';
 import type { Entry } from '@/lib/workspace';
 import { useSessionTick, useWorkspace, useWs } from './context';
 
@@ -15,18 +17,19 @@ export function AskPanel() {
   const reviewing = useWs((s) => s.reviewingId), single = useWs((s) => !!s.project?.single);
   const saving = useWs(s=>s.savingReview);
   const selected=useWs(s=>s.selectedIds), project=useWs(s=>s.project), lens=useWs(s=>s.lensStatus);
+  const mode=useWs(s=>s.routingMode);
+  const locked=busy || thread.some(e=>e.status==='pending');
+  const ready=modeReady(lens,mode);
   const [q, setQ] = useState('');
   const end = useRef<HTMLDivElement>(null);
   const lastStatus = thread.at(-1)?.status;
-  useEffect(()=>{if(!busy)return;const timer=setInterval(()=>{void ws.actions.refreshLens();},3000);return ()=>clearInterval(timer);},[busy,ws]);
+  useEffect(()=>{const timer=setInterval(()=>{void ws.actions.refreshLens();},busy?3000:15000);return ()=>clearInterval(timer);},[busy,ws]);
   useEffect(() => { end.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, [thread.length, lastStatus]);
   const send = (text: string) => { ws.actions.ask(text); setQ(''); };
 
   return (
     <div className="askp">
-      <div className="lens-status" aria-live="polite">{lens ? <>{lens.ready?'Ymir ready':'Ymir needs attention'} · ${lens.budget.remaining_usd.toFixed(2)} remaining · ${lens.budget.unresolved_reserved_usd.toFixed(2)} held</> : 'Checking Ymir…'}
-        {lens && !lens.ready && <span>{Object.entries(lens.checks).filter(([,ok])=>!ok).map(([key])=>key).join(', ')}</span>}
-      </div>
+      <div id="routing-readiness" className="lens-status" role="status" aria-live="polite">{!lens ? `Checking ${modeLabel(mode)}…` : ready ? `${modeLabel(mode)} ready` : `${modeLabel(mode)} unavailable · Try again when it is ready.`}</div>
       <fieldset className="ask-scope"><legend>Question scope · {selected.length}/3 sheets</legend>
         {project?.sheets.map(sheet=><label key={sheet.drawing_id}><input type="checkbox" checked={selected.includes(sheet.drawing_id)} disabled={busy || (selected.length===1 && selected.includes(sheet.drawing_id)) || (selected.length===3 && !selected.includes(sheet.drawing_id))} onChange={()=>ws.actions.toggleScope(sheet.drawing_id)}/>{ws.read.sheetLabel(sheet.drawing_id)}</label>)}
       </fieldset>
@@ -35,12 +38,12 @@ export function AskPanel() {
           <div className="starter">
             <p>Ask about this {single ? 'drawing' : 'building'}. Answers point to where they came from in the {single ? 'drawing' : 'sheets'} and the 3D model.</p>
             {suggestions.length > 0 && <span className="starter-h">Try asking</span>}
-            {suggestions.map((s) => <button key={s} className="starter-q" onClick={() => send(s)} disabled={busy}>{s}<Icon name="arrow" /></button>)}
+            {suggestions.map((s) => <button key={s} className="starter-q" onClick={() => send(s)} disabled={locked || !ready}>{s}<Icon name="arrow" /></button>)}
           </div>
         )}
         {thread.map((e) => (
           <div key={e.id} style={{ display: 'contents' }}>
-            <div className="msg q">{e.q}<small className="scope">{(e.sheets ?? [e.sheet]).map(ws.read.sheetLabel).join(" · ")}</small></div>
+            <div className="msg q">{e.q}<small className="scope">{e.routing_mode && `${modeLabel(e.routing_mode)} · `}{(e.sheets ?? [e.sheet]).map(ws.read.sheetLabel).join(" · ")}</small></div>
             {e.status === 'pending' ? <div className="msg a pending"><span className="spin" />{productName(e.stage ?? 'Queued')}{e.job_id && <div className="row"><button className="btn sm" onClick={()=>ws.actions.reconnect(e.id)}>Reconnect</button><button className="btn sm" onClick={()=>ws.actions.cancelJob(e.id)}>Cancel job</button></div>}</div>
               : e.status === 'review' ? saving ? <div className="msg a" role="status">Saving labels…</div> : <ReviewCard entry={e} />
                 : <AnswerCard entry={e} />}
@@ -48,11 +51,15 @@ export function AskPanel() {
         ))}
         <div ref={end} />
       </div>
-      {thread.length > 0 && <div className="sugg">{suggestions.slice(0, 4).map((s) => <button key={s} onClick={() => send(s)} disabled={busy}>{s}</button>)}</div>}
+      {thread.length > 0 && <div className="sugg">{suggestions.slice(0, 4).map((s) => <button key={s} onClick={() => send(s)} disabled={locked || !ready}>{s}</button>)}</div>}
       <form className="composer" onSubmit={(e) => { e.preventDefault(); send(q); }}>
         <input value={q} onChange={(e) => setQ(e.target.value)} autoComplete="off" aria-label="Your question"
           placeholder={reviewing ? 'Check the boxes first' : single ? 'Ask about this drawing' : 'Ask about this building'} />
-        <button disabled={busy || !q.trim()} aria-label="Ask"><Icon name="up" /></button>
+        <select aria-label="Response mode" aria-describedby="routing-readiness" value={mode} disabled={locked}
+          onChange={e=>ws.actions.setRoutingMode(e.target.value as RoutingMode)}>
+          {(['smart','frontier'] as const).map(option=><option key={option} value={option} disabled={!modeReady(lens,option)}>{modeLabel(option)}{lens && !modeReady(lens,option)?' (unavailable)':''}</option>)}
+        </select>
+        <button disabled={locked || !ready || !q.trim()} aria-label="Ask"><Icon name="up" /></button>
       </form>
     </div>
   );

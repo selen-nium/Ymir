@@ -51,13 +51,12 @@ def _implementation(root):
               code_base/'stoa_vista_specialists/json_response.py',code_base/'stoa_vista_specialists/text/association.py',
               code_base/'stoa_room_area_specialists/raster.py',code_base/'stoa_room_area_specialists/raster_worker.py',
               code_base/'stoa_room_area_specialists/native.py',code_base/'stoa_room_area_specialists/adapter.py',
-              code_base/'stoa_junction/verda_baseline/transport.py',code_base/'stoa/vision.py',code_base/'stoa/packets.py']
+              code_base/'stoa/vision.py',code_base/'stoa/packets.py']
     return {"src/"+str(p.relative_to(code_base)):_sha(p) for p in sorted(set(paths)) if p.is_file()}
 
 
-def _model_manifest(root,detector_injected,geometry_injected):
-    models={'orchestrator':{'provider':'Verda','model':'deepseek-4-1-flash-1017','reasoning':'high'},
-            'fallback':{'provider':'Verda','model':'kimi-k3-1-pro','reasoning':'high'}}
+def _model_manifest(root,detector_injected,geometry_injected,configuration):
+    models={'orchestrator':configuration['orchestrator'], 'untrained_detector':configuration['detector']}
     from .cloud import enabled,manifest as cloud_manifest
     if enabled() and not (detector_injected and geometry_injected):
         verified=cloud_manifest()
@@ -89,8 +88,10 @@ class Cancelled(RuntimeError):
 
 
 def run(pages,question,directory,*,root=None,budget=None,transport=None,detector=None,geometry=None,limits=None,
-        progress=None,conversation_context=None,cancelled=None,agent='general',count_scope=None):
+        progress=None,conversation_context=None,cancelled=None,agent='general',count_scope=None,configuration=None):
     """Run one immutable job. Caller-provided resources are closed on exit."""
+    from .model_config import resolve,validate
+    configuration=validate(configuration if configuration is not None else resolve())
     if not isinstance(question,str) or not question.strip():raise ValueError('A nonempty question is required')
     if agent not in ('general','counter','rooms','compact_counter'):raise ValueError('Unknown Lens agent')
     if agent=='compact_counter' and count_scope is None:raise ValueError('compact_counter requires an explicit count scope')
@@ -100,8 +101,8 @@ def run(pages,question,directory,*,root=None,budget=None,transport=None,detector
             raise ValueError('Bound counting requires a valid explicit scope and the general agent')
         if count_scope.get('page_index')!=0 or type(count_scope.get('page_index')) is not int or len(pages)!=1:
             raise ValueError('Bound counting requires page_index 0 and exactly one page')
-        if count_scope.get('backend','routed') not in ('routed','kimi_atomic'):
-            raise ValueError('Bound backend must be routed or explicit kimi_atomic')
+        if count_scope.get('backend','routed') not in ('routed','argon_atomic'):
+            raise ValueError('Bound backend must be routed or explicit argon_atomic')
         classes=count_scope.get('target_classes');description=count_scope.get('description')
         if not isinstance(classes,list) or not classes or any(not isinstance(c,str) or not c.strip() for c in classes) or not isinstance(description,str) or not description.strip():
             raise ValueError('Bound scope requires nonempty target classes and description')
@@ -123,22 +124,21 @@ def run(pages,question,directory,*,root=None,budget=None,transport=None,detector
             from .agents import profile,UnusedTools
             agent_profile=profile(agent,registry)
         if transport is None:
-            from .transport import VerdaTransport
-            transport=VerdaTransport(root,folder,budget)
+            from .transport import OpenRouterTransport
+            transport=OpenRouterTransport(root,folder,budget,configuration=configuration)
+        if getattr(transport,'configuration',configuration)!=configuration:raise ValueError('Transport does not match recorded routing snapshot')
         from .cloud import enabled,RemoteModels
-        atomic_bound=bool(count_scope and count_scope.get('backend','routed')=='kimi_atomic')
+        atomic_bound=bool(count_scope and count_scope.get('backend','routed')=='argon_atomic')
         remote=RemoteModels(budget,case_id=folder.name) if enabled() and not atomic_bound else None
         if atomic_bound and detector is None:
-            from .bound_counter import KimiAtomicDetector
-            from stoa_vista_specialists.specialists.detectors import Kimi
-            detector=KimiAtomicDetector(Kimi(transport.kimi),folder/'detections');detector_injected=True
+            from .bound_counter import ArgonAtomicDetector
+            detector=ArgonAtomicDetector(transport.argon(),folder/'detections');detector_injected=True
         elif detector is None and agent=='rooms':
             detector=UnusedTools();detector_injected=True
         elif detector is None:
             from .dfine import DFine
             from .detection import DetectionService
-            from stoa_vista_specialists.specialists.detectors import Kimi
-            detector=DetectionService(DFine(runner=remote.detect) if remote else DFine(),Kimi(transport.kimi),folder/'detections')
+            detector=DetectionService(DFine(runner=remote.detect) if remote else DFine(),transport.argon(),folder/'detections')
             detector_injected=False
         else:detector_injected=True
         if count_scope and not atomic_bound:
@@ -163,17 +163,18 @@ def run(pages,question,directory,*,root=None,budget=None,transport=None,detector
         sources=[dict(registry.sources[v['page_id']]) for v in registry.initial_views]
         manifest={'schema':'stoa-lens-job-v1','question':question,'sources':sources,'initial_views':source_views,
                   'limits':asdict(limits),'implementation_sha256':_implementation(root),
-                  'models':_model_manifest(root,detector_injected,geometry_injected or bool(agent_profile and 'predict_room_polygons' not in agent_profile.tools)),
+                  'models':_model_manifest(root,detector_injected,geometry_injected or bool(agent_profile and 'predict_room_polygons' not in agent_profile.tools),configuration),
+                  'routing_mode':configuration['routing_mode'],'configuration':configuration,
                   'text_reader':'native PDF only','reference_annotations_provided':False}
         if count_scope:
             from .routing import ClassRouter
             router=ClassRouter();canonical=[router.route(c)['canonical_class'] for c in count_scope['target_classes']]
             if len(canonical)!=len(set(canonical)):raise ValueError('Duplicate canonical target classes')
-            actual_backend='kimi' if atomic_bound else detector.backend
+            actual_backend='argon' if atomic_bound else detector.backend
             manifest['count_scope']={'page_id':registry.initial_views[0]['page_id'],'page_index':0,'target_classes':canonical,
                                      'description':count_scope['description'],'mode':count_scope.get('backend','routed'),'backend':actual_backend}
             manifest['models']['room_geometry']={'used':False}
-            if atomic_bound:manifest['models']['object_detector']={'provider':'Verda','model':'kimi-k3-1-pro','reasoning':'high','mode':'explicit_kimi_atomic'}
+            if atomic_bound:manifest['models']['object_detector']=dict(configuration['detector'],mode='explicit_argon_atomic')
         if agent_profile:
             manifest['agent_profile']=agent_profile.manifest()
             if agent=='rooms':manifest['models']['object_detector']={'used':False}
@@ -183,7 +184,7 @@ def run(pages,question,directory,*,root=None,budget=None,transport=None,detector
         if context:manifest['conversation_context']=context
         _atomic_new(folder/'request-manifest.json',manifest)
         from .harness import LensHarness
-        hooks={}
+        hooks={'configuration':configuration}
         if progress is not None:hooks['progress']=progress
         if context:hooks['conversation_context']=context
         if cancelled is not None:hooks['cancelled']=cancelled

@@ -6,7 +6,7 @@ from pathlib import Path
 
 from shapely.geometry import Polygon
 
-VERSION = 'native-ifc-svg-v1'
+VERSION = 'native-geometry-v2'
 MAX_ROOMS = 2000
 MAX_VERTICES = 100_000
 UNITS = {'m': 1., 'cm': .01, 'mm': .001, 'ft': .3048, 'in': .0254}

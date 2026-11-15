@@ -8,7 +8,7 @@ from stoa_lens.budget import LensBudget,BudgetError
 def test_compute_holds_share_cap_without_weakening_model_allowlist(tmp_path):
     checkpoints=[]
     budget=LensBudget(tmp_path/'budget.sqlite',1,checkpoint=lambda:checkpoints.append(True))
-    budget.reserve('kimi-k3-1-pro','llm',.6)
+    budget.reserve('google/gemini-4-argon','llm',.6)
     gpu=budget.reserve_compute('gpu',.25,key='once')
     with pytest.raises(ValueError):budget.reserve('modal-compute','not-an-llm',.01)
     with pytest.raises(BudgetError):budget.reserve_compute('gpu',.25,key='once')
@@ -55,7 +55,7 @@ def test_cloud_routing_uses_verified_gpu_policy_without_local_assets(monkeypatch
     from stoa_lens.routing import ClassRouter
     policy=ClassRouter()
     assert policy.route('window')['backend']=='dfine'
-    assert policy.route('chair')['backend']=='kimi'
+    assert policy.route('chair')['backend']=='argon'
 
 
 def test_receipt_publication_is_atomic_once_and_survives_interrupted_claim(tmp_path):

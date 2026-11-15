@@ -1,4 +1,4 @@
-"""Private GPU functions; DeepSeek and Kimi remain on Verda.
+"""Private GPU functions; language models remain on OpenRouter.
 
 First run scripts/prepare_modal_assets.py. Then smoke-test with
 python -m modal run deploy/modal_models.py --output var/modal-smoke.json

@@ -39,6 +39,7 @@ class Options(BaseModel):
     element_ids: list[str] | None=Field(default=None,min_length=1,max_length=MAX_ROOMS)
     storey_id: str | None=Field(default=None,min_length=1,max_length=100)
     svg_scale: SvgScale | None=None
+    dxf_unit: str | None=None
 
     @field_validator('element_ids')
     @classmethod
@@ -51,7 +52,7 @@ class Options(BaseModel):
 def extract(path, options=None):
     """Return native polygons and measured areas; incomplete scope stays explicit."""
     path=Path(path).resolve(); opts=Options.model_validate(options or {})
-    if path.suffix.lower() not in ('.ifc','.svg'):raise Unsupported('Use an IFC or SVG source.')
+    if path.suffix.lower() not in ('.ifc','.svg','.dxf'):raise Unsupported('Use an IFC, SVG or DXF source.')
     if not path.is_file() or not 0<path.stat().st_size<=100*1024*1024:
         raise Unsupported('Native input must be a nonempty file of at most 100 MiB.')
     source_sha=sha(path); kind=path.suffix.lower()[1:]
@@ -59,7 +60,13 @@ def extract(path, options=None):
             'measurement_convention':'Horizontal area inside represented room boundaries, minus represented cutouts. No fixture subtraction or wall-based room inference.',
             'rooms':[],'rejections':[],'quality_flags':[],'status':'unavailable'}
     try:
-        if kind=='svg':
+        if kind!='dxf' and opts.dxf_unit:raise Unsupported('dxf_unit applies only to DXF sources.')
+        if kind=='dxf':
+            if opts.storey_id or opts.svg_scale:raise Unsupported('DXF uses entity selection and DXF units.')
+            from .dxf import read
+            data=read(path,opts.element_ids,opts.dxf_unit)
+            if data['metres_per_unit'] is None:result['quality_flags'].append('scale_confirmation_required')
+        elif kind=='svg':
             if opts.storey_id:raise Unsupported('Select SVG room IDs; storey_id is an IFC selector.')
             from .svg import read
             data=read(path,opts.element_ids)
@@ -122,7 +129,7 @@ def _prepare_worker(request, folder):
         xmax=max(p.bounds[2] for p in polygons); ymax=max(p.bounds[3] for p in polygons)
         scale=1536/max(xmax-xmin,ymax-ymin)
         width=max(64,math.ceil((xmax-xmin)*scale)+64); height=max(64,math.ceil((ymax-ymin)*scale)+64)
-        flip=result['format']=='ifc'
+        flip=result['format'] in ('ifc','dxf')
         matrix=[scale,0,0,-scale if flip else scale,32-xmin*scale,32+(ymax if flip else -ymin)*scale]
         image=Image.new('RGB',(width,height),'white')
         displayed=[affine_transform(p,matrix) for p in polygons]
@@ -154,7 +161,7 @@ def prepare(path, folder, *, options=None, project_identity=None, dataset=None, 
     """Snapshot the source and prepare a registered preview in a bounded child."""
     path=Path(path).resolve(); folder=Path(folder).resolve()
     opts=Options.model_validate(options or {}).model_dump(mode='json')
-    if path.suffix.lower() not in ('.ifc','.svg'):raise Unsupported('Use an IFC or SVG file.')
+    if path.suffix.lower() not in ('.ifc','.svg','.dxf'):raise Unsupported('Use an IFC, SVG or DXF file.')
     if not path.is_file() or not 0<path.stat().st_size<=100*1024*1024:raise Unsupported('Use a native source of at most 100 MiB.')
     if not math.isfinite(timeout) or timeout<=0:raise ValueError('A positive finite extraction deadline is required.')
     folder.mkdir(parents=True,exist_ok=True)
@@ -206,7 +213,7 @@ class RegisteredNativeBackend:
             raise ValueError('Native preview registration must be a uniform similarity.')
         mpu=data.get('metres_per_unit'); calibration=None
         if mpu is not None:
-            calibration={'kind':'native_ifc_units' if data['format']=='ifc' else 'human_confirmed_svg_length',
+            calibration={'kind':{'ifc':'native_ifc_units','dxf':'native_dxf_units','svg':'human_confirmed_svg_length'}[data['format']],
                          'metres_per_pixel':mpu/scale,'units':data['units'],'native_sha256':data['native_sha256'],
                          'source_id':source_id,'source_sha256':s['source_sha256'],'page':page}
             calibration['calibration_id']='native-cal-'+digest(calibration)[:24]
@@ -219,7 +226,7 @@ class RegisteredNativeBackend:
             flags=r['quality_flags']+[f for f in data['quality_flags'] if f!='scale_confirmation_required']
             candidate={'candidate_id':'native-'+digest({'source_id':source_id,'room':r})[:24],
                 'polygon':record(p),'quality_flags':flags,'calibration':calibration,
-                'native_area_m2':r['area_m2'],
+                'native_area_m2':r['area_m2'],'estimate':r.get('estimate',False),'limitations':r.get('limitations',[]),
                 'room_identifier':r['identifier'],'label':r['label'],
                 'provenance':{'backend':VERSION,'format':data['format'],'source_id':source_id,'source_sha256':s['source_sha256'],'page':0,
                     'native_source_sha256':data['native_sha256'],'extraction_sha256':registration['extraction_sha256'],

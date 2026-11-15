@@ -359,7 +359,15 @@ class GeometryTools:
             if type(scale) not in (int, float) or not math.isfinite(scale) or scale <= 0:
                 raise ValueError('Invalid scale')
             is_raster = candidate['provenance'].get('backend') == 'raster2seq'
-            return {'status': 'available', 'candidate_id': candidate_id, 'calibration_id': calibration_id, 'pixel_area': polygon.area, 'area_m2': polygon.area*scale**2, 'estimate': is_raster, 'limitations': ['Raster quantization, minimum-region cutoff, and no hole prediction'] if is_raster else []}
+            receipt = {'status': 'available', 'candidate_id': candidate_id, 'calibration_id': calibration_id,
+                       'pixel_area': polygon.area, 'area_m2': polygon.area*scale**2,
+                       'estimate': is_raster or candidate.get('estimate',False),
+                       'limitations': ['Raster quantization, minimum-region cutoff, and no hole prediction'] if is_raster else candidate.get('limitations',[]),
+                       'source_id': self.source_id, 'source_sha256': self.source_sha256, 'page': self.page,
+                       'geometry_sha256': _digest(candidate['polygon']), 'calibration_sha256': _digest(calibration),
+                       'method': 'polygon_area_minus_holes', 'unit': 'm2'}
+            receipt['measurement_id'] = 'measurement-' + _digest(receipt)
+            return receipt
         except (KeyError, ValueError, TypeError) as exc:
             return {'status': 'unavailable', 'candidate_id': candidate_id, 'calibration_id': calibration_id, 'area_m2': None, 'reason': str(exc)}
 

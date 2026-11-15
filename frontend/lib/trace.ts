@@ -1,8 +1,9 @@
-// Live agent/tool flowchart driven by trace-stream events (training-brief contract):
+// Live pipeline flowchart driven by backend/ymir/lens_jobs.py durable events:
 //   {type:'node', id, name, tool, parents}   adds a node (layout comes from the parent links)
 //   {type:'status', id, state, summary, ms}  running | done | skipped | failed | waiting (on the user) | pending
 // Re-sending a node with new parents re-links it (the frontend inserts its own "You" steps this way).
-// Lens activity is shown in execution order; older static graphs retain parent links.
+// Lens stage/activity/answer events are projected in execution order by lens-trace.ts;
+// older static graphs retain parent links.
 // Imperative, mounted by <TraceDock>.
 import type { TraceEvent, TraceState } from './types';
 import { createLensTraceSequence } from './lens-trace';

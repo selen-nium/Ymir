@@ -15,10 +15,10 @@ class DetectionError(RuntimeError):
     def __init__(self,message,receipt):super().__init__(message);self.receipt=receipt
 
 class DetectionService:
-    def __init__(self,dfine,kimi,directory):
-        self.dfine=dfine;self.kimi=kimi;self.directory=Path(directory);self.router=ClassRouter();self.lock=threading.Lock();self.sequence=0
+    def __init__(self,dfine,argon,directory):
+        self.dfine=dfine;self.argon=argon;self.directory=Path(directory);self.router=ClassRouter();self.lock=threading.Lock();self.sequence=0
     def close(self):
-        for adapter in (self.dfine,self.kimi):
+        for adapter in (self.dfine,self.argon):
             if callable(getattr(adapter,'close',None)):adapter.close()
     def detect(self,view,region,object_class,reason,timeout):
         import jsonschema
@@ -33,7 +33,7 @@ class DetectionService:
             raise ValueError(region_help+' Require 0 <= left < right <= '+str(view['width'])+
                              ' and 0 <= top < bottom <= '+str(view['height'])+'; received '+str(list(region)))
         if isinstance(timeout,bool) or not isinstance(timeout,(int,float)) or not math.isfinite(timeout) or timeout<=0:raise ValueError('Positive finite timeout required')
-        route=self.router.route(object_class);adapter=self.dfine if route['backend']=='dfine' else self.kimi
+        route=self.router.route(object_class);adapter=self.dfine if route['backend']=='dfine' else self.argon
         # Validate geometry before paying or invoking any specialist.
         map_proposals(view,region,[],adapter.model,'uncalibrated')
         with self.lock:
@@ -58,7 +58,7 @@ class DetectionService:
                 else:rejected.append({'raw_index':index,'instance':row,'reason':'label does not match requested class'})
             if route['backend']=='dfine' and rejected:raise ValueError('D-FINE returned a different class than requested')
             # Map all before filtering so stable IDs retain raw order and invalid geometry cannot hide.
-            normalized=route['backend']=='kimi'
+            normalized=route['backend']=='argon'
             confidence='vlm_self_reported_uncalibrated' if normalized else 'detector_score_uncalibrated'
             all_mapped=map_proposals(view,region,value['instances'],adapter.model,confidence,normalized=normalized)
             proposals=[all_mapped[index] for index,_ in selected]

@@ -1,8 +1,8 @@
-// Backend client. The agents run on the server (backend/ymir/qa) and stream trace events as NDJSON:
-// {type:'node'|'status'|'answer'}; see backend/ymir/qa/stream.py.
+// Backend client. Ask streams durable job, stage, node/status, progress and answer
+// events as NDJSON; see backend/ymir/lens_jobs.py (also used by reconnect and replay).
 // The browser calls /api/* on this site and next.config.ts forwards it to the API. Setting
 // NEXT_PUBLIC_YMIR_API_BASE makes it call the API directly instead (the API then needs CORS for this origin).
-import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus } from './types';
+import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus, RoutingMode } from './types';
 import type { Project } from './project';
 
 const BASE = (process.env.NEXT_PUBLIC_YMIR_API_BASE ?? '').replace(/\/+$/, '');
@@ -34,6 +34,7 @@ export const previewGraph = () => get<TraceEvent[]>('api/agents').catch(() => []
 export const loadSuggestions = (drawingId: string) => get<string[]>(`api/drawings/${encodeURIComponent(drawingId)}/suggestions`).catch(() => []);
 
 export interface AskBody {
+  routing_mode: RoutingMode;
   drawing_id: string;
   request_id: string;
   selected_drawing_ids: string[];
@@ -97,7 +98,7 @@ export async function deleteDrawing(id: string) {
 }
 
 export interface DocumentInventory { id: string; filename: string; format: string; page_count: number; pages: {number: number; rotation?: number; native_text?: boolean}[]; selectors: {id: string; label: string}[]; limitations: string[] }
-export interface ImportSelection { pages?: number[]; options?: { element_ids?: string[]; storey_id?: string; svg_scale?: {p0: number[]; p1: number[]; length: number; unit: string; reading: string; reviewer: string} } }
+export interface ImportSelection { pages?: number[]; options?: { element_ids?: string[]; storey_id?: string; dxf_unit?: string; svg_scale?: {p0: number[]; p1: number[]; length: number; unit: string; reading: string; reviewer: string} } }
 const imports = new WeakMap<File,{doc: DocumentInventory; selection: ImportSelection}>();
 export const selectImport = (file: File,doc: DocumentInventory,selection: ImportSelection) => imports.set(file,{doc,selection});
 export function uploadDocument(file: File) {

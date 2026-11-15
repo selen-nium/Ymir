@@ -4,7 +4,7 @@ import { Icon } from '@/components/Icon';
 import { createTrace } from '@/lib/trace';
 import { useWorkspace, useWs } from './context';
 
-/** How the last question was answered: model responses and tools in execution order. */
+/** How the last question was answered: pipeline stages, model work and human review. */
 export function TraceDock() {
   const ws = useWorkspace();
   const chartEl = useRef<HTMLDivElement>(null);

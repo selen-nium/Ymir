@@ -18,6 +18,9 @@
 .sheethead b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sheethead span { color: var(--ink-2); font-size: 12px; }
 .sheethead.ghost { border-style: dashed; border-color: var(--answer); }
+.src .src-title { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.sheethead-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.src .source-file-type, .sheethead .source-file-type { flex: none; padding: 1px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink-2); font-size: 11.5px; font-weight: 500; line-height: 1.5; white-space: nowrap; }
 .vnote .spin { display: inline-block; vertical-align: -2px; margin-right: 6px; width: 12px; height: 12px; }
 
 /* Sheet rail */
@@ -156,7 +159,10 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .composer { display: flex; gap: 6px; margin: 0 12px 12px; padding: 5px 5px 5px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
 .composer:focus-within { border-color: var(--answer); }
 .composer input { flex: 1; border: 0; outline: none; background: none; min-width: 0; }
-.composer button { width: 34px; height: 34px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.composer button { flex-shrink: 0; width: 34px; height: 34px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.composer select { flex-shrink: 0; max-width: 146px; min-width: 82px; padding: 0 6px; border: 0; border-radius: 8px; color: var(--ink); background: var(--paper, #f5f4ef); font: inherit; font-size: 12px; cursor: pointer; }
+.composer select:focus-visible { outline: 2px solid var(--answer); outline-offset: 2px; }
+.composer select:disabled { opacity: .6; cursor: default; }
 .composer button:disabled { opacity: .35; cursor: default; }
 
 /* Views */
@@ -184,6 +190,9 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .ghostcard .btn { margin-top: 12px; }
 .vnote { position: absolute; left: 12px; top: 12px; z-index: 3; max-width: calc(100% - 24px); background: rgba(255, 255, 255, .94); border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px; font-size: 12.5px; color: var(--ink-2); pointer-events: none; }
 .vnote b { color: var(--ink); font-weight: 500; }
+/* How to move around the model; only where there is a mouse to do it with */
+.vhint { display: none; position: absolute; left: 12px; bottom: 10px; z-index: 2; font-size: 11.5px; color: var(--ink-3); pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .v.model .vhint { display: block; } }
 .vnote.place { border-color: var(--place); }
 .ws-status { grid-row: 2 / -1; grid-column: 1 / -1; z-index: 30; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); text-align: center; padding: 24px; }
 .ws-status h1 { margin: 0 0 8px; font-size: 22px; font-weight: 600; color: var(--ink); }
@@ -255,7 +264,7 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .ask-scope { border: 0; border-bottom: 1px solid var(--line); max-height: 150px; overflow: auto; margin: 0; }
 .ask-scope legend { font-weight: 600; padding-top: 8px; }
 .ask-scope label { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
-.msg.q .scope { display: block; font-size: 11px; font-weight: 400; margin-top: 6px; }
+.msg.q .scope { color: #ddd7ca; display: block; font-size: 11px; font-weight: 400; margin-top: 6px; }
 .lens-results { font-size: 13px; margin-top: 12px; line-height: 1.5; overflow-wrap: anywhere; }
 .lens-results b { display: block; margin-bottom: 4px; }
 .lens-receipt { display: block; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; margin-top: 12px; }
@@ -267,6 +276,7 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .trace-chart.sequential .tn-h { padding-left: 18px; }
 .trace-chart.sequential .tnode::before { content: attr(data-step); position: absolute; left: 8px; top: 7px; font-size: 10px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
 .trace-chart.sequential .tn-o { font-size: 11px; margin-top: 3px; }
+.trace-chart.sequential .tnode[data-id^="stage-"] .tn-o { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .trace .chartwrap:focus-visible { outline: 2px solid var(--answer); outline-offset: -2px; }
 @media (prefers-reduced-motion: reduce) { .trace-chart .tnode, .trace-chart .tedge { animation: none; transition: none; } }
 

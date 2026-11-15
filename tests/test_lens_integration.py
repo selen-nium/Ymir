@@ -41,10 +41,12 @@ def integration(tmp_path,monkeypatch):
     def run(pages,question,folder,**hooks):
         calls.append((copy.deepcopy(pages),question,hooks['conversation_context']))
         r=Registry(pages,folder/'views');pid=r.initial['page_id']
+        hooks['progress']({'operation':'response','phase':'started','response_index':0})
+        hooks['progress']({'operation':'response','phase':'completed','response_index':0})
         hooks['progress']({'operation':'tool','phase':'started','tool':'detect_objects','call_id':'d1'})
         hooks['progress']({'operation':'tool','phase':'completed','tool':'detect_objects','call_id':'d1','result':{'status':'complete'}})
         return {'status':'needs_review','accepted_proposal_ids':[], 'counts':[{'page_id':pid,'object_class':'door','count':None}],
-          'proposals':[{'id':'p1','page_id':pid,'query_class':'door','native_box_xyxy':[10,10,40,40],'confidence':None}], 'rooms':[],'text_evidence':[],'readings':[], 'measurements':[], 'coverage':{'sources':[r.public_source(pid)]}}
+          'proposals':[{'id':'p1','page_id':pid,'query_class':'door','native_box_xyxy':[10,10,40,40],'confidence':None}], 'rooms':[],'text_evidence':[],'readings':[], 'measurements':[], 'validation_errors':['Count requires complete evidence'], 'coverage':{'sources':[r.public_source(pid)]}}
     jobs=JobStore(drawings,documents,tmp_path/'lens',runner=run)
     monkeypatch.setattr(api,'store',drawings);monkeypatch.setattr(api,'documents',documents);monkeypatch.setattr(api,'jobs',jobs)
     yield jobs,documents,drawings,calls
@@ -59,10 +61,23 @@ def test_durable_api_idempotency_reconnect_review_attribution(integration):
         ident=events[0]['job_id'];assert events[0]['type']=='job'
         assert events[-1]['answer']['status']=='needs_review'
         assert events[-1]['answer']['confidence'] is None
+        stages=[e for e in events if e['type']=='stage']
+        assert [e['stage'] for e in stages]==['question','queue','route','checks']
+        assert stages[0]['summary']=='1 selected sheet' and 'Count doors' in stages[0]['detail']
+        assert 'snapshot files hashed; source copies and manifest written' in stages[1]['detail']
+        assert stages[2]['summary']=='Compact counter · door'
+        assert stages[3]['summary']=='0 accepted · 1 error · needs_review'
+        assert 'door: unconfirmed' in stages[3]['detail'] and 'Count requires complete evidence' in stages[3]['detail']
+        assert events[-2]==stages[-1]  # checks and answer close the terminal transaction
+        assert stages[2]['seq']<next(e['seq'] for e in events if e['type']=='progress')<stages[3]['seq']
+        assert [e['seq'] for e in events]==list(range(1,len(events)+1))
         assert len(calls)==1
         again=client.post('/api/ask',json=req());assert again.text==res.text and len(calls)==1
         replay=client.get(f'/api/lens/jobs/{ident}/events?after=2')
         assert [json.loads(x)['seq'] for x in replay.text.splitlines()]==list(range(3,len(events)+1))
+        assert events[:2]+[json.loads(x) for x in replay.text.splitlines()]==events
+        assert client.get(f'/api/lens/jobs/{ident}/events').text==res.text
+        assert client.get(f'/api/lens/jobs/{ident}/artifacts/events').json()==events
         assert client.post('/api/ask',json=req(question='Changed')).status_code==409
         manifest=client.get(f'/api/lens/jobs/{ident}/artifacts/manifest').json()
         assert 'image' not in manifest['pages'][0]
@@ -154,9 +169,9 @@ def test_source_transform_maps_holes_boxes_and_scale():
 
 def test_shared_budget_holds_reservations_and_refuses_over_cap(integration):
     jobs,_,_,_=integration
-    key=jobs.budget.reserve('deepseek-4-1-flash-1017','test',24)
+    key=jobs.budget.reserve('deepseek/deepseek-v4.1-flash-1017','test',24)
     assert jobs.budget.summary()['remaining_usd']==1
-    with pytest.raises(BudgetError):jobs.budget.reserve('kimi-k3-1-pro','test',2)
+    with pytest.raises(BudgetError):jobs.budget.reserve('google/gemini-4-argon','test',2)
     jobs.budget.settle(key,None)
     assert jobs.budget.summary()['unresolved_reserved_usd']==24
 
@@ -196,6 +211,64 @@ def test_snapshot_changes_stop_before_runner_dispatch(integration):
     folder=jobs.root/'jobs'/ident
     (folder/'sources/0/image.png').write_bytes(b'changed pixels')
     jobs.start();assert wait(jobs,ident)['status']=='failed' and calls==[]
+    assert [e['stage'] for e in jobs.events(ident) if e['type']=='stage']==['question','queue','route']
+
+
+@pytest.mark.parametrize('question,sheets,agent,classes',[
+    ('Count doors',['cubi'],'compact_counter',['door']),
+    ('Count bathtubs and showers',['cubi'],'compact_counter',['bathtub','shower']),
+    ('Read the room label',['cubi'],'general',None),
+    ('Count doors',['cubi','swiss'],'general',None),
+])
+def test_route_receipt_matches_dispatch(integration,question,sheets,agent,classes):
+    jobs,_,_,_=integration;runner=jobs.runner;dispatch=[]
+    def capture(*args,**hooks):
+        dispatch.append(hooks)
+        return runner(*args,**hooks)
+    jobs.runner=capture
+    ident=jobs.submit(req(sheets=sheets,question=question));assert wait(jobs,ident)['status']=='completed'
+    route=next(e for e in jobs.events(ident) if e.get('stage')=='route')
+    assert dispatch[0].get('agent','general')==agent
+    if classes:
+        assert dispatch[0]['count_scope']['target_classes']==classes
+        assert route['summary']=='Compact counter · '+', '.join(classes)
+    else:
+        assert 'count_scope' not in dispatch[0] and route['summary']=='General harness'
+
+
+def test_checks_and_terminal_status_commit_together(integration,monkeypatch):
+    jobs,_,_,_=integration
+    ident=jobs.submit(req());assert wait(jobs,ident)['status']=='completed'
+    before=jobs.events(ident);answer=jobs.lookup(ident)['answer'];event=jobs.event
+    checks=jobs._checks({'status':'answered','accepted_proposal_ids':['p1'],
+                       'counts':[{'page_id':'page','object_class':'door','count':1}]})
+    assert checks['summary']=='1 accepted · 0 errors · answered'
+    assert 'door: 1' in checks['detail']
+    def pause(ident,ev,db=None):
+        if ev['type']=='answer':
+            # A separate connection still sees the previous complete receipt,
+            # even after the new terminal status and checks have been written.
+            assert jobs.events(ident)==before
+            assert jobs.lookup(ident)['status']=='completed'
+            raise RuntimeError('rollback at answer')
+        return event(ident,ev,db)
+    monkeypatch.setattr(jobs,'event',pause)
+    with pytest.raises(RuntimeError,match='rollback'),jobs.db() as db:
+        db.execute('BEGIN IMMEDIATE');jobs._terminal(ident,'failed',answer,db,checks)
+    assert jobs.events(ident)==before and jobs.lookup(ident)['status']=='completed'
+    monkeypatch.setattr(jobs,'event',event)
+    with jobs.db() as db:
+        db.execute('BEGIN IMMEDIATE');jobs._terminal(ident,'completed',answer,db,checks)
+    assert [e['type'] for e in jobs.events(ident)[-3:]]==['job','stage','answer']
+
+
+def test_idle_preview_contains_pending_pipeline(integration):
+    with TestClient(app) as client:
+        events=client.get('/api/agents').json()
+    nodes=[e for e in events if e['type']=='node']
+    assert [e['name'] for e in nodes]==['Question','Queue','Route','Ymir responses','Tools','Host checks','Answer','Check boxes','Review result']
+    assert [e['parents'] for e in nodes]==[[]]+[[e['id']] for e in nodes[:-1]]
+    assert all(e['state']=='pending' for e in events if e['type']=='status')
 
 
 def test_progress_persists_execution_chain_and_detector_identity(integration):

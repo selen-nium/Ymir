@@ -6,7 +6,10 @@ import sqlite3
 import uuid
 from pathlib import Path
 
-MODELS=('deepseek-4-1-flash-1017','kimi-k3-1-pro')
+from .model_config import DEEPSEEK, SOL, ARGON
+
+# Historical rows remain readable; new production reservations use OpenRouter only.
+MODELS=(DEEPSEEK, SOL, ARGON)
 
 class BudgetError(RuntimeError): pass
 
