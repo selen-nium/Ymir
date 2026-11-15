@@ -27,16 +27,17 @@ image=(modal.Image.debian_slim(python_version='3.12').apt_install('libgl1','libg
                    ignore=['**/__pycache__/**','**/*.egg-info/**','**/build/**'])
     .uv_pip_install('/opt/ymir-runtime')
     .env({'PYTHONPATH':'/root/backend','YMIR_DATA_DIR':'/data','YMIR_STOA_ROOT':'/data/runtime',
-          'YMIR_WEIGHTS_DIR':'/root/weights','YMIR_GPU_BACKEND':'modal','YMIR_MODEL_READINESS':'/root/model-readiness.json',
-          'YMIR_CORS_ORIGINS':os.environ.get('YMIR_CORS_ORIGINS',''),
-          'YMIR_CORS_ORIGIN_REGEX':os.environ.get('YMIR_CORS_ORIGIN_REGEX','')})
+          'YMIR_WEIGHTS_DIR':'/root/weights','YMIR_GPU_BACKEND':'modal','YMIR_MODEL_READINESS':'/root/model-readiness.json'})
     .add_local_file(receipt,'/root/model-readiness.json')
     .add_local_dir(ROOT/'weights','/root/weights')
     .add_local_dir(ROOT/'data/samples','/root/data/samples')
     .add_local_dir(ROOT/'backend','/root/backend',ignore=['**/__pycache__/**']))
 
 
+# Function environment values bypass Dockerfile ENV escaping (notably regex \.).
 @app.function(image=image,volumes={'/data':data},cpu=(2,2),memory=(4096,4096),timeout=1800,
+              env={'YMIR_CORS_ORIGINS':os.environ.get('YMIR_CORS_ORIGINS',''),
+                   'YMIR_CORS_ORIGIN_REGEX':os.environ.get('YMIR_CORS_ORIGIN_REGEX','')},
               min_containers=1,max_containers=1,
               secrets=[modal.Secret.from_name('ymir-verda',required_keys=['VERDA_INFERENCE_API_KEY','VERDA_CLIENT_ID','VERDA_CLIENT_SECRET'])])
 @modal.concurrent(max_inputs=16)
