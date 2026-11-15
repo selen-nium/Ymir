@@ -18,6 +18,9 @@
 .sheethead b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sheethead span { color: var(--ink-2); font-size: 12px; }
 .sheethead.ghost { border-style: dashed; border-color: var(--answer); }
+.src .src-title { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.sheethead-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.src .source-file-type, .sheethead .source-file-type { flex: none; padding: 1px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink-2); font-size: 11.5px; font-weight: 500; line-height: 1.5; white-space: nowrap; }
 .vnote .spin { display: inline-block; vertical-align: -2px; margin-right: 6px; width: 12px; height: 12px; }
 
 /* Sheet rail */

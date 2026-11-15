@@ -19,6 +19,12 @@ import './workspace.css';
 
 type Kind = 'building' | 'drawing';
 
+function SourceFileType({ file }: { file?: string }) {
+  const format = file?.match(/\.(pdf|ifc|svg|png|jpe?g|webp)$/i)?.[1].toUpperCase();
+  if (!format) return null;
+  return <span className="source-file-type" title={`Original file: ${file}`}><span className="sr-only">File type: </span>{format}</span>;
+}
+
 /** A building (several sheets assembled in 3D) or a single drawing, with Build and Ask on the right. */
 export function Workspace({ kind }: { kind: Kind }) {
   const router = useRouter();
@@ -113,7 +119,8 @@ function DrawingCard() {
       <div className="src">
         {/* eslint-disable-next-line @next/next/no-img-element -- drawings come from the API, any size */}
         <img src={d.image.url} alt="" />
-        <div>{d.title}<small>{[d.source?.dataset, d.source?.kind].filter(Boolean).join(' · ')}</small></div>
+        <div><span className="src-title" title={d.title}>{d.title}</span><small>{[d.source?.dataset, d.source?.kind].filter(Boolean).join(' · ')}</small></div>
+        <SourceFileType file={d.source?.file} />
       </div>
       <div className="dmeta">{[`${d.image.size[0]}×${d.image.size[1]} px`, scale, `${d.walls.length} walls`, `${d.rooms.length} rooms`].map((t) => <span key={t}>{t}</span>)}</div>
     </>
@@ -122,6 +129,7 @@ function DrawingCard() {
 
 function SheetHead() {
   const ws = useWorkspace();
+  useSessionTick();
   const activeId = useWs((s) => s.activeId), ghostSel = useWs((s) => s.ghostSel);
   useWs((s) => s.project);
   const v = ws.read.viewOf(activeId);
@@ -138,7 +146,7 @@ function SheetHead() {
   if (!v) return <div className="sheethead"><small>Opening…</small></div>;
   return (
     <div className="sheethead">
-      <small>Working on</small>
+      <div className="sheethead-top"><small>Working on</small><SourceFileType file={activeId ? ws.read.drawing(activeId)?.source.file : undefined} /></div>
       <b>{ws.read.sheetLabel(activeId)}</b>
       <span>{kindOf(v.kind).label}{v.placement.level ? ` · ${ws.read.levelName(v.placement.level)}` : ''}</span>
     </div>
