@@ -276,6 +276,7 @@ button.cite { display: inline-grid; place-items: center; min-width: 17px; height
 .trace-chart.sequential .tn-h { padding-left: 18px; }
 .trace-chart.sequential .tnode::before { content: attr(data-step); position: absolute; left: 8px; top: 7px; font-size: 10px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
 .trace-chart.sequential .tn-o { font-size: 11px; margin-top: 3px; }
+.trace-chart.sequential .tnode[data-id^="stage-"] .tn-o { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .trace .chartwrap:focus-visible { outline: 2px solid var(--answer); outline-offset: -2px; }
 @media (prefers-reduced-motion: reduce) { .trace-chart .tnode, .trace-chart .tedge { animation: none; transition: none; } }
 

@@ -133,7 +133,21 @@ def suggestions(drawing_id: str):
 
 @app.get("/api/agents")
 def agents():
-    return [{'type':'node','id':'lens','name':'Ymir','tool':'Ymir','parents':[]},{'type':'status','id':'lens','state':'pending','summary':'Select sources and ask a question'}]
+    steps=[('stage-question','Question','1–3 sheets','Select sheets and ask a question'),
+           ('stage-queue','Queue','Snapshot','Copy and hash sources; queue the job'),
+           ('stage-route','Route','Ymir','Compact counter or general harness'),
+           ('response-1','Ymir responses','Smart / Frontier','Read evidence and choose tools'),
+           ('tools','Tools','As requested','Inspect, detect, read text or measure'),
+           ('stage-checks','Host checks','Ymir','Bind evidence and derive results'),
+           ('lens-answer','Answer','Ymir','Citations and review groups'),
+           ('you','Check boxes','You · optional','When box review is requested'),
+           ('ans','Review result','You · optional','Save or skip the review')]
+    events=[];parent=[]
+    for ident,name,tool,summary in steps:
+        events.extend([{'type':'node','id':ident,'name':name,'tool':tool,'parents':parent},
+                       {'type':'status','id':ident,'state':'pending','summary':summary}])
+        parent=[ident]
+    return events
 
 
 @app.get("/api/projects")

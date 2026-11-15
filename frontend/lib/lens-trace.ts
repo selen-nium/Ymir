@@ -34,6 +34,11 @@ export function createLensTraceSequence(){
   return {
     get sequential(){return lens;},
     apply(event:TraceEvent):TraceEvent[]{
+      if(event.type==='stage'){
+        lens=true;
+        const id=`stage-${event.stage}`,name=event.stage==='checks'?'Host checks':title(event.stage);
+        return [...node(id,name,'Ymir',event.detail),...status(id,event.state,event.summary)];
+      }
       if(event.type==='job'){
         lens=true;jobStatus=event.status;
         if(['failed','interrupted','cancelled'].includes(event.status))return finishActive(event.status==='cancelled'?'skipped':'failed',title(event.status));

@@ -120,6 +120,7 @@ export interface Answer {
 export type TraceState = 'running' | 'done' | 'skipped' | 'failed' | 'waiting' | 'pending';
 
 export type TraceEvent = (
+  | { type: 'stage'; stage: 'question' | 'queue' | 'route' | 'checks'; state: TraceState; summary: string; detail?: string }
   | { type: 'node'; id: string; name: string; tool?: string; detail?: string; parents?: string[] }
   | { type: 'status'; id: string; state: TraceState; summary?: string; ms?: number }
   | { type: 'answer'; answer: Answer }

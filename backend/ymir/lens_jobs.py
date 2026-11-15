@@ -161,6 +161,15 @@ class JobStore:
             db.execute('INSERT INTO jobs (id,request_id,signature,project,conversation,request,manifest,status,created) VALUES (?,?,?,?,?,?,?,?,?)',
                        (ident,request['request_id'],signature,request['project_id'],request['conversation_id'],json.dumps(request),json.dumps(manifest),'queued',now()))
             self.event(ident,{'type':'job','status':'queued','request_id':request['request_id'],'routing_mode':configuration['routing_mode'],'configuration':configuration},db)
+            self.event(ident,{'type':'stage','stage':'question','state':'done',
+                             'summary':f'{len(ids)} selected sheet'+('s' if len(ids)!=1 else ''),
+                             'detail':request['question']+'\n'+', '.join(d['title'] for d in drawings)},db)
+            self.event(ident,{'type':'stage','stage':'queue','state':'done',
+                             'summary':f'{len(ids)} sheet'+('s' if len(ids)!=1 else '')+' snapshotted · queued',
+                             'detail':f'{len(snapshot_hashes)} snapshot files hashed; source copies and manifest written. Queued for the single inference worker.'},db)
+            self.event(ident,{'type':'stage','stage':'route','state':'done',
+                             'summary':'Compact counter · '+', '.join(count_scope['target_classes']) if count_scope else 'General harness',
+                             'detail':'compact_counter; bound page index 0; classes: '+', '.join(count_scope['target_classes']) if count_scope else 'general; no count scope bound'},db)
         self.checkpoint()
         self.start();self.wake.set()
         return ident
@@ -176,14 +185,28 @@ class JobStore:
         self.checkpoint()
         return self.lookup(ident)
 
-    def _terminal(self, ident, state, answer, db):
+    def _terminal(self, ident, state, answer, db, checks=None):
         row=db.execute('SELECT manifest FROM jobs WHERE id=?',(ident,)).fetchone()
         configuration=json.loads(row[0]).get('configuration') if row else None
         if configuration:
             answer=dict(answer,routing_mode=configuration['routing_mode'])
             if not answer.get('configuration'):answer['configuration']=configuration
         db.execute('UPDATE jobs SET status=?,answer=?,finished=? WHERE id=?',(state,json.dumps(answer),now(),ident))
-        self.event(ident,{'type':'job','status':state},db);self.event(ident,{'type':'answer','answer':answer},db)
+        self.event(ident,{'type':'job','status':state},db)
+        if checks is not None:self.event(ident,checks,db)
+        self.event(ident,{'type':'answer','answer':answer},db)
+
+    @staticmethod
+    def _checks(result):
+        accepted=len(result.get('accepted_proposal_ids',[]));errors=result.get('validation_errors',[])
+        counts=result.get('counts',[]);status=result['status']
+        detail=[f'Final evidence status: {status}',
+                'Accepted proposal IDs: '+(', '.join(result.get('accepted_proposal_ids',[])) or 'none')]
+        detail += [f"{c['page_id']} · {c['object_class']}: "+(str(c['count']) if c['count'] is not None else 'unconfirmed') for c in counts]
+        detail += [f"{len(result.get('rooms',[]))} rooms; {len(result.get('measurements',[]))} measurement results."]
+        detail += errors
+        return {'type':'stage','stage':'checks','state':'done',
+                'summary':f'{accepted} accepted · {len(errors)} error'+('s' if len(errors)!=1 else '')+f' · {status}', 'detail':'\n'.join(detail)}
 
     def events(self, ident, after=0):
         self._row(ident)
@@ -225,6 +248,7 @@ class JobStore:
                 if not row:self.wake.wait(.5);self.wake.clear();continue
                 ident=row['id'];manifest=json.loads(row['manifest']);folder=self.root/'jobs'/ident
                 def cancelled():return self.stopping.is_set() or bool(self._row(ident)['cancel'])
+                checks=None
                 try:
                     if cancelled():raise Cancelled('Cancelled before dispatch')
                     if any(sha(folder/path)!=expected for path,expected in manifest.get('snapshot_sha256',{}).items()):raise ValueError('Immutable job source snapshot changed')
@@ -235,6 +259,7 @@ class JobStore:
                     if manifest.get('count_scope') is not None:
                         hooks.update(agent='compact_counter',count_scope=manifest['count_scope'])
                     result=self.runner(manifest['pages'],json.loads(row['request'])['question'],folder/('lens-'+ident),**hooks)
+                    checks=self._checks(result)
                     if cancelled():raise Cancelled('Cancelled after current operation')
                     answer=answer_for(ident,result,manifest['page_sheets']);state='completed'
                 except Cancelled:
@@ -245,7 +270,7 @@ class JobStore:
                     state='interrupted' if self.stopping.is_set() else 'failed'
                     answer={'status':'error','text':'Ymir stopped ('+type(exc).__name__+'). This job will not be retried.','job_id':ident,'citations':[]}
                 with self.lock,self.db() as db:
-                    db.execute('BEGIN IMMEDIATE');self._terminal(ident,state,answer,db)
+                    db.execute('BEGIN IMMEDIATE');self._terminal(ident,state,answer,db,checks)
                 self.checkpoint()
         finally:
             if self.worker_lock:self.worker_lock.close();self.worker_lock=None

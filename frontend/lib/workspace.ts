@@ -638,10 +638,11 @@ export function createWorkspace({ navigate }: { navigate: (url: string) => void 
     session.startReview(answer, e.q, savedReview(e.records ?? (e.record?[e.record]:[]),chosen));
     v3.plan?.fit(); v3.viewer?.fit();
     const pct = Math.round((answer.confidence ?? 0) * 100);
-    // The frontend owns this step, like Build's "You" steps: it goes between Verifier and Answer.
+    // Lens projection attaches human review after the recorded machine answer,
+    // including repeated reviews of different sheet/class groups.
     traceEvents(id, [
-      { type: 'node', id: 'you', name: 'Check boxes', tool: 'You', parents: ['ver'] },
-      { type: 'node', id: 'ans', name: 'Answer', tool: 'Cited', parents: ['you'] },
+      { type: 'node', id: 'you', name: 'Check boxes', tool: 'You' },
+      { type: 'node', id: 'ans', name: 'Review result', tool: 'You', parents: ['you'] },
       { type: 'status', id: 'you', state: 'waiting', summary: answer.job_id ? 'Check the boxes' : `${pct}% sure · your turn` },
       { type: 'status', id: 'ans', state: 'pending', summary: 'Waiting for you' },
     ]);

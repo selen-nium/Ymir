@@ -1,5 +1,5 @@
-// Backend client. The agents run on the server (backend/ymir/qa) and stream trace events as NDJSON:
-// {type:'node'|'status'|'answer'}; see backend/ymir/qa/stream.py.
+// Backend client. Ask streams durable job, stage, node/status, progress and answer
+// events as NDJSON; see backend/ymir/lens_jobs.py (also used by reconnect and replay).
 // The browser calls /api/* on this site and next.config.ts forwards it to the API. Setting
 // NEXT_PUBLIC_YMIR_API_BASE makes it call the API directly instead (the API then needs CORS for this origin).
 import type { Drawing, LibraryEntry, ProjectEntry, TraceEvent, LensJob, LensStatus, RoutingMode } from './types';
