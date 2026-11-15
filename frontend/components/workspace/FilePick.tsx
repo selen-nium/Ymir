@@ -3,7 +3,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { selectImport, uploadDocument, type DocumentInventory, type ImportSelection } from '@/lib/api';
 
-export const DRAWING_TYPES = 'image/png,image/jpeg,image/webp,application/pdf,.ifc,.svg';
+export const DRAWING_TYPES = 'image/png,image/jpeg,image/webp,application/pdf,.ifc,.svg,.dxf';
 
 /** Native document import keeps page/geometry choices explicit before Build. */
 export function FilePick({ onFile, className, title, disabled, children }: {
@@ -17,7 +17,7 @@ export function FilePick({ onFile, className, title, disabled, children }: {
   useEffect(()=>{if(pending)dialog.current?.showModal();},[pending]);
   const choose = async (file: File) => {
     setError('');
-    if(!/\.(pdf|svg|ifc)$/i.test(file.name)){onFile(file);return;}
+    if(!/\.(pdf|svg|ifc|dxf)$/i.test(file.name)){onFile(file);return;}
     setBusy(true);
     try {
       const doc=await uploadDocument(file);
@@ -32,6 +32,10 @@ export function FilePick({ onFile, className, title, disabled, children }: {
     else if(doc.format==='ifc')selection.options={storey_id:selected[0]};
     else {
       selection.options={element_ids:selected};
+      if(doc.format==='dxf'){
+        const unit=String(new FormData(form).get('dxf_unit') || '');
+        if(unit)selection.options.dxf_unit=unit;
+      }
       if(confirmScale){
         const data=new FormData(form), n=(k:string)=>Number(data.get(k));
         selection.options.svg_scale={p0:[n('x0'),n('y0')],p1:[n('x1'),n('y1')],length:n('length'),unit:String(data.get('unit')),reading:String(data.get('reading')),reviewer:String(data.get('reviewer'))};
@@ -55,6 +59,7 @@ export function FilePick({ onFile, className, title, disabled, children }: {
           {options.map(o=><label key={o.id}><input type={pending?.doc.format==='ifc'?'radio':'checkbox'} name="selector" checked={selected.includes(o.id)} onChange={e=>setSelected(pending?.doc.format==='ifc'?[o.id]:e.target.checked?[...selected,o.id]:selected.filter(s=>s!==o.id))}/>{o.label}</label>)}
           {!options.length && <p>No selectable geometry was found in this source.</p>}
         </fieldset>
+        {pending?.doc.format==='dxf' && <label>Drawing units<select name="dxf_unit"><option value="">Use declared units (unitless: area unavailable)</option>{['m','cm','mm','ft','in'].map(u=><option key={u}>{u}</option>)}</select></label>}
         {pending?.doc.format==='svg' && <>
           <label><input type="checkbox" checked={confirmScale} onChange={e=>setConfirmScale(e.target.checked)}/>Confirm a visible length for measurements</label>
           {confirmScale && <fieldset className="scale-fields"><legend>Length in SVG root coordinates</legend>

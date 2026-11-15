@@ -60,7 +60,8 @@ class LensHarness:
         self.schemas = {t['function']['name']: t['function']['parameters'] for t in self.tools}
         self.allowances = {'detect_objects': self.limits.detector_requests,
                            'predict_room_polygons': self.limits.raster_predictions,
-                           'read_pdf_text': self.limits.text_requests}
+                           'read_pdf_text': self.limits.text_requests,
+                           'read_pdf_vectors': self.limits.text_requests}
         self.uses = dict.fromkeys(self.allowances, 0)
         self.predicted_views, self.proposals, self.text_evidence = set(), {}, {}
         self.detections, self.transcript, self.measurements = [], [], []
@@ -151,6 +152,9 @@ class LensHarness:
         if name == 'native_room_candidates':
             self.registry.checked_view(self.registry.initial_for(args['page_id'])['view_id'])
             return self.geometry.native_room_candidates(args['page_id'], args.get('room_identifier'), timeout=remaining), []
+        if name == 'read_pdf_vectors':
+            from .native_vectors import read_pdf_vectors
+            return read_pdf_vectors(self.registry.checked_view(args['view_id']), args.get('cursor',0)), []
         if name == 'read_pdf_text':
             result = read_pdf_text(self.registry.checked_view(args['view_id']), args.get('cursor', 0))
             for line in result['lines']:
@@ -184,7 +188,7 @@ class LensHarness:
             return self.geometry.calibrate(evidence_id, args['p0'], args['p1'], args['length'], args['unit']), []
         if name in ('measure_room', 'measure_distance'):
             result = getattr(self.geometry, name)(**args)
-            self.measurements.append({'tool': name, 'arguments': args, 'result': result})
+            self.measurements.append(copy.deepcopy({'tool': name, 'arguments': args, 'result': result}))
             return result, []
         raise ValueError('Unimplemented tool')
 
@@ -305,7 +309,15 @@ class LensHarness:
                 errors.append('Reading cites unregistered evidence')
             else:
                 readings.append(dict(reading, provenance='model_reading', computed_geometry=False))
-        if value['status'] == 'answered' and not (requests or rooms or readings):
+        selected_measurements = []
+        recorded = {entry['result'].get('measurement_id'):entry for entry in self.measurements
+                    if entry['result'].get('status') == 'available' and entry['result'].get('measurement_id')}
+        for ident in value.get('measurement_ids', []):
+            if ident not in recorded:
+                errors.append('Unknown or unavailable measurement ID: ' + ident)
+            else:
+                selected_measurements.append(copy.deepcopy(recorded[ident]))
+        if value['status'] == 'answered' and not (requests or rooms or readings or selected_measurements):
             errors.append('An answer requires recorded evidence')
         if errors and strict:
             raise ValueError('; '.join(errors))
@@ -317,7 +329,8 @@ class LensHarness:
                 'accepted_proposal_ids': accepted, 'proposals': list(self.proposals.values()),
                 'rooms': rooms, 'room_count': len(rooms), 'readings': readings, 'notes': value.get('notes', []),
                 'text_associations': associations, 'text_evidence': list(self.text_evidence.values()),
-                'validation_errors': errors, 'detections': self.detections, 'measurements': self.measurements,
+                'validation_errors': errors, 'detections': self.detections, 'measurements': selected_measurements,
+                'measurement_ids': [entry['result']['measurement_id'] for entry in selected_measurements],
                 'coverage': self.inventory()}
 
     def inventory(self):

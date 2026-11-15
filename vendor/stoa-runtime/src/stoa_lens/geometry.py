@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import math
+import hashlib
+import json
 from pathlib import Path
 
 from stoa_vista_specialists.geometry import GeometryTools
@@ -102,9 +104,14 @@ class Geometry:
                 raise ValueError('Invalid or uncertain scale')
             distance = math.dist(p0,p1)
             if distance <= 0: raise ValueError('Distinct endpoints required')
-            return {'status':'available','page_id':page_id,'calibration_id':calibration_id,'p0':list(p0),'p1':list(p1),'pixel_distance':distance,'distance_m':distance*scale,
-                    'estimate':cal.get('kind') not in ('native_verified_pdf_scale_and_dxf_units','native_ifc_units'),
-                    'calibration_kind':cal.get('kind'),'source_id':source['source_id'],'source_sha256':source['source_sha256'],'page':source['page']}
+            receipt = {'status':'available','page_id':page_id,'calibration_id':calibration_id,'p0':list(p0),'p1':list(p1),'pixel_distance':distance,'distance_m':distance*scale,
+                    'estimate':cal.get('kind') not in ('native_verified_pdf_scale_and_dxf_units','native_ifc_units','native_dxf_units'),
+                    'calibration_kind':cal.get('kind'),'source_id':source['source_id'],'source_sha256':source['source_sha256'],'page':source['page'],
+                    'calibration_sha256':hashlib.sha256(json.dumps(cal, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest(),
+                    'method':'straight_line_between_page_endpoints','unit':'m'}
+            payload = json.dumps(receipt, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+            receipt['measurement_id'] = 'measurement-' + hashlib.sha256(payload).hexdigest()
+            return receipt
         except (KeyError,TypeError,ValueError,OSError) as exc:
             return {'status':'unavailable','calibration_id':calibration_id,'distance_m':None,'reason':str(exc)}
 

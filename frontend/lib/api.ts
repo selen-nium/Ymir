@@ -97,7 +97,7 @@ export async function deleteDrawing(id: string) {
 }
 
 export interface DocumentInventory { id: string; filename: string; format: string; page_count: number; pages: {number: number; rotation?: number; native_text?: boolean}[]; selectors: {id: string; label: string}[]; limitations: string[] }
-export interface ImportSelection { pages?: number[]; options?: { element_ids?: string[]; storey_id?: string; svg_scale?: {p0: number[]; p1: number[]; length: number; unit: string; reading: string; reviewer: string} } }
+export interface ImportSelection { pages?: number[]; options?: { element_ids?: string[]; storey_id?: string; dxf_unit?: string; svg_scale?: {p0: number[]; p1: number[]; length: number; unit: string; reading: string; reviewer: string} } }
 const imports = new WeakMap<File,{doc: DocumentInventory; selection: ImportSelection}>();
 export const selectImport = (file: File,doc: DocumentInventory,selection: ImportSelection) => imports.set(file,{doc,selection});
 export function uploadDocument(file: File) {

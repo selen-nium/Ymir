@@ -20,7 +20,7 @@ import './workspace.css';
 type Kind = 'building' | 'drawing';
 
 function SourceFileType({ file }: { file?: string }) {
-  const format = file?.match(/\.(pdf|ifc|svg|png|jpe?g|webp)$/i)?.[1].toUpperCase();
+  const format = file?.match(/\.(pdf|ifc|svg|dxf|png|jpe?g|webp)$/i)?.[1].toUpperCase();
   if (!format) return null;
   return <span className="source-file-type" title={`Original file: ${file}`}><span className="sr-only">File type: </span>{format}</span>;
 }

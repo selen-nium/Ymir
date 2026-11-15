@@ -41,7 +41,7 @@ def answer_for(job_id, result, page_sheets):
     for i,entry in enumerate(result.get('measurements',[])):
         m=entry.get('result',entry)
         if m.get('p0') and m.get('p1'):
-            cite('measurement-'+str(i),m.get('page_id'),'Source-calibrated distance',box=bounds([m['p0'],m['p1']]),endpoints=[m['p0'],m['p1']],score=None)
+            cite(m.get('measurement_id','measurement-'+str(i)),m.get('page_id'),'Source-calibrated distance',box=bounds([m['p0'],m['p1']]),endpoints=[m['p0'],m['p1']],score=None)
     for cal in result.get('calibrations',[]):
         if cal.get('p0') and cal.get('p1'):
             page=cal.get('evidence',{}).get('page_id')
@@ -80,4 +80,4 @@ def answer_for(job_id, result, page_sheets):
     auto=next((r for r in reviews if r['boxes']),None) if result['status']=='needs_review' else None
     return {'status':result['status'],'text':text,'value':value,'unit':'count' if counts else None,'job_id':job_id,'confidence':None,
             'citations':citations,'counts':counts,'rooms':rooms,'readings':result.get('readings',[]), 'measurements':result.get('measurements',[]),
-            'calibrations':result.get('calibrations',[]),'reasons':reasons,'coverage':result.get('coverage'),'reviews':reviews,**({'review':auto} if auto else {})}
+            'measurement_ids':result.get('measurement_ids',[]),'calibrations':result.get('calibrations',[]),'reasons':reasons,'coverage':result.get('coverage'),'reviews':reviews,**({'review':auto} if auto else {})}
