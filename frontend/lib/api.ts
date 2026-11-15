@@ -62,16 +62,19 @@ function streamEvents(path: string,onEvent: (ev: TraceEvent) => void,init: Reque
       }
       if(!res.body)throw new Error('No event stream. Reload to reconnect.');
       const reader=res.body!.pipeThrough(new TextDecoderStream()).getReader();
-      let buf='';
+      let buf='',answered=false;
+      const emit=(line: string)=>{const ev=JSON.parse(line) as TraceEvent;if(ev.type==='answer')answered=true;onEvent(ev);};
       for (;;) {
         const {value,done}=await reader.read(); if(done) break;
         buf+=value;
         for(let i=buf.indexOf('\n');i>=0;i=buf.indexOf('\n')) {
           const line=buf.slice(0,i).trim();buf=buf.slice(i+1);
-          if(line) onEvent(JSON.parse(line) as TraceEvent);
+          if(line) emit(line);
         }
       }
-      if(buf.trim())onEvent(JSON.parse(buf) as TraceEvent);
+      if(buf.trim())emit(buf);
+      // The server always ends a job stream with its answer; anything else is a dropped connection.
+      if(!answered)onEvent({type:'connection',message:'The connection closed before the answer arrived.'});
     } catch(e) {
       if((e as Error).name!=='AbortError')onEvent({type:'connection',message:(e as Error).message || 'Connection interrupted. Reload to reconnect to this job.'});
     }
