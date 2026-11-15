@@ -11,6 +11,19 @@ import time
 _IDENTITIES = {'id', 'type', 'format', 'signature'}
 
 
+class EmptyAssistantResponse(ValueError):
+    """No assistant payload arrived; a bounded conversation turn can recover."""
+    allow_tools = True
+
+
+def require_assistant_payload(message):
+    content = message.get('content') if isinstance(message, dict) else None
+    if (not isinstance(message, dict) or
+        not (isinstance(content, str) and content.strip()) and
+        not message.get('tool_calls') and not message.get('refusal')):
+        raise EmptyAssistantResponse('Provider stream returned no assistant text or tool calls')
+
+
 def merge_delta(target, delta):
     for key, value in delta.items():
         if value is None:
@@ -102,4 +115,6 @@ async def stream_sdk(body, key, deadline, chunks_path, headers_path):
                         accumulator.add(obj)
             finally:
                 await stream.close()
-    return accumulator.result()
+    result = accumulator.result()
+    require_assistant_payload(result['message'])
+    return result

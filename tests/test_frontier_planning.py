@@ -81,3 +81,44 @@ def test_mode_mapping_enables_planning_only_on_new_frontier_snapshots():
     assert validate(old)==old and 'planning' not in validate(old)
     bad=resolve('smart');bad['planning']['enabled']=True
     with pytest.raises(ValueError):validate(bad)
+
+
+def test_empty_provider_turn_preserves_plan_and_allows_detail_inspection(tmp_path):
+    from stoa_lens.streaming import EmptyAssistantResponse
+    base=counter(tmp_path)
+    class Geometry:
+        calibrations={};candidates={}
+    calls=[]
+    class Transport:
+        def complete(self,messages,tools,deadline,index,final=False):
+            calls.append((index,final,[t['function']['name'] for t in tools]))
+            if index==0:
+                page=base.registry.initial['page_id']
+                plan={'steps':[{'id':'zoom','tool':'inspect','page_ids':[page],'reason':'Inspect pipe components'}]}
+                return {'role':'assistant','content':None,'tool_calls':[{'id':'plan','function':{'name':'execution_plan','arguments':json.dumps(plan)}}]}
+            if index==1:raise EmptyAssistantResponse('Provider stream returned no assistant text or tool calls')
+            if index==2:
+                assert not final and 'inspect' in calls[-1][2]
+                assert any(m['role']=='tool' and 'execution_plan' in m['content'] for m in messages)
+                assert not any(m['role']=='assistant' and not m.get('content') and not m.get('tool_calls') for m in messages)
+                return {'role':'assistant','content':None,'tool_calls':[{'id':'zoom','function':{'name':'inspect','arguments':json.dumps({'question':'Read pipe detail','views':[{'turn':0,'label':'pipe detail','region':{'x':10,'y':10,'width':40,'height':30}}]})}}]}
+            view=next(v for v in h.registry.views.values() if v['view_id']!=h.registry.initial['view_id'])
+            return {'role':'assistant','content':json.dumps({'status':'answered','accepted_proposal_ids':[],
+                'count_requests':[],'rooms':[],'readings':[{'kind':'text','value':'FP-1','unit':None,
+                'evidence_ids':[view['view_id']],'description':'Registered detail crop'}]})}
+    h=PlanningHarness(base.registry,object(),Geometry(),Transport(),tmp_path/'general',configuration=resolve('frontier'))
+    result=h.run('Trace pipe to FP-1')
+    assert result['status']=='answered' and h.registry.inspection_views==1
+    assert [i for i,_,_ in calls]==[0,1,2,3]
+    assert result['execution_plan'][0]['id']=='zoom'
+
+
+def test_repeated_empty_provider_turns_do_not_loop_through_the_response_budget(tmp_path):
+    from stoa_lens.streaming import EmptyAssistantResponse
+    calls=[]
+    class Transport:
+        def complete(self,messages,tools,deadline,index,final=False):
+            calls.append((index,final));raise EmptyAssistantResponse('empty stream')
+    h=counter(tmp_path,Transport());result=h.run('Count doors')
+    assert result['status']=='needs_review'
+    assert calls==[(0,False),(1,False),(2,True)]

@@ -425,6 +425,7 @@ class LensHarness:
             content.extend([json_content({'view_id': view['view_id'], 'page_id': view['page_id']}), image_content(view['path'])])
         messages = [{'role': 'system', 'content': self.system_prompt}, {'role': 'user', 'content': content}]
         force_final = False
+        empty_response_recoveries = 0
         try:
             for index in range(self.limits.responses):
                 self._boundary()
@@ -452,6 +453,22 @@ class LensHarness:
                     self._save()
                     if final:
                         return self._partial('Final response unavailable: ' + type(exc).__name__)
+                    from .streaming import EmptyAssistantResponse
+                    if (isinstance(exc, EmptyAssistantResponse) and empty_response_recoveries == 0
+                            and index < self.limits.responses - 1 and time.monotonic() < self.tool_deadline):
+                        # Use the existing next conversation response, preserving the
+                        # last valid history. The failed request consumes its slot;
+                        # the transport never replays it or releases an unknown charge.
+                        empty_response_recoveries += 1
+                        self.transcript.append({'response_index': index, 'recovery': 'empty_assistant_response',
+                                                'remaining_tools_available': True})
+                        force_final = False
+                        messages.append({'role':'user','content':
+                            'The previous provider stream returned no assistant text or tool calls. '
+                            'That failed response consumed one response allowance. Continue from the recorded '
+                            'plan and evidence using the remaining available tools. If drawing details '
+                            'are unresolved, inspect them before deciding whether to answer or request review.'})
+                        continue
                     # Finalization is a new response, not a retry of the failed request.
                     force_final = True
                     messages.append({'role': 'user', 'content': 'Planning response unavailable. Finalize from the recorded evidence only.'})

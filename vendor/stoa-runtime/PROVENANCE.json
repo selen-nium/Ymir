@@ -113,7 +113,7 @@
     "src/stoa_lens/dfine.py": "80527dbee21e8e791493129ca0e8cfd270aacdf96dd7b7bf456977a48aeeca4f",
     "src/stoa_lens/dfine_worker.py": "acf7e8dd4db62cfd94b5acf943e115099e4e01e572a4714d6cca85d86a616c74",
     "src/stoa_lens/geometry.py": "041607b050b4c2fa025ab6e3e3d0974d600608d054653385fe43c80559296077",
-    "src/stoa_lens/harness.py": "80dd284c026ff5a4fcc74e0e8ac5e0a795c6b85c90d48fabfb9d22e584af57a1",
+    "src/stoa_lens/harness.py": "0adea278b80739d0f5a8e742919194b61fd9f2fc866a133091333a7edc2bec45",
     "src/stoa_lens/model_config.py": "51c7146ea5a7f50183225ff820d075dfc235dae38934c0dc5a0553bc25827ea8",
     "src/stoa_lens/native_text.py": "33e4b0e7ffe871ee70f988431acc3b0bd406cd544499ace897bcba39a96b0bea",
     "src/stoa_lens/native_vectors.py": "e9a5d20c4ac5e8a7b5ae0dc459fbf4d2967eb86f3a8b66e9d8d9cebe12a7fb6b",
@@ -124,8 +124,8 @@
     "src/stoa_lens/review.py": "2b7d803d265ecc12f5c35a30d98014ee2965971a32aee66e801b551cfb29c4eb",
     "src/stoa_lens/routing.py": "9c2a3ab42806f4d107549bf134f7a75b1978a1cb35b226943d1007ab4ace7885",
     "src/stoa_lens/service.py": "4681ca64c2f8ff551be6c8ecac860be86002c42f9d209f9a215170d5c6eb30b4",
-    "src/stoa_lens/streaming.py": "5ef8cd420872dc4db7784b7e6d555c91bc56e3f10be44f64b2181b309216305a",
-    "src/stoa_lens/transport.py": "15cf51df5a8ebae7377e40edc7c33d7ff86448b2aeb49ae163fff0a1568f935e",
+    "src/stoa_lens/streaming.py": "a96261455d541edebc61fe501e5aa7f23b2232d7bbc2c9476a6bf912f550b285",
+    "src/stoa_lens/transport.py": "67d49543b8893a1012dc6222b12e194b4f0dc931fad0fe064c2d81259f208231",
     "src/stoa_native_geometry/__init__.py": "fef0a7334137a39bcac2308223ede6bad0a45ae7dbf845fac3506fae197ee093",
     "src/stoa_native_geometry/__main__.py": "05418510473a4c9b711aee8451a5793550643c8c170bebdc6747fb88f5636787",
     "src/stoa_native_geometry/backend.py": "ce22e970c49fd012ceb7c413c28d5c373d54cc78735caf8b51ca2afaceffa3b5",
@@ -299,5 +299,20 @@
       "Older routing snapshots without a planning field retain their original execution policy; history is never relabelled.",
       "No experimental hybrid detector, expanded study limits, monkeypatch, dataset, ledger or report is imported."
     ]
+  },
+  "empty_stream_recovery": {
+    "recorded_at_utc": "2026-11-15T09:13:36.868431+00:00",
+    "trigger": "A live Frontier piping job returned a zero-chunk second stream after its execution plan. Legacy code treated it as a final-JSON error and disabled inspection.",
+    "changes": [
+      "Reject assistant replies without text, tools or refusal; preserve the raw stream and unresolved billing.",
+      "Use at most one existing next conversation response with remaining tools after an empty response; failed requests consume their original response slots.",
+      "SDK retries remain zero; provider routing, model/output limits and evidence validation are preserved.",
+      "Repeated empty responses or an empty final response stop under existing bounded finalization; historical jobs and ledgers are preserved."
+    ],
+    "previous_vendored_sha256": {
+      "src/stoa_lens/streaming.py": "5ef8cd420872dc4db7784b7e6d555c91bc56e3f10be44f64b2181b309216305a",
+      "src/stoa_lens/transport.py": "15cf51df5a8ebae7377e40edc7c33d7ff86448b2aeb49ae163fff0a1568f935e",
+      "src/stoa_lens/harness.py": "80dd284c026ff5a4fcc74e0e8ac5e0a795c6b85c90d48fabfb9d22e584af57a1"
+    }
   }
 }
